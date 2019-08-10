@@ -19,7 +19,7 @@ at  localhost : 3306
  
 
 ###	靜態網頁資料放入  /public  
-將前端的資料放入/public並將主檔案命名為imdex.html
+將前端的資料放入/public並將主檔案命名為index.html
 
 
 ### 執行 
