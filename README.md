@@ -3,7 +3,8 @@
 ### 安裝
 ---
 
-#### 安裝loopback4
+#### 安裝loopback4  
+
  ![loopback4](readme_pic/loopback4.png)
 
 ####	安裝 mariaDB
@@ -12,7 +13,8 @@ loopback專案中目前設置的db 資訊是:
 username : root   
 password: 1234567  
 at  localhost : 3306  
-建議先設定成一樣的，然後載入lens.SQL，共一個db兩張表
+建議先設定成一樣的，然後載入lens.SQL，共一個db兩張表  
+
  ![db](readme_pic/db.png)
  
 
@@ -21,7 +23,8 @@ at  localhost : 3306
 
 
 #### 執行 
-進入根目錄下，執行npm install & npm start，應該會看到下圖代表成功 
+進入根目錄下，執行npm install & npm start，應該會看到下圖代表成功   
+
  ![npm](readme_pic/npm.png)
 
 
