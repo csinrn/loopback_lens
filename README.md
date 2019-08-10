@@ -1,13 +1,12 @@
 # loopback_lens
 
-### 安裝
----
+## 安裝
 
-#### 安裝loopback4  
+### 安裝loopback4  
 
  ![loopback4](readme_pic/loopback4.png)
 
-####	安裝 mariaDB
+###	安裝 mariaDB
 https://mariadb.org/download/  
 loopback專案中目前設置的db 資訊是:  
 username : root   
@@ -18,11 +17,11 @@ at  localhost : 3306
  ![db](readme_pic/db.png)
  
 
-####	靜態網頁資料放入  /public  
+###	靜態網頁資料放入  /public  
 將前端的資料放入/public並將主檔案命名為imdex.html
 
 
-#### 執行 
+### 執行 
 進入根目錄下，執行npm install & npm start，應該會看到下圖代表成功   
 
  ![npm](readme_pic/npm.png)
@@ -30,11 +29,11 @@ at  localhost : 3306
 
 
 
+<br>
+<br>
+## API
 
-### Api
----
-
-#### Userlens Model(使用者的隱眼紀錄) :
+### Userlens Model(使用者的隱眼紀錄) :
 
 * 新增：[post] /user
 <pre>
@@ -58,7 +57,7 @@ requestBody = { "lenstime": 0 }
 
     
     
-#### Lens(隱形眼鏡模型) :
+### Lens(隱形眼鏡模型) :
 * 新增：[post] /lens
 <pre>
 requestBody = {
