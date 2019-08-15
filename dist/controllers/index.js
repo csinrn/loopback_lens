@@ -6,4 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./ping.controller"));
 __export(require("./lens-control.controller"));
 __export(require("./user-lens-control.controller"));
+__export(require("./admin-control.controller"));
 //# sourceMappingURL=index.js.map

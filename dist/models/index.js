@@ -5,4 +5,5 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./lens.model"));
 __export(require("./userlens.model"));
+__export(require("./admin.model"));
 //# sourceMappingURL=index.js.map

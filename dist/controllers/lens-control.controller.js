@@ -16,6 +16,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const authentication_1 = require("@loopback/authentication");
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
@@ -124,6 +125,7 @@ __decorate([
             },
         },
     }),
+    authentication_1.authenticate('jwt'),
     __param(0, rest_1.param.path.string('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

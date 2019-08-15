@@ -1,10 +1,12 @@
 import { FindRoute, InvokeMethod, ParseParams, Reject, RequestContext, Send, SequenceHandler } from '@loopback/rest';
-export declare class MySequence implements SequenceHandler {
+import { AuthenticateFn } from '@loopback/authentication';
+export declare class MyAuthenticationSequence implements SequenceHandler {
     protected findRoute: FindRoute;
     protected parseParams: ParseParams;
     protected invoke: InvokeMethod;
-    send: Send;
-    reject: Reject;
-    constructor(findRoute: FindRoute, parseParams: ParseParams, invoke: InvokeMethod, send: Send, reject: Reject);
+    protected send: Send;
+    protected reject: Reject;
+    protected authenticateRequest: AuthenticateFn;
+    constructor(findRoute: FindRoute, parseParams: ParseParams, invoke: InvokeMethod, send: Send, reject: Reject, authenticateRequest: AuthenticateFn);
     handle(context: RequestContext): Promise<void>;
 }

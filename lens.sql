@@ -11,7 +11,13 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping data for table lensdb.lens: ~5 rows (approximately)
+-- Dumping data for table lensdb.admin: ~0 rows (approximately)
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` (`account`, `password`, `creatat`, `name`) VALUES
+	('string', '$2a$10$2GfZolvAUFwPH6R54Prh2O29cFLdUHdhTBu1IRoO7f1ZLtyqf9gn.', 0, 'string');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+
+-- Dumping data for table lensdb.lens: ~4 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
 INSERT INTO `lens` (`lensId`, `lenspic`, `lensname`, `createAt`, `updateAt`) VALUES
 	(1, '[0]', 'string', 0, 0),
@@ -19,7 +25,7 @@ INSERT INTO `lens` (`lensId`, `lenspic`, `lensname`, `createAt`, `updateAt`) VAL
 	(3, '[0]', 'kk', 181026, 183030);
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
 
--- Dumping data for table lensdb.userlens: ~2 rows (approximately)
+-- Dumping data for table lensdb.userlens: ~3 rows (approximately)
 /*!40000 ALTER TABLE `userlens` DISABLE KEYS */;
 INSERT INTO `userlens` (`id`, `userId`, `lensId`, `lensCount`, `lensTime`, `createAt`, `updateAt`) VALUES
 	(1, '0', '0', 1, 0, 0, 0),

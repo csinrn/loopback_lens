@@ -1181,12 +1181,119 @@
         "version": "ffc8cea8674f40d55569412521f074a3bbe6e9b890bc8a4bfa75a2a7892dcef3",
         "signature": "ffc8cea8674f40d55569412521f074a3bbe6e9b890bc8a4bfa75a2a7892dcef3"
       },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/authentication.component.d.ts": {
+        "version": "94cd7a2a9c12b9f79ce8805188a97dfcadd9f4e0fa28739f568c315542eacd7d",
+        "signature": "94cd7a2a9c12b9f79ce8805188a97dfcadd9f4e0fa28739f568c315542eacd7d"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/authenticate.decorator.d.ts": {
+        "version": "ddab665f6c43b8b02c713e1f3ca55ba495e21260cc910b94821af3629e422e25",
+        "signature": "ddab665f6c43b8b02c713e1f3ca55ba495e21260cc910b94821af3629e422e25"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/index.d.ts": {
+        "version": "58b55855b9c93765717d3238a61d94f3653c8c1ba777c389b78ca81723f438bd",
+        "signature": "58b55855b9c93765717d3238a61d94f3653c8c1ba777c389b78ca81723f438bd"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts": {
+        "version": "86b1afe7055928540b2dd5de3abafe0c952d969dcfc61a95589635ebadb65625",
+        "signature": "86b1afe7055928540b2dd5de3abafe0c952d969dcfc61a95589635ebadb65625"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/keys.d.ts": {
+        "version": "63db5bf58ebd50284e8dfcfea4be445a98fa7a7b06c0029a7b2107efa63bfdcf",
+        "signature": "63db5bf58ebd50284e8dfcfea4be445a98fa7a7b06c0029a7b2107efa63bfdcf"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/token.service.d.ts": {
+        "version": "291f79fe1d48058cba28b8ca2cbc229ff35802e109a7281759ede28a4c4e0a89",
+        "signature": "291f79fe1d48058cba28b8ca2cbc229ff35802e109a7281759ede28a4c4e0a89"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/user.service.d.ts": {
+        "version": "25acd2f0acdaf93b8193efc7e59b92e0b942b004fe7dec28929bbb1e364a386d",
+        "signature": "25acd2f0acdaf93b8193efc7e59b92e0b942b004fe7dec28929bbb1e364a386d"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/index.d.ts": {
+        "version": "356582901fa81ef02f806db1a2c1259ec2bab3f617ca194082c2e89eb1afdd08",
+        "signature": "356582901fa81ef02f806db1a2c1259ec2bab3f617ca194082c2e89eb1afdd08"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/index.d.ts": {
+        "version": "cd76c13efd8037725323c64b89f6b19a4a38ae3a9d3b1869e1b33ddb066f7e7b",
+        "signature": "cd76c13efd8037725323c64b89f6b19a4a38ae3a9d3b1869e1b33ddb066f7e7b"
+      },
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts": {
+        "version": "c1b57e8e85579db3675a9f7a5983af198238c2f02079b6315d5f2ed76a4f0584",
+        "signature": "c1b57e8e85579db3675a9f7a5983af198238c2f02079b6315d5f2ed76a4f0584"
+      },
       "d:/eye-demo/lens/src/sequence.ts": {
-        "version": "b0256118f1d4eb4db5aaccc2224bdea2c6321e97a6f6a50898274e4757c50ec6",
-        "signature": "03644d82c85f47756cd90daf232af37b70d70db77a99688fa3c1330e015d040f"
+        "version": "1b117c008c146c85caf2a74500d49909f6c54e40cc4d97a1cc9af84cdb647980",
+        "signature": "af98e3bee231b98f801de8ded24624ed807511a49664bf8fac44ba7ad475ea21"
+      },
+      "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts": {
+        "version": "9dfe431ab1485e17a6055e186c49da9d23af74b965f2e99f8acc6c958778608f",
+        "signature": "9dfe431ab1485e17a6055e186c49da9d23af74b965f2e99f8acc6c958778608f"
+      },
+      "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts": {
+        "version": "dfece64c0b957aab2a3bbddee14ccfd63dfa7b2c666f881a8db9eb60ad32d987",
+        "signature": "f03594cc668c4d08662922715b727f5680f028bab3746d13adfac62674c97537"
+      },
+      "d:/eye-demo/lens/src/models/lens.model.ts": {
+        "version": "6b5de34ffa1f052e6ea9c90bd8e36b826d3576c785dc561c0b4c3450f3958c0c",
+        "signature": "ee90a6535665f7af84fd3a6000f6acfabf1789f9384588ced448da6122d47831"
+      },
+      "d:/eye-demo/lens/src/models/userlens.model.ts": {
+        "version": "c656871311374b2b4ccd934f645f74ee754e1bf63076fed494ff9dd1df85692f",
+        "signature": "4c58489a5117af7024f5f4b3389d5dc19ca584c48c668d0d8858837591f507fb"
+      },
+      "d:/eye-demo/lens/src/models/admin.model.ts": {
+        "version": "bb53dc94d0d7c453599362162e7ce56719b81f073fa4fe28448dd969550f0179",
+        "signature": "5d53432f52e680449bde810dcb9530a8ac51f343d2baa3f30d1208bc1756e34e"
+      },
+      "d:/eye-demo/lens/src/models/index.ts": {
+        "version": "2c9a1cb3499539c5b1d01c5e690b9e5fa3f50bb6fb50874f677537fe32b92ec3",
+        "signature": "831bc356ab5ff9d2d99bf06b2a9800e66074c12d8743c7c03cdd4409d13c1ff4"
+      },
+      "d:/eye-demo/lens/src/datasources/lens.datasource.json": {
+        "version": "8aca8c87fa037aae9ed0dddd66f1de89ef779c0833314dfab56c5a390e657a8e"
+      },
+      "d:/eye-demo/lens/src/datasources/lens.datasource.ts": {
+        "version": "655ce5c50bd5c6c295e42206a59560693f3983b6278a708d18b8ec8a90923d91",
+        "signature": "b7dd220faf7d4b6e09ee4d3ae80112826dea7d812d86fc4f87ba8f4186dec24c"
+      },
+      "d:/eye-demo/lens/src/datasources/index.ts": {
+        "version": "a4fd2ed266b78e422834e7abdd9cc1df02c077c749a2a3916adac0587d42e333",
+        "signature": "88684f520750851a391fc392fbe4b0301b87e411839f0561689cbdb7470cdecf"
+      },
+      "d:/eye-demo/lens/src/repositories/lens.repository.ts": {
+        "version": "01d567b1a14cad39f325dc822ec399d00b71758d8bb78f2802f6659f6d1731b2",
+        "signature": "ae1d642b72a7e1a62b1752a3ee47b2f084527f80f5df65b3c547dcc356f23725"
+      },
+      "d:/eye-demo/lens/src/repositories/userlens.repository.ts": {
+        "version": "c2c2690abeb1774aa04d1344ea3b5890a588c4bcb564d48a2536304c5c3f1801",
+        "signature": "a52206f5abeb5a834c57d9a20226a584dd27eddf883ad21ae7cba80e51e2f1a8"
+      },
+      "d:/eye-demo/lens/src/repositories/admin.repository.ts": {
+        "version": "66feca5e199283dd972b5c713bb3fad2eff50f74be02d6b81cb45ffd8b6952ad",
+        "signature": "6552a26f120f447b58d34da619452db6e3b786056ab2a0f4a1e2450fadec581d"
+      },
+      "d:/eye-demo/lens/src/repositories/index.ts": {
+        "version": "24337718014326dd4dcfdb85fc7201668b1ae4c0ab83a9f8db06eedb9f5805dd",
+        "signature": "539f40aa4fcdbd71b9f57468bc437feb0ef96465c16a97239b89badf899edff4"
+      },
+      "d:/eye-demo/lens/src/keys.ts": {
+        "version": "8364d959f248829b31fcfb66babac7a75d3649cd547a88253df03b39e18372a8",
+        "signature": "7114208ba6a64a4b42e495df8207dd07a4c8b811596df492d78cb1b9d921272f"
+      },
+      "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts": {
+        "version": "99302a86f9b745ac022a55e06752fafe65564bbf3b09110370618bacd717132b",
+        "signature": "3cfbea8eb424d380fd846fa0bb6f5d73a75171f84aaf07c4b53df2e99231f6e7"
+      },
+      "d:/eye-demo/lens/src/services/jwt-service.ts": {
+        "version": "f716725a4103eef4283a69e15acfb40539ed29c7dd8cb8260267bf229068441c",
+        "signature": "bbc74d908b51e11201d46a1bb8107264d723838d52420e4fe6ac9c927a83a3b1"
+      },
+      "d:/eye-demo/lens/src/services/user-service.ts": {
+        "version": "32a7e340d518a3141d0b8b5c64998a585d4b80d8afd70fbd8e85bd36109287e0",
+        "signature": "bbf20075e1a8b9f8f114e849de60c18c2cebddeb09dca16d45462fd85d6efdf7"
       },
       "d:/eye-demo/lens/src/application.ts": {
-        "version": "7d570ea92b4bf775a622de50b08b110c8408ee26e2c8954945811307f9bc68a4",
+        "version": "180297697f0bea85d0f3cd28bd57668e14a2744ee4feadb9c3c1f283f80d14ea",
         "signature": "a2c3e1711c8cb1ff9e689304f4c84b2e34fc44d99f8a77fd0e6945f56e9d058e"
       },
       "d:/eye-demo/lens/src/index.ts": {
@@ -1285,47 +1392,76 @@
         "version": "2faaf6f579208a15fd23f4c54a52b5b33e8ab797ba3268698cc7f3457e2ef455",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
+      "d:/eye-demo/lens/src/services/validator.ts": {
+        "version": "a57fea3b45bfac0945509e3afabe396cec661b07a249318aecf7b8191b765749",
+        "signature": "78a3fe7b052d83c44245bbbfc4a96153090191b70051aa4a436849a5464143d7"
+      },
+      "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts": {
+        "version": "9a0e935ccb6cb0416ad21346a31da990f340b60a8adb76fedfc89836dad75cf8",
+        "signature": "5cceab42ad2fab74047b9ae24b422bf285b25c5630d6de4040dcf2c33cdc42c1"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts": {
+        "version": "4025cf62742c5bb3d383c8a62342481622c87e3397ea5e7b7baab18b9efd5798",
+        "signature": "4025cf62742c5bb3d383c8a62342481622c87e3397ea5e7b7baab18b9efd5798"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts": {
+        "version": "73fb996a752650f39a705b3def90b6b999b630007f8680a5569c10e6b8aefe66",
+        "signature": "73fb996a752650f39a705b3def90b6b999b630007f8680a5569c10e6b8aefe66"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts": {
+        "version": "0c75b204aed9cf6ff1c7b4bed87a3ece0d9d6fc857a6350c0c95ed0c38c814e8",
+        "signature": "0c75b204aed9cf6ff1c7b4bed87a3ece0d9d6fc857a6350c0c95ed0c38c814e8"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts": {
+        "version": "187119ff4f9553676a884e296089e131e8cc01691c546273b1d0089c3533ce42",
+        "signature": "187119ff4f9553676a884e296089e131e8cc01691c546273b1d0089c3533ce42"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts": {
+        "version": "45bf6da7cede8211b7d0579deabfa227490dfe8b932a56a962599efc48356e68",
+        "signature": "45bf6da7cede8211b7d0579deabfa227490dfe8b932a56a962599efc48356e68"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts": {
+        "version": "c2d47e5668f89ed8768d306919c42bb88d50d4029d68f58343141360895cfcc0",
+        "signature": "c2d47e5668f89ed8768d306919c42bb88d50d4029d68f58343141360895cfcc0"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts": {
+        "version": "65648639567d214f62c1b21d200c852807e68bdb08311f95ab6f526ef5b98995",
+        "signature": "65648639567d214f62c1b21d200c852807e68bdb08311f95ab6f526ef5b98995"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts": {
+        "version": "00baffbe8a2f2e4875367479489b5d43b5fc1429ecb4a4cc98cfc3009095f52a",
+        "signature": "00baffbe8a2f2e4875367479489b5d43b5fc1429ecb4a4cc98cfc3009095f52a"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts": {
+        "version": "a46a28781991cd761431784ea72cb7772f4a9155a7ee78f0b040088e856ed9a2",
+        "signature": "a46a28781991cd761431784ea72cb7772f4a9155a7ee78f0b040088e856ed9a2"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts": {
+        "version": "3c92b6dfd43cc1c2485d9eba5ff0b74a19bb8725b692773ef1d66dac48cda4bd",
+        "signature": "3c92b6dfd43cc1c2485d9eba5ff0b74a19bb8725b692773ef1d66dac48cda4bd"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts": {
+        "version": "e34f3f6159b1e23de9bb5521382795aaa5aaed6f53b4702e70a2ec45bc76ddb5",
+        "signature": "e34f3f6159b1e23de9bb5521382795aaa5aaed6f53b4702e70a2ec45bc76ddb5"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts": {
+        "version": "c84107ce3522799b7a821463b1743ef230669093b2746afd1e817fcbb5885e67",
+        "signature": "c84107ce3522799b7a821463b1743ef230669093b2746afd1e817fcbb5885e67"
+      },
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts": {
+        "version": "bbf144d4354e2aaa6439f32761f3ee798cc68d1600adab6e2a596f25269f106d",
+        "signature": "bbf144d4354e2aaa6439f32761f3ee798cc68d1600adab6e2a596f25269f106d"
+      },
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts": {
+        "version": "9be6e868b11cbe07abee85665a7538ddebabf977d5c37abc18f495962f518ff5",
+        "signature": "c44cb301de65da359b67880369ef641ea00ec6b42af5164ecd1cc8a6e639708a"
+      },
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": {
         "version": "470b5d86ecdb3c9a8a2fa8f91d4bdc321967327bad4ca27ce6c9ef32dd35c3c4",
         "signature": "298dcf42626620a1d183c7a1d1f08ad2311840ec09f9512d57335dd1c7d9fc72"
       },
-      "d:/eye-demo/lens/src/models/lens.model.ts": {
-        "version": "6b5de34ffa1f052e6ea9c90bd8e36b826d3576c785dc561c0b4c3450f3958c0c",
-        "signature": "ee90a6535665f7af84fd3a6000f6acfabf1789f9384588ced448da6122d47831"
-      },
-      "d:/eye-demo/lens/src/models/userlens.model.ts": {
-        "version": "c656871311374b2b4ccd934f645f74ee754e1bf63076fed494ff9dd1df85692f",
-        "signature": "4c58489a5117af7024f5f4b3389d5dc19ca584c48c668d0d8858837591f507fb"
-      },
-      "d:/eye-demo/lens/src/models/index.ts": {
-        "version": "0ac90a3254689114cc5873b224bc2b6e3f20cdec169a3f9ad833f4cef0d22889",
-        "signature": "e19a7cb0a564f508f4b53736b87bf2f7be8c8a57df955d72de0f8dafcaeaf0a4"
-      },
-      "d:/eye-demo/lens/src/datasources/lens.datasource.json": {
-        "version": "8aca8c87fa037aae9ed0dddd66f1de89ef779c0833314dfab56c5a390e657a8e"
-      },
-      "d:/eye-demo/lens/src/datasources/lens.datasource.ts": {
-        "version": "655ce5c50bd5c6c295e42206a59560693f3983b6278a708d18b8ec8a90923d91",
-        "signature": "b7dd220faf7d4b6e09ee4d3ae80112826dea7d812d86fc4f87ba8f4186dec24c"
-      },
-      "d:/eye-demo/lens/src/datasources/index.ts": {
-        "version": "a4fd2ed266b78e422834e7abdd9cc1df02c077c749a2a3916adac0587d42e333",
-        "signature": "88684f520750851a391fc392fbe4b0301b87e411839f0561689cbdb7470cdecf"
-      },
-      "d:/eye-demo/lens/src/repositories/lens.repository.ts": {
-        "version": "01d567b1a14cad39f325dc822ec399d00b71758d8bb78f2802f6659f6d1731b2",
-        "signature": "ae1d642b72a7e1a62b1752a3ee47b2f084527f80f5df65b3c547dcc356f23725"
-      },
-      "d:/eye-demo/lens/src/repositories/userlens.repository.ts": {
-        "version": "c2c2690abeb1774aa04d1344ea3b5890a588c4bcb564d48a2536304c5c3f1801",
-        "signature": "a52206f5abeb5a834c57d9a20226a584dd27eddf883ad21ae7cba80e51e2f1a8"
-      },
-      "d:/eye-demo/lens/src/repositories/index.ts": {
-        "version": "fb6338888c141ecd59059edd3de295eb8f73e7579453a3912747aaa42ab10758",
-        "signature": "83bf778d4dc2e8c5229a476b7a1f8f17475dbc653545ee91765e3a6696c9f5e3"
-      },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "d8562cd244939ef26c1d6fbe1a866837d7f76f149b791d154eefec335ee910f1",
+        "version": "f5d6b0d9ebb5c0476b6b8389b87b75bf8d489f1290c7f87b723a94b72383b9ea",
         "signature": "0a4f6f45a92d9392152a0661ba820d3c98171ea5398b001d68c1bff7e110f8e0"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
@@ -1333,8 +1469,8 @@
         "signature": "4e56f79a3bd1cfe16323dc9b56136a5ee8f6877564e88bb3add0c8232f6a3faa"
       },
       "d:/eye-demo/lens/src/controllers/index.ts": {
-        "version": "d253ff849ccb27af186c3a485ce2aa5a3ffadd29e9bb11d66de3c6ca852d5657",
-        "signature": "0b5181e66e9f7fccc6c36651695cf68ef4d360c29e399cf874a624a88da6ab77"
+        "version": "c8f50769cea1a8729788006cfb2afd4e7ac9f63e43db6812b01339e346b0544f",
+        "signature": "4dc83df70c1db9ef664d81e952983bb6edc49f7389451a3cfa132f1f10fa9ff8"
       },
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts": {
         "version": "3cf5f191d75bbe7c92f921e5ae12004ac672266e2be2ece69f40b1d6b1b678f9",
@@ -3358,9 +3494,186 @@
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/authentication.component.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/authenticate.decorator.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/authenticate.decorator.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/keys.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/metadata/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/token.service.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/user.service.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/token.service.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/user.service.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/authentication.component.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/keys.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "d:/eye-demo/lens/src/sequence.ts": [
         "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
         "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts": [
+        "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/src/keys.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/models/lens.model.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/models/userlens.model.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/models/admin.model.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/models/index.ts": [
+        "d:/eye-demo/lens/src/models/lens.model.ts",
+        "d:/eye-demo/lens/src/models/userlens.model.ts",
+        "d:/eye-demo/lens/src/models/admin.model.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/datasources/lens.datasource.json": [
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/datasources/lens.datasource.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/datasources/lens.datasource.json",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/datasources/index.ts": [
+        "d:/eye-demo/lens/src/datasources/lens.datasource.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/repositories/lens.repository.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/models/index.ts",
+        "d:/eye-demo/lens/src/datasources/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/repositories/userlens.repository.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/models/index.ts",
+        "d:/eye-demo/lens/src/datasources/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/repositories/admin.repository.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/models/index.ts",
+        "d:/eye-demo/lens/src/datasources/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/repositories/index.ts": [
+        "d:/eye-demo/lens/src/repositories/lens.repository.ts",
+        "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
+        "d:/eye-demo/lens/src/repositories/admin.repository.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/keys.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
+        "d:/eye-demo/lens/src/models/index.ts",
+        "d:/eye-demo/lens/src/repositories/index.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
+        "d:/eye-demo/lens/src/keys.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/services/jwt-service.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
+        "d:/eye-demo/lens/src/keys.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/services/user-service.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/src/repositories/admin.repository.ts",
+        "d:/eye-demo/lens/src/models/admin.model.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+        "d:/eye-demo/lens/src/keys.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -3373,6 +3686,12 @@
         "d:/eye-demo/lens/node_modules/@loopback/service-proxy/index.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/path.d.ts",
         "d:/eye-demo/lens/src/sequence.ts",
+        "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts",
+        "d:/eye-demo/lens/src/keys.ts",
+        "d:/eye-demo/lens/src/services/jwt-service.ts",
+        "d:/eye-demo/lens/src/services/user-service.ts",
+        "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -3518,63 +3837,243 @@
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "d:/eye-demo/lens/src/services/validator.ts": [
+        "d:/eye-demo/lens/src/repositories/admin.repository.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts": [
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/services/validator.ts",
+        "d:/eye-demo/lens/src/models/index.ts",
+        "d:/eye-demo/lens/src/repositories/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
+        "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/src/repositories/admin.repository.ts",
+        "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+        "d:/eye-demo/lens/src/keys.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": [
         "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
         "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/models/lens.model.ts": [
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/models/userlens.model.ts": [
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/models/index.ts": [
-        "d:/eye-demo/lens/src/models/lens.model.ts",
-        "d:/eye-demo/lens/src/models/userlens.model.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/datasources/lens.datasource.json": [
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/datasources/lens.datasource.ts": [
-        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
-        "d:/eye-demo/lens/src/datasources/lens.datasource.json",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/datasources/index.ts": [
-        "d:/eye-demo/lens/src/datasources/lens.datasource.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/repositories/lens.repository.ts": [
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
-        "d:/eye-demo/lens/src/models/index.ts",
-        "d:/eye-demo/lens/src/datasources/index.ts",
-        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/repositories/userlens.repository.ts": [
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
-        "d:/eye-demo/lens/src/models/index.ts",
-        "d:/eye-demo/lens/src/datasources/index.ts",
-        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/src/repositories/index.ts": [
-        "d:/eye-demo/lens/src/repositories/lens.repository.ts",
-        "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -3583,6 +4082,7 @@
         "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
         "d:/eye-demo/lens/src/models/index.ts",
         "d:/eye-demo/lens/src/repositories/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -3599,6 +4099,7 @@
         "d:/eye-demo/lens/src/controllers/ping.controller.ts",
         "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
         "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
+        "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -5611,8 +6112,132 @@
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/authentication.component.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/authenticate.decorator.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/authenticate.decorator.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/core/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/keys.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/metadata/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/token.service.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/user.service.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/token.service.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/user.service.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/authentication.component.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/keys.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "d:/eye-demo/lens/src/sequence.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/models/lens.model.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
+      ],
+      "d:/eye-demo/lens/src/models/userlens.model.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
+      ],
+      "d:/eye-demo/lens/src/models/admin.model.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
+      ],
+      "d:/eye-demo/lens/src/models/index.ts": [
+        "d:/eye-demo/lens/src/models/lens.model.ts",
+        "d:/eye-demo/lens/src/models/userlens.model.ts",
+        "d:/eye-demo/lens/src/models/admin.model.ts"
+      ],
+      "d:/eye-demo/lens/src/datasources/lens.datasource.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
+      ],
+      "d:/eye-demo/lens/src/datasources/index.ts": [
+        "d:/eye-demo/lens/src/datasources/lens.datasource.ts"
+      ],
+      "d:/eye-demo/lens/src/repositories/lens.repository.ts": [
+        "d:/eye-demo/lens/src/datasources/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/models/index.ts"
+      ],
+      "d:/eye-demo/lens/src/repositories/userlens.repository.ts": [
+        "d:/eye-demo/lens/src/datasources/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/models/index.ts"
+      ],
+      "d:/eye-demo/lens/src/repositories/admin.repository.ts": [
+        "d:/eye-demo/lens/src/datasources/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/src/models/index.ts"
+      ],
+      "d:/eye-demo/lens/src/repositories/index.ts": [
+        "d:/eye-demo/lens/src/repositories/lens.repository.ts",
+        "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
+        "d:/eye-demo/lens/src/repositories/admin.repository.ts"
+      ],
+      "d:/eye-demo/lens/src/keys.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
+        "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+        "d:/eye-demo/lens/src/models/index.ts",
+        "d:/eye-demo/lens/src/repositories/index.ts"
+      ],
+      "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
         "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts"
+      ],
+      "d:/eye-demo/lens/src/services/jwt-service.ts": [
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts"
+      ],
+      "d:/eye-demo/lens/src/services/user-service.ts": [
+        "d:/eye-demo/lens/src/repositories/admin.repository.ts",
+        "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+        "d:/eye-demo/lens/src/models/admin.model.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts"
       ],
       "d:/eye-demo/lens/src/application.ts": [
         "d:/eye-demo/lens/node_modules/@loopback/boot/index.d.ts",
@@ -5741,38 +6366,227 @@
         "d:/eye-demo/lens/src/index.ts",
         "d:/eye-demo/lens/node_modules/@loopback/testlab/index.d.ts"
       ],
+      "d:/eye-demo/lens/src/services/validator.ts": [
+        "d:/eye-demo/lens/src/repositories/admin.repository.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts": [
+        "d:/eye-demo/lens/src/repositories/index.ts",
+        "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
+        "d:/eye-demo/lens/src/models/index.ts",
+        "d:/eye-demo/lens/src/repositories/admin.repository.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
+      ],
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": [
         "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts"
-      ],
-      "d:/eye-demo/lens/src/models/lens.model.ts": [
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
-      ],
-      "d:/eye-demo/lens/src/models/userlens.model.ts": [
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
-      ],
-      "d:/eye-demo/lens/src/models/index.ts": [
-        "d:/eye-demo/lens/src/models/lens.model.ts",
-        "d:/eye-demo/lens/src/models/userlens.model.ts"
-      ],
-      "d:/eye-demo/lens/src/datasources/lens.datasource.ts": [
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
-      ],
-      "d:/eye-demo/lens/src/datasources/index.ts": [
-        "d:/eye-demo/lens/src/datasources/lens.datasource.ts"
-      ],
-      "d:/eye-demo/lens/src/repositories/lens.repository.ts": [
-        "d:/eye-demo/lens/src/datasources/index.ts",
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
-        "d:/eye-demo/lens/src/models/index.ts"
-      ],
-      "d:/eye-demo/lens/src/repositories/userlens.repository.ts": [
-        "d:/eye-demo/lens/src/datasources/index.ts",
-        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
-        "d:/eye-demo/lens/src/models/index.ts"
-      ],
-      "d:/eye-demo/lens/src/repositories/index.ts": [
-        "d:/eye-demo/lens/src/repositories/lens.repository.ts",
-        "d:/eye-demo/lens/src/repositories/userlens.repository.ts"
       ],
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": [
         "d:/eye-demo/lens/src/repositories/index.ts",
@@ -5787,7 +6601,8 @@
       "d:/eye-demo/lens/src/controllers/index.ts": [
         "d:/eye-demo/lens/src/controllers/ping.controller.ts",
         "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
-        "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts"
+        "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
+        "d:/eye-demo/lens/src/controllers/admin-control.controller.ts"
       ],
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts": [
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
@@ -6127,7 +6942,34 @@
       "d:/eye-demo/lens/node_modules/@loopback/rest-explorer/dist/rest-explorer.keys.d.ts",
       "d:/eye-demo/lens/node_modules/@loopback/rest-explorer/dist/index.d.ts",
       "d:/eye-demo/lens/node_modules/@loopback/rest-explorer/index.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/authentication.component.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/authenticate.decorator.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/decorators/index.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/types.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/keys.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/token.service.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/user.service.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/services/index.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/dist/index.d.ts",
+      "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
       "d:/eye-demo/lens/src/sequence.ts",
+      "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts",
+      "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+      "d:/eye-demo/lens/src/models/lens.model.ts",
+      "d:/eye-demo/lens/src/models/userlens.model.ts",
+      "d:/eye-demo/lens/src/models/admin.model.ts",
+      "d:/eye-demo/lens/src/models/index.ts",
+      "d:/eye-demo/lens/src/datasources/lens.datasource.json",
+      "d:/eye-demo/lens/src/datasources/lens.datasource.ts",
+      "d:/eye-demo/lens/src/datasources/index.ts",
+      "d:/eye-demo/lens/src/repositories/lens.repository.ts",
+      "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
+      "d:/eye-demo/lens/src/repositories/admin.repository.ts",
+      "d:/eye-demo/lens/src/repositories/index.ts",
+      "d:/eye-demo/lens/src/keys.ts",
+      "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts",
+      "d:/eye-demo/lens/src/services/jwt-service.ts",
+      "d:/eye-demo/lens/src/services/user-service.ts",
       "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
@@ -6153,17 +6995,25 @@
       "d:/eye-demo/lens/src/__tests__/acceptance/test-helper.ts",
       "d:/eye-demo/lens/src/__tests__/acceptance/home-page.acceptance.ts",
       "d:/eye-demo/lens/src/__tests__/acceptance/ping.controller.acceptance.ts",
+      "d:/eye-demo/lens/src/services/validator.ts",
+      "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/date.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/function.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/lang.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/math.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/number.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/object.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/seq.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
+      "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
-      "d:/eye-demo/lens/src/models/lens.model.ts",
-      "d:/eye-demo/lens/src/models/userlens.model.ts",
-      "d:/eye-demo/lens/src/models/index.ts",
-      "d:/eye-demo/lens/src/datasources/lens.datasource.json",
-      "d:/eye-demo/lens/src/datasources/lens.datasource.ts",
-      "d:/eye-demo/lens/src/datasources/index.ts",
-      "d:/eye-demo/lens/src/repositories/lens.repository.ts",
-      "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
-      "d:/eye-demo/lens/src/repositories/index.ts",
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
+      "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/eslint-visitor-keys/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/fs-extra/index.d.ts",
@@ -6172,8 +7022,7 @@
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
-      "d:/eye-demo/lens/src/controllers/index.ts"
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts"
     ]
   },
   "version": "3.5.3"

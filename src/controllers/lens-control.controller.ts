@@ -19,6 +19,7 @@ import {
 } from '@loopback/rest';
 import { Lens } from '../models';
 import { LensRepository } from '../repositories';
+import { authenticate } from '@loopback/authentication';
 
 export class LensControlController {
   constructor(
@@ -87,6 +88,7 @@ export class LensControlController {
       },
     },
   })
+  @authenticate('jwt')
   async findById(@param.path.string('id') id: string): Promise<Lens> {
     return await this.lensRepository.findById(id);
   }
