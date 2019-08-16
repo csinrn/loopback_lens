@@ -21,6 +21,7 @@ import {
 } from '@loopback/rest';
 import { Userlens } from '../models';
 import { UserlensRepository } from '../repositories';
+import { validateDate } from '../services/validator';
 import { resolve } from 'url';
 
 export class UserLensControlController {
@@ -42,6 +43,10 @@ export class UserLensControlController {
     userlens: Userlens
   ): Promise<Userlens> {
     console.log(userlens);
+    validateDate(userlens.createat);
+    if (userlens.updateat != undefined) {
+      validateDate(userlens.updateat);
+    }
     return await this.userlensRepository.create(userlens);
   }
 
@@ -119,7 +124,7 @@ export class UserLensControlController {
     },
   })
   async updateById(
-    @param.path.string('id') id: string,
+    @param.path.string('id') id: number,
     @requestBody({
       content: {
         'application/json': {
@@ -142,8 +147,8 @@ export class UserLensControlController {
     },
   })
   async updateTime(
-    @param.path.string('user_id') userid: string,
-    @param.path.string('lens_id') lensid: string,
+    @param.path.string('user_id') userid: number,
+    @param.path.string('lens_id') lensid: number,
     @requestBody({
       content: {
         'application/json': {
@@ -165,7 +170,7 @@ export class UserLensControlController {
     if (dat.id == undefined) throw new HttpErrors.NotFound('id property not found')
 
     console.log(dat)
-    await this.userlensRepository.updateById(dat.id.toString(), userlens)
+    await this.userlensRepository.updateById(dat.id, userlens)
   }
 
   @patch('/user/{user_id}/{lens_id}/count', {
@@ -176,8 +181,8 @@ export class UserLensControlController {
     },
   })
   async updateCount(
-    @param.path.string('user_id') userid: string,
-    @param.path.string('lens_id') lensid: string,
+    @param.path.string('user_id') userid: number,
+    @param.path.string('lens_id') lensid: number,
     @requestBody({
       content: {
         'application/json': {
@@ -194,7 +199,7 @@ export class UserLensControlController {
     if (user.lenscount == undefined) throw new HttpErrors.NotFound('lensCount undefined')
 
     user.lenscount = user.lenscount + 1
-    await this.userlensRepository.updateById(user.id.toString(), user);
+    await this.userlensRepository.updateById(user.id, user);
   }
 
   /////
@@ -207,7 +212,7 @@ export class UserLensControlController {
     },
   })
   async replaceById(
-    @param.path.string('id') id: string,
+    @param.path.string('id') id: number,
     @requestBody() userlens: Userlens,
   ): Promise<void> {
     await this.userlensRepository.replaceById(id, userlens);
@@ -220,7 +225,7 @@ export class UserLensControlController {
       },
     },
   })
-  async deleteById(@param.path.string('id') id: string): Promise<void> {
+  async deleteById(@param.path.string('id') id: number): Promise<void> {
     await this.userlensRepository.deleteById(id);
   }
 }

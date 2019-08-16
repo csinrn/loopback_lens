@@ -16,10 +16,13 @@ import {
   put,
   del,
   requestBody,
+  HttpErrors,
 } from '@loopback/rest';
 import { Lens } from '../models';
 import { LensRepository } from '../repositories';
 import { authenticate } from '@loopback/authentication';
+import { validateDate, validateEnum, validateBoolean } from '../services/validator';
+
 
 export class LensControlController {
   constructor(
@@ -45,6 +48,18 @@ export class LensControlController {
     })
     lens: Omit<Lens, 'id'>,
   ): Promise<Lens> {
+    if (!lens) {
+      throw HttpErrors.BadRequest;
+    }
+    validateDate(lens.launchat);
+    if (lens.updateat != undefined) {
+      validateDate(lens.closeat);
+    }
+    validateEnum(lens.wearingtime)
+    validateBoolean(lens.newtag, "newtag")
+    validateBoolean(lens.hotsaletag, "hotsaletag")
+    validateBoolean(lens.onsaletag, "onsaletag")
+
     return await this.lensRepository.create(lens);
   }
 

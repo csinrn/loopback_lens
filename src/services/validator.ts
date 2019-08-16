@@ -14,3 +14,30 @@ export function validateCredentials(credentials: Credentials) {
     );
   }
 }
+
+export function validateDate(date: string) {
+  let reg = /^[0-9]{2}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])$/;
+  if (!reg.test(date)) {
+    throw new HttpErrors.BadRequest(
+      'Invalide Date, should be like: 190103'
+    )
+  }
+}
+
+export function validateEnum(input: string) {
+  let valid = (input == 'daily') || (input == 'weekly') || (input == 'monthly') || (input == 'annually');
+  if (!valid) {
+    throw new HttpErrors.BadRequest(
+      'Invalide wearing time, should be one of {"daily", "weekly", "monthly", "annually"}'
+    )
+  }
+}
+
+export function validateBoolean(input: number, para: string) {
+  let valid = (input == 1) || (input == 0);
+  if (!valid) {
+    throw new HttpErrors.BadRequest(
+      para + ': boolean value should be 1 or 0'
+    )
+  }
+}

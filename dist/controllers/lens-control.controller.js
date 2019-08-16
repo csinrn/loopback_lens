@@ -17,11 +17,23 @@ const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const authentication_1 = require("@loopback/authentication");
+const validator_1 = require("../services/validator");
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
     }
     async create(lens) {
+        if (!lens) {
+            throw rest_1.HttpErrors.BadRequest;
+        }
+        validator_1.validateDate(lens.launchat);
+        if (lens.updateat != undefined) {
+            validator_1.validateDate(lens.closeat);
+        }
+        validator_1.validateEnum(lens.wearingtime);
+        validator_1.validateBoolean(lens.newtag, "newtag");
+        validator_1.validateBoolean(lens.hotsaletag, "hotsaletag");
+        validator_1.validateBoolean(lens.onsaletag, "onsaletag");
         return await this.lensRepository.create(lens);
     }
     async count(where) {

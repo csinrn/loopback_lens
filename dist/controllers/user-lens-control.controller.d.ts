@@ -9,9 +9,9 @@ export declare class UserLensControlController {
     find(filter?: Filter<Userlens>): Promise<Userlens[]>;
     updateAll(userlens: Userlens, where?: Where<Userlens>): Promise<Count>;
     findById(user_id: string): Promise<(Userlens & import("../models").UserlensRelations)[]>;
-    updateById(id: string, userlens: Userlens): Promise<void>;
-    updateTime(userid: string, lensid: string, userlens: Userlens): Promise<void>;
-    updateCount(userid: string, lensid: string, userlens: Userlens): Promise<void>;
-    replaceById(id: string, userlens: Userlens): Promise<void>;
-    deleteById(id: string): Promise<void>;
+    updateById(id: number, userlens: Userlens): Promise<void>;
+    updateTime(userid: number, lensid: number, userlens: Userlens): Promise<void>;
+    updateCount(userid: number, lensid: number, userlens: Userlens): Promise<void>;
+    replaceById(id: number, userlens: Userlens): Promise<void>;
+    deleteById(id: number): Promise<void>;
 }

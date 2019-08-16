@@ -18,8 +18,10 @@ let Admin = class Admin extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: 'string',
-        id: true,
         required: true,
+        length: 50,
+        id: 1,
+        mysql: { "columnName": "account", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
 ], Admin.prototype, "account", void 0);
@@ -27,6 +29,8 @@ __decorate([
     repository_1.property({
         type: 'string',
         required: true,
+        length: 100,
+        mysql: { "columnName": "password", "dataType": "varchar", "dataLength": 100, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
 ], Admin.prototype, "password", void 0);
@@ -34,17 +38,21 @@ __decorate([
     repository_1.property({
         type: 'string',
         required: true,
+        mysql: { "columnName": "creatAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    }),
+    __metadata("design:type", String)
+], Admin.prototype, "creatat", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: true,
+        length: 50,
+        mysql: { "columnName": "name", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
 ], Admin.prototype, "name", void 0);
-__decorate([
-    repository_1.property({
-        type: 'number',
-    }),
-    __metadata("design:type", Number)
-], Admin.prototype, "creatat", void 0);
 Admin = __decorate([
-    repository_1.model({ settings: { strict: false } }),
+    repository_1.model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'admin' } } }),
     __metadata("design:paramtypes", [Object])
 ], Admin);
 exports.Admin = Admin;

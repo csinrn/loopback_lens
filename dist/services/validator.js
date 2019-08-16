@@ -12,4 +12,25 @@ function validateCredentials(credentials) {
     }
 }
 exports.validateCredentials = validateCredentials;
+function validateDate(date) {
+    let reg = /^[0-9]{2}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])$/;
+    if (!reg.test(date)) {
+        throw new rest_1.HttpErrors.BadRequest('Invalide Date, should be like: 190103');
+    }
+}
+exports.validateDate = validateDate;
+function validateEnum(input) {
+    let valid = (input == 'daily') || (input == 'weekly') || (input == 'monthly') || (input == 'annually');
+    if (!valid) {
+        throw new rest_1.HttpErrors.BadRequest('Invalide wearing time, should be one of {"daily", "weekly", "monthly", "annually"}');
+    }
+}
+exports.validateEnum = validateEnum;
+function validateBoolean(input, para) {
+    let valid = (input == 1) || (input == 0);
+    if (!valid) {
+        throw new rest_1.HttpErrors.BadRequest(para + ': boolean value should be 1 or 0');
+    }
+}
+exports.validateBoolean = validateBoolean;
 //# sourceMappingURL=validator.js.map

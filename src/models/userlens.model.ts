@@ -1,47 +1,67 @@
 import { Entity, model, property } from '@loopback/repository';
 
-@model({ settings: { strict: false } })
+@model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'userlens' } } })
 export class Userlens extends Entity {
   @property({
     type: 'number',
     generated: true,
-    id: true,
+    precision: 10,
+    scale: 0,
+    id: 1,
+    mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  id?: number;
+  id: number;
 
   @property({
     type: 'number',
     required: true,
+    precision: 10,
+    scale: 0,
+    mysql: { "columnName": "userId", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  userid: string;
+  userid: number;
 
   @property({
     type: 'number',
     required: true,
+    precision: 10,
+    scale: 0,
+    mysql: { "columnName": "lensId", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  lensid?: string;
+  lensid: number;
 
   @property({
     type: 'number',
+    required: true,
+    precision: 10,
+    scale: 0,
+    mysql: { "columnName": "lensCount", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  lenscount?: number;
+  lenscount: number;
 
   @property({
     type: 'number',
+    required: false,
+    precision: 10,
+    scale: 0,
+    mysql: { "columnName": "lensTime", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
   lenstime?: number;
 
   @property({
-    type: 'number',
-    required: false,
+    type: 'string',
+    required: true,
+    mysql: { "columnName": "createAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   createat: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: false,
+    mysql: { "columnName": "updateAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
   })
-  updateat: string;
+  updateat?: string;
+
   // Define well-known properties here
 
   // Indexer property to allow additional data

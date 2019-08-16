@@ -16,12 +16,17 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+const validator_1 = require("../services/validator");
 let UserLensControlController = class UserLensControlController {
     constructor(userlensRepository) {
         this.userlensRepository = userlensRepository;
     }
     async create(userlens) {
         console.log(userlens);
+        validator_1.validateDate(userlens.createat);
+        if (userlens.updateat != undefined) {
+            validator_1.validateDate(userlens.updateat);
+        }
         return await this.userlensRepository.create(userlens);
     }
     async count(where) {
@@ -54,7 +59,7 @@ let UserLensControlController = class UserLensControlController {
         if (dat.id == undefined)
             throw new rest_1.HttpErrors.NotFound('id property not found');
         console.log(dat);
-        await this.userlensRepository.updateById(dat.id.toString(), userlens);
+        await this.userlensRepository.updateById(dat.id, userlens);
     }
     async updateCount(userid, lensid, userlens) {
         //console.log(userlens)
@@ -66,7 +71,7 @@ let UserLensControlController = class UserLensControlController {
         if (user.lenscount == undefined)
             throw new rest_1.HttpErrors.NotFound('lensCount undefined');
         user.lenscount = user.lenscount + 1;
-        await this.userlensRepository.updateById(user.id.toString(), user);
+        await this.userlensRepository.updateById(user.id, user);
     }
     /////
     async replaceById(id, userlens) {
@@ -174,7 +179,7 @@ __decorate([
         },
     })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.Userlens]),
+    __metadata("design:paramtypes", [Number, models_1.Userlens]),
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateById", null);
 __decorate([
@@ -195,7 +200,7 @@ __decorate([
         },
     })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, models_1.Userlens]),
+    __metadata("design:paramtypes", [Number, Number, models_1.Userlens]),
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateTime", null);
 __decorate([
@@ -216,7 +221,7 @@ __decorate([
         },
     })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, models_1.Userlens]),
+    __metadata("design:paramtypes", [Number, Number, models_1.Userlens]),
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateCount", null);
 __decorate([
@@ -230,7 +235,7 @@ __decorate([
     __param(0, rest_1.param.path.string('id')),
     __param(1, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.Userlens]),
+    __metadata("design:paramtypes", [Number, models_1.Userlens]),
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "replaceById", null);
 __decorate([
@@ -243,7 +248,7 @@ __decorate([
     }),
     __param(0, rest_1.param.path.string('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "deleteById", null);
 UserLensControlController = __decorate([

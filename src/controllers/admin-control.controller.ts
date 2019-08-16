@@ -1,5 +1,5 @@
 import { repository } from '@loopback/repository';
-import { validateCredentials } from '../services/validator';
+import { validateCredentials, validateDate } from '../services/validator';
 import { Admin } from '../models';
 import { AdminRepository } from '../repositories';
 import { inject } from '@loopback/core';
@@ -73,9 +73,9 @@ export class AdminControlController {
     })
     admin: Admin
   ): Promise<Admin> {
-    // ensure a valid email value and password value
+    // ensure a valid account value and password value
     validateCredentials(_.pick(admin, ['account', 'password']));
-
+    validateDate(admin.creatat);
     // encrypt the password
     admin.password = await this.passwordHasher.hashPassword(admin.password);
 
