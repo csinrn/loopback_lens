@@ -149,24 +149,7 @@ export class LensControlController {
   ): Promise<void> {
     await this.lensRepository.updateById(id, lens);
   }
-  /*
-    @patch('/lens/sort/{id1}/{id2}', {
-      responses: {
-        '204': {
-          description: 'Lens PATCH success',
-        },
-      },
-    })
-    async sorting(
-      @param.path.string('id1') id1: string,
-      @param.path.string('id2') id2: string
-    ): Promise<void> {
-      let id1_patch = new Lens({ lensid: id2 })
-      let id2_patch = new Lens({ lensid: id1 })
-      await this.lensRepository.updateById(id1, id1_patch)
-      await this.lensRepository.updateById(id2, id2_patch);
-    }
-  */
+
   @put('/lens/{id}', {
     responses: {
       '204': {
