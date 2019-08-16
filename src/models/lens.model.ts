@@ -7,32 +7,116 @@ export class Lens extends Entity {
     generated: true,
     id: true,
   })
-  lensid: string;
+  lens_id: string;
 
   @property({
     type: 'array',
     itemType: 'number',
     required: true,
   })
-  lenspic: number[];
+  lens_pic: number[];
 
   @property({
     type: 'string',
     required: true,
   })
-  lensname: string;
+  name: string;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  diameter: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  BC: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  power: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  water: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  wearing_time: number;    ///////////////////////////enum
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  place_of_prod: string;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  price: number;
 
   @property({
     type: 'number',
     required: false,
   })
-  createat: string;
+  special_price: number;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: false,
   })
-  updateat: string;
+  event_disp: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  license: string;
+
+  @property({
+    type: 'boolean',
+    required: true,
+  })
+  new_tag: boolean;
+
+  @property({
+    type: 'boolean',
+    required: true,
+  })
+  hotsale_tag: boolean;
+
+  @property({
+    type: 'boolean',
+    required: true,
+  })
+  onsale_tag: boolean;
+
+  @property({
+    type: 'Date',
+    required: true,
+  })
+  launch_at: Date;
+
+  @property({
+    type: 'Date',
+    required: false,
+  })
+  close_at: Date;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  url: string;
 
   // Define well-known properties here
 
