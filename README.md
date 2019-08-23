@@ -90,7 +90,7 @@ requestBody = {
 
 * 刪除：[delete] /lens/{id}
 * 排序：[patch]  /lens/sort/{id1}/{id2}
-  還沒做，這個的功能是?
+  把id1 和 id2 的 no 屬性 (排序順序) 對調
 * 命名：[patch]  /lens/{id}/name
 <pre>
   requestBody = {  "name": "string" }
