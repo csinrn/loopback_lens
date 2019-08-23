@@ -1,6 +1,5 @@
 import { Entity } from '@loopback/repository';
 export declare class Userlens extends Entity {
-    cId: number;
     userId: number;
     lensId: number;
     lensCount: number;

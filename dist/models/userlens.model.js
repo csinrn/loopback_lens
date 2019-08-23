@@ -18,17 +18,6 @@ let Userlens = class Userlens extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: 'number',
-        generated: true,
-        precision: 10,
-        scale: 0,
-        id: 1,
-        mysql: { "columnName": "c_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
-    }),
-    __metadata("design:type", Number)
-], Userlens.prototype, "cId", void 0);
-__decorate([
-    repository_1.property({
-        type: 'number',
         required: true,
         precision: 10,
         scale: 0,

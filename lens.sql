@@ -11,29 +11,21 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping data for table lensdb.admin: ~2 rows (approximately)
+-- Dumping data for table lensdb.admin: ~0 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` (`account`, `password`, `creatAt`, `name`) VALUES
-	('strinffg', '$2a$10$qnbiC7fEPzsiOBjNompMiOfZo6UimUaVVKZSsRbRDovAM5S1rEQxq', '2019-08-08', 'string'),
-	('string', '$2a$10$2GfZolvAUFwPH6R54Prh2O29cFLdUHdhTBu1IRoO7f1ZLtyqf9gn.', '0000-00-00', 'string');
+INSERT INTO `admin` (`account`, `password`, `creat_at`, `name`) VALUES
+	('string', '$2a$10$OVL/wwHL/kpKKFi/58G4meLD3RyauYkzxUg/IzZ.FqWAdfBQuLa9u', '2019-03-03', 'string');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
--- Dumping data for table lensdb.lens: ~3 rows (approximately)
+-- Dumping data for table lensdb.lens: ~2 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
-INSERT INTO `lens` (`id`, `lensPic`, `name`, `diameter`, `BC`, `power`, `water`, `wearingTime`, `placeOfProd`, `price`, `specialPrice`, `eventDisp`, `license`, `newTag`, `hotsaleTag`, `onsaleTag`, `launchAt`, `closeAt`, `url`) VALUES
-	(2, 'string', 'string', 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 0, 0, 0, '2019-08-09', NULL, NULL),
-	(3, 'string', 'string', 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 10, 0, 0, '2019-08-09', NULL, NULL),
-	(4, '3', 'string', 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 0, 0, 0, '2019-01-01', NULL, NULL);
+INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `power`, `water`, `wearing_time`, `place_of_prod`, `price`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
+	(5, 'string', 8, 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 0, 0, 0, '2019-03-03', NULL, 'string'),
+	(6, 'dd', 7, 10, 10, 10, 10, 'weekly', 'ddd', 100, 100, NULL, 'sdf', 1, 1, 1, '2019-08-24', NULL, 'sdff');
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
 
--- Dumping data for table lensdb.userlens: ~5 rows (approximately)
+-- Dumping data for table lensdb.userlens: ~0 rows (approximately)
 /*!40000 ALTER TABLE `userlens` DISABLE KEYS */;
-INSERT INTO `userlens` (`id`, `userId`, `lensId`, `lensCount`, `lensTime`, `createAt`, `updateAt`) VALUES
-	(1, 0, 0, 1, 0, '0000-00-00', '0000-00-00'),
-	(2, 2, 4, 2, 0, '0000-00-00', '0000-00-00'),
-	(3, 10, 0, 1, 7, '0000-00-00', '0000-00-00'),
-	(5, 0, 0, 0, 0, '2019-08-09', NULL),
-	(6, 0, 0, 0, 0, '2019-08-09', NULL);
 /*!40000 ALTER TABLE `userlens` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

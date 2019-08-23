@@ -45,6 +45,20 @@ let LensControlController = class LensControlController {
     async updateById(id, lens) {
         await this.lensRepository.updateById(id, lens);
     }
+    //@authenticate('jwt')
+    async sort(id1, id2) {
+        let lens1 = await this.lensRepository.findById(id1);
+        let lens2 = await this.lensRepository.findById(id2);
+        let no1 = lens1.no, no2 = lens2.no;
+        let lens_t = new models_1.Lens();
+        lens_t.no = -1;
+        await this.lensRepository.updateById(id1, lens_t, { partial: true });
+        lens_t.no = no1;
+        await this.lensRepository.updateById(id2, lens_t, { partial: true });
+        lens_t.no = no2;
+        await this.lensRepository.updateById(id1, lens_t, { partial: true });
+        return { responses: "exchange order" + no1 + "and" + no2 + "successfully" };
+    }
     async updateNameById(id, lens) {
         await this.lensRepository.updateById(id, lens);
     }
@@ -128,6 +142,14 @@ __decorate([
     __metadata("design:paramtypes", [String, models_1.Lens]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "updateById", null);
+__decorate([
+    rest_1.patch('/lens/sort/{id1}/{id2}'),
+    __param(0, rest_1.param.query.string('id1')),
+    __param(1, rest_1.param.query.string('id2')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], LensControlController.prototype, "sort", null);
 __decorate([
     authentication_1.authenticate('jwt'),
     rest_1.patch('/lens/{id}/name', {

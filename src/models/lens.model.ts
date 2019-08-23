@@ -156,9 +156,9 @@ export class Lens extends Entity {
 
   @property({
     type: 'string',
-    required: false,
+    required: true,
     length: 50,
-    mysql: { "columnName": "url", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+    mysql: { "columnName": "url", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   url?: string;
 

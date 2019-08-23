@@ -1234,12 +1234,12 @@
         "signature": "f03594cc668c4d08662922715b727f5680f028bab3746d13adfac62674c97537"
       },
       "d:/eye-demo/lens/src/models/lens.model.ts": {
-        "version": "1b1d6c35368ee6ef8feefd58d2a4595e5953ccd1ca97593ace15206f7633816e",
+        "version": "321a545a68a908316d5d73d1f4448f0e0caee5527daf0d7a86e2c0f716f38653",
         "signature": "cf1c2ecb3dd5fcb7e67502bfe22e58096283a562e21915778c808296aa4cc619"
       },
       "d:/eye-demo/lens/src/models/userlens.model.ts": {
-        "version": "09f5653bd21252fee338b361844a0a77f83f609bc05bd65672fcc055c03f566f",
-        "signature": "a51a7c2c5a9f1e6cd6bac58f33798d9c00ccaf2a7ade1ed35d5113f4b3f8ff8c"
+        "version": "535ef8bb67132bed8c5634221dc5b010581a6ee48ee48dd6d281f3d493934017",
+        "signature": "0599a17c7e4852139beced086eec691537d5d18f2c7481b031ef2a9ebc1aa1e6"
       },
       "d:/eye-demo/lens/src/models/admin.model.ts": {
         "version": "731fb4edecba9c279927c2916c4f520db4347ddfbf3b93d3c92e5514b307ca20",
@@ -1461,8 +1461,8 @@
         "signature": "298dcf42626620a1d183c7a1d1f08ad2311840ec09f9512d57335dd1c7d9fc72"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "8ed3069cae72d4bacae42b7b0727908ca78931cf7b0fb149e763db7b7f8ef984",
-        "signature": "d0b1673489c920aaacbaeace70abfa000f6ed4a6b5a23042a8c56c78b20d61e5"
+        "version": "5607f2abf0be9146374e2168983a3410ee12a846cdb6e7bf2d96f670f6a0b491",
+        "signature": "4cef55cd77d640f04cfaf5b6a6e42751eafe4176528dd32c193ce8cf6dbc7c12"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
         "version": "b5d948191c7c430d99a8689e914678e9cbdc958cf10ef9572f5db16d2980a40e",
@@ -6957,6 +6957,7 @@
       "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
       "d:/eye-demo/lens/src/sequence.ts",
       "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts",
+      "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
       "d:/eye-demo/lens/src/models/lens.model.ts",
       "d:/eye-demo/lens/src/models/userlens.model.ts",
       "d:/eye-demo/lens/src/models/admin.model.ts",
@@ -6968,6 +6969,11 @@
       "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
       "d:/eye-demo/lens/src/repositories/admin.repository.ts",
       "d:/eye-demo/lens/src/repositories/index.ts",
+      "d:/eye-demo/lens/src/keys.ts",
+      "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts",
+      "d:/eye-demo/lens/src/services/jwt-service.ts",
+      "d:/eye-demo/lens/src/services/user-service.ts",
+      "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
       "d:/eye-demo/lens/node_modules/@types/cookiejar/index.d.ts",
@@ -7007,8 +7013,8 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
@@ -7019,13 +7025,7 @@
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
-      "d:/eye-demo/lens/src/keys.ts",
-      "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts",
-      "d:/eye-demo/lens/src/services/jwt-service.ts",
-      "d:/eye-demo/lens/src/services/user-service.ts",
-      "d:/eye-demo/lens/src/application.ts",
-      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts"
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts"
     ]
   },
   "version": "3.5.3"
