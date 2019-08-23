@@ -31,19 +31,20 @@ __decorate([
         type: 'string',
         required: true,
         length: 50,
-        mysql: { "columnName": "lensPic", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
-    }),
-    __metadata("design:type", String)
-], Lens.prototype, "lenspic", void 0);
-__decorate([
-    repository_1.property({
-        type: 'string',
-        required: true,
-        length: 50,
         mysql: { "columnName": "name", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
 ], Lens.prototype, "name", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: true,
+        precision: 10,
+        scale: 0,
+        mysql: { "columnName": "no", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Lens.prototype, "no", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
@@ -87,19 +88,19 @@ __decorate([
         type: 'string',
         required: true,
         length: 8,
-        mysql: { "columnName": "wearingTime", "dataType": "enum", "dataLength": 8, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+        mysql: { "columnName": "wearing_time", "dataType": "enum", "dataLength": 8, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
-], Lens.prototype, "wearingtime", void 0);
+], Lens.prototype, "wearingTime", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
         required: true,
         length: 50,
-        mysql: { "columnName": "placeOfProd", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+        mysql: { "columnName": "place_of_prod", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
-], Lens.prototype, "placeofprod", void 0);
+], Lens.prototype, "placeOfProd", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
@@ -116,19 +117,19 @@ __decorate([
         required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "specialPrice", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "special_price", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Lens.prototype, "specialprice", void 0);
+], Lens.prototype, "specialPrice", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
         required: false,
         length: 50,
-        mysql: { "columnName": "eventDisp", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+        mysql: { "columnName": "event_disp", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
     }),
     __metadata("design:type", String)
-], Lens.prototype, "eventdisp", void 0);
+], Lens.prototype, "eventDisp", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
@@ -144,46 +145,46 @@ __decorate([
         required: true,
         precision: 3,
         scale: 0,
-        mysql: { "columnName": "newTag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "new_tag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Lens.prototype, "newtag", void 0);
+], Lens.prototype, "newTag", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: true,
         precision: 3,
         scale: 0,
-        mysql: { "columnName": "hotsaleTag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "hotsale_tag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Lens.prototype, "hotsaletag", void 0);
+], Lens.prototype, "hotsaleTag", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: true,
         precision: 3,
         scale: 0,
-        mysql: { "columnName": "onsaleTag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "onsale_tag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Lens.prototype, "onsaletag", void 0);
+], Lens.prototype, "onsaleTag", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
         required: true,
-        mysql: { "columnName": "launchAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+        mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
-], Lens.prototype, "launchat", void 0);
+], Lens.prototype, "createAt", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
         required: false,
-        mysql: { "columnName": "closeAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+        mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
     }),
     __metadata("design:type", String)
-], Lens.prototype, "closeat", void 0);
+], Lens.prototype, "updateAt", void 0);
 __decorate([
     repository_1.property({
         type: 'string',

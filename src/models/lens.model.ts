@@ -16,17 +16,18 @@ export class Lens extends Entity {
     type: 'string',
     required: true,
     length: 50,
-    mysql: { "columnName": "lensPic", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
-  })
-  lenspic: string;
-
-  @property({
-    type: 'string',
-    required: true,
-    length: 50,
     mysql: { "columnName": "name", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   name: string;
+
+  @property({
+    type: 'number',
+    required: true,
+    precision: 10,
+    scale: 0,
+    mysql: { "columnName": "no", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+  })
+  no: number;
 
   @property({
     type: 'number',
@@ -66,17 +67,17 @@ export class Lens extends Entity {
     type: 'string',
     required: true,
     length: 8,
-    mysql: { "columnName": "wearingTime", "dataType": "enum", "dataLength": 8, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "wearing_time", "dataType": "enum", "dataLength": 8, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  wearingtime: string;
+  wearingTime: string;
 
   @property({
     type: 'string',
     required: true,
     length: 50,
-    mysql: { "columnName": "placeOfProd", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "place_of_prod", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  placeofprod: string;
+  placeOfProd: string;
 
   @property({
     type: 'number',
@@ -92,17 +93,17 @@ export class Lens extends Entity {
     required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "specialPrice", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "special_price", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  specialprice: number;
+  specialPrice: number;
 
   @property({
     type: 'string',
     required: false,
     length: 50,
-    mysql: { "columnName": "eventDisp", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+    mysql: { "columnName": "event_disp", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
   })
-  eventdisp?: string;
+  eventDisp?: string;
 
   @property({
     type: 'string',
@@ -117,41 +118,41 @@ export class Lens extends Entity {
     required: true,
     precision: 3,
     scale: 0,
-    mysql: { "columnName": "newTag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "new_tag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
   })
-  newtag: number;
+  newTag: number;
 
   @property({
     type: 'number',
     required: true,
     precision: 3,
     scale: 0,
-    mysql: { "columnName": "hotsaleTag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "hotsale_tag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
   })
-  hotsaletag: number;
+  hotsaleTag: number;
 
   @property({
     type: 'number',
     required: true,
     precision: 3,
     scale: 0,
-    mysql: { "columnName": "onsaleTag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "onsale_tag", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
   })
-  onsaletag: number;
+  onsaleTag: number;
 
   @property({
     type: 'string',
     required: true,
-    mysql: { "columnName": "launchAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  launchat: string;
+  createAt: string;
 
   @property({
     type: 'string',
     required: false,
-    mysql: { "columnName": "closeAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+    mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
   })
-  closeat?: string;
+  updateAt?: string;
 
   @property({
     type: 'string',

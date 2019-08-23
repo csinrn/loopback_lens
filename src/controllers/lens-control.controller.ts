@@ -30,6 +30,7 @@ export class LensControlController {
     public lensRepository: LensRepository,
   ) { }
 
+  @authenticate('jwt')
   @post('/lens', {
     responses: {
       '200': {
@@ -51,18 +52,19 @@ export class LensControlController {
     if (!lens) {
       throw HttpErrors.BadRequest;
     }
-    validateDate(lens.launchat);
-    if (lens.updateat != undefined) {
-      validateDate(lens.closeat);
+    validateDate(lens.createAt);
+    if (lens.updateAt != undefined) {
+      validateDate(lens.updateAt);
     }
-    validateEnum(lens.wearingtime)
-    validateBoolean(lens.newtag, "newtag")
-    validateBoolean(lens.hotsaletag, "hotsaletag")
-    validateBoolean(lens.onsaletag, "onsaletag")
+    validateEnum(lens.wearingTime)
+    validateBoolean(lens.newTag, "newtag")
+    validateBoolean(lens.hotsaleTag, "hotsaletag")
+    validateBoolean(lens.onsaleTag, "onsaletag")
 
     return await this.lensRepository.create(lens);
   }
 
+  @authenticate('jwt')
   @get('/lens/count', {
     responses: {
       '200': {
@@ -77,6 +79,7 @@ export class LensControlController {
     return await this.lensRepository.count(where);
   }
 
+  @authenticate('jwt')
   @get('/lens', {
     responses: {
       '200': {
@@ -95,19 +98,7 @@ export class LensControlController {
     return await this.lensRepository.find(filter);
   }
 
-  @get('/lens/{id}', {
-    responses: {
-      '200': {
-        description: 'Lens model instance',
-        content: { 'application/json': { schema: getModelSchemaRef(Lens) } },
-      },
-    },
-  })
   @authenticate('jwt')
-  async findById(@param.path.string('id') id: string): Promise<Lens> {
-    return await this.lensRepository.findById(id);
-  }
-
   @patch('/lens/{id}', {
     responses: {
       '204': {
@@ -129,6 +120,7 @@ export class LensControlController {
     await this.lensRepository.updateById(id, lens);
   }
 
+  @authenticate('jwt')
   @patch('/lens/{id}/name', {
     responses: {
       '204': {
@@ -150,20 +142,7 @@ export class LensControlController {
     await this.lensRepository.updateById(id, lens);
   }
 
-  @put('/lens/{id}', {
-    responses: {
-      '204': {
-        description: 'Lens PUT success',
-      },
-    },
-  })
-  async replaceById(
-    @param.path.string('id') id: string,
-    @requestBody() lens: Lens,
-  ): Promise<void> {
-    await this.lensRepository.replaceById(id, lens);
-  }
-
+  @authenticate('jwt')
   @del('/lens/{id}', {
     responses: {
       '204': {

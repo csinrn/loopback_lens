@@ -23,6 +23,7 @@ import { Userlens } from '../models';
 import { UserlensRepository } from '../repositories';
 import { validateDate } from '../services/validator';
 import { resolve } from 'url';
+import { authenticate } from '@loopback/authentication';
 
 export class UserLensControlController {
   constructor(
@@ -30,6 +31,7 @@ export class UserLensControlController {
     public userlensRepository: UserlensRepository,
   ) { }
 
+  @authenticate('jwt')
   @post('/user', {
     responses: {
       '200': {
@@ -50,6 +52,7 @@ export class UserLensControlController {
     return await this.userlensRepository.create(userlens);
   }
 
+  @authenticate('jwt')
   @get('/user/count', {
     responses: {
       '200': {
@@ -64,6 +67,7 @@ export class UserLensControlController {
     return await this.userlensRepository.count(where);
   }
 
+  @authenticate('jwt')
   @get('/user', {
     responses: {
       '200': {
@@ -82,6 +86,7 @@ export class UserLensControlController {
     return await this.userlensRepository.find(filter);
   }
 
+  @authenticate('jwt')
   @patch('/user', {
     responses: {
       '200': {
@@ -104,6 +109,7 @@ export class UserLensControlController {
     return await this.userlensRepository.updateAll(userlens, where);
   }
 
+  @authenticate('jwt')
   @get('/user/{user_id}', {
     responses: {
       '200': {
@@ -116,29 +122,9 @@ export class UserLensControlController {
     return await this.userlensRepository.find({ where: { userid: user_id } });
   }
 
-  @patch('/user/{id}', {
-    responses: {
-      '204': {
-        description: 'Userlens PATCH success',
-      },
-    },
-  })
-  async updateById(
-    @param.path.string('id') id: number,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Userlens, { partial: true }),
-        },
-      },
-    })
-    userlens: Userlens,
-  ): Promise<void> {
-    await this.userlensRepository.updateById(id, userlens);
-  }
-
 
   /////
+  @authenticate('jwt')
   @patch('/user/{user_id}/{lens_id}/time', {
     responses: {
       '204': {
@@ -173,6 +159,7 @@ export class UserLensControlController {
     await this.userlensRepository.updateById(dat.id, userlens)
   }
 
+  @authenticate('jwt')
   @patch('/user/{user_id}/{lens_id}/count', {
     responses: {
       '204': {
@@ -196,36 +183,22 @@ export class UserLensControlController {
     let user = await this.userlensRepository.findOne({ where: { and: [{ userid: userid }, { lensid: lensid }] } })
     if (!user) throw new HttpErrors.NotFound('user not found')
     if (user.id == undefined) throw new HttpErrors.NotFound('id undefined')
-    if (user.lenscount == undefined) throw new HttpErrors.NotFound('lensCount undefined')
+    if (user.lensCount == undefined) throw new HttpErrors.NotFound('lensCount undefined')
 
-    user.lenscount = user.lenscount + 1
+    user.lensCount = user.lensCount + 1
     await this.userlensRepository.updateById(user.id, user);
   }
 
   /////
-
-  @put('/user/{id}', {
-    responses: {
-      '204': {
-        description: 'Userlens PUT success',
-      },
-    },
-  })
-  async replaceById(
-    @param.path.string('id') id: number,
-    @requestBody() userlens: Userlens,
-  ): Promise<void> {
-    await this.userlensRepository.replaceById(id, userlens);
-  }
-
-  @del('/user/{id}', {
+  @authenticate('jwt')
+  @del('/user/{c_id}', {
     responses: {
       '204': {
         description: 'Userlens DELETE success',
       },
     },
   })
-  async deleteById(@param.path.string('id') id: number): Promise<void> {
-    await this.userlensRepository.deleteById(id);
+  async deleteById(@param.path.string('c_id') c_id: number): Promise<void> {
+    await this.userlensRepository.deleteById(c_id);
   }
 }

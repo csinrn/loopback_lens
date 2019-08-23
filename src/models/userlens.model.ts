@@ -8,59 +8,59 @@ export class Userlens extends Entity {
     precision: 10,
     scale: 0,
     id: 1,
-    mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "c_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  id: number;
+  cId: number;
 
   @property({
     type: 'number',
     required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "userId", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  userid: number;
+  userId: number;
 
   @property({
     type: 'number',
     required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "lensId", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "lens_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  lensid: number;
+  lensId: number;
 
   @property({
     type: 'number',
     required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "lensCount", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "lens_count", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  lenscount: number;
+  lensCount: number;
 
   @property({
     type: 'number',
     required: false,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "lensTime", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    mysql: { "columnName": "lens_time", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  lenstime?: number;
+  lensTime?: number;
 
   @property({
     type: 'string',
     required: true,
-    mysql: { "columnName": "createAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  createat: string;
+  createAt: string;
 
   @property({
     type: 'string',
     required: false,
-    mysql: { "columnName": "updateAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+    mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
   })
-  updateat?: string;
+  updateAt?: string;
 
   // Define well-known properties here
 

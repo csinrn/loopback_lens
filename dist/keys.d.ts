@@ -5,7 +5,7 @@ import { Admin } from './models';
 import { Credentials } from './repositories';
 export declare namespace TokenServiceConstants {
     const TOKEN_SECRET_VALUE = "myjwts3cr3t";
-    const TOKEN_EXPIRES_IN_VALUE = "600";
+    const TOKEN_EXPIRES_IN_VALUE = "36000";
 }
 export declare namespace TokenServiceBindings {
     const TOKEN_SECRET: BindingKey<string>;

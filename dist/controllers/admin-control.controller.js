@@ -33,7 +33,7 @@ let AdminControlController = class AdminControlController {
     async create(admin) {
         // ensure a valid account value and password value
         validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
-        validator_1.validateDate(admin.creatat);
+        validator_1.validateDate(admin.creatAt);
         // encrypt the password
         admin.password = await this.passwordHasher.hashPassword(admin.password);
         // create the new user
@@ -50,33 +50,21 @@ let AdminControlController = class AdminControlController {
         const token = await this.jwtService.generateToken(userProfile);
         return { token };
     }
-    async printCurrentUser(currentUserProfile) {
-        return currentUserProfile;
+    async logout() {
+        return { responses: { description: 'log out successfully' } };
     }
     async count(where) {
         return await this.adminRepository.count(where);
     }
-    async find(filter) {
-        return await this.adminRepository.find(filter);
-    }
-    async updateAll(admin, where) {
-        return await this.adminRepository.updateAll(admin, where);
-    }
-    async findById(id) {
-        return await this.adminRepository.findById(id);
-    }
     async updateById(id, admin) {
         await this.adminRepository.updateById(id, admin);
-    }
-    async replaceById(id, admin) {
-        await this.adminRepository.replaceById(id, admin);
     }
     async deleteById(id) {
         await this.adminRepository.deleteById(id);
     }
 };
 __decorate([
-    rest_1.post('/admins', {
+    rest_1.post('/admin/register', {
         responses: {
             '200': {
                 description: 'Admin model instance',
@@ -96,7 +84,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminControlController.prototype, "create", null);
 __decorate([
-    rest_1.post('/admins/login', {
+    rest_1.post('/admin/login', {
         responses: {
             '200': {
                 description: 'Token',
@@ -121,26 +109,15 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminControlController.prototype, "login", null);
 __decorate([
-    rest_1.get('/admins/me', {
-        responses: {
-            '200': {
-                description: 'The current user profile',
-                content: {
-                    'application/json': {
-                        schema: user_controller_specs_1.UserProfileSchema,
-                    },
-                },
-            },
-        },
-    }),
     authentication_1.authenticate('jwt'),
-    __param(0, core_1.inject(authentication_1.AuthenticationBindings.CURRENT_USER)),
+    rest_1.get('/admin/logout'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], AdminControlController.prototype, "printCurrentUser", null);
+], AdminControlController.prototype, "logout", null);
 __decorate([
-    rest_1.get('/admins/count', {
+    authentication_1.authenticate('jwt'),
+    rest_1.get('/admin/count', {
         responses: {
             '200': {
                 description: 'Admin model count',
@@ -154,60 +131,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminControlController.prototype, "count", null);
 __decorate([
-    rest_1.get('/admins', {
-        responses: {
-            '200': {
-                description: 'Array of Admin model instances',
-                content: {
-                    'application/json': {
-                        schema: { type: 'array', items: rest_1.getModelSchemaRef(models_1.Admin) },
-                    },
-                },
-            },
-        },
-    }),
-    __param(0, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Admin))),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], AdminControlController.prototype, "find", null);
-__decorate([
-    rest_1.patch('/admins', {
-        responses: {
-            '200': {
-                description: 'Admin PATCH success count',
-                content: { 'application/json': { schema: repository_2.CountSchema } },
-            },
-        },
-    }),
-    __param(0, rest_1.requestBody({
-        content: {
-            'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Admin, { partial: true }),
-            },
-        },
-    })),
-    __param(1, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Admin))),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [models_1.Admin, Object]),
-    __metadata("design:returntype", Promise)
-], AdminControlController.prototype, "updateAll", null);
-__decorate([
-    rest_1.get('/admins/{id}', {
-        responses: {
-            '200': {
-                description: 'Admin model instance',
-                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Admin) } },
-            },
-        },
-    }),
-    __param(0, rest_1.param.path.string('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], AdminControlController.prototype, "findById", null);
-__decorate([
-    rest_1.patch('/admins/{id}', {
+    authentication_1.authenticate('jwt'),
+    rest_1.patch('/admin/{id}', {
         responses: {
             '204': {
                 description: 'Admin PATCH success',
@@ -227,21 +152,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminControlController.prototype, "updateById", null);
 __decorate([
-    rest_1.put('/admins/{id}', {
-        responses: {
-            '204': {
-                description: 'Admin PUT success',
-            },
-        },
-    }),
-    __param(0, rest_1.param.path.string('id')),
-    __param(1, rest_1.requestBody()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.Admin]),
-    __metadata("design:returntype", Promise)
-], AdminControlController.prototype, "replaceById", null);
-__decorate([
-    rest_1.del('/admins/{id}', {
+    authentication_1.authenticate('jwt'),
+    rest_1.del('/admin/{id}', {
         responses: {
             '204': {
                 description: 'Admin DELETE success',

@@ -22,66 +22,66 @@ __decorate([
         precision: 10,
         scale: 0,
         id: 1,
-        mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "c_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Userlens.prototype, "id", void 0);
+], Userlens.prototype, "cId", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "userId", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Userlens.prototype, "userid", void 0);
+], Userlens.prototype, "userId", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "lensId", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "lens_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Userlens.prototype, "lensid", void 0);
+], Userlens.prototype, "lensId", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "lensCount", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "lens_count", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Userlens.prototype, "lenscount", void 0);
+], Userlens.prototype, "lensCount", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: false,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "lensTime", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "lens_time", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
     }),
     __metadata("design:type", Number)
-], Userlens.prototype, "lenstime", void 0);
+], Userlens.prototype, "lensTime", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
         required: true,
-        mysql: { "columnName": "createAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+        mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
-], Userlens.prototype, "createat", void 0);
+], Userlens.prototype, "createAt", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
         required: false,
-        mysql: { "columnName": "updateAt", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+        mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
     }),
     __metadata("design:type", String)
-], Userlens.prototype, "updateat", void 0);
+], Userlens.prototype, "updateAt", void 0);
 Userlens = __decorate([
     repository_1.model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'userlens' } } }),
     __metadata("design:paramtypes", [Object])

@@ -17,6 +17,7 @@ const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const validator_1 = require("../services/validator");
+const authentication_1 = require("@loopback/authentication");
 let UserLensControlController = class UserLensControlController {
     constructor(userlensRepository) {
         this.userlensRepository = userlensRepository;
@@ -40,9 +41,6 @@ let UserLensControlController = class UserLensControlController {
     }
     async findById(user_id) {
         return await this.userlensRepository.find({ where: { userid: user_id } });
-    }
-    async updateById(id, userlens) {
-        await this.userlensRepository.updateById(id, userlens);
     }
     /////
     async updateTime(userid, lensid, userlens) {
@@ -68,20 +66,18 @@ let UserLensControlController = class UserLensControlController {
             throw new rest_1.HttpErrors.NotFound('user not found');
         if (user.id == undefined)
             throw new rest_1.HttpErrors.NotFound('id undefined');
-        if (user.lenscount == undefined)
+        if (user.lensCount == undefined)
             throw new rest_1.HttpErrors.NotFound('lensCount undefined');
-        user.lenscount = user.lenscount + 1;
+        user.lensCount = user.lensCount + 1;
         await this.userlensRepository.updateById(user.id, user);
     }
     /////
-    async replaceById(id, userlens) {
-        await this.userlensRepository.replaceById(id, userlens);
-    }
-    async deleteById(id) {
-        await this.userlensRepository.deleteById(id);
+    async deleteById(c_id) {
+        await this.userlensRepository.deleteById(c_id);
     }
 };
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.post('/user', {
         responses: {
             '200': {
@@ -96,6 +92,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "create", null);
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.get('/user/count', {
         responses: {
             '200': {
@@ -110,6 +107,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "count", null);
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.get('/user', {
         responses: {
             '200': {
@@ -128,6 +126,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "find", null);
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.patch('/user', {
         responses: {
             '200': {
@@ -149,6 +148,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateAll", null);
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.get('/user/{user_id}', {
         responses: {
             '200': {
@@ -163,26 +163,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "findById", null);
 __decorate([
-    rest_1.patch('/user/{id}', {
-        responses: {
-            '204': {
-                description: 'Userlens PATCH success',
-            },
-        },
-    }),
-    __param(0, rest_1.param.path.string('id')),
-    __param(1, rest_1.requestBody({
-        content: {
-            'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Userlens, { partial: true }),
-            },
-        },
-    })),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, models_1.Userlens]),
-    __metadata("design:returntype", Promise)
-], UserLensControlController.prototype, "updateById", null);
-__decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.patch('/user/{user_id}/{lens_id}/time', {
         responses: {
             '204': {
@@ -204,6 +185,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateTime", null);
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.patch('/user/{user_id}/{lens_id}/count', {
         responses: {
             '204': {
@@ -225,28 +207,15 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateCount", null);
 __decorate([
-    rest_1.put('/user/{id}', {
-        responses: {
-            '204': {
-                description: 'Userlens PUT success',
-            },
-        },
-    }),
-    __param(0, rest_1.param.path.string('id')),
-    __param(1, rest_1.requestBody()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, models_1.Userlens]),
-    __metadata("design:returntype", Promise)
-], UserLensControlController.prototype, "replaceById", null);
-__decorate([
-    rest_1.del('/user/{id}', {
+    authentication_1.authenticate('jwt'),
+    rest_1.del('/user/{c_id}', {
         responses: {
             '204': {
                 description: 'Userlens DELETE success',
             },
         },
     }),
-    __param(0, rest_1.param.path.string('id')),
+    __param(0, rest_1.param.path.string('c_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)

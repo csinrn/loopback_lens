@@ -26,14 +26,14 @@ let LensControlController = class LensControlController {
         if (!lens) {
             throw rest_1.HttpErrors.BadRequest;
         }
-        validator_1.validateDate(lens.launchat);
-        if (lens.updateat != undefined) {
-            validator_1.validateDate(lens.closeat);
+        validator_1.validateDate(lens.createAt);
+        if (lens.updateAt != undefined) {
+            validator_1.validateDate(lens.updateAt);
         }
-        validator_1.validateEnum(lens.wearingtime);
-        validator_1.validateBoolean(lens.newtag, "newtag");
-        validator_1.validateBoolean(lens.hotsaletag, "hotsaletag");
-        validator_1.validateBoolean(lens.onsaletag, "onsaletag");
+        validator_1.validateEnum(lens.wearingTime);
+        validator_1.validateBoolean(lens.newTag, "newtag");
+        validator_1.validateBoolean(lens.hotsaleTag, "hotsaletag");
+        validator_1.validateBoolean(lens.onsaleTag, "onsaletag");
         return await this.lensRepository.create(lens);
     }
     async count(where) {
@@ -42,23 +42,18 @@ let LensControlController = class LensControlController {
     async find(filter) {
         return await this.lensRepository.find(filter);
     }
-    async findById(id) {
-        return await this.lensRepository.findById(id);
-    }
     async updateById(id, lens) {
         await this.lensRepository.updateById(id, lens);
     }
     async updateNameById(id, lens) {
         await this.lensRepository.updateById(id, lens);
     }
-    async replaceById(id, lens) {
-        await this.lensRepository.replaceById(id, lens);
-    }
     async deleteById(id) {
         await this.lensRepository.deleteById(id);
     }
 };
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.post('/lens', {
         responses: {
             '200': {
@@ -79,6 +74,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "create", null);
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.get('/lens/count', {
         responses: {
             '200': {
@@ -93,6 +89,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "count", null);
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.get('/lens', {
         responses: {
             '200': {
@@ -111,21 +108,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "find", null);
 __decorate([
-    rest_1.get('/lens/{id}', {
-        responses: {
-            '200': {
-                description: 'Lens model instance',
-                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Lens) } },
-            },
-        },
-    }),
     authentication_1.authenticate('jwt'),
-    __param(0, rest_1.param.path.string('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], LensControlController.prototype, "findById", null);
-__decorate([
     rest_1.patch('/lens/{id}', {
         responses: {
             '204': {
@@ -146,6 +129,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "updateById", null);
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.patch('/lens/{id}/name', {
         responses: {
             '204': {
@@ -166,20 +150,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "updateNameById", null);
 __decorate([
-    rest_1.put('/lens/{id}', {
-        responses: {
-            '204': {
-                description: 'Lens PUT success',
-            },
-        },
-    }),
-    __param(0, rest_1.param.path.string('id')),
-    __param(1, rest_1.requestBody()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.Lens]),
-    __metadata("design:returntype", Promise)
-], LensControlController.prototype, "replaceById", null);
-__decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.del('/lens/{id}', {
         responses: {
             '204': {
