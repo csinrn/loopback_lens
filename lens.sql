@@ -11,11 +11,52 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Dumping database structure for lensdb
+CREATE DATABASE IF NOT EXISTS `lensdb` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `lensdb`;
+
+-- Dumping structure for table lensdb.admin
+CREATE TABLE IF NOT EXISTS `admin` (
+  `account` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `creat_at` date NOT NULL,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`account`),
+  UNIQUE KEY `account` (`account`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- Dumping data for table lensdb.admin: ~0 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`account`, `password`, `creat_at`, `name`) VALUES
 	('string', '$2a$10$OVL/wwHL/kpKKFi/58G4meLD3RyauYkzxUg/IzZ.FqWAdfBQuLa9u', '2019-03-03', 'string');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+
+-- Dumping structure for table lensdb.lens
+CREATE TABLE IF NOT EXISTS `lens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `no` int(10) NOT NULL,
+  `diameter` float unsigned NOT NULL,
+  `BC` float unsigned NOT NULL,
+  `power` int(11) unsigned NOT NULL,
+  `water` int(11) unsigned NOT NULL,
+  `wearing_time` enum('daily','weekly','monthly','annually') NOT NULL,
+  `place_of_prod` varchar(50) NOT NULL,
+  `price` int(11) unsigned NOT NULL,
+  `special_price` int(11) unsigned NOT NULL,
+  `event_disp` varchar(50) DEFAULT NULL,
+  `license` varchar(50) NOT NULL,
+  `new_tag` tinyint(1) NOT NULL,
+  `hotsale_tag` tinyint(1) NOT NULL,
+  `onsale_tag` tinyint(1) NOT NULL,
+  `create_at` date NOT NULL,
+  `update_at` date DEFAULT NULL,
+  `url` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `no` (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table lensdb.lens: ~2 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
@@ -23,6 +64,18 @@ INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `power`, `water`, `wea
 	(5, 'string', 8, 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 0, 0, 0, '2019-03-03', NULL, 'string'),
 	(6, 'dd', 7, 10, 10, 10, 10, 'weekly', 'ddd', 100, 100, NULL, 'sdf', 1, 1, 1, '2019-08-24', NULL, 'sdff');
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
+
+-- Dumping structure for table lensdb.userlens
+CREATE TABLE IF NOT EXISTS `userlens` (
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `lens_id` int(11) NOT NULL DEFAULT 0,
+  `lens_count` int(11) NOT NULL,
+  `lens_time` int(11) DEFAULT NULL,
+  `create_at` date NOT NULL,
+  `update_at` date DEFAULT NULL,
+  KEY `lens_id` (`lens_id`),
+  CONSTRAINT `lens_id` FOREIGN KEY (`lens_id`) REFERENCES `lens` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table lensdb.userlens: ~0 rows (approximately)
 /*!40000 ALTER TABLE `userlens` DISABLE KEYS */;
