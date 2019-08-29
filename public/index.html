@@ -568,7 +568,12 @@
                 confirmButtonText: msg,
                 onAfterClose: onAfterClose
             })
+            // 我還讓提示樣式適配暗主題
             $('.swal2-modal').css('background-color', '#000');
+            $('.swal2-success-circular-line-left').css('background-color', '#000');
+            $('.swal2-success-circular-line-right').css('background-color', '#000');
+            $('.swal2-success-fix').css('background-color', '#000');
+            $('.swal2-success-ring').css('border', '.25em solid rgba(165,220,134)');
         }
     </script>
 </body>
