@@ -20,16 +20,18 @@ USE `lensdb`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `account` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `creat_at` date NOT NULL,
+  `create_at` date NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`account`),
   UNIQUE KEY `account` (`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table lensdb.admin: ~0 rows (approximately)
+-- Dumping data for table lensdb.admin: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` (`account`, `password`, `creat_at`, `name`) VALUES
-	('string', '$2a$10$OVL/wwHL/kpKKFi/58G4meLD3RyauYkzxUg/IzZ.FqWAdfBQuLa9u', '2019-03-03', 'string');
+INSERT INTO `admin` (`account`, `password`, `create_at`, `name`) VALUES
+	('qwe', '$2a$10$.881muRUU5c2uCPeTbif0OQvHpKIbvjncUTWNDz89MCav3.e6Aslu', '2019-08-29', 'qwe'),
+	('string', '$2a$10$OVL/wwHL/kpKKFi/58G4meLD3RyauYkzxUg/IzZ.FqWAdfBQuLa9u', '2019-03-03', 'string'),
+	('string777', '$2a$10$I4iLe8ZcBopTsmUkz6hYkeCCrmVlg0wbPKrjEpbXX.yhPxJfVSrUO', '2019-08-05', 'string');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table lensdb.lens
@@ -56,13 +58,15 @@ CREATE TABLE IF NOT EXISTS `lens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `no` (`no`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lensdb.lens: ~2 rows (approximately)
+-- Dumping data for table lensdb.lens: ~4 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
 INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `power`, `water`, `wearing_time`, `place_of_prod`, `price`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
-	(5, 'string', 8, 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 0, 0, 0, '2019-03-03', NULL, 'string'),
-	(6, 'dd', 7, 10, 10, 10, 10, 'weekly', 'ddd', 100, 100, NULL, 'sdf', 1, 1, 1, '2019-08-24', NULL, 'sdff');
+	(7, 'happy', 0, 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 0, 0, 0, '2019-08-08', NULL, 'string'),
+	(8, 'new', 1, 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 0, 0, 0, '2019-08-08', NULL, 'string'),
+	(9, 'ttest', 2, 0, 0, 0, 0, 'daily', 'string', 0, 0, 'string', 'string', 0, 0, 0, '2019-08-08', NULL, 'string'),
+	(11, 'string', 3, 22, 22, 22, 22, 'daily', '22', 22, 22, '22', '22', 1, 1, 1, '2019-08-29', NULL, '22');
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
 
 -- Dumping structure for table lensdb.userlens
