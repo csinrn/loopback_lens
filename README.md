@@ -68,7 +68,6 @@ requestBody = { "lenstime": 0 }
 <pre>
 requestBody = {
   "name": "string",
-  "no": 0,
   "diameter": 0,
   "bc": 0,     //弧度
   "power": 0,   //度數
