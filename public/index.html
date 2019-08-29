@@ -22,10 +22,10 @@
         integrity="sha256-Qfxgn9jULeGAdbaeDjXeIhZB3Ra6NCK3dvjwAG8Y+xU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
+    </script>
 </head>
 
 <body style="font-family: 'Noto Sans TC', sans-serif;">
@@ -120,7 +120,7 @@
                             <div class="tab-pane fade container" id="upload" role="tabpanel"
                                 aria-labelledby="upload-tab">
                                 <form>
-                                    <div class='row'>
+                                    <div class="row">
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">品名</span>
@@ -144,7 +144,7 @@
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                     </div>
-                                    <div class='row'>
+                                    <div class="row">
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">直徑</span>
@@ -174,7 +174,7 @@
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                     </div>
-                                    <div class='row'>
+                                    <div class="row">
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">使用週期</span>
@@ -201,13 +201,13 @@
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                     </div>
-                                    <div class='row'>
+                                    <div class="row">
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
                                                 <span>特價</span>
                                             </div>
                                             <input type="checkbox" name="onsaleTag" class="form-control"
-                                                onchange="onSpectialChanged(this.checked)">
+                                                onchange="onSpecialChanged(this.checked)">
                                         </div>
                                         <div class="input-group mb-3 col-md-3 invisible" name="special">
                                             <div class="input-group-prepend">
@@ -340,10 +340,12 @@
                 data: data
             }).done(response => {
                 // 跳一個美麗的提示
-                swalAlert('Register Success', 'Account: ' + response.account + '<br>Name: ' + response.name, true, renderCards)
+                swalAlert('Register Success', 'Account: ' + response.account + '<br>Name: ' + response.name,
+                    true, renderCards)
             }).fail(error => {
                 // 如果註冊失敗
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON.error.details)
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details)
                 swalAlert('Register Failed', msg, false)
             });
         }
@@ -363,12 +365,13 @@
             }).done(response => {
                 rememberToken(response.token, response.expireinMs);
                 user = response.userProfile
-                $('#userName').text(user.name);  // 填入login page 的 user name
-                $('#login input').val('')   // 清除DOM中的帳密
+                $('#userName').text(user.name); // 填入login page 的 user name
+                $('#login input').val('') // 清除DOM中的帳密
                 console.log(response, user)
                 swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
             }).fail(error => {
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON.error.details)
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details)
                 swalAlert('Login Failed', msg, false)
             });
         }
@@ -425,26 +428,27 @@
             $(!auth ? '#auth' : '#guest').removeClass('active show');
         }
 
-        function upload() {   //新增隱眼
+        function upload() { //新增隱眼
 
             var date = nowDate()
             console.log(date)
             var data = {
                 name: "string",
                 diameter: parseInt($('#upload [name="diameter"]').val()),
-                bc: parseInt($('#upload [name="bc"]').val()),     //弧度
-                power: parseInt($('#upload [name="power"]').val()),   //度數
-                water: parseInt($('#upload [name="water"]').val()),    //含水量
-                wearingTime: $('#upload [name="wearingTime"]').val(),  // should be one of {"daily", "weekly", "monthly", "annually"}
-                placeOfProd: $('#upload [name="placeOfProd"]').val(),   // 產地
+                bc: parseInt($('#upload [name="bc"]').val()), //弧度
+                power: parseInt($('#upload [name="power"]').val()), //度數
+                water: parseInt($('#upload [name="water"]').val()), //含水量
+                wearingTime: $('#upload [name="wearingTime"]')
+                    .val(), // should be one of {"daily", "weekly", "monthly", "annually"}
+                placeOfProd: $('#upload [name="placeOfProd"]').val(), // 產地
                 price: parseInt($('#upload [name="price"]').val()),
-                specialPrice: parseInt($('#upload [name="specialPrice"]').val()),      // optional
-                eventDisp: $('#upload [name="eventDisp"]').val(),   // 活動敘述 optional
-                license: $('#upload [name="license"]').val(),   // 許可證字號
-                newTag: $('#upload [name="newTag"]').is(":checked") ? 1 : 0,      // 0 或 1
-                hotsaleTag: $('#upload [name="hotsaleTag"]').is(":checked") ? 1 : 0,  // 0 或 1
-                onsaleTag: $('#upload [name="onsaleTag"]').is(":checked") ? 1 : 0,   // 0 或 1
-                createAt: date,    // 上架時間  需為 "190303" 格式的日期字串
+                specialPrice: parseInt($('#upload [name="specialPrice"]').val()), // optional
+                eventDisp: $('#upload [name="eventDisp"]').val(), // 活動敘述 optional
+                license: $('#upload [name="license"]').val(), // 許可證字號
+                newTag: $('#upload [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
+                hotsaleTag: $('#upload [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
+                onsaleTag: $('#upload [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
+                createAt: date, // 上架時間  需為 "190303" 格式的日期字串
                 url: $('#upload [name="url"]').val()
             }
             data = JSON.stringify(data)
@@ -460,13 +464,15 @@
                 swalAlert("Upload Success", "", true, renderCards)
             }).fail(error => {
                 console.log(error)
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON.error.details)
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details)
                 swalAlert("Upload Failed", msg, false)
             })
         }
 
-        function sort() {   //兩排序對調
-            var url = serverURL + '/lens/sort/' + $('#sort-form [name="sort-id1"]').val().toString() + "/" + $('#sort-form [name="sort-id2"]').val().toString()
+        function sort() { //兩排序對調
+            var url = serverURL + '/lens/sort/' + $('#sort-form [name="sort-id1"]').val().toString() + "/" + $(
+                '#sort-form [name="sort-id2"]').val().toString()
             //console.log(url)
             $.ajax({
                 url: url, // 你的api
@@ -479,12 +485,13 @@
                 swalAlert("Sort Success", "", true, renderCards)
             }).fail(error => {
                 $("#sort-form input").val('')
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON.error.details)
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details)
                 swalAlert("Sort Failed", msg, false)
             })
         }
 
-        function deleteLens() {  //刪除隱眼
+        function deleteLens() { //刪除隱眼
             var url = serverURL + '/lens/' + $('#update [name="delete-id"]').val().toString()
             //console.log(url)
             $.ajax({
@@ -498,12 +505,13 @@
                 swalAlert("Delete Success", "", true, renderCards)
             }).fail(error => {
                 $("#delete-form input").val('')
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON.error.details)
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details)
                 swalAlert("Delete Failed", msg, false)
             })
         }
 
-        function rename() {  // 重新命名
+        function rename() { // 重新命名
             var url = serverURL + '/lens/' + $('#update [name="rename-id"]').val().toString() + '/name'
             var data = {
                 name: $('#update [name="rename-name"]').val()
@@ -522,12 +530,13 @@
                 swalAlert("Rename Success", "", true, renderCards)
             }).fail(error => {
                 $("#rename-form input").val('')
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON.error.details)
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details)
                 swalAlert("Rename Failed", msg, false)
             })
         }
 
-        function onSpectialChanged(changed) {
+        function onSpecialChanged(changed) {
             //console.log(changed)
             if (changed) {
                 $('#upload [name="special"]').removeClass('invisible')
@@ -540,16 +549,18 @@
         function nowDate() {
             // get createAt
             var dt = new Date()
-            var year = dt.getFullYear().toString(), month = (dt.getMonth() + 1).toString(), day = dt.getDate().toString()
+            var year = dt.getFullYear().toString(),
+                month = (dt.getMonth() + 1).toString(),
+                day = dt.getDate().toString()
             year = year[2] + year[3]
             month = (month.length == 1) ? '0' + month : month
             day = (day.length == 1) ? '0' + day : day
             return (year + month + day).toString()
         }
 
-        function swalAlert(title, html, successed, onAfterClose = (() => { })) {
-            var type = successed ? "success" : "error"
-            var msg = successed ? "OK" : "Fine"
+        function swalAlert(title, html, isSuccess, onAfterClose = (() => {})) {
+            var type = isSuccess ? "success" : "error"
+            var msg = isSuccess ? "OK" : "Fine"
             Swal.fire({
                 title: title,
                 html: html,
