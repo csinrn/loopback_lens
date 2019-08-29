@@ -61,6 +61,10 @@ export class LensControlController {
     validateBoolean(lens.hotsaleTag, "hotsaletag")
     validateBoolean(lens.onsaleTag, "onsaletag")
 
+    //console.log(lens)
+    var count = await this.lensRepository.count()
+    lens.no = count.count
+
     return await this.lensRepository.create(lens);
   }
 
