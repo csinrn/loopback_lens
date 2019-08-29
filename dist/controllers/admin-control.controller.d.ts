@@ -1,6 +1,6 @@
 import { Admin } from '../models';
 import { AdminRepository } from '../repositories';
-import { TokenService, UserService } from '@loopback/authentication';
+import { UserProfile, TokenService, UserService } from '@loopback/authentication';
 import { Count, Where } from '@loopback/repository';
 import { Credentials } from '../repositories/admin.repository';
 import { PasswordHasher } from '../services/hash.password.bcryptjs';
@@ -13,6 +13,7 @@ export declare class AdminControlController {
     create(admin: Admin): Promise<Admin>;
     login(credentials: Credentials): Promise<{
         token: string;
+        userProfile: UserProfile;
     }>;
     logout(): Promise<{
         responses: {

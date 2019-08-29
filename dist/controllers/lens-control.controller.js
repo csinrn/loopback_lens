@@ -22,7 +22,6 @@ let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
     }
-    //@authenticate('jwt')
     async create(lens) {
         if (!lens) {
             throw rest_1.HttpErrors.BadRequest;
@@ -70,6 +69,7 @@ let LensControlController = class LensControlController {
     }
 };
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.post('/lens', {
         responses: {
             '200': {

@@ -39,8 +39,10 @@ import {
   TokenServiceBindings,
   PasswordHasherBindings,
   UserServiceBindings,
+  TokenServiceConstants,
 } from '../keys';
 import * as _ from 'lodash';
+
 
 
 export class AdminControlController {
@@ -107,7 +109,7 @@ export class AdminControlController {
   })
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
-  ): Promise<{ token: string }> {
+  ): Promise<{ token: string, expireinMs: string, userProfile: UserProfile }> {
     // ensure the user exists, and the password is correct
     const user = await this.userService.verifyCredentials(credentials);
 
@@ -116,8 +118,8 @@ export class AdminControlController {
 
     // create a JSON Web Token based on the user profile
     const token = await this.jwtService.generateToken(userProfile);
-
-    return { token };
+    const expireinMs = TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE
+    return { token, expireinMs, userProfile };
   }
 
   @authenticate('jwt')
