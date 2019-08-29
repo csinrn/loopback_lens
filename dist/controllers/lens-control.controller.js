@@ -49,8 +49,8 @@ let LensControlController = class LensControlController {
         await this.lensRepository.updateById(id, lens);
     }
     async sort(id1, id2) {
-        let lens1 = await this.lensRepository.findById(id1);
-        let lens2 = await this.lensRepository.findById(id2);
+        let lens1 = await this.lensRepository.findById(parseInt(id1));
+        let lens2 = await this.lensRepository.findById(parseInt(id2));
         let no1 = lens1.no, no2 = lens2.no;
         let lens_t = new models_1.Lens();
         lens_t.no = -1;
@@ -147,8 +147,8 @@ __decorate([
 __decorate([
     authentication_1.authenticate('jwt'),
     rest_1.patch('/lens/sort/{id1}/{id2}'),
-    __param(0, rest_1.param.query.string('id1')),
-    __param(1, rest_1.param.query.string('id2')),
+    __param(0, rest_1.param.path.string('id1')),
+    __param(1, rest_1.param.path.string('id2')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)

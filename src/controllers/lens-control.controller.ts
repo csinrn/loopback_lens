@@ -127,10 +127,11 @@ export class LensControlController {
   @authenticate('jwt')
   @patch('/lens/sort/{id1}/{id2}')
   async sort(
-    @param.query.string('id1') id1: string,
-    @param.query.string('id2') id2: string) {
-    let lens1 = await this.lensRepository.findById(id1)
-    let lens2 = await this.lensRepository.findById(id2)
+    @param.path.string('id1') id1: string,
+    @param.path.string('id2') id2: string) {
+
+    let lens1 = await this.lensRepository.findById(parseInt(id1))
+    let lens2 = await this.lensRepository.findById(parseInt(id2))
     let no1 = lens1.no, no2 = lens2.no
     let lens_t = new Lens()
     lens_t.no = -1

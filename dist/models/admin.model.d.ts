@@ -2,7 +2,7 @@ import { Entity } from '@loopback/repository';
 export declare class Admin extends Entity {
     account: string;
     password: string;
-    creatAt: string;
+    createAt: string;
     name: string;
     [prop: string]: any;
     constructor(data?: Partial<Admin>);

@@ -31,9 +31,10 @@ let AdminControlController = class AdminControlController {
         this.userService = userService;
     }
     async create(admin) {
+        console.log(admin);
         // ensure a valid account value and password value
         validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
-        validator_1.validateDate(admin.creatAt);
+        validator_1.validateDate(admin.createAt);
         // encrypt the password
         admin.password = await this.passwordHasher.hashPassword(admin.password);
         // create the new user
@@ -46,10 +47,10 @@ let AdminControlController = class AdminControlController {
         const user = await this.userService.verifyCredentials(credentials);
         // convert a User object into a UserProfile object (reduced set of properties)
         const userProfile = this.userService.convertToUserProfile(user);
-        console.log(userProfile);
         // create a JSON Web Token based on the user profile
         const token = await this.jwtService.generateToken(userProfile);
-        return { token, userProfile };
+        const expireinMs = keys_1.TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE;
+        return { token, expireinMs, userProfile };
     }
     async logout() {
         return { responses: { description: 'log out successfully' } };

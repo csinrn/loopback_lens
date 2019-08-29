@@ -22,9 +22,9 @@ export class Admin extends Entity {
   @property({
     type: 'string',
     required: true,
-    mysql: { "columnName": "creat_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  creatAt: string;
+  createAt: string;
 
   @property({
     type: 'string',

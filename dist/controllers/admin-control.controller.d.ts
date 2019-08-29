@@ -13,6 +13,7 @@ export declare class AdminControlController {
     create(admin: Admin): Promise<Admin>;
     login(credentials: Credentials): Promise<{
         token: string;
+        expireinMs: string;
         userProfile: UserProfile;
     }>;
     logout(): Promise<{
