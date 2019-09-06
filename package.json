@@ -58,7 +58,8 @@
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "loopback-connector-mysql": "^5.4.2"
+    "loopback-connector-mysql": "^5.4.2",
+    "tablednd": "^1.0.3"
   },
   "devDependencies": {
     "@loopback/build": "^2.0.5",
