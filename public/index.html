@@ -492,9 +492,8 @@
             })
         }
 
-        function sort() { //兩排序對調
-            var url = serverURL + '/lens/sort/' + $('#sort-form [name="sort-id1"]').val().toString() + "/" + $(
-                '#sort-form [name="sort-id2"]').val().toString()
+        function sort(rowId, newOrder) { //兩排序對調
+            var url = serverURL + '/lens/sort/' + rowId.toString() + "/" + newOrder.toString()
             //console.log(url)
             $.ajax({
                 url: url, // 你的api
@@ -610,8 +609,19 @@
         }
 
         function onDrop(table, row) {
-            console.log(table.tBodies[0].rows)
-            console.log("now row: ", row)
+            //console.log(table.tBodies[0].rows)
+            //console.log("now row: ", row)
+            var rowChanged = row.id
+            var newOrder = -1
+            for (var i = 0; i < table.tBodies[0].rows.length; i++) {
+                if (table.tBodies[0].rows[i].id == rowChanged) {
+                    newOrder = i
+                    break
+                }
+            }
+
+            console.log("newOrder: ", newOrder)
+            sort(rowChanged, newOrder)
         }
 
     </script>
