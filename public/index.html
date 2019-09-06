@@ -330,13 +330,9 @@
                 // 把操作面板的畫面畫出來
                 renderCards();
             } else {
-                //switchPane(false);
-                switchPane(true)
+                switchPane(false);
+                //switchPane(true)
             }
-            $('#update [name="table-id"]').tableDnD({
-                onDragStart: onDragStart,
-                onDrop: onDrop
-            })
         });
 
         var serverURL = 'http://localhost:3000'
@@ -420,7 +416,7 @@
                 }
             }).done(response => {
                 // 清空面板
-                //response.sort(lensComparator)
+                response.sort(lensComparator)
                 $('#update [name="table-id"]').empty()
                 var thead = `<thead>
                                 <tr>
@@ -441,6 +437,10 @@
                 });
                 tbody += '</tbody>'
                 $('#update [name="table-id"]').append(thead + tbody)
+                $('#update [name="table-id"]').tableDnD({
+                    onDragStart: onDragStart,
+                    onDrop: onDrop
+                })
                 switchPane(true);
             }).fail(logout);
         }
@@ -597,13 +597,13 @@
             $('.swal2-success-fix').css('background-color', '#000');
             $('.swal2-success-ring').css('border', '.25em solid rgba(165,220,134)');
         }
-        /*
+
         function lensComparator(a, b) {
             if (a.no == b.no)
                 return 0
-            return a.no > b.no ? 1 : -1
+            return a.no > b.no ? -1 : 1
         }
-        */
+
         function onDragStart(table, row) {
             console.log(table.tBodies[0].rows)
             console.log("now row: ", row.id)
