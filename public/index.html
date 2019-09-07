@@ -271,19 +271,6 @@
 
 
                                     <div name="form-div" class="col-md-7">
-                                        <form id="sort-form">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">交換排序</span>
-                                                </div>
-                                                <input type="number" name="sort-id1" class="form-control col-md-2"
-                                                    placeholder="id1">
-                                                <input type="number" name="sort-id2" class="form-control col-md-2"
-                                                    placeholder="id2">
-                                                <button type="button" class="btn btn-primary col-md-2"
-                                                    style="margin-left: 10px;" onclick="sort()">交換</button>
-                                            </div>
-                                        </form>
                                         <form id="delete-form">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -336,6 +323,7 @@
         });
 
         var serverURL = 'http://localhost:3000'
+        var tableRows = []
 
         function register() {
             data = {
@@ -356,7 +344,7 @@
             }).done(response => {
                 // 跳一個美麗的提示
                 swalAlert('Register Success', 'Account: ' + response.account + '<br>Name: ' + response.name,
-                    true, renderCards)
+                    true)
             }).fail(error => {
                 // 如果註冊失敗
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
@@ -492,20 +480,22 @@
             })
         }
 
-        function sort(rowId, newOrder) { //兩排序對調
-            var url = serverURL + '/lens/sort/' + rowId.toString() + "/" + newOrder.toString()
+        async function sort(rowId1, rowId2) { //兩排序對調
+            console.log("id: ", rowId1, rowId2)
+
+            var url = serverURL + '/lens/sort/' + rowId1.toString() + "/" + rowId2.toString()
             //console.log(url)
-            $.ajax({
+            return await $.ajax({
                 url: url, // 你的api
                 type: 'PATCH',
                 beforeSend: xhr => {
                     xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
                 }
             }).done(response => {
-                $("#sort-form input").val('')
-                swalAlert("Sort Success", "", true, renderCards)
             }).fail(error => {
-                $("#sort-form input").val('')
+                console.log(error)
+
+                //$("#sort-form input").val('')
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
                     .error.details)
                 swalAlert("Sort Failed", msg, false)
@@ -606,22 +596,46 @@
         function onDragStart(table, row) {
             console.log(table.tBodies[0].rows)
             console.log("now row: ", row.id)
+            tableRows = []
+            for (var i = 0; i < table.tBodies[0].rows.length; i++) {
+                tableRows.push(table.tBodies[0].rows[i].id)
+            }
+            console.log(tableRows)
         }
 
-        function onDrop(table, row) {
+        async function onDrop(table, row) {
             //console.log(table.tBodies[0].rows)
             //console.log("now row: ", row)
-            var rowChanged = row.id
-            var newOrder = -1
-            for (var i = 0; i < table.tBodies[0].rows.length; i++) {
-                if (table.tBodies[0].rows[i].id == rowChanged) {
-                    newOrder = i
+            var newRows = table.tBodies[0].rows
+            var diff_start = 0, diff_end = 1
+            var started = false
+            for (var i = 0; i < newRows.length; i++) {
+                console.log("new:", newRows[i].id, "old: ", tableRows[i])
+
+                if (newRows[i].id != tableRows[i] && !started) {
+                    diff_start = i
+                    console.log(diff_start)
+                    started = true
+                } else if (newRows[i].id == tableRows[i] && started) {
+                    diff_end = i
+                    console.log(diff_end)
                     break
                 }
             }
 
-            console.log("newOrder: ", newOrder)
-            sort(rowChanged, newOrder)
+            console.log("start:", diff_start, diff_end)
+            console.log("old table: ", tableRows)
+            if (newRows[diff_start].id == row.id) {   // row be moved upward
+                for (var i = 0; i < diff_end - diff_start - 1; i++) {
+                    var k = await sort(row.id, newRows[diff_end - 1 - i].id)
+                }
+            } else if (newRows[diff_end - 1].id == row.id) { // row be moved downward
+                for (var i = 0; i < diff_end - diff_start - 1; i++) {
+                    var k = await sort(row.id, newRows[diff_start + i].id)
+                }
+            }
+            renderCards()
+            console.log("new table: ", newRows)
         }
 
     </script>

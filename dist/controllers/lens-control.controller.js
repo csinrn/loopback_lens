@@ -22,7 +22,6 @@ let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
     }
-    //@authenticate('jwt')
     async create(lens) {
         if (!lens) {
             throw rest_1.HttpErrors.BadRequest;
@@ -53,13 +52,16 @@ let LensControlController = class LensControlController {
         let lens1 = await this.lensRepository.findById(parseInt(id1));
         let lens2 = await this.lensRepository.findById(parseInt(id2));
         let no1 = lens1.no, no2 = lens2.no;
+        //console.log("id1: ", id1, no1)
+        //console.log("id2: ", id2, no2)
         let lens_t = new models_1.Lens();
         lens_t.no = -1;
-        await this.lensRepository.updateById(id1, lens_t, { partial: true });
+        await this.lensRepository.updateById(parseInt(id1), lens_t, { partial: true });
         lens_t.no = no1;
-        await this.lensRepository.updateById(id2, lens_t, { partial: true });
+        await this.lensRepository.updateById(parseInt(id2), lens_t, { partial: true });
         lens_t.no = no2;
-        await this.lensRepository.updateById(id1, lens_t, { partial: true });
+        await this.lensRepository.updateById(parseInt(id1), lens_t, { partial: true });
+        console.log("done");
         return { responses: "exchange order " + no1 + " and " + no2 + " successfully" };
     }
     async updateNameById(id, lens) {
@@ -70,6 +72,7 @@ let LensControlController = class LensControlController {
     }
 };
 __decorate([
+    authentication_1.authenticate('jwt'),
     rest_1.post('/lens', {
         responses: {
             '200': {
