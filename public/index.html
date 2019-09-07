@@ -183,9 +183,8 @@
                                             </div>
                                             <select name="wearingTime" class="form-control">
                                                 <option value="daily">日拋</option>
-                                                <option value="weekly">周拋</option>
+                                                <option value="biweekly">雙周拋</option>
                                                 <option value="monthly">月拋</option>
-                                                <option value="annually">年拋(?)</option>
                                             </select>
                                         </div>
                                         <div class="input-group mb-3 col-md-3">
@@ -448,8 +447,7 @@
                 bc: parseInt($('#upload [name="bc"]').val()), //弧度
                 power: parseInt($('#upload [name="power"]').val()), //度數
                 water: parseInt($('#upload [name="water"]').val()), //含水量
-                wearingTime: $('#upload [name="wearingTime"]')
-                    .val(), // should be one of {"daily", "weekly", "monthly", "annually"}
+                wearingTime: $('#upload [name="wearingTime"]').val(), // should be one of {"daily", "biweekly", "monthly"}
                 placeOfProd: $('#upload [name="placeOfProd"]').val(), // 產地
                 price: parseInt($('#upload [name="price"]').val()),
                 specialPrice: parseInt($('#upload [name="specialPrice"]').val()), // optional

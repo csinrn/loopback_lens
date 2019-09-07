@@ -20,9 +20,9 @@ function validateDate(date) {
 }
 exports.validateDate = validateDate;
 function validateEnum(input) {
-    let valid = (input == 'daily') || (input == 'weekly') || (input == 'monthly') || (input == 'annually');
+    let valid = (input == 'daily') || (input == 'biweekly') || (input == 'monthly');
     if (!valid) {
-        throw new rest_1.HttpErrors.BadRequest('Invalide wearing time, should be one of {"daily", "weekly", "monthly", "annually"}');
+        throw new rest_1.HttpErrors.BadRequest('Invalide wearing time, should be one of {"daily", "biweekly", "monthly"}');
     }
 }
 exports.validateEnum = validateEnum;
