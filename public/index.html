@@ -128,7 +128,6 @@
                                                 <span class="input-group-text">品名</span>
                                             </div>
                                             <input type="string" name="name" class="form-control"
-                                                aria-describedby="emailHelp"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                         <div class="input-group mb-3 col-md-3">
@@ -441,8 +440,9 @@
 
             var date = nowDate()
             console.log(date)
+
             var data = {
-                name: "string",
+                name: $('#upload [name="name"]').val(),
                 diameter: parseInt($('#upload [name="diameter"]').val()),
                 bc: parseInt($('#upload [name="bc"]').val()), //弧度
                 power: parseInt($('#upload [name="power"]').val()), //度數
@@ -450,8 +450,8 @@
                 wearingTime: $('#upload [name="wearingTime"]').val(), // should be one of {"daily", "biweekly", "monthly"}
                 placeOfProd: $('#upload [name="placeOfProd"]').val(), // 產地
                 price: parseInt($('#upload [name="price"]').val()),
-                specialPrice: parseInt($('#upload [name="specialPrice"]').val()), // optional
-                eventDisp: $('#upload [name="eventDisp"]').val(), // 活動敘述 optional
+                specialPrice: parseInt($('#upload [name="specialPrice"]').val()),
+                eventDisp: $('#upload [name="eventDisp"]').val(),
                 license: $('#upload [name="license"]').val(), // 許可證字號
                 newTag: $('#upload [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 hotsaleTag: $('#upload [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
@@ -459,6 +459,13 @@
                 createAt: date, // 上架時間  需為 "190303" 格式的日期字串
                 url: $('#upload [name="url"]').val()
             }
+
+            if (!$('#upload [name="onsaleTag"]').is(':checked')) {
+                data.specialPrice = undefined
+                data.eventDisp = undefined
+                console.log(data)
+            }
+
             data = JSON.stringify(data)
             $.ajax({
                 url: serverURL + '/lens',
@@ -545,9 +552,9 @@
             })
         }
 
-        function onSpecialChanged(changed) {
+        function onSpecialChanged(checked) {
             //console.log(changed)
-            if (changed) {
+            if (checked) {
                 $('#upload [name="special"]').removeClass('invisible')
             } else {
                 $('#upload [name="special"] input').val('')

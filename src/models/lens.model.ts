@@ -90,7 +90,7 @@ export class Lens extends Entity {
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
     precision: 10,
     scale: 0,
     mysql: { "columnName": "special_price", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },

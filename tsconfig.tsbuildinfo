@@ -1234,7 +1234,7 @@
         "signature": "f03594cc668c4d08662922715b727f5680f028bab3746d13adfac62674c97537"
       },
       "d:/eye-demo/lens/src/models/lens.model.ts": {
-        "version": "960cba73dc55c9c8f55cc00afb184f2af769ccbe84908df75fcd0e667c148582",
+        "version": "bf7905b4a5a92f1d1e5ba05a41b4655b974df080724de99a5d47547ea85b72fd",
         "signature": "cf1c2ecb3dd5fcb7e67502bfe22e58096283a562e21915778c808296aa4cc619"
       },
       "d:/eye-demo/lens/src/models/userlens.model.ts": {
@@ -6958,7 +6958,6 @@
       "d:/eye-demo/lens/src/sequence.ts",
       "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts",
       "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
-      "d:/eye-demo/lens/src/models/lens.model.ts",
       "d:/eye-demo/lens/src/models/userlens.model.ts",
       "d:/eye-demo/lens/src/models/admin.model.ts",
       "d:/eye-demo/lens/src/models/index.ts",
@@ -6998,6 +6997,7 @@
       "d:/eye-demo/lens/src/__tests__/acceptance/test-helper.ts",
       "d:/eye-demo/lens/src/__tests__/acceptance/home-page.acceptance.ts",
       "d:/eye-demo/lens/src/__tests__/acceptance/ping.controller.acceptance.ts",
+      "d:/eye-demo/lens/src/services/validator.ts",
       "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
@@ -7025,7 +7025,7 @@
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/services/validator.ts"
+      "d:/eye-demo/lens/src/models/lens.model.ts"
     ]
   },
   "version": "3.5.3"
