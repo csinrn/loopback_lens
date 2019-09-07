@@ -13,7 +13,7 @@
 
 
 -- Dumping database structure for lensdb
-CREATE DATABASE IF NOT EXISTS `lensdb` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `lensdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `lensdb`;
 
 -- Dumping structure for table lensdb.admin
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   UNIQUE KEY `account` (`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table lensdb.admin: ~1 rows (approximately)
+-- Dumping data for table lensdb.admin: ~4 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`account`, `password`, `create_at`, `name`) VALUES
 	('qwe', '$2a$10$.881muRUU5c2uCPeTbif0OQvHpKIbvjncUTWNDz89MCav3.e6Aslu', '2019-08-29', 'qwe'),
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `lens` (
   UNIQUE KEY `no` (`no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lensdb.lens: ~9 rows (approximately)
+-- Dumping data for table lensdb.lens: ~12 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
 INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `power`, `water`, `wearing_time`, `place_of_prod`, `price`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
 	(7, 'yellow', 7, 2, 30, 100, 70, 'daily', 'Korea', 30, NULL, NULL, 'fff', 0, 0, 1, '2019-09-07', NULL, 'fff'),
@@ -75,7 +75,14 @@ INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `power`, `water`, `wea
 	(17, 'black', 0, 70, 50, 30, 20, 'daily', 'australia', 500, 200, '', '22222', 1, 1, 1, '2019-09-07', NULL, 'ddd'),
 	(18, 'cookie', 6, 70, 10, 30, 20, 'biweekly', 'australia', 2000, 200, '', '22222', 1, 0, 1, '2019-09-07', NULL, 'ddd'),
 	(19, 'summer', 9, 70, 10, 30, 20, 'daily', 'australia', 100, 20, '', '22222', 0, 0, 1, '2019-09-07', NULL, 'ddd'),
-	(20, 'purple', 11, 22, 22, 22, 22, 'biweekly', 'ee', 22, 22, '22', 'ee', 1, 1, 1, '2019-09-07', NULL, '22');
+	(20, 'purple', 11, 22, 22, 22, 22, 'biweekly', 'ee', 22, 22, '22', 'ee', 1, 1, 1, '2019-09-07', NULL, '22'),
+	(21, '22', 12, 22, 22, 22, 22, 'biweekly', '22', 22, 22, '22', '22', 1, 1, 1, '2019-09-07', NULL, '22'),
+	(22, 'ww', 13, 122, 22, 22, 22, 'daily', 'ww', 22, 22, '22', 'ww', 1, 1, 1, '2019-09-07', NULL, '22'),
+	(23, 'ww', 14, 122, 22, 22, 22, 'daily', 'ww', 22, NULL, NULL, 'ww', 1, 1, 0, '2019-09-07', NULL, '22'),
+	(24, 'ww', 15, 122, 22, 22, 22, 'daily', 'ww', 22, NULL, NULL, 'ww', 1, 1, 0, '2019-09-07', NULL, '22'),
+	(25, '焦糖布蕾', 16, 122, 22, 22, 22, 'daily', '台灣', 22, 300, 'dd', 'ww', 1, 1, 1, '2019-09-07', NULL, '22'),
+	(26, '黑森林', 17, 30, 20, 100, 30, 'monthly', '加拿大', 2000, 200, '月底特價', 'L123456', 0, 1, 1, '2019-09-07', NULL, 'http://300.uuu.ddd.k.com'),
+	(27, '栗子蒙布朗', 18, 30, 20, 100, 30, 'monthly', '阿拉斯加', 2000, NULL, NULL, 'L123456', 0, 1, 0, '2019-09-07', NULL, 'http://300.uuu.ddd.k.com');
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
 
 -- Dumping structure for table lensdb.userlens

@@ -450,8 +450,8 @@
                 wearingTime: $('#upload [name="wearingTime"]').val(), // should be one of {"daily", "biweekly", "monthly"}
                 placeOfProd: $('#upload [name="placeOfProd"]').val(), // 產地
                 price: parseInt($('#upload [name="price"]').val()),
-                specialPrice: parseInt($('#upload [name="specialPrice"]').val()),
-                eventDisp: $('#upload [name="eventDisp"]').val(),
+                specialPrice: parseInt($('#upload [name="specialPrice"]').val()), // optional
+                eventDisp: $('#upload [name="eventDisp"]').val(), // 活動敘述 optional
                 license: $('#upload [name="license"]').val(), // 許可證字號
                 newTag: $('#upload [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 hotsaleTag: $('#upload [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
