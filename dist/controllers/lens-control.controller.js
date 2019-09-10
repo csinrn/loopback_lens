@@ -18,6 +18,7 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const authentication_1 = require("@loopback/authentication");
 const validator_1 = require("../services/validator");
+var fs = require('fs');
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
@@ -69,6 +70,18 @@ let LensControlController = class LensControlController {
     }
     async deleteById(id) {
         await this.lensRepository.deleteById(id);
+    }
+    async postImg(filename, imgData) {
+        var folder = 'C:/Users/jenny/Desktop/test/';
+        console.log(filename);
+        if (fs.existsSync(folder + filename)) {
+            throw new rest_1.HttpErrors.BadRequest('imgName duplication');
+        }
+        fs.writeFile(folder + filename, imgData.img.split(',')[1], 'base64', () => { });
+        return { url: folder + filename };
+        // request傳檔名，然後後端要確認檔名沒有和已有的重複
+        // 完成儲存之後回傳本地url
+        // 思考那get要怎麼吐圖片給cv用
     }
 };
 __decorate([
@@ -191,6 +204,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "deleteById", null);
+__decorate([
+    rest_1.post('/lens/img/{fileName}'),
+    __param(0, rest_1.param.path.string('fileName')),
+    __param(1, rest_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, models_1.ImageStorage]),
+    __metadata("design:returntype", Promise)
+], LensControlController.prototype, "postImg", null);
 LensControlController = __decorate([
     __param(0, repository_1.repository(repositories_1.LensRepository)),
     __metadata("design:paramtypes", [repositories_1.LensRepository])

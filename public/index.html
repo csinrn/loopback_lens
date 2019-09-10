@@ -119,7 +119,7 @@
                             </li>
                         </ul>
                         <div class="tab-content mt-3" id="admin-content">
-                            <div class="tab-pane fade container" id="upload" role="tabpanel"
+                            <div class="tab-pane fade container show active" id="upload" role="tabpanel"
                                 aria-labelledby="upload-tab">
                                 <form>
                                     <div class="row">
@@ -195,10 +195,9 @@
                                         </div>
                                         <div class="input-group mb-3 col-md-6">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">圖片網址</span>
+                                                <span class="input-group-text">新增圖片</span>
+                                                <input type="file" name="img" accept=".jpg,.png" data-url=''>
                                             </div>
-                                            <input type="string" name="url" class="form-control"
-                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -239,8 +238,7 @@
                                     <button type="button" class="btn btn-primary" onclick="upload()">新增</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade show active" id="update" role="tabpanel"
-                                aria-labelledby="update-tab">
+                            <div class="tab-pane fade" id="update" role="tabpanel" aria-labelledby="update-tab">
                                 <div class="row">
                                     <div class="col-md-5 container"
                                         style="overflow-y: auto; height:500px; overflow-x: auto">
@@ -436,10 +434,17 @@
             $(!auth ? '#auth' : '#guest').removeClass('active show');
         }
 
-        function upload() { //新增隱眼
+        async function upload() { //新增隱眼
 
             var date = nowDate()
             console.log(date)
+
+            try {
+                var url = await uploadFile()
+            } catch{
+                // if rejected
+                return
+            }
 
             var data = {
                 name: $('#upload [name="name"]').val(),
@@ -457,7 +462,7 @@
                 hotsaleTag: $('#upload [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 onsaleTag: $('#upload [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 createAt: date, // 上架時間  需為 "190303" 格式的日期字串
-                url: $('#upload [name="url"]').val()
+                url: url
             }
 
             if (!$('#upload [name="onsaleTag"]').is(':checked')) {
@@ -641,6 +646,42 @@
             }
             renderCards()
             console.log("new table: ", newRows)
+        }
+
+        async function uploadFile() {
+
+            return new Promise((resolve, reject) => {
+                var file = $('#upload [name="img"]')[0].files[0]
+                console.log(file)
+                if (file == undefined) {
+                    console.log('test')
+                    swalAlert('Image Error', 'Image not Selected', false)
+                    reject()
+                }
+                var reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = () => {
+                    var data = { img: reader.result }
+                    data = JSON.stringify(data)
+                    $.ajax({
+                        url: serverURL + '/lens/img/' + file.name,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: data
+                    }).done(response => {
+                        console.log('url: ', response.url)
+                        $('#upload [name="img"]').attr('data-url', response.url)
+                        resolve(response.url)
+                    }).fail(error => {
+                        console.log(error)
+                        var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                            .error.details)
+                        swalAlert('Image Error', msg, false)
+                        $('#upload [name="img"]').attr('data-url', '')
+                        reject()
+                    })
+                }
+            })
         }
 
     </script>

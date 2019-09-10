@@ -18,11 +18,12 @@ import {
   requestBody,
   HttpErrors,
 } from '@loopback/rest';
-import { Lens } from '../models';
+import { Lens, ImageStorage } from '../models';
 import { LensRepository } from '../repositories';
 import { authenticate } from '@loopback/authentication';
 import { validateDate, validateEnum, validateBoolean } from '../services/validator';
-
+import { DEFAULT_ENCODING } from 'crypto';
+var fs = require('fs')
 
 export class LensControlController {
   constructor(
@@ -179,5 +180,27 @@ export class LensControlController {
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.lensRepository.deleteById(id);
+  }
+
+  @post('/lens/img/{fileName}')
+  async postImg(
+    @param.path.string('fileName') filename: string,
+    @requestBody() imgData: ImageStorage
+  ): Promise<object> {
+
+    var folder = 'C:/Users/jenny/Desktop/test/'
+
+    console.log(filename)
+
+    if (fs.existsSync(folder + filename)) {
+      throw new HttpErrors.BadRequest('image name duplicated')
+    }
+
+    fs.writeFile(folder + filename, imgData.img.split(',')[1], 'base64', () => { })
+
+    return { url: folder + filename }
+    // request傳檔名，然後後端要確認檔名沒有和已有的重複
+    // 完成儲存之後回傳本地url
+    // 思考那get要怎麼吐圖片給cv用
   }
 }

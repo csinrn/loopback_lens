@@ -1,5 +1,5 @@
 import { Count, Filter, Where } from '@loopback/repository';
-import { Lens } from '../models';
+import { Lens, ImageStorage } from '../models';
 import { LensRepository } from '../repositories';
 export declare class LensControlController {
     lensRepository: LensRepository;
@@ -13,4 +13,5 @@ export declare class LensControlController {
     }>;
     updateNameById(id: string, lens: Lens): Promise<void>;
     deleteById(id: string): Promise<void>;
+    postImg(filename: string, imgData: ImageStorage): Promise<object>;
 }

@@ -9,4 +9,5 @@ __export(require("./admin.model"));
 __export(require("./lens.model"));
 __export(require("./admin.model"));
 __export(require("./userlens.model"));
+__export(require("./image-storage.model"));
 //# sourceMappingURL=index.js.map
