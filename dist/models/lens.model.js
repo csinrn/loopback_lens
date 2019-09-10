@@ -85,13 +85,34 @@ __decorate([
 ], Lens.prototype, "water", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'number',
         required: true,
-        length: 8,
-        mysql: { "columnName": "wearing_time", "dataType": "enum", "dataLength": 8, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+        precision: 3,
+        scale: 0,
+        mysql: { "columnName": "daily", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
     }),
-    __metadata("design:type", String)
-], Lens.prototype, "wearingTime", void 0);
+    __metadata("design:type", Number)
+], Lens.prototype, "daily", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: true,
+        precision: 3,
+        scale: 0,
+        mysql: { "columnName": "biweekly", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Lens.prototype, "biweekly", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: true,
+        precision: 3,
+        scale: 0,
+        mysql: { "columnName": "monthly", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Lens.prototype, "monthly", void 0);
 __decorate([
     repository_1.property({
         type: 'string',

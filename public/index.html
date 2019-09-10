@@ -178,16 +178,6 @@
                                     <div class="row">
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">使用週期</span>
-                                            </div>
-                                            <select name="wearingTime" class="form-control">
-                                                <option value="daily">日拋</option>
-                                                <option value="biweekly">雙周拋</option>
-                                                <option value="monthly">月拋</option>
-                                            </select>
-                                        </div>
-                                        <div class="input-group mb-3 col-md-3">
-                                            <div class="input-group-prepend">
                                                 <span class="input-group-text">價格</span>
                                             </div>
                                             <input type="number" name="price" class="form-control"
@@ -196,7 +186,8 @@
                                         <div class="input-group mb-3 col-md-6">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">新增圖片</span>
-                                                <input type="file" name="img" accept=".jpg,.png" data-url=''>
+                                                <input type="file" name="img" accept=".jpg,.png" data-url=''
+                                                    style="margin: 10px; align-content: center">
                                             </div>
                                         </div>
                                     </div>
@@ -224,8 +215,8 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="input-group col-md-6 mb-3">
-                                            <div class="input-group-prepend">
+                                        <div class="input-group col-md-12 mb-3">
+                                            <div class=" input-group-prepend">
                                                 <span>熱銷產品</span>
                                             </div>
                                             <input type="checkbox" name="hotsaleTag" class="form-control">
@@ -233,6 +224,18 @@
                                                 <span>新品上市</span>
                                             </div>
                                             <input type="checkbox" name="newTag" class="form-control">
+                                            <div class="input-group-prepend">
+                                                <span>日拋</span>
+                                            </div>
+                                            <input type="checkbox" name="daily" class="form-control">
+                                            <div class="input-group-prepend">
+                                                <span>雙周拋</span>
+                                            </div>
+                                            <input type="checkbox" name="biweekly" class="form-control">
+                                            <div class="input-group-prepend">
+                                                <span>月拋</span>
+                                            </div>
+                                            <input type="checkbox" name="monthly" class="form-control">
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-primary" onclick="upload()">新增</button>
@@ -452,7 +455,9 @@
                 bc: parseInt($('#upload [name="bc"]').val()), //弧度
                 power: parseInt($('#upload [name="power"]').val()), //度數
                 water: parseInt($('#upload [name="water"]').val()), //含水量
-                wearingTime: $('#upload [name="wearingTime"]').val(), // should be one of {"daily", "biweekly", "monthly"}
+                daily: $('#upload [name="daily"]').is(':checked') ? 1 : 0,
+                biweekly: $('#upload [name="biweekly"]').is(':checked') ? 1 : 0,
+                monthly: $('#upload [name="monthly"]').is(':checked') ? 1 : 0,
                 placeOfProd: $('#upload [name="placeOfProd"]').val(), // 產地
                 price: parseInt($('#upload [name="price"]').val()),
                 specialPrice: parseInt($('#upload [name="specialPrice"]').val()), // optional

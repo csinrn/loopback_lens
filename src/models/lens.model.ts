@@ -64,12 +64,31 @@ export class Lens extends Entity {
   water: number;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
-    length: 8,
-    mysql: { "columnName": "wearing_time", "dataType": "enum", "dataLength": 8, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    precision: 3,
+    scale: 0,
+    mysql: { "columnName": "daily", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
   })
-  wearingTime: string;
+  daily: number;
+
+  @property({
+    type: 'number',
+    required: true,
+    precision: 3,
+    scale: 0,
+    mysql: { "columnName": "biweekly", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+  })
+  biweekly: number;
+
+  @property({
+    type: 'number',
+    required: true,
+    precision: 3,
+    scale: 0,
+    mysql: { "columnName": "monthly", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+  })
+  monthly: number;
 
   @property({
     type: 'string',

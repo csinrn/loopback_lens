@@ -21,7 +21,7 @@ import {
 import { Lens, ImageStorage } from '../models';
 import { LensRepository } from '../repositories';
 import { authenticate } from '@loopback/authentication';
-import { validateDate, validateEnum, validateBoolean } from '../services/validator';
+import { validateDate, validateBoolean } from '../services/validator';
 import { DEFAULT_ENCODING } from 'crypto';
 var fs = require('fs')
 
@@ -57,10 +57,13 @@ export class LensControlController {
     if (lens.updateAt != undefined) {
       validateDate(lens.updateAt);
     }
-    validateEnum(lens.wearingTime)
     validateBoolean(lens.newTag, "newtag")
     validateBoolean(lens.hotsaleTag, "hotsaletag")
     validateBoolean(lens.onsaleTag, "onsaletag")
+    validateBoolean(lens.daily, "dailytag")
+    validateBoolean(lens.biweekly, "biweeklytag")
+    validateBoolean(lens.monthly, "monthlytag")
+
 
     //console.log(lens)
     var count = await this.lensRepository.count()

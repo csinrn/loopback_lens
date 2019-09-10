@@ -19,13 +19,6 @@ function validateDate(date) {
     }
 }
 exports.validateDate = validateDate;
-function validateEnum(input) {
-    let valid = (input == 'daily') || (input == 'biweekly') || (input == 'monthly');
-    if (!valid) {
-        throw new rest_1.HttpErrors.BadRequest('Invalide wearing time, should be one of {"daily", "biweekly", "monthly"}');
-    }
-}
-exports.validateEnum = validateEnum;
 function validateBoolean(input, para) {
     let valid = (input == 1) || (input == 0);
     if (!valid) {

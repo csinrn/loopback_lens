@@ -7,7 +7,9 @@ export declare class Lens extends Entity {
     bc: number;
     power: number;
     water: number;
-    wearingTime: string;
+    daily: number;
+    biweekly: number;
+    monthly: number;
     placeOfProd: string;
     price: number;
     specialPrice: number;

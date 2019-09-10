@@ -31,10 +31,12 @@ let LensControlController = class LensControlController {
         if (lens.updateAt != undefined) {
             validator_1.validateDate(lens.updateAt);
         }
-        validator_1.validateEnum(lens.wearingTime);
         validator_1.validateBoolean(lens.newTag, "newtag");
         validator_1.validateBoolean(lens.hotsaleTag, "hotsaletag");
         validator_1.validateBoolean(lens.onsaleTag, "onsaletag");
+        validator_1.validateBoolean(lens.daily, "dailytag");
+        validator_1.validateBoolean(lens.biweekly, "biweeklytag");
+        validator_1.validateBoolean(lens.monthly, "monthlytag");
         //console.log(lens)
         var count = await this.lensRepository.count();
         lens.no = count.count;
