@@ -100,7 +100,20 @@ export class LensControlController {
   async find(
     @param.query.object('filter', getFilterSchemaFor(Lens)) filter?: Filter<Lens>,
   ): Promise<Lens[]> {
-    return await this.lensRepository.find(filter);
+    var list = await this.lensRepository.find(filter)
+
+    var callback = function (err: any, data: any) {
+      console.log(err)
+    }
+    for (var i = 0; i < list.length; i++) {
+      console.log(list[i].url)
+      try {
+        var pic = fs.readFileSync(list[i].url, 'base64', callback)
+        list[i].url = pic
+      } catch{ }
+    }
+
+    return list;
   }
 
   //@authenticate('jwt')

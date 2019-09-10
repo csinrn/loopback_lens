@@ -16,13 +16,13 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
-const authentication_1 = require("@loopback/authentication");
 const validator_1 = require("../services/validator");
 var fs = require('fs');
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
     }
+    //@authenticate('jwt')
     async create(lens) {
         if (!lens) {
             throw rest_1.HttpErrors.BadRequest;
@@ -40,15 +40,31 @@ let LensControlController = class LensControlController {
         lens.no = count.count;
         return await this.lensRepository.create(lens);
     }
+    //@authenticate('jwt')
     async count(where) {
         return await this.lensRepository.count(where);
     }
+    //@authenticate('jwt')
     async find(filter) {
-        return await this.lensRepository.find(filter);
+        var list = await this.lensRepository.find(filter);
+        var callback = function (err, data) {
+            console.log(err);
+        };
+        for (var i = 0; i < list.length; i++) {
+            console.log(list[i].url);
+            try {
+                var pic = fs.readFileSync(list[i].url, 'base64', callback);
+                list[i].url = pic;
+            }
+            catch (_a) { }
+        }
+        return list;
     }
+    //@authenticate('jwt')
     async updateById(id, lens) {
         await this.lensRepository.updateById(id, lens);
     }
+    //@authenticate('jwt')
     async sort(id1, id2) {
         let lens1 = await this.lensRepository.findById(parseInt(id1));
         let lens2 = await this.lensRepository.findById(parseInt(id2));
@@ -65,9 +81,11 @@ let LensControlController = class LensControlController {
         console.log("done");
         return { responses: "exchange order " + no1 + " and " + no2 + " successfully" };
     }
+    //@authenticate('jwt')
     async updateNameById(id, lens) {
         await this.lensRepository.updateById(id, lens);
     }
+    //@authenticate('jwt')
     async deleteById(id) {
         await this.lensRepository.deleteById(id);
     }
@@ -75,17 +93,13 @@ let LensControlController = class LensControlController {
         var folder = 'C:/Users/jenny/Desktop/test/';
         console.log(filename);
         if (fs.existsSync(folder + filename)) {
-            throw new rest_1.HttpErrors.BadRequest('imgName duplication');
+            throw new rest_1.HttpErrors.BadRequest('image name duplicated');
         }
         fs.writeFile(folder + filename, imgData.img.split(',')[1], 'base64', () => { });
         return { url: folder + filename };
-        // request傳檔名，然後後端要確認檔名沒有和已有的重複
-        // 完成儲存之後回傳本地url
-        // 思考那get要怎麼吐圖片給cv用
     }
 };
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.post('/lens', {
         responses: {
             '200': {
@@ -106,7 +120,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "create", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.get('/lens/count', {
         responses: {
             '200': {
@@ -121,7 +134,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "count", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.get('/lens', {
         responses: {
             '200': {
@@ -140,7 +152,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "find", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.patch('/lens/{id}', {
         responses: {
             '204': {
@@ -161,7 +172,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "updateById", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.patch('/lens/sort/{id1}/{id2}'),
     __param(0, rest_1.param.path.string('id1')),
     __param(1, rest_1.param.path.string('id2')),
@@ -170,7 +180,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "sort", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.patch('/lens/{id}/name', {
         responses: {
             '204': {
@@ -191,7 +200,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "updateNameById", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.del('/lens/{id}', {
         responses: {
             '204': {
