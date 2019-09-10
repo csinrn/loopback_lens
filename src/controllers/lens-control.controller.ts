@@ -31,7 +31,7 @@ export class LensControlController {
     public lensRepository: LensRepository,
   ) { }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @post('/lens', {
     responses: {
       '200': {
@@ -69,7 +69,7 @@ export class LensControlController {
     return await this.lensRepository.create(lens);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @get('/lens/count', {
     responses: {
       '200': {
@@ -84,7 +84,7 @@ export class LensControlController {
     return await this.lensRepository.count(where);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @get('/lens', {
     responses: {
       '200': {
@@ -103,7 +103,7 @@ export class LensControlController {
     return await this.lensRepository.find(filter);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @patch('/lens/{id}', {
     responses: {
       '204': {
@@ -125,7 +125,7 @@ export class LensControlController {
     await this.lensRepository.updateById(id, lens);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @patch('/lens/sort/{id1}/{id2}')
   async sort(
     @param.path.string('id1') id1: string,
@@ -148,7 +148,7 @@ export class LensControlController {
     return { responses: "exchange order " + no1 + " and " + no2 + " successfully" }
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @patch('/lens/{id}/name', {
     responses: {
       '204': {
@@ -170,7 +170,7 @@ export class LensControlController {
     await this.lensRepository.updateById(id, lens);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @del('/lens/{id}', {
     responses: {
       '204': {
@@ -199,8 +199,5 @@ export class LensControlController {
     fs.writeFile(folder + filename, imgData.img.split(',')[1], 'base64', () => { })
 
     return { url: folder + filename }
-    // request傳檔名，然後後端要確認檔名沒有和已有的重複
-    // 完成儲存之後回傳本地url
-    // 思考那get要怎麼吐圖片給cv用
   }
 }
