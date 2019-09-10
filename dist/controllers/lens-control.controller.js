@@ -51,7 +51,6 @@ let LensControlController = class LensControlController {
             console.log(err);
         };
         for (var i = 0; i < list.length; i++) {
-            console.log(list[i].url);
             try {
                 var pic = fs.readFileSync(list[i].url, 'base64', callback);
                 list[i].url = pic;
@@ -78,7 +77,7 @@ let LensControlController = class LensControlController {
         await this.lensRepository.updateById(parseInt(id2), lens_t, { partial: true });
         lens_t.no = no2;
         await this.lensRepository.updateById(parseInt(id1), lens_t, { partial: true });
-        console.log("done");
+        console.log(no1, no2, "done");
         return { responses: "exchange order " + no1 + " and " + no2 + " successfully" };
     }
     //@authenticate('jwt')
@@ -91,7 +90,7 @@ let LensControlController = class LensControlController {
     }
     async postImg(filename, imgData) {
         var folder = 'C:/Users/jenny/Desktop/test/';
-        console.log(filename);
+        //console.log(filename)
         if (fs.existsSync(folder + filename)) {
             throw new rest_1.HttpErrors.BadRequest('image name duplicated');
         }

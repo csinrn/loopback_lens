@@ -422,7 +422,7 @@
                 tbody += '</tbody>'
                 $('#update [name="table-id"]').append(thead + tbody)
                 $('#update [name="table-id"]').tableDnD({
-                    onDragStart: onDragStart,
+                    onDragStart: updateTableRows,
                     onDrop: onDrop
                 })
                 switchPane(true);
@@ -495,26 +495,47 @@
 
             var url = serverURL + '/lens/sort/' + rowId1.toString() + "/" + rowId2.toString()
             //console.log(url)
-            return await $.ajax({
-                url: url, // 你的api
-                type: 'PATCH',
-                beforeSend: xhr => {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
-                }
-            }).done(response => {
-            }).fail(error => {
-                console.log(error)
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: url, // 你的api
+                    type: 'PATCH',
+                    beforeSend: xhr => {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
+                    }
+                }).done(response => {
+                    resolve()
+                }).fail(error => {
+                    console.log(error)
 
-                //$("#sort-form input").val('')
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details)
-                swalAlert("Sort Failed", msg, false)
+                    //$("#sort-form input").val('')
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                        .error.details)
+                    swalAlert("Sort Failed", msg, false)
+                    reject()
+                })
             })
         }
 
-        function deleteLens() { //刪除隱眼
+        async function deleteLens() { //刪除隱眼
+
+            var idDeleted = $('#update [name="delete-id"]').val()
+            updateTableRows()
+            var idNo = -1
+
+            for (var i = 0; i < tableRows.length; i++) {
+                console.log('id: ', tableRows[i], 'idDeleted: ', idDeleted)
+                if (tableRows[i] == idDeleted) {
+                    idNo = i
+                    break
+                }
+            }
+            console.log('i', i)
+            for (var i = idNo; i > 0; i--) {
+                await sort(idDeleted, tableRows[i - 1])
+                console.log(idDeleted, tableRows[i - 1])
+            }
+
             var url = serverURL + '/lens/' + $('#update [name="delete-id"]').val().toString()
-            //console.log(url)
             $.ajax({
                 url: url, // 你的api
                 type: 'DELETE',
@@ -523,13 +544,15 @@
                 }
             }).done(response => {
                 $("#delete-form input").val('')
-                swalAlert("Delete Success", "", true, renderCards)
+                renderCards()
+                swalAlert("Delete Success", '', true)
             }).fail(error => {
                 $("#delete-form input").val('')
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
                     .error.details)
                 swalAlert("Delete Failed", msg, false)
             })
+
         }
 
         function rename() { // 重新命名
@@ -603,9 +626,9 @@
             return a.no > b.no ? -1 : 1
         }
 
-        function onDragStart(table, row) {
-            console.log(table.tBodies[0].rows)
-            console.log("now row: ", row.id)
+        function updateTableRows(table = $('#update table')[0], row = 'default') {
+            //console.log(table.tBodies[0].rows)
+            console.log(table)
             tableRows = []
             for (var i = 0; i < table.tBodies[0].rows.length; i++) {
                 tableRows.push(table.tBodies[0].rows[i].id)
