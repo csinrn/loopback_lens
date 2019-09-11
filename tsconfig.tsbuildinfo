@@ -1297,11 +1297,11 @@
         "signature": "bbf20075e1a8b9f8f114e849de60c18c2cebddeb09dca16d45462fd85d6efdf7"
       },
       "d:/eye-demo/lens/src/application.ts": {
-        "version": "23c3aa31eab301c6ad034663f8a318cd3acee84b6d2147398c80f5793a404910",
+        "version": "5e7bd75da144fa26c4d30ec30a4b2be69a20ebee20b0b64e6b2e6296a601e121",
         "signature": "a2c3e1711c8cb1ff9e689304f4c84b2e34fc44d99f8a77fd0e6945f56e9d058e"
       },
       "d:/eye-demo/lens/src/index.ts": {
-        "version": "cc8b452c4b6215825446062c9c35aab3851ea21f8faac1864e57f7ce43d64d7d",
+        "version": "818ca3d8bb9184dd244c67ed13ae7ba579f6f510d15be0e11f712baf53ac7b33",
         "signature": "c7bc15fa0fd54c636cfadcb0d7e8b287aa8605fea84f46a58a6483200bedc6f1"
       },
       "d:/eye-demo/lens/src/migrate.ts": {
@@ -1465,7 +1465,7 @@
         "signature": "298dcf42626620a1d183c7a1d1f08ad2311840ec09f9512d57335dd1c7d9fc72"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "11fb2150d8e3a1c91ab72f3cf248945097ff7036712ed09ee5932d94aa46ca11",
+        "version": "ed9c9b63a3009172789d2ffcc1fc23608ada22feff769b6e0db15a979262fcee",
         "signature": "f4a907232cb1d365d73e3130b9e0d9227e4cbdbadf1d366bd34aeea5501424aa"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
@@ -6985,7 +6985,6 @@
       "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
       "d:/eye-demo/lens/src/repositories/admin.repository.ts",
       "d:/eye-demo/lens/src/repositories/index.ts",
-      "d:/eye-demo/lens/src/keys.ts",
       "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts",
       "d:/eye-demo/lens/src/services/jwt-service.ts",
       "d:/eye-demo/lens/src/services/user-service.ts",
@@ -7041,7 +7040,8 @@
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts"
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
+      "d:/eye-demo/lens/src/keys.ts"
     ]
   },
   "version": "3.5.3"

@@ -203,7 +203,7 @@ export class LensControlController {
     @requestBody() imgData: ImageStorage
   ): Promise<object> {
 
-    var folder = 'C:/Users/jenny/Desktop/test/'
+    var folder = './lensPic/'
 
     //console.log(filename)
 

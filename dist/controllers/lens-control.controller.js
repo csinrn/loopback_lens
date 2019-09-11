@@ -91,7 +91,7 @@ let LensControlController = class LensControlController {
         await this.lensRepository.deleteById(id);
     }
     async postImg(filename, imgData) {
-        var folder = 'C:/Users/jenny/Desktop/test/';
+        var folder = './lensPic/';
         //console.log(filename)
         if (fs.existsSync(folder + filename)) {
             throw new rest_1.HttpErrors.BadRequest('image name duplicated');
