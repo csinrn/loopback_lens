@@ -12,6 +12,7 @@ export declare class Lens extends Entity {
     monthly: number;
     placeOfProd: string;
     price: number;
+    package: number;
     specialPrice: number;
     eventDisp?: string;
     license: string;

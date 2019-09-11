@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `lens` (
   `monthly` tinyint(3) unsigned NOT NULL,
   `place_of_prod` varchar(50) NOT NULL,
   `price` int(11) unsigned NOT NULL,
+  `package` int(11) unsigned NOT NULL,
   `special_price` int(11) unsigned DEFAULT NULL,
   `event_disp` varchar(50) DEFAULT NULL,
   `license` varchar(50) NOT NULL,
@@ -61,20 +62,24 @@ CREATE TABLE IF NOT EXISTS `lens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `no` (`no`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 ALTER TABLE lens CONVERT TO CHARACTER SET UTF8;
--- Dumping data for table lensdb.lens: ~8 rows (approximately)
+
+-- Dumping data for table lensdb.lens: ~10 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
-INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `power`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
-	(15, 'blink', 1, 20, 10, 150, 40, 0, 0, 0, 'Japan', 400, 2000, 'ee', '22222', 1, 1, 1, '2019-09-07', NULL, 'ddd'),
-	(16, 'cherry', 2, 20, 10, 150, 40, 0, 0, 0, 'australia', 400, 200, '', '22222', 1, 0, 1, '2019-09-07', '2019-09-07', 'ddd'),
-	(17, 'black', 0, 70, 50, 30, 20, 0, 0, 0, 'australia', 500, 200, '', '22222', 1, 1, 1, '2019-09-07', NULL, 'ddd'),
-	(22, '新名稱', 4, 122, 22, 22, 22, 0, 0, 0, 'ww', 22, 22, '22', 'ww', 1, 1, 1, '2019-09-07', NULL, '22'),
-	(23, 'ww', 3, 122, 22, 22, 22, 0, 0, 0, 'ww', 22, NULL, NULL, 'ww', 1, 1, 0, '2019-09-07', NULL, '22'),
-	(25, '焦糖布蕾', 5, 122, 22, 22, 22, 0, 0, 0, '台灣', 22, 300, 'dd', 'ww', 1, 1, 1, '2019-09-07', NULL, '22'),
-	(29, '123', 6, 1233, 123, 123, 123, 0, 0, 0, '123', 123, NULL, NULL, '123', 0, 0, 0, '2019-09-10', NULL, 'C:/Users/jenny/Desktop/test/test.jpg'),
-	(31, '123', 7, 123, 123, 123, 123, 1, 1, 1, '123', 123, NULL, NULL, '123', 1, 1, 0, '2019-09-10', NULL, 'C:/Users/jenny/Desktop/test/未命名.png');
+INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `power`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
+	(15, 'blink', 1, 20, 10, 150, 40, 0, 0, 0, 'Japan', 400, 0, 2000, 'ee', '22222', 1, 1, 1, '2019-09-07', NULL, 'ddd'),
+	(16, 'cherry', 2, 20, 10, 150, 40, 0, 0, 0, 'australia', 400, 0, 200, '', '22222', 1, 0, 1, '2019-09-07', '2019-09-07', 'ddd'),
+	(17, 'black', 0, 70, 50, 30, 20, 0, 0, 0, 'australia', 500, 0, 200, '', '22222', 1, 1, 1, '2019-09-07', NULL, 'ddd'),
+	(22, '新名稱', 4, 122, 22, 22, 22, 0, 0, 0, 'ww', 22, 0, 22, '22', 'ww', 1, 1, 1, '2019-09-07', NULL, '22'),
+	(23, 'ww', 3, 122, 22, 22, 22, 0, 0, 0, 'ww', 22, 0, NULL, NULL, 'ww', 1, 1, 0, '2019-09-07', NULL, '22'),
+	(25, '焦糖布蕾', 5, 122, 22, 22, 22, 0, 0, 0, '台灣', 22, 0, 300, 'dd', 'ww', 1, 1, 1, '2019-09-07', NULL, '22'),
+	(29, '123', 6, 1233, 123, 123, 123, 0, 0, 0, '123', 123, 0, NULL, NULL, '123', 0, 0, 0, '2019-09-10', NULL, 'C:/Users/jenny/Desktop/test/test.jpg'),
+	(31, '123', 7, 123, 123, 123, 123, 1, 1, 1, '123', 123, 0, NULL, NULL, '123', 1, 1, 0, '2019-09-10', NULL, 'C:/Users/jenny/Desktop/test/未命名.png'),
+	(32, '星空黑', 8, 13, 22, 150, 300, 1, 1, 0, '台灣', 4000, 0, 2999, '開幕特惠', 'L12345', 1, 1, 1, '2019-09-11', NULL, './lensPic星空黑.png'),
+	(33, '星空黑', 9, 13, 22, 150, 300, 1, 1, 0, '台灣', 4000, 0, 2999, '開幕特惠', 'L12345', 1, 1, 1, '2019-09-11', NULL, './lensPic/星空黑.png'),
+	(34, 'qwe', 10, 1, 1, 1, 1, 0, 0, 0, 'qwe', 123, 0, NULL, NULL, 'qwqe', 1, 0, 0, '2019-09-11', NULL, './lensPic/焦糖布蕾.png'),
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
 
 -- Dumping structure for table lensdb.userlens

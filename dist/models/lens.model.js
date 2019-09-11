@@ -135,6 +135,16 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'number',
+        required: true,
+        precision: 10,
+        scale: 0,
+        mysql: { "columnName": "package", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Lens.prototype, "package", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
         required: false,
         precision: 10,
         scale: 0,

@@ -183,6 +183,13 @@
                                             <input type="number" name="price" class="form-control"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
+                                        <div class="input-group mb-3 col-md-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">隱眼數/盒</span>
+                                            </div>
+                                            <input type="number" name="package" class="form-control"
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                        </div>
                                         <div class="input-group mb-3 col-md-6">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">新增圖片</span>
@@ -464,6 +471,7 @@
                 monthly: $('#upload [name="monthly"]').is(':checked') ? 1 : 0,
                 placeOfProd: $('#upload [name="placeOfProd"]').val(), // 產地
                 price: parseInt($('#upload [name="price"]').val()),
+                package: parseInt($('#upload [name="package"]').val()),
                 specialPrice: parseInt($('#upload [name="specialPrice"]').val()), // optional
                 eventDisp: $('#upload [name="eventDisp"]').val(), // 活動敘述 optional
                 license: $('#upload [name="license"]').val(), // 許可證字號
