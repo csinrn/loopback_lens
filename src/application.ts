@@ -5,7 +5,7 @@ import {
   RestExplorerComponent,
 } from '@loopback/rest-explorer';
 import { RepositoryMixin } from '@loopback/repository';
-import { RestApplication } from '@loopback/rest';
+import { RestApplication, RestBindings } from '@loopback/rest';
 import { ServiceMixin } from '@loopback/service-proxy';
 import * as path from 'path';
 import { MyAuthenticationSequence } from './sequence';
@@ -58,6 +58,10 @@ export class LensApplication extends BootMixin(
     this.bind(UserServiceBindings.USER_SERVICE).toClass(MyUserService);
     this.component(RestExplorerComponent);
     this.component(AuthenticationComponent);
+
+    this.restServer.bind(RestBindings.REQUEST_BODY_PARSER_OPTIONS).to({
+      limit: '6MB',
+    });
 
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here

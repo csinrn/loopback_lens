@@ -35,6 +35,9 @@ class LensApplication extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repo
         this.bind(keys_2.UserServiceBindings.USER_SERVICE).toClass(user_service_1.MyUserService);
         this.component(rest_explorer_1.RestExplorerComponent);
         this.component(authentication_1.AuthenticationComponent);
+        this.restServer.bind(rest_1.RestBindings.REQUEST_BODY_PARSER_OPTIONS).to({
+            limit: '6MB',
+        });
         this.projectRoot = __dirname;
         // Customize @loopback/boot Booter Conventions here
         this.bootOptions = {

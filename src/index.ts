@@ -1,10 +1,13 @@
-import {LensApplication} from './application';
-import {ApplicationConfig} from '@loopback/core';
+import { LensApplication } from './application';
+import { ApplicationConfig } from '@loopback/core';
 
-export {LensApplication};
+export { LensApplication };
 
 export async function main(options: ApplicationConfig = {}) {
+  console.log('options: ', options)
+
   const app = new LensApplication(options);
+
   await app.boot();
   await app.start();
 
