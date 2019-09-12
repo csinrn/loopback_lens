@@ -23,6 +23,7 @@ import { LensRepository } from '../repositories';
 import { authenticate } from '@loopback/authentication';
 import { validateDate, validateBoolean } from '../services/validator';
 import { DEFAULT_ENCODING } from 'crypto';
+import { resolve } from 'url';
 var fs = require('fs')
 
 export class LensControlController {
@@ -64,12 +65,25 @@ export class LensControlController {
     validateBoolean(lens.biweekly, "biweeklytag")
     validateBoolean(lens.monthly, "monthlytag")
 
+    // store image, throw if error
+    var imgUrl = ''
+    try {
+      imgUrl = await this.postImg(lens.name + '.png', lens.url)
+      lens.url = imgUrl
+    } catch (err) {
+      throw new HttpErrors.BadRequest(err)
+    }
 
-    //console.log(lens)
+    // store lens, delete image and throw if error
     var count = await this.lensRepository.count()
     lens.no = count.count
 
-    return await this.lensRepository.create(lens);
+    var res = await this.lensRepository.create(lens).catch((err) => {
+      fs.rmdirSync('./public' + imgUrl)
+      return err
+    })
+
+    return res
   }
 
   //@authenticate('jwt')
@@ -104,16 +118,6 @@ export class LensControlController {
     @param.query.object('filter', getFilterSchemaFor(Lens)) filter?: Filter<Lens>,
   ): Promise<Lens[]> {
     var list = await this.lensRepository.find(filter)
-
-    var callback = function (err: any, data: any) {
-      console.log(err)
-    }
-    for (var i = 0; i < list.length; i++) {
-      try {
-        var pic = fs.readFileSync(list[i].url, 'base64', callback)
-        list[i].url = pic
-      } catch{ }
-    }
 
     return list;
   }
@@ -200,19 +204,26 @@ export class LensControlController {
   @post('/lens/img/{fileName}')
   async postImg(
     @param.path.string('fileName') filename: string,
-    @requestBody() imgData: ImageStorage
-  ): Promise<object> {
+    imgData: string
+  ): Promise<string> {
 
-    var folder = './lensPic/'
+    var folder = './public/lensPic/'
+    var url = '/lensPic/'
 
-    //console.log(filename)
+    var res = new Promise<string>((resolve, reject) => {
+      if (fs.existsSync(folder + filename)) {
+        reject('image name duplicated')
+      }
 
-    if (fs.existsSync(folder + filename)) {
-      throw new HttpErrors.BadRequest('image name duplicated')
-    }
+      try {
+        fs.writeFileSync(folder + filename, imgData.split(',')[1], 'base64', () => { })
+      } catch (err) {
+        reject(err)
+      }
+      console.log('postImg: ', url + filename)
+      resolve((url + filename))
+    })
 
-    fs.writeFile(folder + filename, imgData.img.split(',')[1], 'base64', () => { })
-
-    return { url: folder + filename }
+    return res
   }
 }

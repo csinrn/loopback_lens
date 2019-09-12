@@ -1465,8 +1465,8 @@
         "signature": "298dcf42626620a1d183c7a1d1f08ad2311840ec09f9512d57335dd1c7d9fc72"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "ed9c9b63a3009172789d2ffcc1fc23608ada22feff769b6e0db15a979262fcee",
-        "signature": "f4a907232cb1d365d73e3130b9e0d9227e4cbdbadf1d366bd34aeea5501424aa"
+        "version": "375cf8244b5224e3814c88735ce99d11456218a2082955de8f758dc53b56e617",
+        "signature": "286615d723e43abf1c82b8452227185f37a0cbaf1d4d3c31505c31b74a9a9989"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
         "version": "b5d948191c7c430d99a8689e914678e9cbdc958cf10ef9572f5db16d2980a40e",
@@ -4095,6 +4095,7 @@
         "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
         "d:/eye-demo/lens/src/services/validator.ts",
         "d:/eye-demo/lens/node_modules/@types/node/crypto.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/url.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -7031,7 +7032,6 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
       "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
@@ -7041,7 +7041,8 @@
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts"
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts"
     ]
   },
   "version": "3.5.3"

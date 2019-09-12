@@ -66,8 +66,7 @@ CREATE TABLE IF NOT EXISTS `lens` (
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 ALTER TABLE lens CONVERT TO CHARACTER SET UTF8;
-
--- Dumping data for table lensdb.lens: ~10 rows (approximately)
+-- Dumping data for table lensdb.lens: ~22 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
 INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
 	(37, '太妃糖杏', 0, 13, 15, 150, 300, 30, 1, 1, 0, '台灣', 300, 10, NULL, NULL, 'L12345', 1, 1, 0, '2019-09-13', NULL, '/lensPic/太妃糖杏.png'),
