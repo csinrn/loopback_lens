@@ -5,7 +5,8 @@ export declare class Lens extends Entity {
     no: number;
     diameter: number;
     bc: number;
-    power: number;
+    powerL: number;
+    powerH: number;
     water: number;
     daily: number;
     biweekly: number;

@@ -69,10 +69,20 @@ __decorate([
         required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "power", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "powerL", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Lens.prototype, "power", void 0);
+], Lens.prototype, "powerL", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: true,
+        precision: 10,
+        scale: 0,
+        mysql: { "columnName": "powerH", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Lens.prototype, "powerH", void 0);
 __decorate([
     repository_1.property({
         type: 'number',

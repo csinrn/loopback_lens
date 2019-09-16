@@ -162,13 +162,6 @@
                                         </div>
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">度數</span>
-                                            </div>
-                                            <input type="number" name="power" class="form-control"
-                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                                        </div>
-                                        <div class="input-group mb-3 col-md-3">
-                                            <div class="input-group-prepend">
                                                 <span class="input-group-text">含水量</span>
                                             </div>
                                             <input type="number" name="water" class="form-control"
@@ -196,6 +189,17 @@
                                                 <input type="file" name="img" accept=".jpg,.png" data-url=''
                                                     style="align-self: center; margin-left: 2%">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group mb-3 col-md-6">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">度數區間</span>
+                                            </div>
+                                            <input type="number" name="powerL" class="form-control" placeholder="最小"
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                            <input type="number" name="powerH" class="form-control" placeholder="最大"
+                                                style="border-left: 10; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -464,7 +468,8 @@
                 name: $('#upload [name="name"]').val(),
                 diameter: parseInt($('#upload [name="diameter"]').val()),
                 bc: parseInt($('#upload [name="bc"]').val()), //弧度
-                power: parseInt($('#upload [name="power"]').val()), //度數
+                powerL: parseInt($('#upload [name="powerL"]').val()), //度數
+                powerH: parseInt($('#upload [name="powerH"]').val()), //度數
                 water: parseInt($('#upload [name="water"]').val()), //含水量
                 daily: $('#upload [name="daily"]').is(':checked') ? 1 : 0,
                 biweekly: $('#upload [name="biweekly"]').is(':checked') ? 1 : 0,

@@ -50,9 +50,18 @@ export class Lens extends Entity {
     required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "power", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "powerL", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  power: number;
+  powerL: number;
+
+  @property({
+    type: 'number',
+    required: true,
+    precision: 10,
+    scale: 0,
+    mysql: { "columnName": "powerH", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+  })
+  powerH: number;
 
   @property({
     type: 'number',
