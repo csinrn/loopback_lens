@@ -331,14 +331,16 @@
     <script>
         // 當DOM準備好後就會直接執行
         $(() => {
+            /*
             // 找找看Cookies有沒有登入token
             if (Cookies.get('token')) {
                 // 把操作面板的畫面畫出來
                 renderCards();
             } else {
                 switchPane(false);
-                //switchPane(true)
             }
+            */
+            switchPane(false)
         });
 
         var serverURL = 'http://localhost:3000'
@@ -412,7 +414,7 @@
                 contentType: "application/json",
                 data: data
             }).done(response => {
-                rememberToken(response.token, response.expireinMs);
+                //rememberToken(response.token, response.expireinMs);
                 user = response.userProfile
                 $('#userName').text(user.name); // 填入login page 的 user name
                 $('#login input').val('') // 清除DOM中的帳密
@@ -426,7 +428,7 @@
         }
 
         function logout() {
-            Cookies.remove('token');
+            //Cookies.remove('token');
             swalAlert("Logout Success", "", true, switchPane(false))
         }
 
@@ -490,15 +492,28 @@
             console.log(date)
 
             var inputs = $('#upload input[attr!="optional"]')
-            console.log(inputs[0])
-            if (inputs.length != 0) {
-                var emptyFields = ''
-                for (var i = 0; i < inputs.length; i++)
-                    emptyFields += inputs[i].name + ' '
-                swalAlert('Empty Fields', 'Fields ' + emptyFields + ' should be filled', false)
+            var emptyFields = []
+
+            console.log('length:', inputs.length)
+
+            // 出現了無窮迴圈
+            for (var i = 0; i < inputs.length; i++) {
+                var val = $('#upload [name="' + inputs[i].name + '"]').val()
+                val = jQuery.trim(val)
+                console.log(val)
+                if (val == '')
+                    emptyFields.push(inputs[i].name)
+            }
+            console.log('length:', emptyFields.length)
+
+            if (emptyFields.length != 0) {
+                var names = ''
+                for (var i = 0; i < emptyFields.length; i++)
+                    names += emptyFields[i] + ','
+                swalAlert('Empty Fields', 'Fields: ' + names + ' should be filled', false)
                 return
             }
-
+            console.log('done')
             try {
                 var url = await uploadFile()
             } catch{
@@ -541,9 +556,9 @@
                 type: "POST",
                 contentType: "application/json",
                 data: data,
-                beforeSend: xhr => {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
-                }
+                //beforeSend: xhr => {
+                //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
+                //}
             }).done(response => {
                 swalAlert("Upload Success", "", true, renderCards)
             }).fail(error => {
@@ -563,9 +578,9 @@
                 $.ajax({
                     url: url, // 你的api
                     type: 'PATCH',
-                    beforeSend: xhr => {
-                        xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
-                    }
+                    //beforeSend: xhr => {
+                    //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
+                    //}
                 }).done(response => {
                     resolve()
                 }).fail(error => {
@@ -603,9 +618,9 @@
             $.ajax({
                 url: url, // 你的api
                 type: 'DELETE',
-                beforeSend: xhr => {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
-                }
+                //beforeSend: xhr => {
+                //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
+                //}
             }).done(response => {
                 $("#delete-form input").val('')
                 renderCards()
@@ -630,9 +645,9 @@
                 type: 'PATCH',
                 data: data,
                 contentType: "application/json",
-                beforeSend: xhr => {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
-                }
+                //beforeSend: xhr => {
+                //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
+                //}
             }).done(response => {
                 $("#rename-form input").val('')
                 swalAlert("Rename Success", "", true, renderCards)
