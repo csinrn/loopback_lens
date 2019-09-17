@@ -491,12 +491,12 @@
             var date = nowDate()
             console.log(date)
 
+            // fields empty alert
             var inputs = $('#upload input[attr!="optional"]')
             var emptyFields = []
 
             console.log('length:', inputs.length)
 
-            // 出現了無窮迴圈
             for (var i = 0; i < inputs.length; i++) {
                 var val = $('#upload [name="' + inputs[i].name + '"]').val()
                 val = jQuery.trim(val)
@@ -513,7 +513,18 @@
                 swalAlert('Empty Fields', 'Fields: ' + names + ' should be filled', false)
                 return
             }
-            console.log('done')
+
+            if (!$('#upload [name="onsaleTag"]').is(':checked')) {
+                var specialPrice = $('#upload [name="specialPrice"]').val()
+                var eventDisp = $('#upload [name="eventDisp"]').val()
+                specialPrice = jQuery.trim(specialPrice)
+                eventDisp = jQuery.trim(eventDisp)
+                if (specialPrice == '' || eventDisp == '') {
+                    swalAlert('Empty Fields', 'Special price and discription should be filled', false)
+                }
+            }
+
+            // start upload
             try {
                 var url = await uploadFile()
             } catch{
