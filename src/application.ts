@@ -60,7 +60,7 @@ export class LensApplication extends BootMixin(
     this.component(AuthenticationComponent);
 
     this.restServer.bind(RestBindings.REQUEST_BODY_PARSER_OPTIONS).to({
-      limit: '6MB',
+      limit: '100MB',
     });
 
     this.projectRoot = __dirname;
