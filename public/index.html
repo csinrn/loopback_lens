@@ -201,6 +201,9 @@
                                             <input type="number" name="powerH" class="form-control" placeholder="最大"
                                                 style="border-left: 10; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
+                                        <div class='col-md-6'>
+                                            ＊圖片須為png檔且具備透明度資訊
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-group mb-3 col-md-3">
@@ -208,21 +211,23 @@
                                                 <span>特價</span>
                                             </div>
                                             <input type="checkbox" name="onsaleTag" class="form-control"
-                                                onchange="onSpecialChanged(this.checked)">
+                                                onchange="onSpecialChanged(this.checked)" attr='optional'>
                                         </div>
                                         <div class="input-group mb-3 col-md-3 invisible" name="special">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">特惠價</span>
                                             </div>
                                             <input type="number" name="specialPrice" class="form-control"
-                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;"
+                                                attr='optional'>
                                         </div>
                                         <div class="input-group mb-3 col-md-6 invisible" name="special">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">活動敘述</span>
                                             </div>
                                             <input type="string" name="eventDisp" class="form-control"
-                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;"
+                                                attr='optional'>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -231,26 +236,26 @@
                                                 <span>熱銷產品</span>
                                             </div>
                                             <input type="checkbox" name="hotsaleTag" class="form-control"
-                                                style="margin-right: 5%">
+                                                style="margin-right: 5%" attr='optional'>
                                             <div class="input-group-prepend">
                                                 <span>新品上市</span>
                                             </div>
                                             <input type="checkbox" name="newTag" class="form-control"
-                                                style="margin-right: 5%">
+                                                style="margin-right: 5%" attr='optional'>
                                             <div class="input-group-prepend">
                                                 <span>日拋</span>
                                             </div>
                                             <input type="checkbox" name="daily" class="form-control" style="
-                                                margin-right: 5%">
+                                                margin-right: 5%" attr='optional'>
                                             <div class="input-group-prepend">
                                                 <span>雙周拋</span>
                                             </div>
                                             <input type="checkbox" name="biweekly" class="form-control" style="
-                                            margin-right: 5%">
+                                            margin-right: 5%" attr='optional'>
                                             <div class="input-group-prepend">
                                                 <span>月拋</span>
                                             </div>
-                                            <input type="checkbox" name="monthly" class="form-control">
+                                            <input type="checkbox" name="monthly" class="form-control" attr='optional'>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-primary" onclick="upload()">新增</button>
@@ -368,6 +373,33 @@
         }
 
         function login() {
+            var uid = $('#login [name="account"]').val()
+            var u_passwd = $('#login [name="password"]').val()
+            var u_store = '0311'
+            var u_ip = '192.168.100.53'
+            var loginUrl = 'http://192.168.1.28/fmo/api.jsp?&func=getUser&u_id=' + uid +
+                '&u_passwd=' + u_passwd +
+                '&u_store=' + u_store +
+                '&u_ip=' + u_ip
+            $.ajax({
+                url: loginUrl,
+                type: "GET",
+                contentType: "application/json",
+            }).done(response => {
+                if (response.result == '1') {
+                    $('#userName').text(response.u_name); // 填入login page 的 user name
+                    $('#login input').val('') // 清除DOM中的帳密
+                    swalAlert('Login Success', 'Account: ' + response.u_id + '<br>Name: ' + response.u_name, true, renderCards)
+                } else {
+                    console.log('Fmo login failed', response.message)
+                    swalAlert('Fmo Login Failed', response.message, false)
+                }
+            }).fail(error => {
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details)
+                swalAlert('Login Failed', msg, false)
+            });
+
             var data = {
                 account: $('#login [name="account"]').val(),
                 password: $('#login [name="password"]').val()
@@ -456,6 +488,16 @@
 
             var date = nowDate()
             console.log(date)
+
+            var inputs = $('#upload input[attr!="optional"]')
+            console.log(inputs[0])
+            if (inputs.length != 0) {
+                var emptyFields = ''
+                for (var i = 0; i < inputs.length; i++)
+                    emptyFields += inputs[i].name + ' '
+                swalAlert('Empty Fields', 'Fields ' + emptyFields + ' should be filled', false)
+                return
+            }
 
             try {
                 var url = await uploadFile()
