@@ -186,8 +186,8 @@
                                         <div class="input-group mb-3 col-md-6">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">新增圖片</span>
-                                                <input type="file" name="img" accept=".jpg,.png" data-url=''
-                                                    style="align-self: center; margin-left: 2%">
+                                                <input type="file" name="img" accept=".png" data-url=''
+                                                    style="align-self: center; margin-left: 2%" onchange="checkAlpha()">
                                             </div>
                                         </div>
                                     </div>
@@ -418,7 +418,6 @@
                 user = response.userProfile
                 $('#userName').text(user.name); // 填入login page 的 user name
                 $('#login input').val('') // 清除DOM中的帳密
-                console.log(response, user)
                 swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
             }).fail(error => {
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
@@ -797,6 +796,51 @@
             })
         }
 
+        async function checkAlpha() {
+            var isAlphaBackground = false
+
+            var validate = new Promise((resolve, reject) => {
+                var file = $('#upload [name="img"]')[0].files[0]
+                var eleFile = document.querySelector('#file');
+                var reader = new FileReader(), img = new Image();
+
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+
+                reader.readAsDataURL(file)
+                reader.onload = (e) => {
+                    img.src = e.target.result;
+                }
+
+                img.onload = function () {
+                    var originWidth = this.width;
+                    var originHeight = this.height;
+                    canvas.width = originWidth;
+                    canvas.height = originHeight;
+
+                    context.clearRect(0, 0, originWidth, originHeight);
+                    context.drawImage(img, 0, 0);
+                    var imageData = context.getImageData(0, 0, originWidth, originHeight).data;
+                    isAlphaBackground = false;
+                    for (var index = 3; index < imageData.length; index += 4) {
+                        if (imageData[index] != 255) {
+                            isAlphaBackground = true;
+                            break;
+                        }
+                    }
+                    resolve()
+                    // isAlphaBackground就是最后石头有透明或半透明背景色的结果
+                }
+            }).then(() => {
+                if (!isAlphaBackground) {
+                    swalAlert('Image Error', 'Please upload an image with transparency', false)
+                    $('#upload [name="img"]').val('')
+                    console.log($('#upload [name="img"]'))
+                } else {
+                    console.log('4 channel')
+                }
+            })
+        }
     </script>
 </body>
 
