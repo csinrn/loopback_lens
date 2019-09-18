@@ -198,6 +198,12 @@ export class LensControlController {
     },
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
+    var lens = await this.lensRepository.findById(id)
+    try {
+      fs.rmdirSync('./public' + lens.url)
+    } catch (err) {
+      throw new HttpErrors.Conflict(err)
+    }
     await this.lensRepository.deleteById(id);
   }
 

@@ -91,6 +91,13 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async deleteById(id) {
+        var lens = await this.lensRepository.findById(id);
+        try {
+            fs.rmdirSync('./public' + lens.url);
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.Conflict(err);
+        }
         await this.lensRepository.deleteById(id);
     }
     async postImg(filename, imgData) {
