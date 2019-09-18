@@ -150,21 +150,21 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">直徑</span>
                                             </div>
-                                            <input type="number" name="diameter" class="form-control"
+                                            <input type="number" name="diameter" class="form-control" min="0"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">弧度</span>
                                             </div>
-                                            <input type="number" name="bc" class="form-control"
+                                            <input type="number" name="bc" class="form-control" min="0"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">含水量</span>
                                             </div>
-                                            <input type="number" name="water" class="form-control"
+                                            <input type="number" name="water" class="form-control" min="0"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                     </div>
@@ -173,14 +173,14 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">價格</span>
                                             </div>
-                                            <input type="number" name="price" class="form-control"
+                                            <input type="number" name="price" class="form-control" min="0"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">隱眼數/盒</span>
                                             </div>
-                                            <input type="number" name="package" class="form-control"
+                                            <input type="number" name="package" class="form-control" min="1"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                         <div class="input-group mb-3 col-md-6">
@@ -197,8 +197,10 @@
                                                 <span class="input-group-text">度數區間</span>
                                             </div>
                                             <input type="number" name="powerL" class="form-control" placeholder="最小"
+                                                min="0"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                             <input type="number" name="powerH" class="form-control" placeholder="最大"
+                                                min="0"
                                                 style="border-left: 10; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                         <div class='col-md-6'>
@@ -398,7 +400,7 @@
                 }
             }).fail(error => {
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details)
+                    .error.details[0].message)
                 swalAlert('Login Failed', msg, false)
             });
 
@@ -421,7 +423,7 @@
                 swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
             }).fail(error => {
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details)
+                    .error.details[0].message)
                 swalAlert('Login Failed', msg, false)
             });
         }
@@ -487,6 +489,7 @@
 
         async function upload() { //新增隱眼
 
+            var specialChecked = $('#upload [name="onsaleTag"]').is(':checked')
             var date = nowDate()
             console.log(date)
 
@@ -513,14 +516,27 @@
                 return
             }
 
-            if (!$('#upload [name="onsaleTag"]').is(':checked')) {
+            if (specialChecked) {
                 var specialPrice = $('#upload [name="specialPrice"]').val()
                 var eventDisp = $('#upload [name="eventDisp"]').val()
                 specialPrice = jQuery.trim(specialPrice)
                 eventDisp = jQuery.trim(eventDisp)
                 if (specialPrice == '' || eventDisp == '') {
                     swalAlert('Empty Fields', 'Special price and discription should be filled', false)
+                    return
                 }
+            }
+
+            // empty wearing time alert
+            if (!checkWearingTime()) {
+                swalAlert('Empty Fields', 'One of the "daily, biweekly, monthly" checkbox should be checked', false)
+                return
+            }
+
+            // negative number alert
+            if (!isAllPositive(specialChecked)) {
+                swalAlert('Value Error', 'All the number should be positive', false)
+                return
             }
 
             // start upload
@@ -554,7 +570,7 @@
                 url: url
             }
 
-            if (!$('#upload [name="onsaleTag"]').is(':checked')) {
+            if (!specialChecked) {
                 data.specialPrice = undefined
                 data.eventDisp = undefined
                 console.log(data)
@@ -841,6 +857,37 @@
                 }
             })
         }
+
+        function checkWearingTime() {
+            var daily = $('#upload [name="daily"]').is(':checked')
+            var biweekly = $('#upload [name="biweekly"]').is(':checked')
+            var monthly = $('#upload [name="monthly"]').is(':checked')
+            if (!(daily || biweekly || monthly)) {
+                return false
+            } else {
+                return true
+            }
+        }
+
+        function isAllPositive(special) {
+            var diameter = parseInt($('#upload [name="diameter"]').val()),
+                bc = parseInt($('#upload [name="bc"]').val()), //弧度
+                powerL = parseInt($('#upload [name="powerL"]').val()), //度數
+                powerH = parseInt($('#upload [name="powerH"]').val()), //度數
+                water = parseInt($('#upload [name="water"]').val()), //含水量
+                price = parseInt($('#upload [name="price"]').val()),
+                pkg = parseInt($('#upload [name="package"]').val()),
+                specialPrice = parseInt($('#upload [name="specialPrice"]').val()); // optional
+
+            var allPositive = diameter > 0 && bc > 0 && powerL > 0 && powerH > 0 && water > 0 &&
+                price > 0 && pkg > 0
+            console.log(special, specialPrice)
+            if (special) {
+                allPositive = allPositive && specialPrice > 0
+            }
+            return allPositive
+        }
+
     </script>
 </body>
 
