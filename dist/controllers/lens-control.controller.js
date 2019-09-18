@@ -50,7 +50,7 @@ let LensControlController = class LensControlController {
         var count = await this.lensRepository.count();
         lens.no = count.count;
         var res = await this.lensRepository.create(lens).catch((err) => {
-            fs.rmdirSync('./public' + imgUrl);
+            fs.unlinkSync('./public' + imgUrl);
             return err;
         });
         return res;
@@ -93,7 +93,7 @@ let LensControlController = class LensControlController {
     async deleteById(id) {
         var lens = await this.lensRepository.findById(id);
         try {
-            fs.rmdirSync('./public' + lens.url);
+            fs.unlinkSync('./public' + lens.url);
         }
         catch (err) {
             throw new rest_1.HttpErrors.Conflict(err);

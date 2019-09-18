@@ -79,7 +79,7 @@ export class LensControlController {
     lens.no = count.count
 
     var res = await this.lensRepository.create(lens).catch((err) => {
-      fs.rmdirSync('./public' + imgUrl)
+      fs.unlinkSync('./public' + imgUrl)
       return err
     })
 
@@ -199,11 +199,13 @@ export class LensControlController {
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     var lens = await this.lensRepository.findById(id)
+    console.log('./public' + lens.url)
     try {
-      fs.rmdirSync('./public' + lens.url)
+      fs.unlinkSync('./public' + lens.url)
     } catch (err) {
       throw new HttpErrors.Conflict(err)
     }
+    console.log('delete img f')
     await this.lensRepository.deleteById(id);
   }
 
