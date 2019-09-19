@@ -63,22 +63,21 @@ CREATE TABLE IF NOT EXISTS `lens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `no` (`no`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 ALTER TABLE lens CONVERT TO CHARACTER SET UTF8;
--- Dumping data for table lensdb.lens: ~22 rows (approximately)
+-- Dumping data for table lensdb.lens: ~9 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
 INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
-	(37, '太妃糖杏', 0, 13, 15, 150, 300, 30, 1, 1, 0, '台灣', 300, 10, NULL, NULL, 'L12345', 1, 1, 0, '2019-09-13', NULL, '/lensPic/太妃糖杏.png'),
-	(38, '星空灰', 1, 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13', NULL, '/lensPic/星空灰.png'),
-	(39, '星空棕', 2, 15, 17, 500, 1000, 20, 1, 0, 0, '台灣', 3500, 10, 2500, '開幕優惠', 'L12345', 1, 1, 1, '2019-09-13', NULL, '/lensPic/星空棕.png'),
-	(40, '香檳金', 3, 13, 17, 0, 50, 50, 1, 0, 1, '馬來西亞', 200, 10, 150, '打折', 'L78910', 0, 0, 1, '2019-09-13', NULL, '/lensPic/香檳金.png'),
-	(41, '栗子蒙布朗', 4, 13, 17, 1000, 1500, 50, 1, 0, 1, '馬來西亞', 2000, 3, NULL, NULL, 'L78910', 0, 1, 0, '2019-09-13', '2021-09-13', '/lensPic/栗子蒙布朗.png'),
-	(42, '甜心灰', 5, 13, 17, 100, 500, 50, 0, 1, 0, '巴西', 200, 1, NULL, NULL, 'L78910', 1, 0, 0, '2019-09-13', NULL, '/lensPic/甜心灰.png'),
+	(38, '星空灰', 3, 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13', NULL, '/lensPic/星空灰.png'),
+	(39, '星空棕', 0, 15, 17, 500, 1000, 20, 1, 0, 0, '台灣', 3500, 10, 2500, '開幕優惠', 'L12345', 1, 1, 1, '2019-09-13', NULL, '/lensPic/星空棕.png'),
+	(40, '香檳金', 1, 13, 17, 0, 50, 50, 1, 0, 1, '馬來西亞', 200, 10, 150, '打折', 'L78910', 0, 0, 1, '2019-09-13', NULL, '/lensPic/香檳金.png'),
+	(41, '栗子蒙布朗', 2, 13, 17, 1000, 1500, 50, 1, 0, 1, '馬來西亞', 2000, 3, NULL, NULL, 'L78910', 0, 1, 0, '2019-09-13', '2021-09-13', '/lensPic/栗子蒙布朗.png'),
+	(42, '甜心灰', 4, 13, 17, 100, 500, 50, 0, 1, 0, '巴西', 200, 1, NULL, NULL, 'L78910', 1, 0, 0, '2019-09-13', NULL, '/lensPic/甜心灰.png'),
 	(43, '馬卡龍灰', 7, 10, 7, 900, 1000, 24, 0, 1, 0, '印度', 900, 30, 500, '情人節促銷活動', 'L78910', 1, 0, 1, '2019-09-13', NULL, '/lensPic/馬卡龍灰.png'),
 	(44, '楓糖奶茶', 6, 10, 7, 900, 1000, 24, 1, 0, 0, '美國', 400, 30, NULL, NULL, 'B333777', 1, 1, 0, '2019-09-13', '2019-09-14', '/lensPic/楓糖奶茶.png'),
-	(45, '焦糖布蕾', 8, 20, 6, 100, 200, 10, 1, 0, 0, '日本', 700, 20, NULL, NULL, 'B34567', 0, 1, 0, '2019-09-13', NULL, '/lensPic/焦糖布蕾.png'),
-	(46, '幕斯可可', 9, 13, 10, 50, 100, 20, 1, 0, 0, '北極', 3000, 3, NULL, NULL, 'K123456', 0, 1, 0, '2019-09-13', NULL, '/lensPic/幕斯可可.png');
+	(45, '焦糖布蕾', 5, 20, 6, 100, 200, 10, 1, 0, 0, '日本', 700, 20, NULL, NULL, 'B34567', 0, 1, 0, '2019-09-13', NULL, '/lensPic/焦糖布蕾.png'),
+	(46, '幕斯可可', 8, 13, 10, 50, 100, 20, 1, 0, 0, '北極', 3000, 3, NULL, NULL, 'K123456', 0, 1, 0, '2019-09-13', NULL, '/lensPic/幕斯可可.png');
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
 
 -- Dumping structure for table lensdb.userlens
