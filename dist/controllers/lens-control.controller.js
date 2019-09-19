@@ -97,7 +97,7 @@ let LensControlController = class LensControlController {
             fs.unlinkSync('./public' + lens.url);
         }
         catch (err) {
-            console.log('Can not del picture ' + './public' + lens.url + ', picture does not exist');
+            console.log('Can not delete picture ' + './public' + lens.url + ', picture does not exist');
         }
         //console.log('delete img f')
         await this.lensRepository.deleteById(id);

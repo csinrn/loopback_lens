@@ -46,10 +46,12 @@
                                 <a class="nav-link active" name="login" data-toggle="tab" href="#login" role="tab"
                                     aria-controls="login" aria-selected="true">登入</a>
                             </li>
+                            <!--
                             <li class="nav-item">
                                 <a class="nav-link" name="register" data-toggle="tab" href="#register" role="tab"
                                     aria-controls="register" aria-selected="false">註冊</a>
                             </li>
+                            -->
                         </ul>
                         <!-- 登入/註冊的頁籤內容 -->
                         <div class="tab-content mt-3" id="guest_content">
@@ -70,6 +72,12 @@
                                         </div>
                                         <input type="password" name="password" class="form-control"
                                             placeholder="按此輸入密碼">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">門市代號</span>
+                                        </div>
+                                        <input type="password" name="u_store" class="form-control" placeholder="按此輸入代號">
                                     </div>
                                     <button type="button" class="btn btn-primary" onclick="login()">登入</button>
                                 </form>
@@ -379,7 +387,7 @@
         function login() {
             var uid = $('#login [name="account"]').val()
             var u_passwd = $('#login [name="password"]').val()
-            var u_store = '0311'
+            var u_store = $('#login [name="u_store"]').val()
             var u_ip = '192.168.100.53'
             var loginUrl = 'http://192.168.1.28/fmo/api.jsp?&func=getUser&u_id=' + uid +
                 '&u_passwd=' + u_passwd +
@@ -402,7 +410,7 @@
                 }
             }).fail(error => {
                 console.log('Fmo fail')
-
+                console.log(error)
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
                     .error.details)
                 swalAlert('Login Failed', msg, false)
