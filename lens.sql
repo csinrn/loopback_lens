@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `lens` (
   UNIQUE KEY `no` (`no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE lens CONVERT TO CHARACTER SET UTF8;
 -- Dumping data for table lensdb.lens: ~9 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
 INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
