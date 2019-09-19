@@ -82,7 +82,7 @@ let LensControlController = class LensControlController {
         await this.lensRepository.updateById(parseInt(id2), lens_t, { partial: true });
         lens_t.no = no2;
         await this.lensRepository.updateById(parseInt(id1), lens_t, { partial: true });
-        console.log(no1, no2, "done");
+        //console.log(no1, no2, "done")
         return { responses: "exchange order " + no1 + " and " + no2 + " successfully" };
     }
     //@authenticate('jwt')
@@ -92,12 +92,14 @@ let LensControlController = class LensControlController {
     //@authenticate('jwt')
     async deleteById(id) {
         var lens = await this.lensRepository.findById(id);
+        //console.log('./public' + lens.url)
         try {
             fs.unlinkSync('./public' + lens.url);
         }
         catch (err) {
-            throw new rest_1.HttpErrors.Conflict(err);
+            console.log('Can not del picture ' + './public' + lens.url + ', picture does not exist');
         }
+        //console.log('delete img f')
         await this.lensRepository.deleteById(id);
     }
     async postImg(filename, imgData) {
@@ -113,7 +115,7 @@ let LensControlController = class LensControlController {
             catch (err) {
                 reject(err);
             }
-            console.log('postImg: ', url + filename);
+            //console.log('postImg: ', url + filename)
             resolve((url + filename));
         });
         return res;

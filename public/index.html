@@ -385,11 +385,13 @@
                 '&u_passwd=' + u_passwd +
                 '&u_store=' + u_store +
                 '&u_ip=' + u_ip
+            console.log(loginUrl)
             $.ajax({
                 url: loginUrl,
                 type: "GET",
                 contentType: "application/json",
             }).done(response => {
+                console.log('Fmo done')
                 if (response.result == '1') {
                     $('#userName').text(response.u_name); // 填入login page 的 user name
                     $('#login input').val('') // 清除DOM中的帳密
@@ -399,6 +401,8 @@
                     swalAlert('Fmo Login Failed', response.message, false)
                 }
             }).fail(error => {
+                console.log('Fmo fail')
+
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
                     .error.details)
                 swalAlert('Login Failed', msg, false)
@@ -423,7 +427,7 @@
                 swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
             }).fail(error => {
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details[0].message)
+                    .error.details)
                 swalAlert('Login Failed', msg, false)
             });
         }
@@ -497,16 +501,12 @@
             var inputs = $('#upload input[attr!="optional"]')
             var emptyFields = []
 
-            console.log('length:', inputs.length)
-
             for (var i = 0; i < inputs.length; i++) {
                 var val = $('#upload [name="' + inputs[i].name + '"]').val()
                 val = jQuery.trim(val)
-                console.log(val)
                 if (val == '')
                     emptyFields.push(inputs[i].name)
             }
-            console.log('length:', emptyFields.length)
 
             if (emptyFields.length != 0) {
                 var names = ''
@@ -546,7 +546,6 @@
                 // if rejected
                 return
             }
-            console.log('fileData: ', fileData)
             var data = {
                 name: $('#upload [name="name"]').val(),
                 diameter: parseInt($('#upload [name="diameter"]').val()),
@@ -587,6 +586,9 @@
                 //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
                 //}
             }).done(response => {
+                $('#upload input').val('')
+                console.log($('#upload [type=checkbox]'))
+                $('#upload [type=checkbox]').prop("checked", false)
                 swalAlert("Upload Success", "", true, renderCards)
             }).fail(error => {
                 console.log(error)
@@ -635,7 +637,7 @@
                     break
                 }
             }
-            console.log('i', i)
+            //console.log('i', i)
             for (var i = idNo; i > 0; i--) {
                 await sort(idDeleted, tableRows[i - 1])
                 console.log(idDeleted, tableRows[i - 1])
@@ -735,12 +737,12 @@
 
         function updateTableRows(table = $('#update table')[0], row = 'default') {
             //console.log(table.tBodies[0].rows)
-            console.log(table)
+            //console.log(table)
             tableRows = []
             for (var i = 0; i < table.tBodies[0].rows.length; i++) {
                 tableRows.push(table.tBodies[0].rows[i].id)
             }
-            console.log(tableRows)
+            //console.log(tableRows)
         }
 
         async function onDrop(table, row) {
@@ -754,17 +756,13 @@
 
                 if (newRows[i].id != tableRows[i] && !started) {
                     diff_start = i
-                    console.log(diff_start)
                     started = true
                 } else if (newRows[i].id == tableRows[i] && started) {
                     diff_end = i
-                    console.log(diff_end)
                     break
                 }
             }
 
-            console.log("start:", diff_start, diff_end)
-            console.log("old table: ", tableRows)
             if (newRows[diff_start].id == row.id) {   // row be moved upward
                 for (var i = 0; i < diff_end - diff_start - 1; i++) {
                     var k = await sort(row.id, newRows[diff_end - 1 - i].id)
@@ -775,16 +773,13 @@
                 }
             }
             renderCards()
-            console.log("new table: ", newRows)
         }
 
         async function parseFile() {
 
             return new Promise((resolve, reject) => {
                 var file = $('#upload [name="img"]')[0].files[0]
-                console.log(file)
                 if (file == undefined) {
-                    console.log('test')
                     reject()
                 }
                 var reader = new FileReader()
@@ -837,7 +832,6 @@
                 if (!isAlphaBackground) {
                     swalAlert('Image Error', 'Please upload an image with transparency', false)
                     $('#upload [name="img"]').val('')
-                    console.log($('#upload [name="img"]'))
                 } else {
                     console.log('4 channel')
                 }
@@ -867,7 +861,6 @@
 
             var allPositive = diameter > 0 && bc > 0 && powerL > 0 && powerH > 0 && water > 0 &&
                 price > 0 && pkg > 0
-            console.log(special, specialPrice)
             if (special) {
                 allPositive = allPositive && specialPrice > 0
             }
