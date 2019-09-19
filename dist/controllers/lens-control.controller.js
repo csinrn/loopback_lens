@@ -37,10 +37,23 @@ let LensControlController = class LensControlController {
         validator_1.validateBoolean(lens.daily, "dailytag");
         validator_1.validateBoolean(lens.biweekly, "biweeklytag");
         validator_1.validateBoolean(lens.monthly, "monthlytag");
-        //console.log(lens)
+        // store image, throw if error
+        var imgUrl = '';
+        try {
+            imgUrl = await this.postImg(lens.name + '.png', lens.url);
+            lens.url = imgUrl;
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.BadRequest(err);
+        }
+        // store lens, delete image and throw if error
         var count = await this.lensRepository.count();
         lens.no = count.count;
-        return await this.lensRepository.create(lens);
+        var res = await this.lensRepository.create(lens).catch((err) => {
+            fs.unlinkSync('./public' + imgUrl);
+            return err;
+        });
+        return res;
     }
     //@authenticate('jwt')
     async count(where) {
@@ -49,16 +62,6 @@ let LensControlController = class LensControlController {
     //@authenticate('jwt')
     async find(filter) {
         var list = await this.lensRepository.find(filter);
-        var callback = function (err, data) {
-            console.log(err);
-        };
-        for (var i = 0; i < list.length; i++) {
-            try {
-                var pic = fs.readFileSync(list[i].url, 'base64', callback);
-                list[i].url = pic;
-            }
-            catch (_a) { }
-        }
         return list;
     }
     //@authenticate('jwt')
@@ -88,16 +91,32 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async deleteById(id) {
+        var lens = await this.lensRepository.findById(id);
+        try {
+            fs.unlinkSync('./public' + lens.url);
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.Conflict(err);
+        }
         await this.lensRepository.deleteById(id);
     }
     async postImg(filename, imgData) {
-        var folder = './lensPic/';
-        //console.log(filename)
-        if (fs.existsSync(folder + filename)) {
-            throw new rest_1.HttpErrors.BadRequest('image name duplicated');
-        }
-        fs.writeFile(folder + filename, imgData.img.split(',')[1], 'base64', () => { });
-        return { url: folder + filename };
+        var folder = './public/lensPic/';
+        var url = '/lensPic/';
+        var res = new Promise((resolve, reject) => {
+            if (fs.existsSync(folder + filename)) {
+                reject('image name duplicated');
+            }
+            try {
+                fs.writeFileSync(folder + filename, imgData.split(',')[1], 'base64', () => { });
+            }
+            catch (err) {
+                reject(err);
+            }
+            console.log('postImg: ', url + filename);
+            resolve((url + filename));
+        });
+        return res;
     }
 };
 __decorate([
@@ -216,9 +235,8 @@ __decorate([
 __decorate([
     rest_1.post('/lens/img/{fileName}'),
     __param(0, rest_1.param.path.string('fileName')),
-    __param(1, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.ImageStorage]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "postImg", null);
 LensControlController = __decorate([
