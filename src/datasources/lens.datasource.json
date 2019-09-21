@@ -2,9 +2,10 @@
   "name": "lens",
   "connector": "mysql",
   "url": "",
-  "host": "localhost",
+  "host": "192.168.105.211",
   "port": 3306,
   "user": "root",
   "password": "1234567",
   "database": "lensdb"
 }
+// mariadb host and port
