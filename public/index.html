@@ -244,7 +244,7 @@
                                             <input type="checkbox" name="monthly" class="form-control" attr='optional'>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary" onclick="upload()">新增</button>
+                                    <button type="button" class="btn btn-primary" name='uploadBtn' onclick="upload()">新增</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="update" role="tabpanel" aria-labelledby="update-tab">
@@ -254,19 +254,16 @@
                                             <thead>
                                                 <tr>
                                                     <td style="width: 20%">id</td>
-                                                    <td style="width: 25%">排序</td>
                                                     <td>品名</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr id="1">
                                                     <td style="width: 20%">1</td>
-                                                    <td style="width: 25%">1</td>
                                                     <td>1</td>
                                                 </tr>
                                                 <tr id="12">
                                                     <td style="width: 20%">12</td>
-                                                    <td style="width: 25%">12</td>
                                                     <td>12</td>
                                                 </tr>
                                             </tbody>
@@ -280,8 +277,8 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">刪除隱眼</span>
                                                 </div>
-                                                <input type="number" name="delete-id" class="form-control col-md-2" placeholder="id">
-                                                <button type="button" class="btn btn-primary" style="margin-left:10px;" onclick="deleteLens()">刪除隱眼</button>
+                                                <input type="number" name="delete-id" class="form-control col-md-2" placeholder="id" min="0">
+                                                <button type="button" class="btn btn-primary" name='deleteBtn' style="margin-left:10px;" onclick="deleteLens()">刪除隱眼</button>
                                             </div>
                                         </form>
                                         <form id="rename-form">
@@ -289,9 +286,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">重新命名</span>
                                                 </div>
-                                                <input type="number" name="rename-id" class="form-control col-md-2" placeholder="id">
+                                                <input type="number" name="rename-id" class="form-control col-md-2" placeholder="id" min="0">
                                                 <input type="string" name="rename-name" class="form-control col-md-3" placeholder="新名稱">
-                                                <button type="button" class="btn btn-primary" style="margin-left: 10px;" onclick="rename()">重新命名</button>
+                                                <button type="button" class="btn btn-primary" style="margin-left: 10px;" name='renameBtn' onclick="rename()">重新命名</button>
                                             </div>
                                         </form>
                                     </div>
@@ -324,7 +321,7 @@
         });
 
         var userip = "192.168.105.211"
-        var serverURL = 'http://' + userip + ':3306'   // userip + mariadb port
+        var serverURL = 'http://' + userip + ':3000'
         var tableRows = []
 
         function register() {
@@ -355,7 +352,7 @@
             });
         }
 
-        function login() {
+        async function login() {
             var uid = $('#login [name="account"]').val()
             var u_passwd = $('#login [name="password"]').val()
             var u_store = $('#login [name="u_store"]').val()
@@ -365,7 +362,7 @@
                 '&u_store=' + u_store +
                 '&u_ip=' + u_ip
             console.log(loginUrl)
-            $.ajax({
+            await $.ajax({
                 url: loginUrl,
                 type: "GET",
                 contentType: "application/json",
@@ -390,31 +387,32 @@
                     .error.details)
                 swalAlert('Login Failed', msg, false)
             });
+            /*    //  testing account(need no vpn) account: qwe passwd: qwertyui, stored in mariadb lensdb/admin
+                        var data = {
+                            account: $('#login [name="account"]').val(),
+                            password: $('#login [name="password"]').val()
+                        }
+                        data = JSON.stringify(data)
 
-            var data = {
-                account: $('#login [name="account"]').val(),
-                password: $('#login [name="password"]').val()
-            }
-            data = JSON.stringify(data)
-
-            $.ajax({
-                url: serverURL + '/admin/login',
-                type: "POST",
-                contentType: "application/json",
-                data: data
-            }).done(response => {
-                console.log('server login done')
-                //rememberToken(response.token, response.expireinMs);
-                user = response.userProfile
-                $('#userName').text(user.name); // 填入login page 的 user name
-                $('#login input').val('') // 清除DOM中的帳密
-                swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
-            }).fail(error => {
-                console.log('server login fail')
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details)
-                swalAlert('Login Failed', msg, false)
-            });
+                        $.ajax({
+                            url: serverURL + '/admin/login',
+                            type: "POST",
+                            contentType: "application/json",
+                            data: data
+                        }).done(response => {
+                            console.log('server login done')
+                            //rememberToken(response.token, response.expireinMs);
+                            user = response.userProfile
+                            $('#userName').text(user.name); // 填入login page 的 user name
+                            $('#login input').val('') // 清除DOM中的帳密
+                            swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
+                        }).fail(error => {
+                            console.log('server login fail')
+                            var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                                .error.details)
+                            swalAlert('Login Failed', msg, false)
+                        });
+                        */
         }
 
         function logout() {
@@ -432,14 +430,16 @@
         }
 
         function renderCards() {
+            console.log(serverURL + '/lens')
             $.ajax({
                 url: serverURL + '/lens', // 你的api
                 type: 'GET',
                 contentType: 'application/json',
-                beforeSend: xhr => {
-                    // 這邊是我之前寫的bearer auth token，看你那邊jwt要怎麼樣guard，request就怎麼送auth的資訊
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
-                }
+                data: '{}',
+                //beforeSend: xhr => {
+                //這邊是我之前寫的bearer auth token，看你那邊jwt要怎麼樣guard，request就怎麼送auth的資訊
+                //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
+                //}
             }).done(response => {
                 // 清空面板
                 response.sort(lensComparator)
@@ -447,7 +447,6 @@
                 var thead = `<thead>
                                 <tr>
                                     <td style="width: 20%">id</td>
-                                    <td style="width: 25%">排序</td>
                                     <td>品名</td>
                                 </tr>
                             </thead>`
@@ -457,7 +456,6 @@
                     tbody += lens.id.toString()
                     tbody += '">'
                     tbody += '<td>' + lens.id.toString() + '</td>'
-                    tbody += '<td>' + lens.no.toString() + '</td>'
                     tbody += '<td>' + lens.name + '</td>'
                     tbody += '</tr>'
                 });
@@ -468,7 +466,10 @@
                     onDrop: onDrop
                 })
                 switchPane(true);
-            }).fail(logout);
+            }).fail((err) => {
+                console.log(err)
+                logout()
+            });
         }
 
         function switchPane(auth) {
@@ -476,7 +477,9 @@
             $(!auth ? '#auth' : '#guest').removeClass('active show');
         }
 
-        async function upload() { //新增隱眼
+        async function upload(btn) { //新增隱眼
+
+            btnDisable()
 
             var specialChecked = $('#upload [name="onsaleTag"]').is(':checked')
             var date = nowDate()
@@ -498,6 +501,7 @@
                 for (var i = 0; i < emptyFields.length; i++)
                     names += emptyFields[i] + ','
                 swalAlert('Empty Fields', 'Fields: ' + names + ' should be filled', false)
+                btnEnable()
                 return
             }
 
@@ -508,6 +512,7 @@
                 eventDisp = jQuery.trim(eventDisp)
                 if (specialPrice == '' || eventDisp == '') {
                     swalAlert('Empty Fields', 'Special price and discription should be filled', false)
+                    btnEnable()
                     return
                 }
             }
@@ -515,20 +520,31 @@
             // empty wearing time alert
             if (!checkWearingTime()) {
                 swalAlert('Empty Fields', 'One of the "daily, biweekly, monthly" checkbox should be checked', false)
+                btnEnable()
                 return
             }
 
             // negative number alert
             if (!isAllPositive(specialChecked)) {
                 swalAlert('Value Error', 'All the number should be positive', false)
+                btnEnable()
                 return
             }
+
+            // powerH < powerL alert
+            if (!checkPowerOrder()) {
+                swalAlert('Power Error', 'PowerH need to be higher than PowerL', false)
+                btnEnable()
+                return
+            }
+
 
             // start upload
             try {
                 fileData = await parseFile()
             } catch{
                 // if rejected
+                btnEnable()
                 return
             }
             var data = {
@@ -574,11 +590,13 @@
                 $('#upload input').val('')
                 console.log($('#upload [type=checkbox]'))
                 $('#upload [type=checkbox]').prop("checked", false)
-                swalAlert("Upload Success", "", true, renderCards)
+                btnEnable()
+                swalAlert("Upload Success", "", true, renderCards);
             }).fail(error => {
                 console.log(error)
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details)
+                    .error.details);
+                btnEnable()
                 swalAlert("Upload Failed", msg, false)
             })
         }
@@ -610,6 +628,7 @@
         }
 
         async function deleteLens() { //刪除隱眼
+            $('#update [name="deleteBtn"]').attr('disabled', true)
 
             var idDeleted = $('#update [name="delete-id"]').val()
             updateTableRows()
@@ -638,18 +657,22 @@
             }).done(response => {
                 $("#delete-form input").val('')
                 renderCards()
+                $('#update [name="deleteBtn"]').attr('disabled', false)
                 swalAlert("Delete Success", '', true)
             }).fail(error => {
                 console.log(error)
                 $("#delete-form input").val('')
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
                     .error)
+                $('#update [name="deleteBtn"]').attr('disabled', false)
                 swalAlert("Delete Failed", msg, false)
             })
 
         }
 
         function rename() { // 重新命名
+            $('#update [name="renameBtn"]').attr('disabled', true)
+
             var url = serverURL + '/lens/' + $('#update [name="rename-id"]').val().toString() + '/name'
             var data = {
                 name: $('#update [name="rename-name"]').val()
@@ -665,11 +688,13 @@
                 //}
             }).done(response => {
                 $("#rename-form input").val('')
+                $('#update [name="renameBtn"]').attr('disabled', false)
                 swalAlert("Rename Success", "", true, renderCards)
             }).fail(error => {
                 $("#rename-form input").val('')
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
                     .error.details)
+                $('#update [name="renameBtn"]').attr('disabled', false)
                 swalAlert("Rename Failed", msg, false)
             })
         }
@@ -850,6 +875,24 @@
                 allPositive = allPositive && specialPrice > 0
             }
             return allPositive
+        }
+
+        function checkPowerOrder() {
+            var powerH = parseInt($('#upload [name="powerH"]').val()),
+                powerL = parseInt($('#upload [name="powerL"]').val());
+            console.log('powerH', powerH, 'powerL', powerL)
+
+            return (powerH >= powerL)
+        }
+
+        function btnEnable() {
+            console.log('enable')
+            $('#upload [name="uploadBtn"]').attr('disabled', false)
+        }
+
+        function btnDisable() {
+            console.log('disable')
+            $('#upload [name="uploadBtn"]').attr('disabled', true)
         }
 
     </script>
