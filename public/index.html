@@ -79,7 +79,8 @@
                                         </div>
                                         <input type="password" name="u_store" class="form-control" placeholder="按此輸入代號">
                                     </div>
-                                    <button type="button" class="btn btn-primary" onclick="login()">登入</button>
+                                    <button type="button" name='loginBtn' class="btn btn-primary"
+                                        onclick="login()">登入</button>
                                 </form>
                             </div>
 
@@ -387,6 +388,8 @@
         }
 
         async function login() {
+            $('#guest_content [name="loginBtn"]').attr('disabled', true)
+
             var uid = $('#login [name="account"]').val()
             var u_passwd = $('#login [name="password"]').val()
             var u_store = $('#login [name="u_store"]').val()
@@ -407,46 +410,52 @@
                 if (response.result == '1') {
                     $('#userName').text(response.u_name); // 填入login page 的 user name
                     $('#login input').val('') // 清除DOM中的帳密
+                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
                     swalAlert('Login Success', 'Account: ' + response.u_id + '<br>Name: ' + response.u_name, true, renderCards)
                     return
                 } else {
                     console.log('Fmo login failed', response.message)
+                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
                     swalAlert('Fmo Login Failed', response.message, false)
                     return
                 }
             }).fail(error => {
                 console.log('Fmo fail')
                 console.log(error)
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details)
+                var msg = "<br>Details: " + JSON.stringify(error)
+                $('#guest_content [name="loginBtn"]').attr('disabled', false)
                 swalAlert('Login Failed', msg, false)
             });
             /*    //  testing account(need no vpn) account: qwe passwd: qwertyui, stored in mariadb lensdb/admin
-                        var data = {
-                            account: $('#login [name="account"]').val(),
-                            password: $('#login [name="password"]').val()
-                        }
-                        data = JSON.stringify(data)
-
-                        $.ajax({
-                            url: serverURL + '/admin/login',
-                            type: "POST",
-                            contentType: "application/json",
-                            data: data
-                        }).done(response => {
-                            console.log('server login done')
-                            //rememberToken(response.token, response.expireinMs);
-                            user = response.userProfile
-                            $('#userName').text(user.name); // 填入login page 的 user name
-                            $('#login input').val('') // 清除DOM中的帳密
-                            swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
-                        }).fail(error => {
-                            console.log('server login fail')
-                            var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                                .error.details)
-                            swalAlert('Login Failed', msg, false)
-                        });
-                        */
+                var data = {
+                    account: $('#login [name="account"]').val(),
+                    password: $('#login [name="password"]').val()
+                }
+                data = JSON.stringify(data)
+    
+                $.ajax({
+                    url: serverURL + '/admin/login',
+                    type: "POST",
+                    contentType: "application/json",
+                    data: data
+                }).done(response => {
+                    console.log('server login done')
+                    //rememberToken(response.token, response.expireinMs);
+                    user = response.userProfile
+                    $('#userName').text(user.name); // 填入login page 的 user name
+                    $('#login input').val('') // 清除DOM中的帳密
+                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
+    
+                    swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
+                }).fail(error => {
+                    console.log('server login fail')
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                        .error.details)
+                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
+    
+                    swalAlert('Login Failed', msg, false)
+                });
+                */
         }
 
         function logout() {
