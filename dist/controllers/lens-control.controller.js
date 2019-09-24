@@ -62,6 +62,19 @@ let LensControlController = class LensControlController {
     //@authenticate('jwt')
     async find(filter) {
         var list = await this.lensRepository.find(filter);
+        var callback = function (err, data) {
+            console.log(err);
+        };
+        for (var i = 0; i < list.length; i++) {
+            console.log(list[i].url);
+            try {
+                var pic = fs.readFileSync(list[i].url, 'base64', callback);
+                list[i].url = pic;
+            }
+            catch (err) {
+                throw new rest_1.HttpErrors.HttpError(err);
+            }
+        }
         return list;
     }
     //@authenticate('jwt')
