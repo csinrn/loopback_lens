@@ -123,15 +123,13 @@ export class LensControlController {
       console.log(err)
     }
     for (var i = 0; i < list.length; i++) {
-      console.log(list[i].url)
       try {
-        var pic = fs.readFileSync(list[i].url, 'base64', callback)
+        var pic = fs.readFileSync('./public' + list[i].url, 'base64', callback)
         list[i].url = pic
       } catch (err) {
-        throw new HttpErrors.HttpError(err)
+        throw new HttpErrors.Conflict(err)
       }
     }
-
     return list;
   }
 

@@ -68,13 +68,14 @@ let LensControlController = class LensControlController {
         for (var i = 0; i < list.length; i++) {
             console.log(list[i].url);
             try {
-                var pic = fs.readFileSync(list[i].url, 'base64', callback);
+                var pic = fs.readFileSync('./public' + list[i].url, 'base64', callback);
                 list[i].url = pic;
             }
             catch (err) {
-                throw new rest_1.HttpErrors.HttpError(err);
+                throw new rest_1.HttpErrors.Conflict(err);
             }
         }
+        console.log(list);
         return list;
     }
     //@authenticate('jwt')
