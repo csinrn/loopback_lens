@@ -75,7 +75,6 @@ export class AdminControlController {
     })
     admin: Admin
   ): Promise<Admin> {
-    console.log(admin)
     // ensure a valid account value and password value
     validateCredentials(_.pick(admin, ['account', 'password']));
     validateDate(admin.createAt);

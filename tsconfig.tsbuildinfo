@@ -7016,6 +7016,7 @@
       "d:/eye-demo/lens/src/__tests__/acceptance/home-page.acceptance.ts",
       "d:/eye-demo/lens/src/__tests__/acceptance/ping.controller.acceptance.ts",
       "d:/eye-demo/lens/src/services/validator.ts",
+      "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/collection.d.ts",
@@ -7029,9 +7030,11 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
+      "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/eslint-visitor-keys/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/fs-extra/index.d.ts",
@@ -7039,10 +7042,7 @@
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts",
-      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
-      "d:/eye-demo/lens/src/controllers/index.ts"
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts"
     ]
   },
   "version": "3.5.3"

@@ -93,7 +93,8 @@
                                         <label>姓名</label>
                                         <input type="string" name="name" class="form-control" placeholder="按此輸入姓名">
                                     </div>
-                                    <button type="button" class="btn btn-primary" onclick="register()">註冊</button>
+                                    <button type="button" name='registerBtn' class="btn btn-primary"
+                                        onclick="register()">註冊</button>
                                 </form>
                             </div>
                         </div>
@@ -352,6 +353,8 @@
         var tableRows = []
 
         function register() {
+            $('#register [name="registerBtn"]').attr('disabled', true)
+
             data = {
                 "password": $('#register [name="password"]').val(),
                 "account": $('#register [name="account"]').val(),
@@ -369,12 +372,18 @@
                 data: data
             }).done(response => {
                 // 跳一個美麗的提示
+                $('#register [name="registerBtn"]').attr('disabled', false)
                 swalAlert('Register Success', 'Account: ' + response.account + '<br>Name: ' + response.name,
                     true)
             }).fail(error => {
                 // 如果註冊失敗
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details)
+                $('#register [name="registerBtn"]').attr('disabled', false)
+                var msg = ''
+                if (error.responseJSON.error.code == 'ER_DUP_ENTRY')
+                    msg = 'Account duplicated'
+                else
+                    msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                        .error.details)
                 swalAlert('Register Failed', msg, false)
             });
         }
