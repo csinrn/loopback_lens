@@ -6,5 +6,5 @@
     "port": 3306,
     "user": "root",
     "password": "1234567",
-    "database": "lensdb"
+    "database": "fmo_lensdb"
 }

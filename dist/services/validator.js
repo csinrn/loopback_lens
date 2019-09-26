@@ -7,8 +7,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 function validateCredentials(credentials) {
     // Validate Password Length
-    if (credentials.password.length < 8) {
-        throw new rest_1.HttpErrors.UnprocessableEntity('password must be minimum 8 characters');
+    if (credentials.password.length < 6) {
+        throw new rest_1.HttpErrors.UnprocessableEntity('password must be minimum 6 characters');
     }
 }
 exports.validateCredentials = validateCredentials;

@@ -12,8 +12,6 @@ export declare class AdminControlController {
     constructor(adminRepository: AdminRepository, passwordHasher: PasswordHasher, jwtService: TokenService, userService: UserService<Admin, Credentials>);
     create(admin: Admin): Promise<Admin>;
     login(credentials: Credentials): Promise<{
-        token: string;
-        expireinMs: string;
         userProfile: UserProfile;
     }>;
     logout(): Promise<{

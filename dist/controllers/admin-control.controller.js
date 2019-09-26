@@ -48,10 +48,12 @@ let AdminControlController = class AdminControlController {
         // convert a User object into a UserProfile object (reduced set of properties)
         const userProfile = this.userService.convertToUserProfile(user);
         // create a JSON Web Token based on the user profile
-        const token = await this.jwtService.generateToken(userProfile);
-        const expireinMs = keys_1.TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE;
-        return { token, expireinMs, userProfile };
+        //const token = await this.jwtService.generateToken(userProfile);
+        //const expireinMs = TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE
+        //return { token, expireinMs, userProfile };
+        return { userProfile };
     }
+    //@authenticate('jwt')
     async logout() {
         return { responses: { description: 'log out successfully' } };
     }
@@ -111,7 +113,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminControlController.prototype, "login", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.get('/admin/logout'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

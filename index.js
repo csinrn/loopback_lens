@@ -7,7 +7,7 @@ if (require.main === module) {
   const config = {
     rest: {
       port: +(process.env.PORT || 3000),   //loopback server port
-      host: '192.168.105.211', //process.env.HOST,    // user ip
+      host: 'localhost', //process.env.HOST,    // user ip
       openApiSpec: {
         // useful when used with OpenAPI-to-GraphQL to locate your application
         setServersFromRequest: true,

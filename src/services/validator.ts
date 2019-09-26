@@ -8,9 +8,9 @@ import { HttpErrors } from '@loopback/rest';
 
 export function validateCredentials(credentials: Credentials) {
   // Validate Password Length
-  if (credentials.password.length < 8) {
+  if (credentials.password.length < 6) {
     throw new HttpErrors.UnprocessableEntity(
-      'password must be minimum 8 characters',
+      'password must be minimum 6 characters',
     );
   }
 }

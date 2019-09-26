@@ -46,12 +46,10 @@
                                 <a class="nav-link active" name="login" data-toggle="tab" href="#login" role="tab"
                                     aria-controls="login" aria-selected="true">登入</a>
                             </li>
-                            <!--
                             <li class="nav-item">
                                 <a class="nav-link" name="register" data-toggle="tab" href="#register" role="tab"
                                     aria-controls="register" aria-selected="false">註冊</a>
                             </li>
-                            -->
                         </ul>
                         <!-- 登入/註冊的頁籤內容 -->
                         <div class="tab-content mt-3" id="guest_content">
@@ -72,12 +70,6 @@
                                         </div>
                                         <input type="password" name="password" class="form-control"
                                             placeholder="按此輸入密碼">
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">門市代號</span>
-                                        </div>
-                                        <input type="password" name="u_store" class="form-control" placeholder="按此輸入代號">
                                     </div>
                                     <button type="button" name='loginBtn' class="btn btn-primary"
                                         onclick="login()">登入</button>
@@ -355,7 +347,7 @@
             switchPane(false)
         });
 
-        var userip = "192.168.105.211"
+        var userip = "localhost"
         var serverURL = 'http://' + userip + ':3000'
         var tableRows = []
 
@@ -389,73 +381,34 @@
 
         async function login() {
             $('#guest_content [name="loginBtn"]').attr('disabled', true)
+            var data = {
+                account: $('#login [name="account"]').val(),
+                password: $('#login [name="password"]').val()
+            }
+            data = JSON.stringify(data)
 
-            var uid = $('#login [name="account"]').val()
-            var u_passwd = $('#login [name="password"]').val()
-            var u_store = $('#login [name="u_store"]').val()
-            var u_ip = userip
-            var loginUrl = 'http://192.168.1.28/fmo/api.jsp?&func=getUser&u_id=' + uid +
-                '&u_passwd=' + u_passwd +
-                '&u_store=' + u_store +
-                '&u_ip=' + u_ip
-            console.log(loginUrl)
-            await $.ajax({
-                url: loginUrl,
-                type: "GET",
+            $.ajax({
+                url: serverURL + '/admin/login',
+                type: "POST",
                 contentType: "application/json",
-            }).done(res => {
-                console.log('Fmo done')
-                response = JSON.parse(res)
-                console.log(response.result, response.result == '1')
-                if (response.result == '1') {
-                    $('#userName').text(response.u_name); // 填入login page 的 user name
-                    $('#login input').val('') // 清除DOM中的帳密
-                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
-                    swalAlert('Login Success', 'Account: ' + response.u_id + '<br>Name: ' + response.u_name, true, renderCards)
-                    return
-                } else {
-                    console.log('Fmo login failed', response.message)
-                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
-                    swalAlert('Fmo Login Failed', response.message, false)
-                    return
-                }
-            }).fail(error => {
-                console.log('Fmo fail')
-                console.log(error)
-                var msg = "<br>Details: " + JSON.stringify(error)
+                data: data
+            }).done(response => {
+                console.log('server login done')
+                //rememberToken(response.token, response.expireinMs);
+                user = response.userProfile
+                $('#userName').text(user.name); // 填入login page 的 user name
+                $('#login input').val('') // 清除DOM中的帳密
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
+
+                swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
+            }).fail(error => {
+                console.log('server login fail')
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details)
+                $('#guest_content [name="loginBtn"]').attr('disabled', false)
+
                 swalAlert('Login Failed', msg, false)
             });
-            /*    //  testing account(need no vpn) account: qwe passwd: qwertyui, stored in mariadb lensdb/admin
-                var data = {
-                    account: $('#login [name="account"]').val(),
-                    password: $('#login [name="password"]').val()
-                }
-                data = JSON.stringify(data)
-    
-                $.ajax({
-                    url: serverURL + '/admin/login',
-                    type: "POST",
-                    contentType: "application/json",
-                    data: data
-                }).done(response => {
-                    console.log('server login done')
-                    //rememberToken(response.token, response.expireinMs);
-                    user = response.userProfile
-                    $('#userName').text(user.name); // 填入login page 的 user name
-                    $('#login input').val('') // 清除DOM中的帳密
-                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
-    
-                    swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
-                }).fail(error => {
-                    console.log('server login fail')
-                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                        .error.details)
-                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
-    
-                    swalAlert('Login Failed', msg, false)
-                });
-                */
         }
 
         function logout() {

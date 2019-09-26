@@ -25,7 +25,7 @@ const CredentialsSchema = {
     account: { type: 'string' },
     password: {
       type: 'string',
-      minLength: 8,
+      minLength: 6,
     },
   },
 };

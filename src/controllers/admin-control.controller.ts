@@ -110,7 +110,7 @@ export class AdminControlController {
   })
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
-  ): Promise<{ token: string, expireinMs: string, userProfile: UserProfile }> {
+  ): Promise<{ userProfile: UserProfile }> {
     // ensure the user exists, and the password is correct
     const user = await this.userService.verifyCredentials(credentials);
 
@@ -118,12 +118,13 @@ export class AdminControlController {
     const userProfile = this.userService.convertToUserProfile(user);
 
     // create a JSON Web Token based on the user profile
-    const token = await this.jwtService.generateToken(userProfile);
-    const expireinMs = TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE
-    return { token, expireinMs, userProfile };
+    //const token = await this.jwtService.generateToken(userProfile);
+    //const expireinMs = TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE
+    //return { token, expireinMs, userProfile };
+    return { userProfile };
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @get('/admin/logout')
   async logout() {
     return { responses: { description: 'log out successfully' } }
