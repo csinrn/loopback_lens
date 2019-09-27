@@ -40,18 +40,14 @@
                 <div class="tab-content">
                     <!-- 如果管理員還沒登入 -->
                     <div class="tab-pane fade show active" id="guest" role="tabpanel" aria-labelledby="login-tab">
-                        <!-- Tab login/register -->
+                        <!-- Tab login -->
                         <ul class="nav nav-tabs" id="guest_tab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" name="login" data-toggle="tab" href="#login" role="tab"
                                     aria-controls="login" aria-selected="true">登入</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" name="register" data-toggle="tab" href="#register" role="tab"
-                                    aria-controls="register" aria-selected="false">註冊</a>
-                            </li>
                         </ul>
-                        <!-- 登入/註冊的頁籤內容 -->
+                        <!-- 登入的頁籤內容 -->
                         <div class="tab-content mt-3" id="guest_content">
                             <div class="tab-pane fade show active" id="login" role="tabpanel"
                                 aria-labelledby="login-tab">
@@ -75,28 +71,6 @@
                                         onclick="login()">登入</button>
                                 </form>
                             </div>
-
-                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                <!-- 註冊 -->
-                                <form>
-                                    <div class="form-group">
-                                        <label>帳號</label>
-                                        <input type="email" name="account" class="form-control"
-                                            aria-describedby="emailHelp" placeholder="按此輸入帳號">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>密碼</label>
-                                        <input type="password" name="password" class="form-control"
-                                            placeholder="按此輸入密碼">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>姓名</label>
-                                        <input type="string" name="name" class="form-control" placeholder="按此輸入姓名">
-                                    </div>
-                                    <button type="button" name='registerBtn' class="btn btn-primary"
-                                        onclick="register()">註冊</button>
-                                </form>
-                            </div>
                         </div>
                     </div>
 
@@ -112,19 +86,81 @@
                                 <button type="button" class="btn btn-outline-dark btn-sm" onclick="logout()">登出</button>
                             </div>
                         </div>
-                        <!-- TODO: 以下區塊放入操作面板們 -->
+                        <!-- 以下區塊放入操作面板們 -->
                         <ul class="nav nav-tabs" id="admin_tab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" name="upload" data-toggle="tab" href="#upload" role="tab"
-                                    aria-controls="upload" aria-selected="true">新增</a>
+                                <a class="nav-link active" name="update" data-toggle="tab" href="#update" role="tab"
+                                    aria-controls="update" aria-selected="false">瀏覽</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" name="update" data-toggle="tab" href="#update" role="tab"
-                                    aria-controls="update" aria-selected="false">修改</a>
+                                <a class="nav-link" name="upload" data-toggle="tab" href="#upload" role="tab"
+                                    aria-controls="upload" aria-selected="true">新增隱形眼鏡</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" name="manage" data-toggle="tab" href="#manage" role="tab"
+                                    aria-controls="manage" aria-selected="true">帳號管理</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" name="register" data-toggle="tab" href="#register" role="tab"
+                                    aria-controls="register" aria-selected="true">註冊</a>
                             </li>
                         </ul>
                         <div class="tab-content mt-3" id="admin-content">
-                            <div class="tab-pane fade container show active" id="upload" role="tabpanel"
+                            <div class="tab-pane fade active show" id="update" role="tabpanel"
+                                aria-labelledby="update-tab show active">
+                                <div class="row">
+                                    <div class="col-md-5 container"
+                                        style="overflow-y: auto; height:500px; overflow-x: auto">
+                                        <table class="table mb-0" name="table-id">
+                                            <thead>
+                                                <tr>
+                                                    <td style="width: 20%">id</td>
+                                                    <td>品名</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="1">
+                                                    <td style="width: 20%">1</td>
+                                                    <td>1</td>
+                                                </tr>
+                                                <tr id="12">
+                                                    <td style="width: 20%">12</td>
+                                                    <td>12</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <div name="form-div" class="col-md-7">
+                                        <form id="delete-form">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">刪除隱眼</span>
+                                                </div>
+                                                <input type="number" name="delete-id" class="form-control col-md-2"
+                                                    placeholder="id" min="0">
+                                                <button type="button" class="btn btn-primary" name='deleteBtn'
+                                                    style="margin-left:10px;" onclick="deleteLens()">刪除隱眼</button>
+                                            </div>
+                                        </form>
+                                        <form id="rename-form">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">重新命名</span>
+                                                </div>
+                                                <input type="number" name="rename-id" class="form-control col-md-2"
+                                                    placeholder="id" min="0">
+                                                <input type="string" name="rename-name" class="form-control col-md-3"
+                                                    placeholder="新名稱">
+                                                <button type="button" class="btn btn-primary" style="margin-left: 10px;"
+                                                    name='renameBtn' onclick="rename()">重新命名</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade container" id="upload" role="tabpanel"
                                 aria-labelledby="upload-tab">
                                 <form>
                                     <div class="row">
@@ -269,58 +305,49 @@
                                         onclick="upload()">新增</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="update" role="tabpanel" aria-labelledby="update-tab">
-                                <div class="row">
-                                    <div class="col-md-5 container"
-                                        style="overflow-y: auto; height:500px; overflow-x: auto">
-                                        <table class="table mb-0" name="table-id">
-                                            <thead>
-                                                <tr>
-                                                    <td style="width: 20%">id</td>
-                                                    <td>品名</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr id="1">
-                                                    <td style="width: 20%">1</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr id="12">
-                                                    <td style="width: 20%">12</td>
-                                                    <td>12</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
+                                <!-- 帳號管理 -->
+                                <form>
+                                    <div class="form-group">
+                                        <label>帳號</label>
+                                        <input type="email" name="account" class="form-control"
+                                            aria-describedby="emailHelp">
                                     </div>
-
-
-                                    <div name="form-div" class="col-md-7">
-                                        <form id="delete-form">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">刪除隱眼</span>
-                                                </div>
-                                                <input type="number" name="delete-id" class="form-control col-md-2"
-                                                    placeholder="id" min="0">
-                                                <button type="button" class="btn btn-primary" name='deleteBtn'
-                                                    style="margin-left:10px;" onclick="deleteLens()">刪除隱眼</button>
-                                            </div>
-                                        </form>
-                                        <form id="rename-form">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">重新命名</span>
-                                                </div>
-                                                <input type="number" name="rename-id" class="form-control col-md-2"
-                                                    placeholder="id" min="0">
-                                                <input type="string" name="rename-name" class="form-control col-md-3"
-                                                    placeholder="新名稱">
-                                                <button type="button" class="btn btn-primary" style="margin-left: 10px;"
-                                                    name='renameBtn' onclick="rename()">重新命名</button>
-                                            </div>
-                                        </form>
+                                    <div class="form-group">
+                                        <label>新密碼</label>
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="按此輸入新密碼">
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label>姓名</label>
+                                        <input type="string" name="name" class="form-control">
+                                    </div>
+                                    <button type="button" name="updateAccountBtn" class="btn btn-primary"
+                                        onclick="updateAccount()">更新</button>
+                                    <button type="button" name="deleteAccountBtn" class="btn btn-danger"
+                                        onclick="deleteAccount()">刪除帳號</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                <!-- 註冊 -->
+                                <form>
+                                    <div class="form-group">
+                                        <label>帳號</label>
+                                        <input type="email" name="account" class="form-control"
+                                            aria-describedby="emailHelp" placeholder="按此輸入帳號">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>密碼</label>
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="按此輸入密碼">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>姓名</label>
+                                        <input type="string" name="name" class="form-control" placeholder="按此輸入姓名">
+                                    </div>
+                                    <button type="button" name='registerBtn' class="btn btn-primary"
+                                        onclick="register()">註冊</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -906,6 +933,8 @@
             console.log('disable')
             $('#upload [name="uploadBtn"]').attr('disabled', true)
         }
+
+        //TODO: updateAccount, deleteAccount
     </script>
 </body>
 
