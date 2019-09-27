@@ -22,10 +22,10 @@
         integrity="sha256-Qfxgn9jULeGAdbaeDjXeIhZB3Ra6NCK3dvjwAG8Y+xU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/TableDnD/0.9.1/jquery.tablednd.js"
         integrity="sha256-d3rtug+Hg1GZPB7Y/yTcRixO/wlI78+2m08tosoRn7A=" crossorigin="anonymous"></script>
 </head>
@@ -34,7 +34,7 @@
     <div class="flex-center position-ref full-height">
         <div class="container">
             <div class="jumbotron mt-4">
-                <h1 class="display-4">寶島隱形眼鏡試戴後臺</h1>
+                <h1 class="display-5">寶島隱形眼鏡試戴後臺</h1>
                 <hr class="my-4">
 
                 <div class="tab-content">
@@ -409,10 +409,12 @@
                 $('#login input').val('') // 清除DOM中的帳密
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
 
-                swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true, renderCards)
+                swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true,
+                    renderCards)
             }).fail(error => {
                 console.log('server login fail')
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                    .responseJSON
                     .error.details)
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
 
@@ -547,7 +549,7 @@
             // start upload
             try {
                 fileData = await parseFile()
-            } catch{
+            } catch {
                 // if rejected
                 btnEnable()
                 return
@@ -599,7 +601,8 @@
                 swalAlert("Upload Success", "", true, renderCards);
             }).fail(error => {
                 console.log(error)
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                    .responseJSON
                     .error.details);
                 btnEnable()
                 swalAlert("Upload Failed", msg, false)
@@ -624,7 +627,8 @@
                     console.log(error)
 
                     //$("#sort-form input").val('')
-                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(
+                        error.responseJSON
                         .error.details)
                     swalAlert("Sort Failed", msg, false)
                     reject()
@@ -667,7 +671,8 @@
             }).fail(error => {
                 console.log(error)
                 $("#delete-form input").val('')
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                    .responseJSON
                     .error)
                 $('#update [name="deleteBtn"]').attr('disabled', false)
                 swalAlert("Delete Failed", msg, false)
@@ -726,7 +731,7 @@
             return (year + month + day).toString()
         }
 
-        function swalAlert(title, html, isSuccess, onAfterClose = (() => { })) {
+        function swalAlert(title, html, isSuccess, onAfterClose = (() => {})) {
             var type = isSuccess ? "success" : "error"
             var msg = isSuccess ? "OK" : "Fine"
             Swal.fire({
@@ -764,7 +769,8 @@
             //console.log(table.tBodies[0].rows)
             //console.log("now row: ", row)
             var newRows = table.tBodies[0].rows
-            var diff_start = 0, diff_end = 1
+            var diff_start = 0,
+                diff_end = 1
             var started = false
             for (var i = 0; i < newRows.length; i++) {
                 console.log("new:", newRows[i].id, "old: ", tableRows[i])
@@ -778,7 +784,7 @@
                 }
             }
 
-            if (newRows[diff_start].id == row.id) {   // row be moved upward
+            if (newRows[diff_start].id == row.id) { // row be moved upward
                 for (var i = 0; i < diff_end - diff_start - 1; i++) {
                     var k = await sort(row.id, newRows[diff_end - 1 - i].id)
                 }
@@ -814,7 +820,8 @@
             var validate = new Promise((resolve, reject) => {
                 var file = $('#upload [name="img"]')[0].files[0]
                 var eleFile = document.querySelector('#file');
-                var reader = new FileReader(), img = new Image();
+                var reader = new FileReader(),
+                    img = new Image();
 
                 var canvas = document.createElement('canvas');
                 var context = canvas.getContext('2d');
@@ -899,7 +906,6 @@
             console.log('disable')
             $('#upload [name="uploadBtn"]').attr('disabled', true)
         }
-
     </script>
 </body>
 
