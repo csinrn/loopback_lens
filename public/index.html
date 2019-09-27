@@ -434,6 +434,9 @@
                 user = response.userProfile
                 $('#userName').text(user.name); // 填入login page 的 user name
                 $('#login input').val('') // 清除DOM中的帳密
+                $('#manage [name="account"]').val(user.id) // 帳號管理：帳號帶入
+                $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
+                $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
 
                 swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true,
