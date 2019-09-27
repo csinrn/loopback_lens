@@ -439,6 +439,8 @@
                 $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
 
+                // TODO: 我要知道他是不是admin然後去選擇性渲染register那個tab
+
                 swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true,
                     renderCards)
             }).fail(error => {
