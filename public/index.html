@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <!-- 樣式 -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-w+8Gqjk9Cuo6XH9HKHG5t5I1VR4YBNdPt/29vwgfZR485eoEJZ8rJRbm3TR32P6k" crossorigin="anonymous">
 
@@ -18,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"
         integrity="sha256-Qfxgn9jULeGAdbaeDjXeIhZB3Ra6NCK3dvjwAG8Y+xU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -307,16 +309,20 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">上架日期</span>
                                                 </div>
-                                                <input type="string" name="license" class="form-control"
+                                                <input type="string" name="launch_at" class="form-control"
                                                     style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                             </div>
                                             <div class="input-group mb-3 col-md-6">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">下架日期</span>
                                                 </div>
-                                                <input type="string" name="license" class="form-control"
+                                                <input type="string" name="remove_at" class="form-control"
                                                     style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                             </div>
+                                            <script>
+                                                $('#upload [name="launch_at"]').datepicker();
+                                                $('#upload [name="remove_at"]').datepicker();
+                                            </script>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-primary" name='uploadBtn'
