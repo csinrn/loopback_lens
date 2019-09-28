@@ -582,7 +582,7 @@
             }).done(response => {
                 // 跳一個美麗的提示
                 $('#register [name="registerBtn"]').attr('disabled', false)
-                swalAlert('Register Success', 'Account: ' + response.account + '<br>Name: ' + response.name,
+                swalAlert('註冊成功', '帳號: ' + response.account + '<br>姓名: ' + response.name,
                     true)
             }).fail(error => {
                 // 如果註冊失敗
@@ -593,7 +593,7 @@
                 else
                     msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
                         .error.details)
-                swalAlert('Register Failed', msg, false)
+                swalAlert('註冊失敗', msg, false)
             });
         }
 
@@ -623,7 +623,7 @@
 
                 // TODO: 我要知道他是不是admin然後去選擇性渲染register那個tab
 
-                swalAlert('Login Success', 'Account: ' + user.id + '<br>Name: ' + user.name, true,
+                swalAlert('登入成功', '帳號: ' + user.id + '<br>姓名: ' + user.name, true,
                     renderCards)
             }).fail(error => {
                 console.log('server login fail')
@@ -632,13 +632,13 @@
                     .error.details)
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
 
-                swalAlert('Login Failed', msg, false)
+                swalAlert('登入失敗', msg, false)
             });
         }
 
         function logout() {
             //Cookies.remove('token');
-            swalAlert("Logout Success", "", true, switchPane(false))
+            swalAlert("登出成功", "", true, switchPane(false))
         }
 
         function rememberToken(token, expireinMs) {
@@ -721,8 +721,8 @@
             if (emptyFields.length != 0) {
                 var names = ''
                 for (var i = 0; i < emptyFields.length; i++)
-                    names += emptyFields[i] + ','
-                swalAlert('Empty Fields', 'Fields: ' + names + ' should be filled', false)
+                    names += emptyFields[i] + ', '
+                swalAlert('欄位為空', '必填欄位: ' + names, false)
                 btnEnable()
                 return
             }
@@ -733,7 +733,7 @@
                 specialPrice = jQuery.trim(specialPrice)
                 eventDisp = jQuery.trim(eventDisp)
                 if (specialPrice == '' || eventDisp == '') {
-                    swalAlert('Empty Fields', 'Special price and description should be filled', false)
+                    swalAlert('欄位為空', '需填寫特價描述', false)
                     btnEnable()
                     return
                 }
@@ -741,29 +741,28 @@
 
             // empty wearing time alert
             if (!checkWearingTime()) {
-                swalAlert('Empty Fields', 'One of the "daily, biweekly, monthly" checkbox should be checked', false)
+                swalAlert('欄位為空', '至少勾選一項「日拋、雙周、月拋」', false)
                 btnEnable()
                 return
             }
 
             // negative number alert
             if (!isAllPositive(specialChecked)) {
-                swalAlert('Value Error', 'All the number should be positive', false)
+                swalAlert('數值錯誤', '數值應為正值', false)
                 btnEnable()
                 return
             }
 
             // powerH < powerL alert
             if (!checkPowerOrder()) {
-                swalAlert('Power Error', 'PowerH need to be higher than PowerL', false)
+                swalAlert('度數區間錯誤', '最大度數應大於最小度數', false)
                 btnEnable()
                 return
             }
 
             // removeAt > launchAt alert
             if (!checkLaunchAndRemoveTime()) {
-                // TODO:
-                swalAlert('Power Error', 'PowerH need to be higher than PowerL', false)
+                swalAlert('上下架時間錯誤', '下架時間應晚於上架時間', false)
                 btnEnable()
                 return
             }
@@ -825,14 +824,14 @@
                 console.log($('#upload [type=checkbox]'))
                 $('#upload [type=checkbox]').prop("checked", false)
                 btnEnable()
-                swalAlert("Upload Success", "", true, renderCards);
+                swalAlert("上傳成功", "", true, renderCards);
             }).fail(error => {
                 console.log(error)
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
                     .responseJSON
                     .error.details);
                 btnEnable()
-                swalAlert("Upload Failed", msg, false)
+                swalAlert("上傳失敗", msg, false)
             })
         }
 
@@ -857,7 +856,7 @@
                     var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(
                         error.responseJSON
                         .error.details)
-                    swalAlert("Sort Failed", msg, false)
+                    swalAlert("排序失敗", msg, false)
                     reject()
                 })
             })
@@ -894,7 +893,7 @@
                 $("#delete-form input").val('')
                 renderCards()
                 $('#update [name="deleteBtn"]').attr('disabled', false)
-                swalAlert("Delete Success", '', true)
+                swalAlert("刪除成功", '', true)
             }).fail(error => {
                 console.log(error)
                 $("#delete-form input").val('')
@@ -902,7 +901,7 @@
                     .responseJSON
                     .error)
                 $('#update [name="deleteBtn"]').attr('disabled', false)
-                swalAlert("Delete Failed", msg, false)
+                swalAlert("刪除失敗", msg, false)
             })
 
         }
@@ -926,13 +925,13 @@
             }).done(response => {
                 $("#rename-form input").val('')
                 $('#update [name="renameBtn"]').attr('disabled', false)
-                swalAlert("Rename Success", "", true, renderCards)
+                swalAlert("重新命名成功", "", true, renderCards)
             }).fail(error => {
                 $("#rename-form input").val('')
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
                     .error.details)
                 $('#update [name="renameBtn"]').attr('disabled', false)
-                swalAlert("Rename Failed", msg, false)
+                swalAlert("重新命名失敗", msg, false)
             })
         }
 
@@ -1050,7 +1049,7 @@
                 }
             }).catch((err) => {
                 console.log(err)
-                swalAlert('Image Error', 'Image not Selected', false)
+                swalAlert('圖片錯誤', '尚未選取照片', false)
             })
         }
 
@@ -1092,7 +1091,7 @@
                 }
             }).then(() => {
                 if (!isAlphaBackground) {
-                    swalAlert('Image Error', 'Please upload an image with transparency', false)
+                    swalAlert('照片錯誤', '請上傳具有透明背景的圖像', false)
                     $('#upload [name="img"]').val('')
                 } else {
                     console.log('4 channel')
