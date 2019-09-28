@@ -1,10 +1,10 @@
-const application = require('./dist');
+application = require('./dist');
 
 module.exports = application;
 
 if (require.main === module) {
   // Run the application
-  const config = {
+  config = {
     rest: {
       port: +(process.env.PORT || 3000),   //loopback server port
       host: 'localhost', //process.env.HOST,    // user ip
@@ -14,7 +14,7 @@ if (require.main === module) {
       },
     },
   };
-  application.main(config).catch(err => {
+  application.main(config).catch(function (err) {
     console.error('Cannot start the application.', err);
     process.exit(1);
   });
