@@ -132,8 +132,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-
-
                                     <div name="form-div" class="col-md-7">
                                         <form>
                                             <div class="row">
@@ -219,7 +217,7 @@
                                                         <span class="input-group-text">新增圖片</span>
                                                         <input type="file" name="img" accept=".png" data-url=""
                                                             style="align-self: center; margin-left: 2%"
-                                                            onchange="checkAlpha()">
+                                                            onchange="checkAlpha2()">
                                                     </div>
                                                 </div>
                                             </div>
@@ -313,7 +311,9 @@
                                                 </script>
                                             </div>
                                             <button type="button" class="btn btn-primary" name="uploadBtn"
-                                                onclick="upload()">更新</button>
+                                                onclick="updateLens()">更新隱型眼鏡</button>
+                                            <button type="button" class="btn btn-danger" name="uploadBtn"
+                                                onclick="deleteLens()">刪除隱形眼鏡</button>
                                         </form>
                                     </div>
                                 </div>
@@ -708,14 +708,20 @@
             console.log(date)
 
             // fields empty alert
-            var inputs = $('#upload input[attr!="optional"]')
+            var inputs = $('#upload .input-group')
             var emptyFields = []
 
             for (var i = 0; i < inputs.length; i++) {
-                var val = $('#upload [name="' + inputs[i].name + '"]').val()
+                // 如果這個輸入框不是必填，那就跳過
+                var input = $(inputs[i]).find('input[attr != "optional"]')
+                if (input.length == 0)
+                    continue
+                // 這個輸入框是必填
+                var val = $(input[0]).val()
                 val = jQuery.trim(val)
+                // 這個輸入框是必填，但使用者沒有填
                 if (val == '')
-                    emptyFields.push(inputs[i].name)
+                    emptyFields.push($(inputs[i]).find('.input-group-text')[0].textContent)
             }
 
             if (emptyFields.length != 0) {
@@ -906,32 +912,145 @@
 
         }
 
-        function rename() { // 重新命名
-            $('#update [name="renameBtn"]').attr('disabled', true)
+        async function updateLens(btn) { //更新隱眼
 
-            var url = serverURL + '/lens/' + $('#update [name="rename-id"]').val().toString() + '/name'
-            var data = {
-                name: $('#update [name="rename-name"]').val()
+            btnDisable()
+
+            var specialChecked = $('#update [name="onsaleTag"]').is(':checked')
+            var date = nowDate()
+            console.log(date)
+
+            // fields empty alert
+            var inputs = $('#update .input-group')
+            var emptyFields = []
+
+            for (var i = 0; i < inputs.length; i++) {
+                // 如果這個輸入框不是必填，那就跳過
+                var input = $(inputs[i]).find('input[attr != "optional"]')
+                if (input.length == 0)
+                    continue
+                // 這個輸入框是必填
+                var val = $(input[0]).val()
+                val = jQuery.trim(val)
+                // 這個輸入框是必填，但使用者沒有填
+                if (val == '')
+                    emptyFields.push($(inputs[i]).find('.input-group-text')[0].textContent)
             }
+
+            if (emptyFields.length != 0) {
+                var names = ''
+                for (var i = 0; i < emptyFields.length; i++)
+                    names += emptyFields[i] + ', '
+                swalAlert('欄位為空', '必填欄位: ' + names, false)
+                btnEnable()
+                return
+            }
+
+            if (specialChecked) {
+                var specialPrice = $('#update [name="specialPrice"]').val()
+                var eventDisp = $('#update [name="eventDisp"]').val()
+                specialPrice = jQuery.trim(specialPrice)
+                eventDisp = jQuery.trim(eventDisp)
+                if (specialPrice == '' || eventDisp == '') {
+                    swalAlert('欄位為空', '需填寫特價描述', false)
+                    btnEnable()
+                    return
+                }
+            }
+
+            // empty wearing time alert
+            if (!checkWearingTime2()) {
+                swalAlert('欄位為空', '至少勾選一項「日拋、雙周、月拋」', false)
+                btnEnable()
+                return
+            }
+
+            // negative number alert
+            if (!isAllPositive2(specialChecked)) {
+                swalAlert('數值錯誤', '數值應為正值', false)
+                btnEnable()
+                return
+            }
+
+            // powerH < powerL alert
+            if (!checkPowerOrder2()) {
+                swalAlert('度數區間錯誤', '最大度數應大於最小度數', false)
+                btnEnable()
+                return
+            }
+
+            // removeAt > launchAt alert
+            if (!checkLaunchAndRemoveTime2()) {
+                swalAlert('上下架時間錯誤', '下架時間應晚於上架時間', false)
+                btnEnable()
+                return
+            }
+
+            // start update
+            try {
+                fileData = await parseFile()
+            } catch {
+                // if rejected
+                btnEnable()
+                return
+            }
+            var data = {
+                name: $('#update [name="name"]').val(),
+                diameter: parseInt($('#update [name="diameter"]').val()),
+                bc: parseInt($('#update [name="bc"]').val()), //弧度
+                powerL: parseInt($('#update [name="powerL"]').val()), //度數
+                powerH: parseInt($('#update [name="powerH"]').val()), //度數
+                water: parseInt($('#update [name="water"]').val()), //含水量
+                daily: $('#update [name="daily"]').is(':checked') ? 1 : 0,
+                biweekly: $('#update [name="biweekly"]').is(':checked') ? 1 : 0,
+                monthly: $('#update [name="monthly"]').is(':checked') ? 1 : 0,
+                placeOfProd: $('#update [name="placeOfProd"]').val(), // 產地
+                price: parseInt($('#update [name="price"]').val()),
+                package: parseInt($('#update [name="package"]').val()),
+                specialPrice: parseInt($('#update [name="specialPrice"]').val()), // optional
+                eventDisp: $('#update [name="eventDisp"]').val(), // 活動敘述 optional
+                license: $('#update [name="license"]').val(), // 許可證字號
+                newTag: $('#update [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
+                hotsaleTag: $('#update [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
+                onsaleTag: $('#update [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
+                // FIXME: 這邊createAt可能不用傳送了，因為上架時間和下架時間分別都有input了
+                // FIXME: 然後launchAt和removeAt的格式我不知道怎麼傳到你後端比較好，你再看看怎麼parse
+                // FIXME: 他這邊的格式就是js的Date物件，這樣你應該可以比較方便parse成你要的東西
+                launchAt: $('#update [name="launch_at"]').datepicker('getDate'), // 上架時間
+                removeAt: $('#update [name="remove_at"]').datepicker('getDate'), // 下架時間
+                createAt: date, // 上架時間  需為 "190303" 格式的日期字串
+                url: fileData
+            }
+
+            if (!specialChecked) {
+                data.specialPrice = undefined
+                data.eventDisp = undefined
+                console.log(data)
+            }
+
             data = JSON.stringify(data)
+            console.log(data)
             $.ajax({
-                url: url, // 你的api
-                type: 'PATCH',
-                data: data,
+                url: serverURL + '/lens',
+                type: "PATCH",
                 contentType: "application/json",
+                data: data,
                 //beforeSend: xhr => {
                 //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
                 //}
             }).done(response => {
-                $("#rename-form input").val('')
-                $('#update [name="renameBtn"]').attr('disabled', false)
-                swalAlert("重新命名成功", "", true, renderCards)
+                $('#update input').val('')
+                console.log($('#update [type=checkbox]'))
+                $('#update [type=checkbox]').prop("checked", false)
+                btnEnable()
+                swalAlert("上傳成功", "", true, renderCards);
             }).fail(error => {
-                $("#rename-form input").val('')
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details)
-                $('#update [name="renameBtn"]').attr('disabled', false)
-                swalAlert("重新命名失敗", msg, false)
+                console.log(error)
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                    .responseJSON
+                    .error.details);
+                btnEnable()
+                swalAlert("上傳失敗", msg, false)
             })
         }
 
@@ -1099,10 +1218,67 @@
             })
         }
 
+        async function checkAlpha2() {
+            var isAlphaBackground = false
+
+            var validate = new Promise((resolve, reject) => {
+                var file = $('#update [name="img"]')[0].files[0]
+                var eleFile = document.querySelector('#file');
+                var reader = new FileReader(),
+                    img = new Image();
+
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+
+                reader.readAsDataURL(file)
+                reader.onload = (e) => {
+                    img.src = e.target.result;
+                }
+
+                img.onload = function () {
+                    var originWidth = this.width;
+                    var originHeight = this.height;
+                    canvas.width = originWidth;
+                    canvas.height = originHeight;
+
+                    context.clearRect(0, 0, originWidth, originHeight);
+                    context.drawImage(img, 0, 0);
+                    var imageData = context.getImageData(0, 0, originWidth, originHeight).data;
+                    isAlphaBackground = false;
+                    for (var index = 3; index < imageData.length; index += 4) {
+                        if (imageData[index] != 255) {
+                            isAlphaBackground = true;
+                            break;
+                        }
+                    }
+                    resolve()
+                    // isAlphaBackground就是最后石头有透明或半透明背景色的结果
+                }
+            }).then(() => {
+                if (!isAlphaBackground) {
+                    swalAlert('照片錯誤', '請上傳具有透明背景的圖像', false)
+                    $('#update [name="img"]').val('')
+                } else {
+                    console.log('4 channel')
+                }
+            })
+        }
+
         function checkWearingTime() {
             var daily = $('#upload [name="daily"]').is(':checked')
             var biweekly = $('#upload [name="biweekly"]').is(':checked')
             var monthly = $('#upload [name="monthly"]').is(':checked')
+            if (!(daily || biweekly || monthly)) {
+                return false
+            } else {
+                return true
+            }
+        }
+
+        function checkWearingTime2() {
+            var daily = $('#update [name="daily"]').is(':checked')
+            var biweekly = $('#update [name="biweekly"]').is(':checked')
+            var monthly = $('#update [name="monthly"]').is(':checked')
             if (!(daily || biweekly || monthly)) {
                 return false
             } else {
@@ -1128,6 +1304,24 @@
             return allPositive
         }
 
+        function isAllPositive2(special) {
+            var diameter = parseInt($('#update [name="diameter"]').val()),
+                bc = parseInt($('#update [name="bc"]').val()), //弧度
+                powerL = parseInt($('#update [name="powerL"]').val()), //度數
+                powerH = parseInt($('#update [name="powerH"]').val()), //度數
+                water = parseInt($('#update [name="water"]').val()), //含水量
+                price = parseInt($('#update [name="price"]').val()),
+                pkg = parseInt($('#update [name="package"]').val()),
+                specialPrice = parseInt($('#update [name="specialPrice"]').val()); // optional
+
+            var allPositive = diameter > 0 && bc > 0 && powerL > 0 && powerH > 0 && water > 0 &&
+                price > 0 && pkg > 0
+            if (special) {
+                allPositive = allPositive && specialPrice > 0
+            }
+            return allPositive
+        }
+
         function checkPowerOrder() {
             var powerH = parseInt($('#upload [name="powerH"]').val()),
                 powerL = parseInt($('#upload [name="powerL"]').val());
@@ -1136,9 +1330,24 @@
             return (powerH >= powerL)
         }
 
+        function checkPowerOrder2() {
+            var powerH = parseInt($('#update [name="powerH"]').val()),
+                powerL = parseInt($('#update [name="powerL"]').val());
+            console.log('powerH', powerH, 'powerL', powerL)
+
+            return (powerH >= powerL)
+        }
+
         function checkLaunchAndRemoveTime() {
             var launchAt = $('#upload [name="launch_at"]').datepicker('getDate'),
                 removeAt = $('#upload [name="remove_at"]').datepicker('getDate');
+
+            return (removeAt >= launchAt)
+        }
+
+        function checkLaunchAndRemoveTime2() {
+            var launchAt = $('#update [name="launch_at"]').datepicker('getDate'),
+                removeAt = $('#update [name="remove_at"]').datepicker('getDate');
 
             return (removeAt >= launchAt)
         }
