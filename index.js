@@ -1,10 +1,10 @@
-application = require('./dist');
+const application = require('./dist');
 
 module.exports = application;
 
 if (require.main === module) {
   // Run the application
-  config = {
+  const config = {
     rest: {
       port: +(process.env.PORT || 3000),   //loopback server port
       host: 'localhost', //process.env.HOST,    // user ip
