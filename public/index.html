@@ -289,30 +289,28 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="input-group col-md-12 mb-3">
-                                                    <div class="input-group mb-3 col-md-6 pl-0">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">上架日期</span>
-                                                        </div>
-                                                        <input type="string" name="launch_at" class="form-control"
-                                                            style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                <div class="input-group mb-3 col-md-6">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">上架日期</span>
                                                     </div>
-                                                    <div class="input-group mb-3 col-md-6">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">下架日期</span>
-                                                        </div>
-                                                        <input type="string" name="remove_at" class="form-control"
-                                                            style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                                                    </div>
-                                                    <script>
-                                                        $('#update [name="launch_at"]').datepicker({
-                                                            dateFormat: "yy/mm/dd"
-                                                        });
-                                                        $('#update [name="remove_at"]').datepicker({
-                                                            dateFormat: "yy/mm/dd"
-                                                        });
-                                                    </script>
+                                                    <input type="string" name="launch_at" class="form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                                 </div>
+                                                <div class="input-group mb-3 col-md-6">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">下架日期</span>
+                                                    </div>
+                                                    <input type="string" name="remove_at" class="form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                                <script>
+                                                    $('#update [name="launch_at"]').datepicker({
+                                                        dateFormat: "yy/mm/dd"
+                                                    });
+                                                    $('#update [name="remove_at"]').datepicker({
+                                                        dateFormat: "yy/mm/dd"
+                                                    });
+                                                </script>
                                             </div>
                                             <button type="button" class="btn btn-primary" name="uploadBtn"
                                                 onclick="upload()">更新</button>
@@ -462,30 +460,28 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="input-group col-md-12 mb-3">
-                                            <div class="input-group mb-3 col-md-6 pl-0">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">上架日期</span>
-                                                </div>
-                                                <input type="string" name="launch_at" class="form-control"
-                                                    style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                        <div class="input-group mb-3 col-md-6">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">上架日期</span>
                                             </div>
-                                            <div class="input-group mb-3 col-md-6">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">下架日期</span>
-                                                </div>
-                                                <input type="string" name="remove_at" class="form-control"
-                                                    style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                                            </div>
-                                            <script>
-                                                $('#upload [name="launch_at"]').datepicker({
-                                                    dateFormat: "yy/mm/dd"
-                                                });
-                                                $('#upload [name="remove_at"]').datepicker({
-                                                    dateFormat: "yy/mm/dd"
-                                                });
-                                            </script>
+                                            <input type="string" name="launch_at" class="form-control"
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
+                                        <div class="input-group mb-3 col-md-6">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">下架日期</span>
+                                            </div>
+                                            <input type="string" name="remove_at" class="form-control"
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                        </div>
+                                        <script>
+                                            $('#upload [name="launch_at"]').datepicker({
+                                                dateFormat: "yy/mm/dd"
+                                            });
+                                            $('#upload [name="remove_at"]').datepicker({
+                                                dateFormat: "yy/mm/dd"
+                                            });
+                                        </script>
                                     </div>
                                     <button type="button" class="btn btn-primary" name="uploadBtn"
                                         onclick="upload()">新增</button>
