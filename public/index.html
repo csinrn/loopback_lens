@@ -135,29 +135,187 @@
 
 
                                     <div name="form-div" class="col-md-7">
-                                        <form id="delete-form">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">刪除隱眼</span>
+                                        <form>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">品名</span>
+                                                    </div>
+                                                    <input type="string" name="name" class="form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                                 </div>
-                                                <input type="number" name="delete-id" class="form-control col-md-2"
-                                                    placeholder="id" min="0">
-                                                <button type="button" class="btn btn-primary" name="deleteBtn"
-                                                    style="margin-left:10px;" onclick="deleteLens()">刪除隱眼</button>
-                                            </div>
-                                        </form>
-                                        <form id="rename-form">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">重新命名</span>
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">產地</span>
+                                                    </div>
+                                                    <input type="string" name="placeOfProd" class="form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                                 </div>
-                                                <input type="number" name="rename-id" class="form-control col-md-2"
-                                                    placeholder="id" min="0">
-                                                <input type="string" name="rename-name" class="form-control col-md-3"
-                                                    placeholder="新名稱">
-                                                <button type="button" class="btn btn-primary" style="margin-left: 10px;"
-                                                    name="renameBtn" onclick="rename()">重新命名</button>
                                             </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">許可證字號</span>
+                                                    </div>
+                                                    <input type="string" name="license" class="form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">直徑</span>
+                                                    </div>
+                                                    <input type="number" name="diameter" class="form-control" min="0"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">弧度</span>
+                                                    </div>
+                                                    <input type="number" name="bc" class="form-control" min="0"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">價格</span>
+                                                    </div>
+                                                    <input type="number" name="price" class="form-control" min="0"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">隱眼數/盒</span>
+                                                    </div>
+                                                    <input type="number" name="package" class="form-control" min="1"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">含水量</span>
+                                                    </div>
+                                                    <input type="number" name="water" class="form-control" min="0"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                                <div class="input-group mb-3 col-md-7">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">度數區間</span>
+                                                    </div>
+                                                    <input type="number" name="powerL" class="form-control"
+                                                        placeholder="最小" min="0"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                    <input type="number" name="powerH" class="form-control"
+                                                        placeholder="最大" min="0"
+                                                        style="border-left: 10; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">新增圖片</span>
+                                                        <input type="file" name="img" accept=".png" data-url=""
+                                                            style="align-self: center; margin-left: 2%"
+                                                            onchange="checkAlpha()">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md">
+                                                    ＊圖片須為png檔且具備透明度資訊
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span>特價</span>
+                                                    </div>
+                                                    <input type="checkbox" name="onsaleTag" class="form-control"
+                                                        onchange="onSpecialChanged2(this.checked)" attr="optional">
+                                                </div>
+                                                <div class="input-group mb-3 col-md invisible" name="special">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">特惠價</span>
+                                                    </div>
+                                                    <input type="number" name="specialPrice" class="form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;"
+                                                        attr="optional">
+                                                </div>
+                                            </div>
+                                            <div class="row" style="height: 0" id="row_eventDisp">
+                                                <div class="input-group mb-3 col-md invisible" name="special">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">活動敘述</span>
+                                                    </div>
+                                                    <input type="string" name="eventDisp" class="form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;"
+                                                        attr="optional">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group col-md mb-3">
+                                                    <div class=" input-group-prepend">
+                                                        <span>熱銷產品</span>
+                                                    </div>
+                                                    <input type="checkbox" name="hotsaleTag" class="form-control"
+                                                        style="margin-right: 5%" attr="optional">
+                                                    <div class="input-group-prepend">
+                                                        <span>新品上市</span>
+                                                    </div>
+                                                    <input type="checkbox" name="newTag" class="form-control"
+                                                        style="margin-right: 5%" attr="optional">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group col-md mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span>日拋</span>
+                                                    </div>
+                                                    <input type="checkbox" name="daily" class="form-control" style="
+                                                        margin-right: 5%" attr="optional">
+                                                    <div class="input-group-prepend">
+                                                        <span>雙周拋</span>
+                                                    </div>
+                                                    <input type="checkbox" name="biweekly" class="form-control" style="
+                                                    margin-right: 5%" attr="optional">
+                                                    <div class="input-group-prepend">
+                                                        <span>月拋</span>
+                                                    </div>
+                                                    <input type="checkbox" name="monthly" class="form-control"
+                                                        attr="optional">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group col-md-12 mb-3">
+                                                    <div class="input-group mb-3 col-md-6 pl-0">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">上架日期</span>
+                                                        </div>
+                                                        <input type="string" name="launch_at" class="form-control"
+                                                            style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                    </div>
+                                                    <div class="input-group mb-3 col-md-6">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">下架日期</span>
+                                                        </div>
+                                                        <input type="string" name="remove_at" class="form-control"
+                                                            style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                    </div>
+                                                    <script>
+                                                        $('#update [name="launch_at"]').datepicker({
+                                                            dateFormat: "yy/mm/dd"
+                                                        });
+                                                        $('#update [name="remove_at"]').datepicker({
+                                                            dateFormat: "yy/mm/dd"
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary" name="uploadBtn"
+                                                onclick="upload()">更新</button>
                                         </form>
                                     </div>
                                 </div>
@@ -788,6 +946,19 @@
             } else {
                 $('#upload [name="special"] input').val('')
                 $('#upload [name="special"]').addClass('invisible')
+            }
+        }
+
+        function onSpecialChanged2(checked) {
+            //console.log(changed)
+            if (checked) {
+                $('#update [name="special"]').removeClass('invisible')
+                $('#update #row_eventDisp').css('height', '')
+
+            } else {
+                $('#update [name="special"] input').val('')
+                $('#update [name="special"]').addClass('invisible')
+                $('#update #row_eventDisp').css('height', 0)
             }
         }
 
