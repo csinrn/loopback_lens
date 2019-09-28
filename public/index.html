@@ -320,8 +320,12 @@
                                                     style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                             </div>
                                             <script>
-                                                $('#upload [name="launch_at"]').datepicker();
-                                                $('#upload [name="remove_at"]').datepicker();
+                                                $('#upload [name="launch_at"]').datepicker({
+                                                    dateFormat: "yy/mm/dd"
+                                                });
+                                                $('#upload [name="remove_at"]').datepicker({
+                                                    dateFormat: "yy/mm/dd"
+                                                });
                                             </script>
                                         </div>
                                     </div>
@@ -601,6 +605,13 @@
                 return
             }
 
+            // removeAt > launchAt alert
+            if (!checkLaunchAndRemoveTime()) {
+                // TODO:
+                swalAlert('Power Error', 'PowerH need to be higher than PowerL', false)
+                btnEnable()
+                return
+            }
 
             // start upload
             try {
@@ -629,6 +640,11 @@
                 newTag: $('#upload [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 hotsaleTag: $('#upload [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 onsaleTag: $('#upload [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
+                // FIXME: 這邊createAt可能不用傳送了，因為上架時間和下架時間分別都有input了
+                // FIXME: 然後launchAt和removeAt的格式我不知道怎麼傳到你後端比較好，你再看看怎麼parse
+                // FIXME: 他這邊的格式就是js的Date物件，這樣你應該可以比較方便parse成你要的東西
+                launchAt: $('#upload [name="launch_at"]').datepicker('getDate'), // 上架時間
+                removeAt: $('#upload [name="remove_at"]').datepicker('getDate'), // 下架時間
                 createAt: date, // 上架時間  需為 "190303" 格式的日期字串
                 url: fileData
             }
@@ -953,6 +969,13 @@
             return (powerH >= powerL)
         }
 
+        function checkLaunchAndRemoveTime() {
+            var launchAt = $('#upload [name="launch_at"]').datepicker('getDate'),
+                removeAt = $('#upload [name="remove_at"]').datepicker('getDate');
+
+            return (removeAt >= launchAt)
+        }
+
         function btnEnable() {
             console.log('enable')
             $('#upload [name="uploadBtn"]').attr('disabled', false)
@@ -963,7 +986,7 @@
             $('#upload [name="uploadBtn"]').attr('disabled', true)
         }
 
-        //TODO: updateAccount, deleteAccount
+        //TODO: updateAccount(), deleteAccount()
     </script>
 </body>
 
