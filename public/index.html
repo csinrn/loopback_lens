@@ -671,16 +671,17 @@
                 $('#update [name="table-id"]').empty()
                 var thead = `<thead>
                                 <tr>
-                                    <td style="width: 20%">id</td>
+                                    <td style="width: 20%">no</td>
                                     <td>品名</td>
                                 </tr>
                             </thead>`
                 var tbody = '<tbody>'
+                var index = 1
                 response.forEach(lens => {
                     tbody += '<tr id="'
                     tbody += lens.id.toString()
                     tbody += '">'
-                    tbody += '<td>' + lens.id.toString() + '</td>'
+                    tbody += '<td>' + index++ + '</td>'
                     tbody += '<td>' + lens.name + '</td>'
                     tbody += '</tr>'
                 });
