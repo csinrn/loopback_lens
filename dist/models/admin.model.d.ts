@@ -4,6 +4,7 @@ export declare class Admin extends Entity {
     password: string;
     createAt: string;
     name: string;
+    isAdmin: number;
     [prop: string]: any;
     constructor(data?: Partial<Admin>);
 }

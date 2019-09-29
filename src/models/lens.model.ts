@@ -199,6 +199,14 @@ export class Lens extends Entity {
   })
   url?: string;
 
+  @property({
+    type: 'number',
+    precision: 3,
+    scale: 0,
+    mysql: { "columnName": "part", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+  })
+  part: number;
+
   // Define well-known properties here
 
   // Indexer property to allow additional data

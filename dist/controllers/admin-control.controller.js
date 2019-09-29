@@ -31,10 +31,10 @@ let AdminControlController = class AdminControlController {
         this.userService = userService;
     }
     async create(admin) {
-        console.log(admin);
         // ensure a valid account value and password value
         validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
         validator_1.validateDate(admin.createAt);
+        validator_1.validateBoolean(admin.isAdmin, "isAdmin");
         // encrypt the password
         admin.password = await this.passwordHasher.hashPassword(admin.password);
         // create the new user

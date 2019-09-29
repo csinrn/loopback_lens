@@ -23,6 +23,7 @@ export declare class Lens extends Entity {
     createAt: string;
     updateAt?: string;
     url?: string;
+    part: number;
     [prop: string]: any;
     constructor(data?: Partial<Lens>);
 }

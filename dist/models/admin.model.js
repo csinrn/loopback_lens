@@ -51,6 +51,15 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Admin.prototype, "name", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: true,
+        length: 50,
+        mysql: { "columnName": "is_Admin", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Admin.prototype, "isAdmin", void 0);
 Admin = __decorate([
     repository_1.model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'admin' } } }),
     __metadata("design:paramtypes", [Object])

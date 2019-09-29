@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `account` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `create_at` date NOT NULL,
+  `is_admin` tinyint(4) NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`account`),
   UNIQUE KEY `account` (`account`)
@@ -28,16 +29,20 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 -- Dumping data for table fmo_lensdb.admin: ~0 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` (`account`, `password`, `create_at`, `name`) VALUES
-	('444', '$2a$10$mVoirp3MPBDA2Ty/h5.Zhu.tXkf39L9DnmsjeK0M3QrFnlUE/PTTK', '2019-09-26', '叉叉'),
-	('qwe', '$2a$10$.881muRUU5c2uCPeTbif0OQvHpKIbvjncUTWNDz89MCav3.e6Aslu', '2019-08-29', 'qwe');
+INSERT INTO `admin` (`account`, `password`, `create_at`, `is_admin`, `name`) VALUES
+	('33333333', '$2a$10$n0BsjiMVeEQa895LUQSvc.4kD8JAuxNP5F5XlVuVJeBifb1cPRf8K', '2019-09-29', 0, '6666'),
+	('444', '$2a$10$mVoirp3MPBDA2Ty/h5.Zhu.tXkf39L9DnmsjeK0M3QrFnlUE/PTTK', '2019-09-26', 0, '叉叉'),
+	('4444', '$2a$10$eReuQLBsuEscfbNlvZt0P.7Ml0f6zr.KBUVp7tfSswitA/eXF8ihq', '2019-09-29', 1, '6666'),
+	('eee', '$2a$10$eecAEIhBKpYO84ZFCYSRjuLh4Uk9sCBdAwnhKLQAQ68fxFIIWD2Ri', '2019-09-29', 1, 'eeee'),
+	('qwe', '$2a$10$.881muRUU5c2uCPeTbif0OQvHpKIbvjncUTWNDz89MCav3.e6Aslu', '2019-08-29', 0, 'qwe'),
+	('rrrr', '$2a$10$8ThDOrjsKnwepj0KcB04KuNW/u99RyqLT1dgeuj1M/MGCfMu/tsXG', '2019-09-26', 0, 'er');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table fmo_lensdb.lens
 CREATE TABLE IF NOT EXISTS `lens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `no` int(10) NOT NULL,
+  `no` int(10) DEFAULT NULL,
   `diameter` float unsigned NOT NULL,
   `BC` float unsigned NOT NULL,
   `powerL` int(11) unsigned NOT NULL,
@@ -58,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `lens` (
   `create_at` date NOT NULL,
   `update_at` date DEFAULT NULL,
   `url` varchar(50) NOT NULL,
+  `part` tinyint(3) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `no` (`no`)
@@ -65,16 +71,16 @@ CREATE TABLE IF NOT EXISTS `lens` (
 
 -- Dumping data for table fmo_lensdb.lens: ~9 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
-INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
-	(38, '星空灰', 3, 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13', NULL, '/lensPic/星空灰.png'),
-	(39, '星空棕', 0, 15, 17, 500, 1000, 20, 1, 0, 0, '台灣', 3500, 10, 2500, '開幕優惠', 'L12345', 1, 1, 1, '2019-09-13', NULL, '/lensPic/星空棕.png'),
-	(40, '香檳金', 1, 13, 17, 0, 50, 50, 1, 0, 1, '馬來西亞', 200, 10, 150, '打折', 'L78910', 0, 0, 1, '2019-09-13', NULL, '/lensPic/香檳金.png'),
-	(41, '栗子蒙布朗', 2, 13, 17, 1000, 1500, 50, 1, 0, 1, '馬來西亞', 2000, 3, NULL, NULL, 'L78910', 0, 1, 0, '2019-09-13', '2021-09-13', '/lensPic/栗子蒙布朗.png'),
-	(42, '甜心灰', 4, 13, 17, 100, 500, 50, 0, 1, 0, '巴西', 200, 1, NULL, NULL, 'L78910', 1, 0, 0, '2019-09-13', NULL, '/lensPic/甜心灰.png'),
-	(43, '馬卡龍灰', 7, 10, 7, 900, 1000, 24, 0, 1, 0, '印度', 900, 30, 500, '情人節促銷活動', 'L78910', 1, 0, 1, '2019-09-13', NULL, '/lensPic/馬卡龍灰.png'),
-	(44, '楓糖奶茶', 6, 10, 7, 900, 1000, 24, 1, 0, 0, '美國', 400, 30, NULL, NULL, 'B333777', 1, 1, 0, '2019-09-13', '2019-09-14', '/lensPic/楓糖奶茶.png'),
-	(45, '焦糖布蕾', 5, 20, 6, 100, 200, 10, 1, 0, 0, '日本', 700, 20, NULL, NULL, 'B34567', 0, 1, 0, '2019-09-13', NULL, '/lensPic/焦糖布蕾.png'),
-	(46, '幕斯可可', 8, 13, 10, 50, 100, 20, 1, 0, 0, '北極', 3000, 3, NULL, NULL, 'K123456', 0, 1, 0, '2019-09-13', NULL, '/lensPic/幕斯可可.png');
+INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`, `part`) VALUES
+	(38, '星空灰', 3, 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13', NULL, '/lensPic/星空灰.png', 0),
+	(39, '星空棕', 0, 15, 17, 500, 1000, 20, 1, 0, 0, '台灣', 3500, 10, 2500, '開幕優惠', 'L12345', 1, 1, 1, '2019-09-13', NULL, '/lensPic/星空棕.png', 0),
+	(40, '香檳金', 1, 13, 17, 0, 50, 50, 1, 0, 1, '馬來西亞', 200, 10, 150, '打折', 'L78910', 0, 0, 1, '2019-09-13', NULL, '/lensPic/香檳金.png', 0),
+	(41, '栗子蒙布朗', 2, 13, 17, 1000, 1500, 50, 1, 0, 1, '馬來西亞', 2000, 3, NULL, NULL, 'L78910', 0, 1, 0, '2019-09-13', '2021-09-13', '/lensPic/栗子蒙布朗.png', 0),
+	(42, '甜心灰', 7, 13, 17, 100, 500, 50, 0, 1, 0, '巴西', 200, 1, NULL, NULL, 'L78910', 1, 0, 0, '2019-09-13', NULL, '/lensPic/甜心灰.png', 0),
+	(43, '馬卡龍灰', 8, 10, 7, 900, 1000, 24, 0, 1, 0, '印度', 900, 30, 500, '情人節促銷活動', 'L78910', 1, 0, 1, '2019-09-13', NULL, '/lensPic/馬卡龍灰.png', 0),
+	(44, '楓糖奶茶', 5, 10, 7, 900, 1000, 24, 1, 0, 0, '美國', 400, 30, NULL, NULL, 'B333777', 1, 1, 0, '2019-09-13', '2019-09-14', '/lensPic/楓糖奶茶.png', 0),
+	(45, '焦糖布蕾', 4, 20, 6, 100, 200, 10, 1, 0, 0, '日本', 700, 20, NULL, NULL, 'B34567', 0, 1, 0, '2019-09-13', NULL, '/lensPic/焦糖布蕾.png', 0),
+	(46, '幕斯可可', 6, 13, 10, 50, 100, 20, 1, 0, 0, '北極', 3000, 3, NULL, NULL, 'K123456', 0, 1, 0, '2019-09-13', NULL, '/lensPic/幕斯可可.png', 0);
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

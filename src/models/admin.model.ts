@@ -34,6 +34,14 @@ export class Admin extends Entity {
   })
   name: string;
 
+  @property({
+    type: 'number',
+    required: true,
+    length: 50,
+    mysql: { "columnName": "is_Admin", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+  })
+  isAdmin: number;
+
   // Define well-known properties here
 
   // Indexer property to allow additional data
