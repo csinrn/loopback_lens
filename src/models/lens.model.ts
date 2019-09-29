@@ -186,15 +186,15 @@ export class Lens extends Entity {
 
   @property({
     type: 'string',
-    required: false,
-    mysql: { "columnName": "launch_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+    required: true,
+    mysql: { "columnName": "launch_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   launchAt?: string;
 
   @property({
     type: 'string',
-    required: false,
-    mysql: { "columnName": "remove_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+    required: true,
+    mysql: { "columnName": "remove_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   removeAt?: string;
 
@@ -210,9 +210,9 @@ export class Lens extends Entity {
     type: 'number',
     precision: 3,
     scale: 0,
-    mysql: { "columnName": "part", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "state", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
   })
-  part: number;
+  state: number;
 
   // Define well-known properties here
 
