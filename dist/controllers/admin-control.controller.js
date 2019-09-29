@@ -62,6 +62,7 @@ let AdminControlController = class AdminControlController {
     }
     //@authenticate('jwt')
     async updateById(id, admin) {
+        validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
         await this.adminRepository.updateById(id, admin);
     }
     //@authenticate('jwt')

@@ -567,6 +567,7 @@
         var ip = "localhost"
         var serverURL = 'http://' + ip + ':3000'
         var tableRows = []
+        var isAdmin = false
 
         function register() {
             $('#register [name="registerBtn"]').attr('disabled', true)
@@ -628,7 +629,7 @@
                 $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
                 $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
-
+                isAdmin = user.isAdmin
                 // TODO: 我要知道他是不是admin然後去選擇性渲染register那個tab
 
                 swalAlert('登入成功', '帳號: ' + user.id + '<br>姓名: ' + user.name, true,
@@ -1382,6 +1383,11 @@
 
         //TODO: updateAccount(), deleteAccount()
         function updateAccount() {
+            // check if the user is changing self data
+            if (!$('#manage [name="name"]').val() == $('#username').val()) {
+                swalAlert('更新失敗', '只能更新自己的資料', false)
+                return
+            }
             $('#manage [name="updateAccountBtn"]').attr('disabled', true)
             console.log(jQuery.trim($('#manage [name="account"]').val()), $('#manage [name="account"]').val())
             var data = {
@@ -1419,6 +1425,10 @@
         }
 
         function deleteAccount() {
+            if (!(isAdmin || ($('#manage [name="name"]').val() == $('#username').val()))) {
+                swalAlert('刪除帳號錯誤', '無法刪除他人帳號', false)
+                return
+            }
             $('#manage [name="deleteAccountBtn"]').attr('disabled', true)
             var account = $('#manage [name="account"]').val()
             account = jQuery.trim(account)

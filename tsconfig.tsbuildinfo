@@ -1457,7 +1457,7 @@
         "signature": "bbf144d4354e2aaa6439f32761f3ee798cc68d1600adab6e2a596f25269f106d"
       },
       "d:/eye-demo/lens/src/controllers/admin-control.controller.ts": {
-        "version": "503cfa7885fc743987aac385154c3ee2bbca156072b092f7745862c7e96b417a",
+        "version": "a44c60c8b62062dcfff561e946d570ecbd5fe6a6ca440ddb204ea4f8bd1e0289",
         "signature": "1810359824b2d503f947b590e39fa8134a483c4a448044629b39cd14be3e0c79"
       },
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": {
@@ -1465,7 +1465,7 @@
         "signature": "298dcf42626620a1d183c7a1d1f08ad2311840ec09f9512d57335dd1c7d9fc72"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "e465a0972fba59b46fb2fdd235ffce107a8cc4b62985e2561ff639649870277e",
+        "version": "2fb2364cb796f5d2c8ca1e84747eb3c59b4e529e0f236bf26b409c8d49485d1e",
         "signature": "286615d723e43abf1c82b8452227185f37a0cbaf1d4d3c31505c31b74a9a9989"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
@@ -7030,9 +7030,7 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
@@ -7042,7 +7040,9 @@
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts"
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts"
     ]
   },
   "version": "3.5.3"

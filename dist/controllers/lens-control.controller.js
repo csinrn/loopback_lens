@@ -41,7 +41,7 @@ let LensControlController = class LensControlController {
         // store image, throw if error
         var imgUrl = '';
         try {
-            imgUrl = await this.postImg(lens.name + '.png', lens.url);
+            imgUrl = await this.postImg(lens.id + '.png', lens.url);
             lens.url = imgUrl;
         }
         catch (err) {
