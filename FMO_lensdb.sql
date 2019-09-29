@@ -16,6 +16,28 @@
 CREATE DATABASE IF NOT EXISTS `fmo_lensdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `fmo_lensdb`;
 
+-- Dumping structure for table fmo_lensdb.admin
+CREATE TABLE IF NOT EXISTS `admin` (
+  `account` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `create_at` date NOT NULL,
+  `is_admin` tinyint(4) NOT NULL DEFAULT 0,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`account`),
+  UNIQUE KEY `account` (`account`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table fmo_lensdb.admin: ~6 rows (approximately)
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` (`account`, `password`, `create_at`, `is_admin`, `name`) VALUES
+	('33333333', '$2a$10$n0BsjiMVeEQa895LUQSvc.4kD8JAuxNP5F5XlVuVJeBifb1cPRf8K', '2019-09-29', 0, '6666'),
+	('444', '$2a$10$mVoirp3MPBDA2Ty/h5.Zhu.tXkf39L9DnmsjeK0M3QrFnlUE/PTTK', '2019-09-26', 0, '叉叉'),
+	('4444', '$2a$10$eReuQLBsuEscfbNlvZt0P.7Ml0f6zr.KBUVp7tfSswitA/eXF8ihq', '2019-09-29', 1, '6666'),
+	('eee', '$2a$10$eecAEIhBKpYO84ZFCYSRjuLh4Uk9sCBdAwnhKLQAQ68fxFIIWD2Ri', '2019-09-29', 1, 'eeee'),
+	('qwer', '$2a$10$t8AxiOS3l.d0UHfAbOPdu..Y8Vofn/2uaTTbJ6I15KDK7Zexm7RpW', '2019-09-29', 0, 'qwertyui'),
+	('rrrr', '$2a$10$8ThDOrjsKnwepj0KcB04KuNW/u99RyqLT1dgeuj1M/MGCfMu/tsXG', '2019-09-26', 0, 'er');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+
 -- Dumping structure for table fmo_lensdb.lens
 CREATE TABLE IF NOT EXISTS `lens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -48,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `lens` (
   UNIQUE KEY `no` (`no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table fmo_lensdb.lens: ~10 rows (approximately)
+-- Dumping data for table fmo_lensdb.lens: ~9 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
 INSERT INTO `lens` (`id`, `name`, `no`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `launch_at`, `remove_at`, `url`, `state`) VALUES
 	(38, '星空灰', 3, 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13', '2019-10-29', '2019-11-19', '/lensPic/星空灰.png', 0),
