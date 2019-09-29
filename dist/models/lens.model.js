@@ -41,7 +41,7 @@ __decorate([
         generated: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "no", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "no", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
     }),
     __metadata("design:type", Number)
 ], Lens.prototype, "no", void 0);
@@ -212,27 +212,27 @@ __decorate([
 ], Lens.prototype, "onsaleTag", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'date',
         required: true,
         mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Lens.prototype, "createAt", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
-        required: false,
-        mysql: { "columnName": "launch_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+        type: 'date',
+        required: true,
+        mysql: { "columnName": "launch_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Lens.prototype, "launchAt", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
-        required: false,
-        mysql: { "columnName": "remove_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+        type: 'date',
+        required: true,
+        mysql: { "columnName": "remove_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Lens.prototype, "removeAt", void 0);
 __decorate([
     repository_1.property({
@@ -248,10 +248,10 @@ __decorate([
         type: 'number',
         precision: 3,
         scale: 0,
-        mysql: { "columnName": "part", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "state", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
-], Lens.prototype, "part", void 0);
+], Lens.prototype, "state", void 0);
 Lens = __decorate([
     repository_1.model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'lens' } } }),
     __metadata("design:paramtypes", [Object])

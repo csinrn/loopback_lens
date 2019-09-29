@@ -25,9 +25,9 @@ export class Lens extends Entity {
     generated: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "no", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "no", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  no: number;
+  no?: number;
 
   @property({
     type: 'number',
@@ -178,25 +178,25 @@ export class Lens extends Entity {
   onsaleTag: number;
 
   @property({
-    type: 'string',
+    type: 'date',
     required: true,
     mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  createAt: string;
+  createAt: Date;
 
   @property({
-    type: 'string',
+    type: 'date',
     required: true,
     mysql: { "columnName": "launch_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  launchAt?: string;
+  launchAt: Date;
 
   @property({
-    type: 'string',
+    type: 'date',
     required: true,
     mysql: { "columnName": "remove_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  removeAt?: string;
+  removeAt: Date;
 
   @property({
     type: 'string',

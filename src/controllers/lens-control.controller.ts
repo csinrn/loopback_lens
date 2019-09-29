@@ -27,7 +27,8 @@ import { resolve } from 'url';
 var fs = require('fs')
 
 
-var nowDate = ''
+var nowDate = new Date('180928');//new Date().getDate()
+var nextNo = 0;
 
 export class LensControlController {
   constructor(
@@ -57,10 +58,6 @@ export class LensControlController {
     if (!lens) {
       throw HttpErrors.BadRequest;
     }
-    validateDate(lens.createAt);
-    if (lens.updateAt != undefined) {
-      validateDate(lens.updateAt);
-    }
     validateBoolean(lens.newTag, "newtag")
     validateBoolean(lens.hotsaleTag, "hotsaletag")
     validateBoolean(lens.onsaleTag, "onsaletag")
@@ -77,13 +74,19 @@ export class LensControlController {
       throw new HttpErrors.BadRequest(err)
     }
 
-    // assign part
-    //if (lens.createAt > nowDate)
-    lens.part = 1
-
     // store lens, delete image and throw if error
-    var count = await this.lensRepository.count()
-    lens.no = count.count
+    if (this.compDate(new Date(lens.launchAt), nowDate) == 1) {  // not yet released
+      lens.no = undefined;
+      lens.state = 0;
+    } else if (this.compDate(new Date(lens.launchAt), nowDate) == -1 && this.compDate(new Date(lens.removeAt), nowDate) == 1) { // released
+      lens.no = nextNo;
+      nextNo += 1;
+      console.log('nextNo:', nextNo)
+      lens.state = 1;
+    } else { //removed
+      lens.no = undefined
+      lens.state = 2
+    }
 
     var res = await this.lensRepository.create(lens).catch((err) => {
       fs.unlinkSync('./public' + imgUrl)
@@ -126,6 +129,13 @@ export class LensControlController {
   ): Promise<Lens[]> {
     var list = await this.lensRepository.find(filter)
 
+    var date = new Date()
+    if (this.compDate(nowDate, date) != 0) {
+      await this.renewNo(list)
+      nowDate = new Date()
+    }
+
+    list = await this.lensRepository.find(filter)
     return list;
   }
 
@@ -214,6 +224,9 @@ export class LensControlController {
     }
     //console.log('delete img f')
     await this.lensRepository.deleteById(id);
+    nextNo -= 1
+    console.log('nextNo:', nextNo)
+
   }
 
   @post('/lens/img/{fileName}')
@@ -240,5 +253,90 @@ export class LensControlController {
     })
 
     return res
+  }
+
+  async renewNo(list: Lens[]) {
+    var dt = new Date()
+    var date = parseInt(this.getDateString(dt))
+
+    var releasingList: Lens[] = []
+    var promiseList: any[] = []
+    list.forEach(async (lens) => {
+      var launchAt = parseInt(this.getDateString(lens.launchAt)),
+        removeAt = parseInt(this.getDateString(lens.removeAt));
+      console.log('launchAt:', launchAt)
+
+      if (launchAt > date) {  // not yet relesed
+        if (lens.no != undefined || lens.state != 0) {
+          lens.no = undefined;
+          lens.state = 0;
+          promiseList.push(this.lensRepository.updateById(lens.id, lens))
+        }
+      } else if (launchAt <= date && removeAt > date) {   // releasing
+        lens.state = 1
+        releasingList.push(lens)
+      } else {  //removed
+        if (lens.no != undefined || lens.state != 2) {
+          lens.no = undefined;
+          lens.state = 2
+          promiseList.push(this.lensRepository.updateById(lens.id, lens))
+        }
+      }
+    })
+
+    // rearrange no, start from 0 and with no empty
+    releasingList.sort(this.lensComp)
+    console.log(releasingList)
+
+    var i = 0;
+    releasingList.forEach((lens) => {
+      if (lens.no != i) {
+        lens.no = i
+        promiseList.push(this.lensRepository.updateById(lens.id, lens))
+      }
+      i++
+    })
+
+    // fire all update
+    await Promise.all(promiseList)
+    nextNo = i
+    console.log(nextNo)
+  }
+
+  lensComp(a: Lens, b: Lens): number {
+    if (a.no == undefined && b.no == undefined) {
+      if (parseInt(this.getDateString(a.launchAt)) == parseInt(this.getDateString(a.launchAt)))
+        return 0
+      return parseInt(this.getDateString(a.launchAt)) > parseInt(this.getDateString(b.launchAt)) ? -1 : 1
+    } else if (a.no == undefined || b.no == undefined) {
+      if (a.no == undefined)
+        return 1
+      else
+        return 0
+    } else {
+      if (a.no == b.no)
+        return 0
+      return a.no > b.no ? -1 : 1
+    }
+  }
+
+  getDateString(dt: Date) {
+    var year = dt.getFullYear().toString(),
+      month = (dt.getMonth() + 1).toString(),
+      day = dt.getDate().toString();
+    year = year[2] + year[3]
+    month = (month.length == 1) ? '0' + month : month
+    day = (day.length == 1) ? '0' + day : day
+    return (year + month + day).toString()
+  }
+
+  compDate(a: Date, b: Date) {  // 0 if equal, 1 if a>b, -1 if a<b
+    var ad = Date.parse(a.toDateString()).valueOf()
+    var bd = Date.parse(b.toDateString()).valueOf()
+
+    if (ad == bd) {
+      return 0;
+    }
+    return ad > bd ? 1 : -1
   }
 }

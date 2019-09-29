@@ -812,9 +812,9 @@
                 // FIXME: 這邊createAt可能不用傳送了，因為上架時間和下架時間分別都有input了
                 // FIXME: 然後launchAt和removeAt的格式我不知道怎麼傳到你後端比較好，你再看看怎麼parse
                 // FIXME: 他這邊的格式就是js的Date物件，這樣你應該可以比較方便parse成你要的東西
-                launchAt: dateToString($('#upload [name="launch_at"]').datepicker('getDate')), // 上架時間
-                removeAt: dateToString($('#upload [name="remove_at"]').datepicker('getDate')), // 下架時間
-                createAt: date, // 上架時間  需為 "190303" 格式的日期字串
+                launchAt: $('#upload [name="launch_at"]').datepicker('getDate'), // 上架時間
+                removeAt: $('#upload [name="remove_at"]').datepicker('getDate'), // 下架時間
+                createAt: new Date(), // 上架時間  需為 "190303" 格式的日期字串
                 url: fileData
             }
 

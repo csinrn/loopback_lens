@@ -2,7 +2,7 @@ import { Entity } from '@loopback/repository';
 export declare class Lens extends Entity {
     id: number;
     name: string;
-    no: number;
+    no?: number;
     diameter: number;
     bc: number;
     powerL: number;
@@ -20,11 +20,11 @@ export declare class Lens extends Entity {
     newTag: number;
     hotsaleTag: number;
     onsaleTag: number;
-    createAt: string;
-    launchAt?: string;
-    removeAt?: string;
+    createAt: Date;
+    launchAt: Date;
+    removeAt: Date;
     url?: string;
-    part: number;
+    state: number;
     [prop: string]: any;
     constructor(data?: Partial<Lens>);
 }
