@@ -60,9 +60,11 @@ let AdminControlController = class AdminControlController {
     async count(where) {
         return await this.adminRepository.count(where);
     }
+    //@authenticate('jwt')
     async updateById(id, admin) {
         await this.adminRepository.updateById(id, admin);
     }
+    //@authenticate('jwt')
     async deleteById(id) {
         await this.adminRepository.deleteById(id);
     }
@@ -134,7 +136,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminControlController.prototype, "count", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.patch('/admin/{id}', {
         responses: {
             '204': {
@@ -155,7 +156,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminControlController.prototype, "updateById", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.del('/admin/{id}', {
         responses: {
             '204': {

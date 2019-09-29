@@ -145,7 +145,7 @@ export class AdminControlController {
     return await this.adminRepository.count(where);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @patch('/admin/{id}', {
     responses: {
       '204': {
@@ -164,10 +164,11 @@ export class AdminControlController {
     })
     admin: Admin,
   ): Promise<void> {
+    validateCredentials(_.pick(admin, ['account', 'password']));
     await this.adminRepository.updateById(id, admin);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @del('/admin/{id}', {
     responses: {
       '204': {

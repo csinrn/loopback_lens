@@ -508,6 +508,7 @@
                                         onclick="updateAccount()">更新</button>
                                     <button type="button" name="deleteAccountBtn" class="btn btn-danger"
                                         onclick="deleteAccount()">刪除帳號</button>
+                                    *刪除時填寫帳號即可
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
@@ -1032,11 +1033,13 @@
                 console.log(data)
             }
 
+            //////////////
+            var lensid = null  // 這裡放當前選取行數的id值 (就是按下修改的那row的第一column)
             // FIXME: 這邊的url交給你了
             data = JSON.stringify(data)
             console.log(data)
             $.ajax({
-                url: serverURL + '/lens',
+                url: serverURL + '/lens/' + lensid,
                 type: "PATCH",
                 contentType: "application/json",
                 data: data,
@@ -1378,6 +1381,70 @@
         }
 
         //TODO: updateAccount(), deleteAccount()
+        function updateAccount() {
+            $('#manage [name="updateAccountBtn"]').attr('disabled', true)
+            console.log(jQuery.trim($('#manage [name="account"]').val()), $('#manage [name="account"]').val())
+            var data = {
+                account: jQuery.trim($('#manage [name="account"]').val()),
+                password: jQuery.trim($('#manage [name="password"]').val()),
+                name: jQuery.trim($('#manage [name="name"]').val())
+            }
+            console.log(data)
+            if (data.account == '' || data.password == '' || data.name == '') {
+                swalAlert('更新失敗', '欄位未填', false)
+                return
+            }
+            var account = data.account
+
+            data = JSON.stringify(data)
+            console.log('updateAdmin', data)
+            $.ajax({
+                url: serverURL + '/admin/' + account,
+                type: "PATCH",
+                contentType: "application/json",
+                data: data
+            }).done(() => {
+                $('#manage [name="updateAccountBtn"]').attr('disabled', false)
+                swalAlert('更新帳號成功', '', true)
+            }).fail((err) => {
+                console.log(err)
+                var msg = err.responseJSON.error.message + "<br>Details: " + JSON.stringify(err.responseJSON
+                    .error.details);
+                if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
+                    msg = '無此帳號'
+                }
+                $('#manage [name="updateAccountBtn"]').attr('disabled', false)
+                swalAlert('更新帳號失敗', msg, false)
+            })
+        }
+
+        function deleteAccount() {
+            $('#manage [name="deleteAccountBtn"]').attr('disabled', true)
+            var account = $('#manage [name="account"]').val()
+            account = jQuery.trim(account)
+            if (account == '') {
+                swalAlert('刪除帳號錯誤', '帳號欄位為空', false)
+                return
+            }
+
+            $.ajax({
+                url: serverURL + '/admin/' + account,
+                type: "DELETE",
+                contentType: "application/json",
+            }).done(() => {
+                $('#manage [name="deleteAccountBtn"]').attr('disabled', false)
+                swalAlert('刪除帳號成功', '', true)
+            }).fail((err) => {
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    .error.details);
+                if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
+                    msg = '無此帳號'
+                }
+                $('#manage [name="deleteAccountBtn"]').attr('disabled', false)
+
+                swalAlert('刪除帳號失敗', msg, false)
+            })
+        }
     </script>
 </body>
 
