@@ -68,7 +68,7 @@ export class LensControlController {
     // store image, throw if error
     var imgUrl = ''
     try {
-      imgUrl = await this.postImg(lens.name + '.png', lens.url)
+      imgUrl = await this.postImg(lens.partNo + '.png', lens.url)
       lens.url = imgUrl
     } catch (err) {
       throw new HttpErrors.BadRequest(err)
