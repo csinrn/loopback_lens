@@ -187,9 +187,16 @@ export class Lens extends Entity {
   @property({
     type: 'string',
     required: false,
-    mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+    mysql: { "columnName": "launch_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
   })
-  updateAt?: string;
+  launchAt?: string;
+
+  @property({
+    type: 'string',
+    required: false,
+    mysql: { "columnName": "remove_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+  })
+  removeAt?: string;
 
   @property({
     type: 'string',

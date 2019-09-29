@@ -26,6 +26,9 @@ import { DEFAULT_ENCODING } from 'crypto';
 import { resolve } from 'url';
 var fs = require('fs')
 
+
+var nowDate = ''
+
 export class LensControlController {
   constructor(
     @repository(LensRepository)
@@ -74,13 +77,17 @@ export class LensControlController {
       throw new HttpErrors.BadRequest(err)
     }
 
+    // assign part
+    //if (lens.createAt > nowDate)
+    lens.part = 1
+
     // store lens, delete image and throw if error
     var count = await this.lensRepository.count()
     lens.no = count.count
 
     var res = await this.lensRepository.create(lens).catch((err) => {
       fs.unlinkSync('./public' + imgUrl)
-      return err
+      throw new HttpErrors.BadRequest(err)
     })
 
     return res

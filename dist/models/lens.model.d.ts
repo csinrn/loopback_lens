@@ -21,7 +21,8 @@ export declare class Lens extends Entity {
     hotsaleTag: number;
     onsaleTag: number;
     createAt: string;
-    updateAt?: string;
+    launchAt?: string;
+    removeAt?: string;
     url?: string;
     part: number;
     [prop: string]: any;

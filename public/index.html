@@ -476,10 +476,10 @@
                                         </div>
                                         <script>
                                             $('#upload [name="launch_at"]').datepicker({
-                                                dateFormat: "yy/mm/dd"
+                                                dateFormat: "yy-mm-dd"
                                             });
                                             $('#upload [name="remove_at"]').datepicker({
-                                                dateFormat: "yy/mm/dd"
+                                                dateFormat: "yy-mm-dd"
                                             });
                                         </script>
                                     </div>
@@ -810,11 +810,13 @@
                 // FIXME: 這邊createAt可能不用傳送了，因為上架時間和下架時間分別都有input了
                 // FIXME: 然後launchAt和removeAt的格式我不知道怎麼傳到你後端比較好，你再看看怎麼parse
                 // FIXME: 他這邊的格式就是js的Date物件，這樣你應該可以比較方便parse成你要的東西
-                launchAt: $('#upload [name="launch_at"]').datepicker('getDate'), // 上架時間
-                removeAt: $('#upload [name="remove_at"]').datepicker('getDate'), // 下架時間
+                launchAt: dateToString($('#upload [name="launch_at"]').datepicker('getDate')), // 上架時間
+                removeAt: dateToString($('#upload [name="remove_at"]').datepicker('getDate')), // 下架時間
                 createAt: date, // 上架時間  需為 "190303" 格式的日期字串
                 url: fileData
             }
+
+            console.log(data.launchAt, data.removeAt)
 
             if (!specialChecked) {
                 data.specialPrice = undefined
@@ -823,7 +825,6 @@
             }
 
             data = JSON.stringify(data)
-            console.log(data)
             $.ajax({
                 url: serverURL + '/lens',
                 type: "POST",
@@ -1020,12 +1021,8 @@
                 newTag: $('#update [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 hotsaleTag: $('#update [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 onsaleTag: $('#update [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
-                // FIXME: 這邊createAt可能不用傳送了，因為上架時間和下架時間分別都有input了
-                // FIXME: 然後launchAt和removeAt的格式我不知道怎麼傳到你後端比較好，你再看看怎麼parse
-                // FIXME: 他這邊的格式就是js的Date物件，這樣你應該可以比較方便parse成你要的東西
-                launchAt: $('#update [name="launch_at"]').datepicker('getDate'), // 上架時間
-                removeAt: $('#update [name="remove_at"]').datepicker('getDate'), // 下架時間
-                createAt: date, // 上架時間  需為 "190303" 格式的日期字串
+                launchAt: dateToString($('#update [name="launch_at"]').datepicker('getDate')), // 上架時間
+                removeAt: dateToString($('#update [name="remove_at"]').datepicker('getDate')), // 下架時間
                 url: fileData
             }
 
@@ -1094,6 +1091,18 @@
             year = year[2] + year[3]
             month = (month.length == 1) ? '0' + month : month
             day = (day.length == 1) ? '0' + day : day
+            return (year + month + day).toString()
+        }
+
+        function dateToString(dt) {
+            var year = dt.getFullYear().toString(),
+                month = (dt.getMonth() + 1).toString(),
+                day = dt.getDate().toString();
+            console.log(year, month, day)
+            year = year[2] + year[3]
+            month = (month.length == 1) ? '0' + month : month
+            day = (day.length == 1) ? '0' + day : day
+            console.log('datetostring', (year + month + day).toString())
             return (year + month + day).toString()
         }
 
@@ -1333,7 +1342,6 @@
         function checkPowerOrder() {
             var powerH = parseInt($('#upload [name="powerH"]').val()),
                 powerL = parseInt($('#upload [name="powerL"]').val());
-            console.log('powerH', powerH, 'powerL', powerL)
 
             return (powerH >= powerL)
         }
@@ -1341,7 +1349,6 @@
         function checkPowerOrder2() {
             var powerH = parseInt($('#update [name="powerH"]').val()),
                 powerL = parseInt($('#update [name="powerL"]').val());
-            console.log('powerH', powerH, 'powerL', powerL)
 
             return (powerH >= powerL)
         }

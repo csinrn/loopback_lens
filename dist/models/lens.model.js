@@ -222,10 +222,18 @@ __decorate([
     repository_1.property({
         type: 'string',
         required: false,
-        mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+        mysql: { "columnName": "launch_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
     }),
     __metadata("design:type", String)
-], Lens.prototype, "updateAt", void 0);
+], Lens.prototype, "launchAt", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
+        mysql: { "columnName": "remove_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+    }),
+    __metadata("design:type", String)
+], Lens.prototype, "removeAt", void 0);
 __decorate([
     repository_1.property({
         type: 'string',

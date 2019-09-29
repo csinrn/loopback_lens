@@ -18,6 +18,7 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const validator_1 = require("../services/validator");
 var fs = require('fs');
+var nowDate = '';
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
@@ -46,12 +47,15 @@ let LensControlController = class LensControlController {
         catch (err) {
             throw new rest_1.HttpErrors.BadRequest(err);
         }
+        // assign part
+        //if (lens.createAt > nowDate)
+        lens.part = 1;
         // store lens, delete image and throw if error
         var count = await this.lensRepository.count();
         lens.no = count.count;
         var res = await this.lensRepository.create(lens).catch((err) => {
             fs.unlinkSync('./public' + imgUrl);
-            return err;
+            throw new rest_1.HttpErrors.BadRequest(err);
         });
         return res;
     }
