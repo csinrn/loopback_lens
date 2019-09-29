@@ -1,6 +1,6 @@
 import { Entity } from '@loopback/repository';
 export declare class Lens extends Entity {
-    id: number;
+    partNo: string;
     name: string;
     no?: number;
     diameter: number;
@@ -23,7 +23,7 @@ export declare class Lens extends Entity {
     createAt: Date;
     launchAt: Date;
     removeAt: Date;
-    url?: string;
+    url: string;
     state: number;
     [prop: string]: any;
     constructor(data?: Partial<Lens>);

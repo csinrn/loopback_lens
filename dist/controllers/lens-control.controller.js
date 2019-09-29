@@ -44,7 +44,9 @@ let LensControlController = class LensControlController {
         catch (err) {
             throw new rest_1.HttpErrors.BadRequest(err);
         }
-        // store lens, delete image and throw if error
+        // Capitalize partNo
+        lens.partNo = lens.partNo.toUpperCase();
+        // assign part and no fields
         if (this.compDate(new Date(lens.launchAt), nowDate) == 1) { // not yet released
             lens.no = undefined;
             lens.state = 0;
@@ -59,6 +61,7 @@ let LensControlController = class LensControlController {
             lens.no = undefined;
             lens.state = 2;
         }
+        // store lens, delete image and throw if error
         var res = await this.lensRepository.create(lens).catch((err) => {
             fs.unlinkSync('./public' + imgUrl);
             throw new rest_1.HttpErrors.BadRequest(err);
@@ -150,7 +153,7 @@ let LensControlController = class LensControlController {
                 if (lens.no != undefined || lens.state != 0) {
                     lens.no = undefined;
                     lens.state = 0;
-                    promiseList.push(this.lensRepository.updateById(lens.id, lens));
+                    promiseList.push(this.lensRepository.updateById(lens.partNo, lens));
                 }
             }
             else if (launchAt <= date && removeAt > date) { // releasing
@@ -161,7 +164,7 @@ let LensControlController = class LensControlController {
                 if (lens.no != undefined || lens.state != 2) {
                     lens.no = undefined;
                     lens.state = 2;
-                    promiseList.push(this.lensRepository.updateById(lens.id, lens));
+                    promiseList.push(this.lensRepository.updateById(lens.partNo, lens));
                 }
             }
         });
@@ -172,7 +175,7 @@ let LensControlController = class LensControlController {
         releasingList.forEach((lens) => {
             if (lens.no != i) {
                 lens.no = i;
-                promiseList.push(this.lensRepository.updateById(lens.id, lens));
+                promiseList.push(this.lensRepository.updateById(lens.partNo, lens));
             }
             i++;
         });
@@ -227,12 +230,12 @@ __decorate([
     __param(0, rest_1.requestBody({
         content: {
             'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Lens, { exclude: ['id'] }),
+                schema: rest_1.getModelSchemaRef(models_1.Lens),
             },
         },
     })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [models_1.Lens]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "create", null);
 __decorate([

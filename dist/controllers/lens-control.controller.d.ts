@@ -4,7 +4,7 @@ import { LensRepository } from '../repositories';
 export declare class LensControlController {
     lensRepository: LensRepository;
     constructor(lensRepository: LensRepository);
-    create(lens: Omit<Lens, 'id'>): Promise<Lens>;
+    create(lens: Lens): Promise<Lens>;
     count(where?: Where<Lens>): Promise<Count>;
     find(filter?: Filter<Lens>): Promise<Lens[]>;
     updateById(id: string, lens: Lens): Promise<void>;

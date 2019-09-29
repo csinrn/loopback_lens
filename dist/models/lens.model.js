@@ -17,15 +17,14 @@ let Lens = class Lens extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: 'number',
-        generated: true,
+        type: 'string',
         precision: 10,
         scale: 0,
         id: 1,
-        mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "part_no", "dataType": "varchar", "dataLength": 20, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
-    __metadata("design:type", Number)
-], Lens.prototype, "id", void 0);
+    __metadata("design:type", String)
+], Lens.prototype, "partNo", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
