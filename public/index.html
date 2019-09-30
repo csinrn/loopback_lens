@@ -854,6 +854,12 @@
         function switchPane(auth) {
             $(auth ? '#auth' : '#guest').addClass('active show');
             $(!auth ? '#auth' : '#guest').removeClass('active show');
+            if (auth) {
+                $('#admin_tab .nav-link').removeClass('active');
+                $('#admin_tab .nav-link[name="update"]').addClass('active');
+                $('#admin-content .tab-pane').removeClass('active show');
+                $('#admin-content #update').addClass('active show');
+            }
         }
 
         async function upload(btn) { //新增隱眼
