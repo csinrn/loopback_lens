@@ -614,6 +614,7 @@
         var serverURL = 'http://' + ip + ':3000'
         var tableRows = []
         var isAdmin = false
+        var user = {}
         var lensInfo = {}
 
         function register() {
@@ -1494,21 +1495,16 @@
         }
 
         function updateAccount() {
-            // check if the user is changing self data
-            if (!$('#manage [name="name"]').val() == $('#username').val()) {
-                swalAlert('更新失敗', '只能更新自己的資料', false)
-                return
-            }
             $('#manage [name="updateAccountBtn"]').attr('disabled', true)
-            console.log(jQuery.trim($('#manage [name="account"]').val()), $('#manage [name="account"]').val())
             var password = jQuery.trim($('#manage [name="password"]').val())
             var data = {}
             if (password)
+            {
                 data = {
                     account: jQuery.trim($('#manage [name="account"]').val()),
                     password,
                     name: jQuery.trim($('#manage [name="name"]').val())
-                }
+                }}
             else
                 data = {
                     account: jQuery.trim($('#manage [name="account"]').val()),
@@ -1519,7 +1515,7 @@
                 swalAlert('更新失敗', '欄位未填', false)
                 return
             }
-            var account = data.account
+            var account = user.id
 
             data = JSON.stringify(data)
             console.log('updateAdmin', data)
@@ -1530,6 +1526,8 @@
                 data: data
             }).done(() => {
                 $('#manage [name="updateAccountBtn"]').attr('disabled', false)
+                $('#userName').text(jQuery.trim($('#manage [name="name"]').val())); // 填入login page 的 user name
+                $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
                 swalAlert('更新帳號成功', '', true)
             }).fail((err) => {
                 console.log(err)
