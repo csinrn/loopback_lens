@@ -679,7 +679,6 @@
             }).done(response => {
                 // 清空面板
                 response.sort(lensComparator)
-                            </thead>`
                 var index = 1
                 var tbody = ''
                 response.forEach(lens => {
@@ -687,7 +686,7 @@
                     tbody += '<tr id="'
                     tbody += lens.partNo
                     tbody += '">'
-                    tbody += '<td>' + lens.partNo + '</td>'
+                    tbody += '<td>' + index++ + '</td>'
                     tbody += '<td>' + lens.name + '</td>'
                     tbody +=
                         '<td><button type="button" name="lenBtn" class="btn btn-outline-dark" onclick="renderLenUpdate(\'' +
@@ -844,9 +843,6 @@
                 newTag: $('#upload [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 hotsaleTag: $('#upload [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 onsaleTag: $('#upload [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
-                // FIXME: 這邊createAt可能不用傳送了，因為上架時間和下架時間分別都有input了
-                // FIXME: 然後launchAt和removeAt的格式我不知道怎麼傳到你後端比較好，你再看看怎麼parse
-                // FIXME: 他這邊的格式就是js的Date物件，這樣你應該可以比較方便parse成你要的東西
                 launchAt: $('#upload [name="launch_at"]').datepicker('getDate'), // 上架時間
                 removeAt: $('#upload [name="remove_at"]').datepicker('getDate'), // 下架時間
                 createAt: new Date(), // 上架時間  需為 "190303" 格式的日期字串
@@ -1034,7 +1030,7 @@
 
             // start update
             try {
-                fileData = await parseFile()
+                fileData = await parseFile2()
             } catch {
                 // if rejected
                 btnEnable2()
@@ -1060,9 +1056,8 @@
                 newTag: $('#update [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 hotsaleTag: $('#update [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 onsaleTag: $('#update [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
-                launchAt: dateToString($('#update [name="launch_at"]').datepicker('getDate')), // 上架時間
-                removeAt: dateToString($('#update [name="remove_at"]').datepicker('getDate')), // 下架時間
-                updateAt: new Date(),
+                launchAt: new Date($('#update [name="launch_at"]').val()), // 上架時間
+                removeAt: new Date($('#update [name="remove_at"]').val()), // 下架時間
                 url: fileData
             }
 
@@ -1133,18 +1128,6 @@
             year = year[2] + year[3]
             month = (month.length == 1) ? '0' + month : month
             day = (day.length == 1) ? '0' + day : day
-            return (year + month + day).toString()
-        }
-
-        function dateToString(dt) {
-            var year = dt.getFullYear().toString(),
-                month = (dt.getMonth() + 1).toString(),
-                day = dt.getDate().toString();
-            console.log(year, month, day)
-            year = year[2] + year[3]
-            month = (month.length == 1) ? '0' + month : month
-            day = (day.length == 1) ? '0' + day : day
-            console.log('datetostring', (year + month + day).toString())
             return (year + month + day).toString()
         }
 
@@ -1232,6 +1215,24 @@
             }).catch((err) => {
                 console.log(err)
                 swalAlert('圖片錯誤', '尚未選取照片', false)
+            })
+        }
+
+        async function parseFile2() {
+
+            var file = $('#update [name="img"]')[0].files[0]
+            if (file == undefined)
+                return Promise.resolve()
+
+            return new Promise((resolve, reject) => {
+                var reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = () => {
+                    resolve(reader.result)
+                }
+            }).catch((err) => {
+                console.log(err)
+                swalAlert('圖片錯誤', '無法解析', false)
             })
         }
 
