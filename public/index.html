@@ -215,10 +215,10 @@
                                             <div class="row">
                                                 <div class="input-group mb-3 col-xl-9">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text">新增圖片</span>
+                                                        <span class="input-group-text">更新圖片</span>
                                                         <input type="file" name="img" accept=".png" data-url=""
                                                             style="align-self: center; margin-left: 2%"
-                                                            onchange="checkAlpha2()">
+                                                            onchange="checkAlpha2()" attr="optional">
                                                     </div>
                                                     ＊圖片須為png檔且具備透明度資訊
                                                 </div>
@@ -727,14 +727,13 @@
             $('#update [name="newTag"]').prop("checked", len.newTag).change() // 0 或 1
             $('#update [name="hotsaleTag"]').prop("checked", len.hotsaleTag).change() // 0 或 1
             $('#update [name="onsaleTag"]').prop("checked", len.onsaleTag).change() // 0 或 1
-            $('#update [name="launch_at"]').val(len.launchAt) // 上架時間
-            $('#update [name="remove_at"]').val(len.removeAt) // 下架時間
+            $('#update [name="launch_at"]').val(timeStampToDate(len.launchAt)) // 上架時間
+            $('#update [name="remove_at"]').val(timeStampToDate(len.removeAt)) // 下架時間
             $('#update #update_img').html('<img style="\
                                                     height: 100px;\
                                                     background-color: white;\
                                                     border-radius: 100%;\
                                                 " src="' + len.url + '">')
-            //url: fileData
         }
 
         function switchPane(auth) {
@@ -959,7 +958,7 @@
 
         async function updateLens(btn) { //更新隱眼
 
-            btnDisable()
+            btnDisable2()
 
             var specialChecked = $('#update [name="onsaleTag"]').is(':checked')
             var date = nowDate()
@@ -987,7 +986,7 @@
                 for (var i = 0; i < emptyFields.length; i++)
                     names += emptyFields[i] + ', '
                 swalAlert('欄位為空', '必填欄位: ' + names, false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
@@ -998,7 +997,7 @@
                 eventDisp = jQuery.trim(eventDisp)
                 if (specialPrice == '' || eventDisp == '') {
                     swalAlert('欄位為空', '需填寫特價描述', false)
-                    btnEnable()
+                    btnEnable2()
                     return
                 }
             }
@@ -1006,28 +1005,28 @@
             // empty wearing time alert
             if (!checkWearingTime2()) {
                 swalAlert('欄位為空', '至少勾選一項「日拋、雙周、月拋」', false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
             // negative number alert
             if (!isAllPositive2(specialChecked)) {
                 swalAlert('數值錯誤', '數值應為正值', false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
             // powerH < powerL alert
             if (!checkPowerOrder2()) {
                 swalAlert('度數區間錯誤', '最大度數應大於最小度數', false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
             // removeAt > launchAt alert
             if (!checkLaunchAndRemoveTime2()) {
                 swalAlert('上下架時間錯誤', '下架時間應晚於上架時間', false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
@@ -1036,7 +1035,7 @@
                 fileData = await parseFile()
             } catch {
                 // if rejected
-                btnEnable()
+                btnEnable2()
                 return
             }
             var data = {
@@ -1144,6 +1143,10 @@
             day = (day.length == 1) ? '0' + day : day
             console.log('datetostring', (year + month + day).toString())
             return (year + month + day).toString()
+        }
+
+        function timeStampToDate(ts) {
+            return ts.substring(0, ts.indexOf('T')).replace(/-/g, '/')
         }
 
         function swalAlert(title, html, isSuccess, onAfterClose = (() => {})) {
@@ -1412,7 +1415,17 @@
             $('#upload [name="uploadBtn"]').attr('disabled', false)
         }
 
+        function btnEnable2() {
+            console.log('enable')
+            $('#update [name="uploadBtn"]').attr('disabled', false)
+        }
+
         function btnDisable() {
+            console.log('disable')
+            $('#upload [name="uploadBtn"]').attr('disabled', true)
+        }
+
+        function btnDisable2() {
             console.log('disable')
             $('#upload [name="uploadBtn"]').attr('disabled', true)
         }
