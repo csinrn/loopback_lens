@@ -733,8 +733,8 @@
                                                     background-color: white;\
                                                     border-radius: 100%;\
                                                 " src="' + len.url + '">')
-            $('#update [name="updateBtn"]').attr('onclick', 'updateLens(' + len.partNo + ')')
-            $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens(' + len.partNo + ')')
+            $('#update [name="updateBtn"]').attr('onclick', 'updateLens("' + len.partNo + '")')
+            $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens("' + len.partNo + '")')
         }
 
         function switchPane(auth) {
@@ -931,6 +931,8 @@
                 console.log(idDeleted, tableRows[i - 1])
             }
 
+
+            //TODO: 圖片檔案應該也要刪除
             var url = serverURL + '/lens/' + id
             $.ajax({
                 url: url, // 你的api
@@ -1066,7 +1068,6 @@
                 console.log(data)
             }
 
-            //////////////
             var lensid = id
             data = JSON.stringify(data)
             console.log(data)
