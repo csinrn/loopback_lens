@@ -869,7 +869,7 @@
                 //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
                 //}
             }).done(response => {
-                $('#upload input').val('')
+                $('#upload form')[0].reset()
                 console.log($('#upload [type=checkbox]'))
                 $('#upload [type=checkbox]').prop("checked", false)
                 btnEnable()
@@ -939,13 +939,12 @@
                 //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
                 //}
             }).done(response => {
-                $("#delete-form input").val('')
+                $('#update form')[0].reset()
                 renderCards()
                 $('#update [name="deleteBtn"]').attr('disabled', false)
                 swalAlert("刪除成功", '', true)
             }).fail(error => {
                 console.log(error)
-                $("#delete-form input").val('')
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
                     .responseJSON
                     .error)
