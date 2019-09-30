@@ -22,7 +22,6 @@ const repository_2 = require("@loopback/repository");
 const user_controller_specs_1 = require("./specs/user-controller.specs");
 const rest_1 = require("@loopback/rest");
 const keys_1 = require("../keys");
-const _ = require("lodash");
 let AdminControlController = class AdminControlController {
     constructor(adminRepository, passwordHasher, jwtService, userService) {
         this.adminRepository = adminRepository;
@@ -32,7 +31,7 @@ let AdminControlController = class AdminControlController {
     }
     async create(admin) {
         // ensure a valid account value and password value
-        validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
+        //validateCredentials(_.pick(admin, ['account', 'password']));
         validator_1.validateDate(admin.createAt);
         validator_1.validateBoolean(admin.isAdmin, "isAdmin");
         // encrypt the password
@@ -46,7 +45,7 @@ let AdminControlController = class AdminControlController {
         // ensure the user exists, and the password is correct
         const user = await this.userService.verifyCredentials(credentials);
         // convert a User object into a UserProfile object (reduced set of properties)
-        const userProfile = this.userService.convertToUserProfile(user);
+        const userProfile = { account: user.account, name: user.name, isAdmin: user.isAdmin }; //this.userService.convertToUserProfile(user);
         // create a JSON Web Token based on the user profile
         //const token = await this.jwtService.generateToken(userProfile);
         //const expireinMs = TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE
@@ -62,7 +61,7 @@ let AdminControlController = class AdminControlController {
     }
     //@authenticate('jwt')
     async updateById(id, admin) {
-        validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
+        //validateCredentials(_.pick(admin, ['account', 'password']));
         await this.adminRepository.updateById(id, admin);
     }
     //@authenticate('jwt')

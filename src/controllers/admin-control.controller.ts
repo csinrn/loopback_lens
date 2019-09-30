@@ -110,12 +110,12 @@ export class AdminControlController {
   })
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
-  ): Promise<{ userProfile: UserProfile }> {
+  ) {
     // ensure the user exists, and the password is correct
     const user = await this.userService.verifyCredentials(credentials);
 
     // convert a User object into a UserProfile object (reduced set of properties)
-    const userProfile = this.userService.convertToUserProfile(user);
+    const userProfile = { account: user.account, name: user.name, isAdmin: user.isAdmin }//this.userService.convertToUserProfile(user);
 
     // create a JSON Web Token based on the user profile
     //const token = await this.jwtService.generateToken(userProfile);
