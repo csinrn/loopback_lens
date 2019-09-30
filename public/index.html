@@ -667,10 +667,9 @@
                 console.log('server login done')
                 //rememberToken(response.token, response.expireinMs);
                 user = response.userProfile
-                console.log(user)
                 $('#userName').text(user.name); // 填入login page 的 user name
                 $('#login input').val('') // 清除DOM中的帳密
-                $('#manage [name="account"]').val(user.account) // 帳號管理：帳號帶入
+                $('#manage [name="account"]').val(user.id) // 帳號管理：帳號帶入
                 $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
                 $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
@@ -682,7 +681,7 @@
                     $('#admin-content #admin-manage').remove()
                 }
 
-                swalAlert('登入成功', '帳號: ' + user.account + '<br>姓名: ' + user.name, true,
+                swalAlert('登入成功', '帳號: ' + user.id + '<br>姓名: ' + user.name, true,
                     renderCards)
             }).fail(error => {
                 console.log('server login fail')
