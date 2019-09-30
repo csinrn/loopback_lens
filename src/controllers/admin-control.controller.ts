@@ -179,4 +179,9 @@ export class AdminControlController {
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.adminRepository.deleteById(id);
   }
+
+  @get('/admin')
+  async getAll() {
+    return await this.adminRepository.find()
+  }
 }

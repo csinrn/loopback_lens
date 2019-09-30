@@ -1457,8 +1457,8 @@
         "signature": "bbf144d4354e2aaa6439f32761f3ee798cc68d1600adab6e2a596f25269f106d"
       },
       "d:/eye-demo/lens/src/controllers/admin-control.controller.ts": {
-        "version": "1fdcc6ccd55b46ccdad6d76de2986786144e57ac4e1a121470c922b486362977",
-        "signature": "f172370f1c2ba39686c19ae6d14e8f1bbf9f1d4e294bea0f2b8e551254756257"
+        "version": "a56698ade678d4be8c6e2218df36c0ba483b26c0069f8fd690ae8477f35ba02c",
+        "signature": "40ded9beaf40770e9a0b4e41e5cf88f3f0f916bce08376a9b129a7ab34335b4d"
       },
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": {
         "version": "470b5d86ecdb3c9a8a2fa8f91d4bdc321967327bad4ca27ce6c9ef32dd35c3c4",
@@ -6597,10 +6597,10 @@
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "d:/eye-demo/lens/src/controllers/admin-control.controller.ts": [
+        "d:/eye-demo/lens/src/models/index.ts",
         "d:/eye-demo/lens/src/repositories/index.ts",
         "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
         "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
-        "d:/eye-demo/lens/src/models/index.ts",
         "d:/eye-demo/lens/src/repositories/admin.repository.ts",
         "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
       ],
@@ -6989,6 +6989,7 @@
       "d:/eye-demo/lens/src/keys.ts",
       "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts",
       "d:/eye-demo/lens/src/services/jwt-service.ts",
+      "d:/eye-demo/lens/src/services/user-service.ts",
       "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
@@ -7029,11 +7030,9 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
-      "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/eslint-visitor-keys/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/fs-extra/index.d.ts",
@@ -7042,7 +7041,8 @@
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/services/user-service.ts"
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
+      "d:/eye-demo/lens/src/controllers/index.ts"
     ]
   },
   "version": "3.5.3"

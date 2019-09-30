@@ -68,6 +68,9 @@ let AdminControlController = class AdminControlController {
     async deleteById(id) {
         await this.adminRepository.deleteById(id);
     }
+    async getAll() {
+        return await this.adminRepository.find();
+    }
 };
 __decorate([
     rest_1.post('/admin/register', {
@@ -168,6 +171,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], AdminControlController.prototype, "deleteById", null);
+__decorate([
+    rest_1.get('/admin'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AdminControlController.prototype, "getAll", null);
 AdminControlController = __decorate([
     __param(0, repository_1.repository(repositories_1.AdminRepository)),
     __param(1, core_1.inject(keys_1.PasswordHasherBindings.PASSWORD_HASHER)),

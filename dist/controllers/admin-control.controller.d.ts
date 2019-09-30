@@ -26,4 +26,5 @@ export declare class AdminControlController {
     count(where?: Where<Admin>): Promise<Count>;
     updateById(id: string, admin: Admin): Promise<void>;
     deleteById(id: string): Promise<void>;
+    getAll(): Promise<(Admin & import("../models").AdminRelations)[]>;
 }
