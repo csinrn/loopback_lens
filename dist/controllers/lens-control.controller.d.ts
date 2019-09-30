@@ -15,7 +15,9 @@ export declare class LensControlController {
     deleteById(id: string): Promise<void>;
     postImg(filename: string, imgData: string): Promise<string>;
     renewNo(list: Lens[]): Promise<void>;
+    arrangeNo(): Promise<void>;
     lensComp(a: Lens, b: Lens): number;
     getDateString(dt: Date): string;
+    initNextNo(): void;
     compDate(a: Date, b: Date): 0 | 1 | -1;
 }

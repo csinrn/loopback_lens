@@ -30,7 +30,7 @@ let LensControlController = class LensControlController {
                 if (len.state == 1)
                     nextNo++;
             });
-            console.log('nextNo:', nextNo);
+            //console.log('nextNo:', nextNo)
         }).catch((err) => {
             console.log(err);
             throw new Error('nextNo initiallize error');
@@ -66,7 +66,7 @@ let LensControlController = class LensControlController {
         else if (this.compDate(new Date(lens.launchAt), nowDate) == -1 && this.compDate(new Date(lens.removeAt), nowDate) == 1) { // released
             lens.no = nextNo;
             nextNo += 1;
-            console.log('nextNo:', nextNo);
+            //console.log('nextNo:', nextNo)
             lens.state = 1;
         }
         else { //removed
@@ -112,7 +112,7 @@ let LensControlController = class LensControlController {
             imgUrl = await this.postImg(lens.partNo + '.png', lens.url);
             // assign the new address to lens
             lens.url = imgUrl;
-            console.log(lens);
+            //console.log(lens)
         }
         else if (lens.partNo != oldLen.partNo) { // if not update pic but update the partNo,
             // change old pic name to new partNo
@@ -125,15 +125,15 @@ let LensControlController = class LensControlController {
             lens.url = '/lensPic/' + lens.partNo + '.png';
         }
         // check the state
-        var no, state = 0;
-        if (lens.launchAt != oldLen.launchAt || lens.removeAt != oldLen.removeAt) {
+        var no, state = oldLen.state;
+        if (this.compDate(new Date(lens.launchAt), new Date(oldLen.launchAt)) != 0 || this.compDate(new Date(lens.removeAt), new Date(oldLen.removeAt)) != 0) {
             if (this.compDate(new Date(lens.launchAt), nowDate) == 1) { // not yet released
                 no = undefined;
                 state = 0;
             }
             else if (this.compDate(new Date(lens.launchAt), nowDate) == -1 && this.compDate(new Date(lens.removeAt), nowDate) == 1) { // released
                 no = nextNo;
-                console.log('nextNo:', nextNo);
+                //console.log('nextNo:', nextNo)
                 state = 1;
             }
             else { //removed
@@ -141,12 +141,12 @@ let LensControlController = class LensControlController {
                 state = 2;
             }
         }
-        console.log(state, oldLen.state);
-        if (state != lens.state) {
+        if (state != oldLen.state) {
             lens.state = state;
             lens.no = no;
         }
         await this.lensRepository.updateById(id, lens);
+        this.arrangeNo();
     }
     //@authenticate('jwt')
     async sort(id1, id2) {
@@ -184,7 +184,7 @@ let LensControlController = class LensControlController {
         if (lens.state == 1)
             nextNo -= 1;
         await this.lensRepository.deleteById(id);
-        console.log('nextNo:', nextNo);
+        //console.log('nextNo:', nextNo)
     }
     async postImg(filename, imgData) {
         var folder = './public/lensPic/';
@@ -211,7 +211,6 @@ let LensControlController = class LensControlController {
         var promiseList = [];
         list.forEach(async (lens) => {
             var launchAt = parseInt(this.getDateString(lens.launchAt)), removeAt = parseInt(this.getDateString(lens.removeAt));
-            console.log('launchAt:', launchAt);
             if (launchAt > date) { // not yet relesed
                 if (lens.no != undefined || lens.state != 0) {
                     lens.no = undefined;
@@ -236,7 +235,7 @@ let LensControlController = class LensControlController {
         });
         // rearrange no, start from 0 and with no empty
         releasingList.sort(this.lensComp);
-        console.log(releasingList);
+        //console.log(releasingList)
         var i = 0;
         releasingList.forEach((lens) => {
             if (lens.no != i) {
@@ -249,6 +248,23 @@ let LensControlController = class LensControlController {
         await Promise.all(promiseList);
         nextNo = i;
         console.log(nextNo);
+    }
+    async arrangeNo() {
+        var array = await this.lensRepository.find();
+        var list = [];
+        array.forEach((len) => {
+            if (len.state == 1)
+                list.push(len);
+        });
+        //console.log(' ')
+        list.sort(this.lensComp);
+        var index = 0;
+        for (var i = list.length - 1; i >= 0; i--) {
+            var len_t = new models_1.Lens();
+            len_t.no = list.length - i - 1;
+            //console.log(list[i].no, list.length - i - 1)
+            this.lensRepository.updateById(list[i].id, len_t);
+        }
     }
     lensComp(a, b) {
         if (a.no == undefined && b.no == undefined) {
@@ -275,9 +291,24 @@ let LensControlController = class LensControlController {
         day = (day.length == 1) ? '0' + day : day;
         return (year + month + day).toString();
     }
+    initNextNo() {
+        var array = this.lensRepository.find();
+        array.then((array) => {
+            nextNo = 0;
+            array.forEach((len) => {
+                if (len.state == 1)
+                    nextNo++;
+            });
+            //console.log('nextNo:', nextNo)
+        }).catch((err) => {
+            console.log(err);
+            throw new Error('nextNo initiallize error');
+        });
+    }
     compDate(a, b) {
         var ad = Date.parse(a.toDateString()).valueOf();
         var bd = Date.parse(b.toDateString()).valueOf();
+        //console.log('comp:', a, b, ad, bd)
         if (ad == bd) {
             return 0;
         }
