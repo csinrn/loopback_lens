@@ -164,9 +164,10 @@ export class AdminControlController {
     })
     admin: Admin,
   ): Promise<void> {
-    validateCredentials(_.pick(admin, ['account', 'password']));
-    if (admin.password != undefined)
+    if (admin.password != undefined) {
+      validateCredentials(_.pick(admin, ['account', 'password']));
       admin.password = await this.passwordHasher.hashPassword(admin.password);
+    }
     await this.adminRepository.updateById(id, admin);
   }
 
