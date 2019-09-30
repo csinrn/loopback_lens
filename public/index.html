@@ -624,7 +624,8 @@
                 "password": $('#register [name="password"]').val(),
                 "account": $('#register [name="account"]').val(),
                 "name": $('#register [name="name"]').val(),
-                "createAt": nowDate()
+                "createAt": nowDate(),
+                "isAdmin": 0
             }
             data = JSON.stringify(data)
             console.log("string", data)
@@ -672,19 +673,24 @@
                 user = response.userProfile
                 $('#userName').text(user.name); // 填入login page 的 user name
                 $('#login input').val('') // 清除DOM中的帳密
-                $('#manage [name="account"]').val(user.id) // 帳號管理：帳號帶入
+                $('#manage [name="account"]').val(user.account) // 帳號管理：帳號帶入
                 $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
                 $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
                 isAdmin = user.isAdmin
                 if (!isAdmin) {
-                    $('#admin_tab [name="register"]').remove()
-                    $('#admin-content #register').remove()
-                    $('#admin_tab [name="admin-manage"]').remove()
-                    $('#admin-content #admin-manage').remove()
+                    $('#admin_tab [name="register"]').css('display', 'none')
+                    $('#admin-content #register').css('display', 'none')
+                    $('#admin_tab [name="admin-manage"]').css('display', 'none')
+                    $('#admin-content #admin-manage').css('display', 'none')
+                } else {
+                    $('#admin_tab [name="register"]').css('display', '')
+                    $('#admin-content #register').css('display', '')
+                    $('#admin_tab [name="admin-manage"]').css('display', '')
+                    $('#admin-content #admin-manage').css('display', '')
                 }
 
-                swalAlert('登入成功', '帳號: ' + user.id + '<br>姓名: ' + user.name, true,
+                swalAlert('登入成功', '帳號: ' + user.account + '<br>姓名: ' + user.name, true,
                     renderCards)
             }).fail(error => {
                 console.log('server login fail')
@@ -1515,12 +1521,11 @@
                 swalAlert('更新失敗', '欄位未填', false)
                 return
             }
-            var account = user.id
 
             data = JSON.stringify(data)
             console.log('updateAdmin', data)
             $.ajax({
-                url: serverURL + '/admin/' + account,
+                url: serverURL + '/admin/' + user.id,
                 type: "PATCH",
                 contentType: "application/json",
                 data: data
