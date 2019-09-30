@@ -38,7 +38,7 @@ let LensControlController = class LensControlController {
         // store image, throw if error
         var imgUrl = '';
         try {
-            imgUrl = await this.postImg(lens.name + '.png', lens.url);
+            imgUrl = await this.postImg(lens.partNo + '.png', lens.url);
             lens.url = imgUrl;
         }
         catch (err) {
@@ -96,6 +96,7 @@ let LensControlController = class LensControlController {
         //console.log("id2: ", id2, no2)
         let lens_t = new models_1.Lens();
         lens_t.no = -1;
+        lens_t.updateAt = new Date();
         await this.lensRepository.updateById(parseInt(id1), lens_t, { partial: true });
         lens_t.no = no1;
         await this.lensRepository.updateById(parseInt(id2), lens_t, { partial: true });
@@ -153,17 +154,20 @@ let LensControlController = class LensControlController {
                 if (lens.no != undefined || lens.state != 0) {
                     lens.no = undefined;
                     lens.state = 0;
+                    lens.updateAt = new Date();
                     promiseList.push(this.lensRepository.updateById(lens.partNo, lens));
                 }
             }
             else if (launchAt <= date && removeAt > date) { // releasing
                 lens.state = 1;
+                lens.updateAt = new Date();
                 releasingList.push(lens);
             }
             else { //removed
                 if (lens.no != undefined || lens.state != 2) {
                     lens.no = undefined;
                     lens.state = 2;
+                    lens.updateAt = new Date();
                     promiseList.push(this.lensRepository.updateById(lens.partNo, lens));
                 }
             }

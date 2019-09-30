@@ -162,6 +162,7 @@ export class LensControlController {
     })
     lens: Lens,
   ): Promise<void> {
+    lens.updateAt = new Date()
     await this.lensRepository.updateById(id, lens);
   }
 
@@ -208,6 +209,7 @@ export class LensControlController {
     })
     lens: Lens,
   ): Promise<void> {
+    lens.updateAt = new Date()
     await this.lensRepository.updateById(id, lens);
   }
 
@@ -275,15 +277,18 @@ export class LensControlController {
         if (lens.no != undefined || lens.state != 0) {
           lens.no = undefined;
           lens.state = 0;
+          lens.updateAt = new Date()
           promiseList.push(this.lensRepository.updateById(lens.partNo, lens))
         }
       } else if (launchAt <= date && removeAt > date) {   // releasing
         lens.state = 1
+        lens.updateAt = new Date()
         releasingList.push(lens)
       } else {  //removed
         if (lens.no != undefined || lens.state != 2) {
           lens.no = undefined;
           lens.state = 2
+          lens.updateAt = new Date()
           promiseList.push(this.lensRepository.updateById(lens.partNo, lens))
         }
       }

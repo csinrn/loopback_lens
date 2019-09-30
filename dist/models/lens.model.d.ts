@@ -23,6 +23,7 @@ export declare class Lens extends Entity {
     createAt: Date;
     launchAt: Date;
     removeAt: Date;
+    updateAt: Date;
     url: string;
     state: number;
     [prop: string]: any;
