@@ -27,14 +27,27 @@ import { resolve } from 'url';
 var fs = require('fs')
 
 
-var nowDate = new Date('180928');//new Date().getDate()
+var nowDate = new Date();//new Date().getDate()
 var nextNo = 0;
 
 export class LensControlController {
   constructor(
     @repository(LensRepository)
     public lensRepository: LensRepository,
-  ) { }
+  ) {
+    var array = this.lensRepository.find()
+    array.then((array) => {
+      nextNo = 0;
+      array.forEach((len) => {
+        if (len.state == 1)
+          nextNo++
+      })
+      console.log('nextNo:', nextNo)
+    }).catch((err) => {
+      console.log(err)
+      throw new Error('nextNo initiallize error')
+    })
+  }
 
   //@authenticate('jwt')
   @post('/lens', {
@@ -77,7 +90,7 @@ export class LensControlController {
     // Capitalize partNo
     lens.partNo = lens.partNo.toUpperCase()
 
-    // assign part and no fields
+    // assign state and no fields
     if (this.compDate(new Date(lens.launchAt), nowDate) == 1) {  // not yet released
       lens.no = undefined;
       lens.state = 0;
@@ -174,6 +187,7 @@ export class LensControlController {
       // assign the new address to lens
       lens.url = imgUrl
       console.log(lens)
+
     } else if (lens.partNo != oldLen.partNo) {  // if not update pic but update the partNo,
       // change old pic name to new partNo
       try {
@@ -183,6 +197,28 @@ export class LensControlController {
       }
       lens.url = '/lensPic/' + lens.partNo + '.png';
     }
+
+    // check the state
+    var no, state = 0;
+    if (lens.launchAt != oldLen.launchAt || lens.removeAt != oldLen.removeAt) {
+      if (this.compDate(new Date(lens.launchAt), nowDate) == 1) {  // not yet released
+        no = undefined;
+        state = 0;
+      } else if (this.compDate(new Date(lens.launchAt), nowDate) == -1 && this.compDate(new Date(lens.removeAt), nowDate) == 1) { // released
+        no = nextNo;
+        console.log('nextNo:', nextNo)
+        state = 1;
+      } else { //removed
+        no = undefined
+        state = 2
+      }
+    }
+    console.log(state, oldLen.state)
+    if (state != lens.state) {
+      lens.state = state
+      lens.no = no
+    }
+
     await this.lensRepository.updateById(id, lens);
   }
 
@@ -250,8 +286,10 @@ export class LensControlController {
       console.log('Can not delete picture ' + './public' + lens.url + ', picture does not exist')
     }
     //console.log('delete img f')
+    var lens = await this.lensRepository.findById(id)
+    if (lens.state == 1)
+      nextNo -= 1
     await this.lensRepository.deleteById(id);
-    nextNo -= 1
     console.log('nextNo:', nextNo)
 
   }

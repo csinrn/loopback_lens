@@ -62,9 +62,10 @@ let AdminControlController = class AdminControlController {
     }
     //@authenticate('jwt')
     async updateById(id, admin) {
-        validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
-        if (admin.password != undefined)
+        if (admin.password != undefined) {
+            validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
             admin.password = await this.passwordHasher.hashPassword(admin.password);
+        }
         await this.adminRepository.updateById(id, admin);
     }
     //@authenticate('jwt')

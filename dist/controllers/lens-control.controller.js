@@ -18,11 +18,23 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const validator_1 = require("../services/validator");
 var fs = require('fs');
-var nowDate = new Date('180928'); //new Date().getDate()
+var nowDate = new Date(); //new Date().getDate()
 var nextNo = 0;
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
+        var array = this.lensRepository.find();
+        array.then((array) => {
+            nextNo = 0;
+            array.forEach((len) => {
+                if (len.state == 1)
+                    nextNo++;
+            });
+            console.log('nextNo:', nextNo);
+        }).catch((err) => {
+            console.log(err);
+            throw new Error('nextNo initiallize error');
+        });
     }
     //@authenticate('jwt')
     async create(lens) {
@@ -46,7 +58,7 @@ let LensControlController = class LensControlController {
         }
         // Capitalize partNo
         lens.partNo = lens.partNo.toUpperCase();
-        // assign part and no fields
+        // assign state and no fields
         if (this.compDate(new Date(lens.launchAt), nowDate) == 1) { // not yet released
             lens.no = undefined;
             lens.state = 0;
@@ -112,6 +124,28 @@ let LensControlController = class LensControlController {
             }
             lens.url = '/lensPic/' + lens.partNo + '.png';
         }
+        // check the state
+        var no, state = 0;
+        if (lens.launchAt != oldLen.launchAt || lens.removeAt != oldLen.removeAt) {
+            if (this.compDate(new Date(lens.launchAt), nowDate) == 1) { // not yet released
+                no = undefined;
+                state = 0;
+            }
+            else if (this.compDate(new Date(lens.launchAt), nowDate) == -1 && this.compDate(new Date(lens.removeAt), nowDate) == 1) { // released
+                no = nextNo;
+                console.log('nextNo:', nextNo);
+                state = 1;
+            }
+            else { //removed
+                no = undefined;
+                state = 2;
+            }
+        }
+        console.log(state, oldLen.state);
+        if (state != lens.state) {
+            lens.state = state;
+            lens.no = no;
+        }
         await this.lensRepository.updateById(id, lens);
     }
     //@authenticate('jwt')
@@ -146,8 +180,10 @@ let LensControlController = class LensControlController {
             console.log('Can not delete picture ' + './public' + lens.url + ', picture does not exist');
         }
         //console.log('delete img f')
+        var lens = await this.lensRepository.findById(id);
+        if (lens.state == 1)
+            nextNo -= 1;
         await this.lensRepository.deleteById(id);
-        nextNo -= 1;
         console.log('nextNo:', nextNo);
     }
     async postImg(filename, imgData) {
