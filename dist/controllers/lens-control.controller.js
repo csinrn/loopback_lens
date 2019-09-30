@@ -105,7 +105,6 @@ let LensControlController = class LensControlController {
         else if (lens.partNo != oldLen.partNo) { // if not update pic but update the partNo,
             // change old pic name to new partNo
             try {
-                console.log('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png');
                 fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
             }
             catch (_a) {
