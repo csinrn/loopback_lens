@@ -24,10 +24,10 @@
         integrity="sha256-Qfxgn9jULeGAdbaeDjXeIhZB3Ra6NCK3dvjwAG8Y+xU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/TableDnD/0.9.1/jquery.tablednd.js"
         integrity="sha256-d3rtug+Hg1GZPB7Y/yTcRixO/wlI78+2m08tosoRn7A=" crossorigin="anonymous"></script>
 </head>
@@ -111,28 +111,20 @@
                             <div class="tab-pane fade active show" id="update" role="tabpanel"
                                 aria-labelledby="update-tab show active">
                                 <div class="row">
-                                    <div class="col-md-5 container"
+                                    <div class="col-xl-5 container"
                                         style="overflow-y: auto; height:1000px; overflow-x: auto">
                                         <table class="table mb-0" name="table-id">
                                             <thead>
                                                 <tr>
-                                                    <td style="width: 20%">id</td>
+                                                    <td>no</td>
                                                     <td>品名</td>
+                                                    <td></td>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr id="1">
-                                                    <td style="width: 20%">1</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr id="12">
-                                                    <td style="width: 20%">12</td>
-                                                    <td>12</td>
-                                                </tr>
-                                            </tbody>
+                                            <tbody></tbody>
                                         </table>
                                     </div>
-                                    <div name="form-div" class="col-md-7">
+                                    <div name="form-div" class="col-xl-7">
                                         <form>
                                             <div class="row">
                                                 <div class="input-group mb-3 col-md">
@@ -221,19 +213,16 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="input-group mb-3 col-md">
+                                                <div class="input-group mb-3 col-xl-9">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text">新增圖片</span>
+                                                        <span class="input-group-text">更新圖片</span>
                                                         <input type="file" name="img" accept=".png" data-url=""
                                                             style="align-self: center; margin-left: 2%"
-                                                            onchange="checkAlpha2()">
+                                                            onchange="checkAlpha2()" attr="optional">
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-md">
                                                     ＊圖片須為png檔且具備透明度資訊
                                                 </div>
+                                                <div class="col-xl-3 mb-3" id="update_img"></div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-group mb-3 col-md">
@@ -584,6 +573,7 @@
         var serverURL = 'http://' + ip + ':3000'
         var tableRows = []
         var isAdmin = false
+        var lensInfo = {}
 
         function register() {
             $('#register [name="registerBtn"]').attr('disabled', true)
@@ -689,24 +679,23 @@
             }).done(response => {
                 // 清空面板
                 response.sort(lensComparator)
-                $('#update [name="table-id"]').empty()
-                var thead = `<thead>
-                                <tr>
-                                    <td style="width: 30%">料號</td>
-                                    <td>品名</td>
-                                </tr>
                             </thead>`
-                var tbody = '<tbody>'
+                var index = 1
+                var tbody = ''
                 response.forEach(lens => {
+                    lensInfo[lens.partNo.toString()] = lens
                     tbody += '<tr id="'
                     tbody += lens.partNo
                     tbody += '">'
                     tbody += '<td>' + lens.partNo + '</td>'
                     tbody += '<td>' + lens.name + '</td>'
+                    tbody +=
+                        '<td><button type="button" name="lenBtn" class="btn btn-outline-dark" onclick="renderLenUpdate(\'' +
+                        lens.partNo.toString() + '\')">修改</button></td>'
                     tbody += '</tr>'
                 });
-                tbody += '</tbody>'
-                $('#update [name="table-id"]').append(thead + tbody)
+                $('#update [name="table-id"] tbody').empty()
+                $('#update [name="table-id"] tbody').append(tbody)
                 $('#update [name="table-id"]').tableDnD({
                     onDragStart: updateTableRows,
                     onDrop: onDrop
@@ -716,6 +705,36 @@
                 console.log(err)
                 logout()
             });
+        }
+
+        function renderLenUpdate(id) {
+            var len = lensInfo[id]
+            $('#update [name="name"]').val(len.name)
+            $('#update [name="diameter"]').val(len.diameter)
+            $('#update [name="partNo"]').val(len.partNo)
+            $('#update [name="bc"]').val(len.bc) //弧度
+            $('#update [name="powerL"]').val(len.powerL) //度數
+            $('#update [name="powerH"]').val(len.powerH) //度數
+            $('#update [name="water"]').val(len.water) //含水量
+            $('#update [name="daily"]').prop('checked', len.daily).change()
+            $('#update [name="biweekly"]').prop('checked', len.biweekly).change()
+            $('#update [name="monthly"]').prop('checked', len.monthly).change()
+            $('#update [name="placeOfProd"]').val(len.placeOfProd) // 產地
+            $('#update [name="price"]').val(len.price)
+            $('#update [name="package"]').val(len.package)
+            $('#update [name="specialPrice"]').val(len.specialPrice) // optional
+            $('#update [name="eventDisp"]').val(len.eventDisp) // 活動敘述 optional
+            $('#update [name="license"]').val(len.license) // 許可證字號
+            $('#update [name="newTag"]').prop("checked", len.newTag).change() // 0 或 1
+            $('#update [name="hotsaleTag"]').prop("checked", len.hotsaleTag).change() // 0 或 1
+            $('#update [name="onsaleTag"]').prop("checked", len.onsaleTag).change() // 0 或 1
+            $('#update [name="launch_at"]').val(timeStampToDate(len.launchAt)) // 上架時間
+            $('#update [name="remove_at"]').val(timeStampToDate(len.removeAt)) // 下架時間
+            $('#update #update_img').html('<img style="\
+                                                    height: 100px;\
+                                                    background-color: white;\
+                                                    border-radius: 100%;\
+                                                " src="' + len.url + '">')
         }
 
         function switchPane(auth) {
@@ -888,7 +907,7 @@
                     //$("#sort-form input").val('')
                     var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(
                         error.responseJSON
-                            .error.details)
+                        .error.details)
                     swalAlert("排序失敗", msg, false)
                     reject()
                 })
@@ -941,7 +960,7 @@
 
         async function updateLens(btn) { //更新隱眼
 
-            btnDisable()
+            btnDisable2()
 
             var specialChecked = $('#update [name="onsaleTag"]').is(':checked')
             var date = nowDate()
@@ -969,7 +988,7 @@
                 for (var i = 0; i < emptyFields.length; i++)
                     names += emptyFields[i] + ', '
                 swalAlert('欄位為空', '必填欄位: ' + names, false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
@@ -980,7 +999,7 @@
                 eventDisp = jQuery.trim(eventDisp)
                 if (specialPrice == '' || eventDisp == '') {
                     swalAlert('欄位為空', '需填寫特價描述', false)
-                    btnEnable()
+                    btnEnable2()
                     return
                 }
             }
@@ -988,28 +1007,28 @@
             // empty wearing time alert
             if (!checkWearingTime2()) {
                 swalAlert('欄位為空', '至少勾選一項「日拋、雙周、月拋」', false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
             // negative number alert
             if (!isAllPositive2(specialChecked)) {
                 swalAlert('數值錯誤', '數值應為正值', false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
             // powerH < powerL alert
             if (!checkPowerOrder2()) {
                 swalAlert('度數區間錯誤', '最大度數應大於最小度數', false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
             // removeAt > launchAt alert
             if (!checkLaunchAndRemoveTime2()) {
                 swalAlert('上下架時間錯誤', '下架時間應晚於上架時間', false)
-                btnEnable()
+                btnEnable2()
                 return
             }
 
@@ -1018,7 +1037,7 @@
                 fileData = await parseFile()
             } catch {
                 // if rejected
-                btnEnable()
+                btnEnable2()
                 return
             }
             var data = {
@@ -1054,7 +1073,7 @@
             }
 
             //////////////
-            var lensid = null  // 這裡放當前選取行數的id值 (就是按下修改的那row的第一column)
+            var lensid = null // 這裡放當前選取行數的id值 (就是按下修改的那row的第一column)
             // FIXME: 這邊的url交給你了
             data = JSON.stringify(data)
             console.log(data)
@@ -1129,7 +1148,11 @@
             return (year + month + day).toString()
         }
 
-        function swalAlert(title, html, isSuccess, onAfterClose = (() => { })) {
+        function timeStampToDate(ts) {
+            return ts.substring(0, ts.indexOf('T')).replace(/-/g, '/')
+        }
+
+        function swalAlert(title, html, isSuccess, onAfterClose = (() => {})) {
             var type = isSuccess ? "success" : "error"
             var msg = isSuccess ? "OK" : "Fine"
             Swal.fire({
@@ -1395,7 +1418,17 @@
             $('#upload [name="uploadBtn"]').attr('disabled', false)
         }
 
+        function btnEnable2() {
+            console.log('enable')
+            $('#update [name="uploadBtn"]').attr('disabled', false)
+        }
+
         function btnDisable() {
+            console.log('disable')
+            $('#upload [name="uploadBtn"]').attr('disabled', true)
+        }
+
+        function btnDisable2() {
             console.log('disable')
             $('#upload [name="uploadBtn"]').attr('disabled', true)
         }
