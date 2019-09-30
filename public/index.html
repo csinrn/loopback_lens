@@ -1479,8 +1479,8 @@
                 pkg = parseInt($('#upload [name="package"]').val()),
                 specialPrice = parseInt($('#upload [name="specialPrice"]').val()); // optional
 
-            var allPositive = diameter > 0 && bc > 0 && powerL > 0 && powerH > 0 && water > 0 &&
-                price > 0 && pkg > 0
+            var allPositive = diameter >= 0 && bc >= 0 && powerL >= 0 && powerH >= 0 && water >= 0 &&
+                price >= 0 && pkg >= 0
             if (special) {
                 allPositive = allPositive && specialPrice > 0
             }
@@ -1497,8 +1497,8 @@
                 pkg = parseInt($('#update [name="package"]').val()),
                 specialPrice = parseInt($('#update [name="specialPrice"]').val()); // optional
 
-            var allPositive = diameter > 0 && bc > 0 && powerL > 0 && powerH > 0 && water > 0 &&
-                price > 0 && pkg > 0
+            var allPositive = diameter >= 0 && bc >= 0 && powerL >= 0 && powerH >= 0 && water >= 0 &&
+                price >= 0 && pkg >= 0
             if (special) {
                 allPositive = allPositive && specialPrice > 0
             }
