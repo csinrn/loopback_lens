@@ -62,8 +62,8 @@ let UserLensControlController = class UserLensControlController {
         let dat = await this.userlensRepository.findOne({
             where: {
                 and: [
-                    { lensid: lensid },
-                    { userid: userid }
+                    { lensId: lensid },
+                    { userId: userid }
                 ]
             }
         });
@@ -78,7 +78,7 @@ let UserLensControlController = class UserLensControlController {
     //@authenticate('jwt')
     async updateCount(userid, lensid, userlens) {
         //console.log(userlens)
-        let user = await this.userlensRepository.findOne({ where: { and: [{ userid: userid }, { lensid: lensid }] } });
+        let user = await this.userlensRepository.findOne({ where: { and: [{ userId: userid }, { lensId: lensid }] } });
         if (!user)
             throw new rest_1.HttpErrors.NotFound('user not found');
         if (user.id == undefined)

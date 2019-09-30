@@ -576,8 +576,10 @@
                                                 <label>姓名</label>
                                                 <input type="string" name="name" class="form-control">
                                             </div>
-                                            <button type="button" name="updateAdminBtn" class="btn btn-primary">更新</button>
-                                            <button type="button" name="deleteAdminBtn" class="btn btn-danger">刪除帳號</button>
+                                            <button type="button" name="updateAdminBtn"
+                                                class="btn btn-primary">更新</button>
+                                            <button type="button" name="deleteAdminBtn"
+                                                class="btn btn-danger">刪除帳號</button>
                                         </form>
                                     </div>
                                 </div>
@@ -696,8 +698,10 @@
             }).fail(error => {
                 console.log('server login fail')
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
-                    .responseJSON
-                    .error.details)
+                    .responseJSON.error.details)
+                if (error.responseJSON.error.details[0].code == 'minLength') {
+                    msg = '密碼最少需要6個字'
+                }
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
 
                 swalAlert('登入失敗', msg, false)
@@ -788,7 +792,7 @@
                 var tbody = ''
                 response.forEach(admin => {
                     // 自己不抓
-                    if(admin.id == user.id)
+                    if (admin.id == user.id)
                         return
                     // 其他人抓下來
                     adminsInfo[admin.id.toString()] = admin
@@ -797,7 +801,7 @@
                         <td>' + admin.account + '</td>\
                         <td><button type="button" name="accountBtn" \
                             class="btn btn-outline-dark" onclick="renderAdminUpdate(\'' +
-                            admin.id.toString() + '\')">修改</button></td>\
+                        admin.id.toString() + '\')">修改</button></td>\
                     </tr>'
                 });
                 $('#admin-manage [name="account-list"] tbody').empty()
@@ -1547,13 +1551,13 @@
             $('#manage [name="updateAccountBtn"]').attr('disabled', true)
             var password = jQuery.trim($('#manage [name="password"]').val())
             var data = {}
-            if (password)
-            {
+            if (password) {
                 data = {
                     account: jQuery.trim($('#manage [name="account"]').val()),
                     password,
                     name: jQuery.trim($('#manage [name="name"]').val())
-                }}
+                }
+            }
             else
                 data = {
                     account: jQuery.trim($('#manage [name="account"]').val()),
@@ -1592,13 +1596,13 @@
             $('#admin-manage [name="updateAdminBtn"]').attr('disabled', true)
             var password = jQuery.trim($('#admin-manage [name="password"]').val())
             var data = {}
-            if (password)
-            {
+            if (password) {
                 data = {
                     account: jQuery.trim($('#admin-manage [name="account"]').val()),
                     password,
                     name: jQuery.trim($('#admin-manage [name="name"]').val())
-                }}
+                }
+            }
             else
                 data = {
                     account: jQuery.trim($('#admin-manage [name="account"]').val()),

@@ -8,7 +8,7 @@ const rest_1 = require("@loopback/rest");
 function validateCredentials(credentials) {
     // Validate Password Length
     if (credentials.password.length < 6) {
-        throw new rest_1.HttpErrors.UnprocessableEntity('password must be minimum 6 characters');
+        throw new rest_1.HttpErrors.UnprocessableEntity('密碼最少需要6個字');
     }
 }
 exports.validateCredentials = validateCredentials;

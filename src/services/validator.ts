@@ -10,7 +10,7 @@ export function validateCredentials(credentials: Credentials) {
   // Validate Password Length
   if (credentials.password.length < 6) {
     throw new HttpErrors.UnprocessableEntity(
-      'password must be minimum 6 characters',
+      '密碼最少需要6個字',
     );
   }
 }

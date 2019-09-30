@@ -1397,7 +1397,7 @@
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "d:/eye-demo/lens/src/services/validator.ts": {
-        "version": "6e21fd50ee73d3236b02966e42ca6529e94226f57614c0c2c44ace5cf0b35867",
+        "version": "a120ee5aecca1687b51c427bd39fe33b5c49fd2634dc40aeac4863bd5e8ef919",
         "signature": "f71c5b7a28dbfc42093f2c6b87d87843a2753ba6f2f2efbc0a812d9a7ee06043"
       },
       "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts": {
@@ -1457,7 +1457,7 @@
         "signature": "bbf144d4354e2aaa6439f32761f3ee798cc68d1600adab6e2a596f25269f106d"
       },
       "d:/eye-demo/lens/src/controllers/admin-control.controller.ts": {
-        "version": "bf3b48c245313b1b21dcfc10fab8f324e0e53dc4d88c4fa0bbbfa3982f27c4e2",
+        "version": "0a5ee1a7335ccbe9efd886b406b614ed8ceabb085c81e2b7bbe7ae3a69753bdf",
         "signature": "e67b05c0da9c606b218a6c017d5908a9b2d601688d2a16620d91a40e81130130"
       },
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": {
@@ -1469,7 +1469,7 @@
         "signature": "e7af81fe2b63ff5393d86a36c267939b5331cc1debdbd79c89da6e71116f778e"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
-        "version": "53c0db847a123b5399c3491be3cdf9e05e9761adde5f44d8ac51c36c6b593098",
+        "version": "93386aa2e6699b0272c8a4cb9942776ac0f7b4cb75cc7c9acfe72375558d755b",
         "signature": "398f85593eaba982d40b44c613b09cc8d7fa73e1af2e32b1d50f5894c8060704"
       },
       "d:/eye-demo/lens/src/controllers/index.ts": {
@@ -7033,6 +7033,7 @@
       "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
+      "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/eslint-visitor-keys/index.d.ts",
@@ -7041,8 +7042,7 @@
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts"
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts"
     ]
   },
   "version": "3.5.3"

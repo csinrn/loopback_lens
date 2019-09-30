@@ -22,6 +22,7 @@ const repository_2 = require("@loopback/repository");
 const user_controller_specs_1 = require("./specs/user-controller.specs");
 const rest_1 = require("@loopback/rest");
 const keys_1 = require("../keys");
+const _ = require("lodash");
 let AdminControlController = class AdminControlController {
     constructor(adminRepository, passwordHasher, jwtService, userService) {
         this.adminRepository = adminRepository;
@@ -31,7 +32,7 @@ let AdminControlController = class AdminControlController {
     }
     async create(admin) {
         // ensure a valid account value and password value
-        //validateCredentials(_.pick(admin, ['account', 'password']));
+        validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
         validator_1.validateDate(admin.createAt);
         validator_1.validateBoolean(admin.isAdmin, "isAdmin");
         // encrypt the password
@@ -61,7 +62,7 @@ let AdminControlController = class AdminControlController {
     }
     //@authenticate('jwt')
     async updateById(id, admin) {
-        //validateCredentials(_.pick(admin, ['account', 'password']));
+        validator_1.validateCredentials(_.pick(admin, ['account', 'password']));
         if (admin.password != undefined)
             admin.password = await this.passwordHasher.hashPassword(admin.password);
         await this.adminRepository.updateById(id, admin);
