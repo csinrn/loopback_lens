@@ -61,7 +61,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Admin.prototype, "isAdmin", void 0);
 Admin = __decorate([
-    repository_1.model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'admin' } } }),
+    repository_1.model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'admin' } } }),
     __metadata("design:paramtypes", [Object])
 ], Admin);
 exports.Admin = Admin;

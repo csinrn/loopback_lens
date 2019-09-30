@@ -17,10 +17,21 @@ let Lens = class Lens extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
+        type: 'number',
+        precision: 10,
+        generated: true,
+        required: false,
+        id: 1,
+        scale: 0,
+        mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Lens.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
         type: 'string',
         precision: 10,
         scale: 0,
-        id: 1,
         mysql: { "columnName": "part_no", "dataType": "varchar", "dataLength": 20, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", String)
@@ -260,7 +271,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Lens.prototype, "state", void 0);
 Lens = __decorate([
-    repository_1.model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'lens' } } }),
+    repository_1.model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'lens' } } }),
     __metadata("design:paramtypes", [Object])
 ], Lens);
 exports.Lens = Lens;

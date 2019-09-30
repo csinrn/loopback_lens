@@ -77,7 +77,7 @@ let LensControlController = class LensControlController {
         var list = await this.lensRepository.find(filter);
         var date = new Date();
         if (this.compDate(nowDate, date) != 0) {
-            await this.renewNo(list);
+            //await this.renewNo(list)
             nowDate = new Date();
         }
         list = await this.lensRepository.find(filter);
@@ -90,24 +90,17 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async sort(id1, id2) {
-        console.log('lens1:', id1);
-        console.log('lens2:', id2);
         let lens1 = await this.lensRepository.findById(id1);
-        console.log(1);
         let lens2 = await this.lensRepository.findById(id2);
-        console.log(2);
         let no1 = lens1.no, no2 = lens2.no;
         let lens_t = new models_1.Lens();
         lens_t.no = -1;
         lens_t.updateAt = new Date();
         await this.lensRepository.updateById(id1, lens_t, { partial: true });
-        console.log(3);
         lens_t.no = no1;
         await this.lensRepository.updateById(id2, lens_t, { partial: true });
         lens_t.no = no2;
-        console.log(4);
         await this.lensRepository.updateById(id1, lens_t, { partial: true });
-        console.log(5);
         //console.log(no1, no2, "done")
         return { responses: "exchange order " + no1 + " and " + no2 + " successfully" };
     }
@@ -282,13 +275,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "find", null);
 __decorate([
-    rest_1.patch('/lens/{id}', {
-        responses: {
-            '204': {
-                description: 'Lens PATCH success',
-            },
-        },
-    }),
+    rest_1.patch('/lens/{id}'),
     __param(0, rest_1.param.path.string('id')),
     __param(1, rest_1.requestBody({
         content: {

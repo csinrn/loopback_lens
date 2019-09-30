@@ -135,7 +135,7 @@ export class LensControlController {
 
     var date = new Date()
     if (this.compDate(nowDate, date) != 0) {
-      await this.renewNo(list)
+      //await this.renewNo(list)
       nowDate = new Date()
     }
 
@@ -144,13 +144,7 @@ export class LensControlController {
   }
 
   //@authenticate('jwt')
-  @patch('/lens/{id}', {
-    responses: {
-      '204': {
-        description: 'Lens PATCH success',
-      },
-    },
-  })
+  @patch('/lens/{id}')
   async updateById(
     @param.path.string('id') id: string,
     @requestBody({
@@ -262,7 +256,7 @@ export class LensControlController {
     return res
   }
 
-  async renewNo(list: Lens[]) {
+  async renewNo(list: Lens[]) {    // 有問題，第二次的renew會把第一次的no 亂排
     var dt = new Date()
     var date = parseInt(this.getDateString(dt))
 

@@ -1,6 +1,6 @@
 import { Entity, model, property } from '@loopback/repository';
 
-@model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'admin' } } })
+@model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'admin' } } })
 export class Admin extends Entity {
   @property({
     type: 'string',

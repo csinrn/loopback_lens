@@ -1,12 +1,22 @@
 import { Entity, model, property } from '@loopback/repository';
 
-@model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'lens' } } })
+@model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'lens' } } })
 export class Lens extends Entity {
+  @property({
+    type: 'number',
+    precision: 10,
+    generated: true,
+    required: false,
+    id: 1,
+    scale: 0,
+    mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+  })
+  id: number;
+
   @property({
     type: 'string',
     precision: 10,
     scale: 0,
-    id: 1,
     mysql: { "columnName": "part_no", "dataType": "varchar", "dataLength": 20, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
   partNo: string;

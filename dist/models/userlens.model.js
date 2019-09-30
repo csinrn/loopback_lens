@@ -72,7 +72,7 @@ __decorate([
     __metadata("design:type", String)
 ], Userlens.prototype, "updateAt", void 0);
 Userlens = __decorate([
-    repository_1.model({ settings: { idInjection: false, mysql: { schema: 'lensdb', table: 'userlens' } } }),
+    repository_1.model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'userlens' } } }),
     __metadata("design:paramtypes", [Object])
 ], Userlens);
 exports.Userlens = Userlens;
