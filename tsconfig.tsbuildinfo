@@ -1238,8 +1238,8 @@
         "signature": "ca76889621a704c59673424a40f7c98b4d109e0291ccf8c7647760e89b09a3ba"
       },
       "d:/eye-demo/lens/src/models/userlens.model.ts": {
-        "version": "e4f2f211bb66545160a143e1b022934aedb8de087a3723a8b7d34c0fc358dbca",
-        "signature": "0599a17c7e4852139beced086eec691537d5d18f2c7481b031ef2a9ebc1aa1e6"
+        "version": "c96de8beacbce6f3d7b667d8605c997e7c978b985f0095da74114f5645c207e4",
+        "signature": "926943db1110db7759b627fb9dd2cb7197b3c788666c3d174e5a8ea353d91da7"
       },
       "d:/eye-demo/lens/src/models/admin.model.ts": {
         "version": "d0167cd9f30a1ca443aa916383c878047c13a0b899fc214206f7f04b1e5f4497",
@@ -1465,12 +1465,12 @@
         "signature": "298dcf42626620a1d183c7a1d1f08ad2311840ec09f9512d57335dd1c7d9fc72"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "6de4b34b338dda3405cd86a8753a1afc8081f20ad4dcf4c341958f2433d0b3d3",
+        "version": "024f0b94b0b949bc329c42327cbe3b0407b4354618e941692e1f46c225e9e19b",
         "signature": "7c239bf97f03310ae2ce9a9d5e148c10713ac7476c99dac348375ef4864f9dff"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
-        "version": "4043aac0b3145f71f7f414b47c8a7ccf4e35bb8254d536f446db753bde94f52f",
-        "signature": "5e16da32306ab05b9b156c92fe2cbf89136b3619b6ac2d9b46c2fbd1c668527a"
+        "version": "88d64a8c588896948a94a598860ae4ea12d07e12dc9cacc1b5fcdf6b7242da39",
+        "signature": "de2dbff45d375c4425605afd9b02dfcf56e6fb8bd6b8f3cec60ab9924d84a699"
       },
       "d:/eye-demo/lens/src/controllers/index.ts": {
         "version": "4dc83df70c1db9ef664d81e952983bb6edc49f7389451a3cfa132f1f10fa9ff8",
@@ -6973,12 +6973,24 @@
       "d:/eye-demo/lens/node_modules/@loopback/authentication/index.d.ts",
       "d:/eye-demo/lens/src/sequence.ts",
       "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts",
+      "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+      "d:/eye-demo/lens/src/models/lens.model.ts",
       "d:/eye-demo/lens/src/models/userlens.model.ts",
       "d:/eye-demo/lens/src/models/admin.model.ts",
       "d:/eye-demo/lens/src/models/image-storage.model.ts",
+      "d:/eye-demo/lens/src/models/index.ts",
       "d:/eye-demo/lens/src/datasources/lens.datasource.json",
       "d:/eye-demo/lens/src/datasources/lens.datasource.ts",
       "d:/eye-demo/lens/src/datasources/index.ts",
+      "d:/eye-demo/lens/src/repositories/lens.repository.ts",
+      "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
+      "d:/eye-demo/lens/src/repositories/admin.repository.ts",
+      "d:/eye-demo/lens/src/repositories/index.ts",
+      "d:/eye-demo/lens/src/keys.ts",
+      "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts",
+      "d:/eye-demo/lens/src/services/jwt-service.ts",
+      "d:/eye-demo/lens/src/services/user-service.ts",
+      "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
       "d:/eye-demo/lens/node_modules/@types/cookiejar/index.d.ts",
@@ -7003,6 +7015,7 @@
       "d:/eye-demo/lens/src/__tests__/acceptance/test-helper.ts",
       "d:/eye-demo/lens/src/__tests__/acceptance/home-page.acceptance.ts",
       "d:/eye-demo/lens/src/__tests__/acceptance/ping.controller.acceptance.ts",
+      "d:/eye-demo/lens/src/services/validator.ts",
       "d:/eye-demo/lens/src/controllers/specs/user-controller.specs.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/common.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/array.d.ts",
@@ -7017,7 +7030,10 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
+      "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
+      "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/eslint-visitor-keys/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/fs-extra/index.d.ts",
@@ -7026,23 +7042,7 @@
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
-      "d:/eye-demo/lens/src/models/lens.model.ts",
-      "d:/eye-demo/lens/src/models/index.ts",
-      "d:/eye-demo/lens/src/repositories/lens.repository.ts",
-      "d:/eye-demo/lens/src/repositories/userlens.repository.ts",
-      "d:/eye-demo/lens/src/repositories/admin.repository.ts",
-      "d:/eye-demo/lens/src/repositories/index.ts",
-      "d:/eye-demo/lens/src/keys.ts",
-      "d:/eye-demo/lens/src/authentication-strategies/jwt-strategy.ts",
-      "d:/eye-demo/lens/src/services/jwt-service.ts",
-      "d:/eye-demo/lens/src/services/user-service.ts",
-      "d:/eye-demo/lens/src/application.ts",
-      "d:/eye-demo/lens/src/services/validator.ts",
-      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
-      "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
-      "d:/eye-demo/lens/src/controllers/index.ts"
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts"
     ]
   },
   "version": "3.5.3"

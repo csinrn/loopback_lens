@@ -697,12 +697,11 @@
                                 </tr>
                             </thead>`
                 var tbody = '<tbody>'
-                var index = 1
                 response.forEach(lens => {
                     tbody += '<tr id="'
-                    tbody += lens.partNo.toString()
+                    tbody += lens.partNo
                     tbody += '">'
-                    tbody += '<td>' + index++ + '</td>'
+                    tbody += '<td>' + lens.partNo + '</td>'
                     tbody += '<td>' + lens.name + '</td>'
                     tbody += '</tr>'
                 });

@@ -172,20 +172,20 @@ export class LensControlController {
     @param.path.string('id1') id1: string,
     @param.path.string('id2') id2: string) {
 
-    let lens1 = await this.lensRepository.findById(parseInt(id1))
-    let lens2 = await this.lensRepository.findById(parseInt(id2))
+    let lens1 = await this.lensRepository.findById(id1)
+    let lens2 = await this.lensRepository.findById(id2)
     let no1 = lens1.no, no2 = lens2.no
-    //console.log("id1: ", id1, no1)
-    //console.log("id2: ", id2, no2)
 
     let lens_t = new Lens()
     lens_t.no = -1
     lens_t.updateAt = new Date()
-    await this.lensRepository.updateById(parseInt(id1), lens_t, { partial: true })
+    await this.lensRepository.updateById(id1, lens_t, { partial: true })
     lens_t.no = no1
-    await this.lensRepository.updateById(parseInt(id2), lens_t, { partial: true })
+    await this.lensRepository.updateById(id2, lens_t, { partial: true })
     lens_t.no = no2
-    await this.lensRepository.updateById(parseInt(id1), lens_t, { partial: true })
+
+    await this.lensRepository.updateById(id1, lens_t, { partial: true })
+
     //console.log(no1, no2, "done")
     return { responses: "exchange order " + no1 + " and " + no2 + " successfully" }
   }
