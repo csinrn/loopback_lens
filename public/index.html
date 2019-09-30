@@ -931,8 +931,6 @@
                 console.log(idDeleted, tableRows[i - 1])
             }
 
-
-            //TODO: 圖片檔案應該也要刪除
             var url = serverURL + '/lens/' + id
             $.ajax({
                 url: url, // 你的api
@@ -1435,7 +1433,6 @@
             $('#upload [name="uploadBtn"]').attr('disabled', true)
         }
 
-        //TODO: updateAccount(), deleteAccount()
         function updateAccount() {
             // check if the user is changing self data
             if (!$('#manage [name="name"]').val() == $('#username').val()) {
