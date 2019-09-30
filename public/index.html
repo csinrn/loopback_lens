@@ -537,12 +537,6 @@
                                         <label>姓名</label>
                                         <input type="string" name="name" class="form-control" placeholder="按此輸入姓名">
                                     </div>
-                                    <div class="input-group mb-3 col-md-3">
-                                        <div class="input-group-prepend">
-                                            <span>admin</span>
-                                        </div>
-                                        <input type="checkbox" name="isAdmin" class="form-control">
-                                    </div>
                                     <button type="button" name="registerBtn" class="btn btn-primary"
                                         onclick="register()">註冊</button>
                                 </form>
@@ -587,7 +581,7 @@
                 "account": $('#register [name="account"]').val(),
                 "name": $('#register [name="name"]').val(),
                 "createAt": nowDate(),
-                "isAdmin": $('#register [name="isAdmin"]').is(':checked') ? 1 : 0
+                "isAdmin": 0
             }
             data = JSON.stringify(data)
             console.log("string", data)
@@ -1447,13 +1441,21 @@
             }
             $('#manage [name="updateAccountBtn"]').attr('disabled', true)
             console.log(jQuery.trim($('#manage [name="account"]').val()), $('#manage [name="account"]').val())
-            var data = {
-                account: jQuery.trim($('#manage [name="account"]').val()),
-                password: jQuery.trim($('#manage [name="password"]').val()),
-                name: jQuery.trim($('#manage [name="name"]').val())
-            }
+            var password = jQuery.trim($('#manage [name="password"]').val())
+            var data = {}
+            if (password)
+                data = {
+                    account: jQuery.trim($('#manage [name="account"]').val()),
+                    password,
+                    name: jQuery.trim($('#manage [name="name"]').val())
+                }
+            else
+                data = {
+                    account: jQuery.trim($('#manage [name="account"]').val()),
+                    name: jQuery.trim($('#manage [name="name"]').val())
+                }
             console.log(data)
-            if (data.account == '' || data.password == '' || data.name == '') {
+            if (data.account == '' || data.name == '') {
                 swalAlert('更新失敗', '欄位未填', false)
                 return
             }
