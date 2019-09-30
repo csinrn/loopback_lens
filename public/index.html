@@ -120,8 +120,8 @@
                                         <table class="table mb-0" name="ready-to-launch-lens">
                                             <thead class="bg-primary">
                                                 <tr>
-                                                    <td>#</td>
-                                                    <td>品名</td>
+                                                    <td style="width: 66px; text-align:center">#</td>
+                                                    <td style="width: 200px">品名</td>
                                                     <td></td>
                                                 </tr>
                                             </thead>
@@ -724,21 +724,34 @@
                 // 清空面板
                 response.sort(lensComparator)
                 var index = 1
-                var tbody = ''
-                response.forEach(lens => {
-                    lensInfo[lens.partNo.toString()] = lens
-                    tbody += '<tr id="'
-                    tbody += lens.partNo
-                    tbody += '">'
-                    tbody += '<td>' + index++ + '</td>'
-                    tbody += '<td>' + lens.name + '</td>'
-                    tbody +=
-                        '<td><button type="button" name="lenBtn" class="btn btn-outline-dark" onclick="renderLenUpdate(\'' +
-                        lens.partNo.toString() + '\')">修改</button></td>'
-                    tbody += '</tr>'
+                var tbody = ['', '', '']
+                response.forEach(len => {
+                    lensInfo[len.partNo.toString()] = len
+                    tbody[len.state] += '<tr id="' + len.partNo + '"' +
+                        (len.state == 1 ? '' : (len.state == 0 ? 'class="text-primary"' : 'style="color: #666"')) +
+                        '>\
+                        <td style="width: 66px; text-align:center">' + (len.state == 1 ? index++ : (len.state == 0 ? '<p style="\
+                            border: 10px white;\
+                            width: 30px;\
+                            height: 30px;\
+                            border-radius: 50%;\
+                            font-size: 0.7rem;\
+                            line-height: 30px;\
+                            text-align: center;\
+                        " class="bg-primary text-dark">預</p>' : '-')) + '</td>\
+                        <td style="width: 200px">' + (len.state == 2 ? '<del>':'') + len.name + (len.state == 2 ? '</del>':'') + '</td>\
+                        <td><button type="button" name="lenBtn" \
+                            class="btn" style="' + (len.state == 1 ? 'color:white; border-color:white' : (len.state == 0 ? 'color:#375a7f; border-color:#375a7f' : 'color: #666; border-color:#666')) + '" \
+                            onclick="renderLenUpdate(\'' +
+                        len.partNo.toString() + '\')">修改</button></td>\
+                    </tr>'
                 });
+                $('#update [name="ready-to-launch-lens"] tbody').empty()
                 $('#update [name="launched-lens"] tbody').empty()
-                $('#update [name="launched-lens"] tbody').append(tbody)
+                $('#update [name="removed-lens"] tbody').empty()
+                $('#update [name="ready-to-launch-lens"] tbody').append(tbody[0])
+                $('#update [name="launched-lens"] tbody').append(tbody[1])
+                $('#update [name="removed-lens"] tbody').append(tbody[2])
                 $('#update [name="launched-lens"]').tableDnD({
                     onDragStart: updateTableRows,
                     onDrop: onDrop
