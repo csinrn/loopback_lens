@@ -554,6 +554,7 @@
                                                 <tr>
                                                     <td>#</td>
                                                     <td>帳號</td>
+                                                    <td></td>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -575,11 +576,8 @@
                                                 <label>姓名</label>
                                                 <input type="string" name="name" class="form-control">
                                             </div>
-                                            <button type="button" name="updateAccountBtn" class="btn btn-primary"
-                                                onclick="updateAccount()">更新</button>
-                                            <button type="button" name="deleteAccountBtn" class="btn btn-danger"
-                                                onclick="deleteAccount()">刪除帳號</button>
-                                            *刪除時填寫帳號即可
+                                            <button type="button" name="updateAdminBtn" class="btn btn-primary">更新</button>
+                                            <button type="button" name="deleteAdminBtn" class="btn btn-danger">刪除帳號</button>
                                         </form>
                                     </div>
                                 </div>
@@ -616,6 +614,7 @@
         var isAdmin = false
         var user = {}
         var lensInfo = {}
+        var adminsInfo = {}
 
         function register() {
             $('#register [name="registerBtn"]').attr('disabled', true)
@@ -639,6 +638,7 @@
             }).done(response => {
                 // 跳一個美麗的提示
                 $('#register [name="registerBtn"]').attr('disabled', false)
+                renderAdmins()
                 swalAlert('註冊成功', '帳號: ' + response.account + '<br>姓名: ' + response.name,
                     true)
             }).fail(error => {
@@ -688,6 +688,7 @@
                     $('#admin-content #register').css('display', '')
                     $('#admin_tab [name="admin-manage"]').css('display', '')
                     $('#admin-content #admin-manage').css('display', '')
+                    renderAdmins()
                 }
 
                 swalAlert('登入成功', '帳號: ' + user.account + '<br>姓名: ' + user.name, true,
@@ -771,6 +772,39 @@
             });
         }
 
+        function renderAdmins() {
+            $.ajax({
+                url: serverURL + '/admin',
+                type: 'GET',
+                contentType: 'application/json',
+                data: '{}',
+                //beforeSend: xhr => {
+                //這邊是我之前寫的bearer auth token，看你那邊jwt要怎麼樣guard，request就怎麼送auth的資訊
+                //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
+                //}
+            }).done(response => {
+                // 清空面板
+                var index = 1
+                var tbody = ''
+                response.forEach(admin => {
+                    // 自己不抓
+                    if(admin.id == user.id)
+                        return
+                    // 其他人抓下來
+                    adminsInfo[admin.id.toString()] = admin
+                    tbody += '<tr id="' + admin.id + '">\
+                        <td>' + index++ + '</td>\
+                        <td>' + admin.account + '</td>\
+                        <td><button type="button" name="accountBtn" \
+                            class="btn btn-outline-dark" onclick="renderAdminUpdate(\'' +
+                            admin.id.toString() + '\')">修改</button></td>\
+                    </tr>'
+                });
+                $('#admin-manage [name="account-list"] tbody').empty()
+                $('#admin-manage [name="account-list"] tbody').append(tbody)
+            }).fail(console.error);
+        }
+
         function renderLenUpdate(id) {
             var len = lensInfo[id]
             $('#update [name="name"]').val(len.name)
@@ -802,6 +836,15 @@
                                                 " src="' + len.url + '">')
             $('#update [name="updateBtn"]').attr('onclick', 'updateLens("' + len.id + '")')
             $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens("' + len.id + '")')
+        }
+
+        function renderAdminUpdate(id) {
+            var admin = adminsInfo[id]
+            $('#admin-manage [name="account"]').val(admin.account)
+            $('#admin-manage [name="password"]').val('')
+            $('#admin-manage [name="name"]').val(admin.name)
+            $('#admin-manage [name="updateAdminBtn"]').attr('onclick', 'updateAdmin("' + admin.id + '")')
+            $('#admin-manage [name="deleteAdminBtn"]').attr('onclick', 'deleteAdmin("' + admin.id + '")')
         }
 
         function switchPane(auth) {
@@ -1523,7 +1566,6 @@
             }
 
             data = JSON.stringify(data)
-            console.log('updateAdmin', data)
             $.ajax({
                 url: serverURL + '/admin/' + user.id,
                 type: "PATCH",
@@ -1546,25 +1588,61 @@
             })
         }
 
-        function deleteAccount() {
-            if (!(isAdmin || ($('#manage [name="name"]').val() == $('#username').val()))) {
-                swalAlert('刪除帳號錯誤', '無法刪除他人帳號', false)
-                return
-            }
-            $('#manage [name="deleteAccountBtn"]').attr('disabled', true)
-            var account = $('#manage [name="account"]').val()
-            account = jQuery.trim(account)
-            if (account == '') {
-                swalAlert('刪除帳號錯誤', '帳號欄位為空', false)
+        function updateAdmin(id) {
+            $('#admin-manage [name="updateAdminBtn"]').attr('disabled', true)
+            var password = jQuery.trim($('#admin-manage [name="password"]').val())
+            var data = {}
+            if (password)
+            {
+                data = {
+                    account: jQuery.trim($('#admin-manage [name="account"]').val()),
+                    password,
+                    name: jQuery.trim($('#admin-manage [name="name"]').val())
+                }}
+            else
+                data = {
+                    account: jQuery.trim($('#admin-manage [name="account"]').val()),
+                    name: jQuery.trim($('#admin-manage [name="name"]').val())
+                }
+            console.log(data)
+            if (data.account == '' || data.name == '') {
+                swalAlert('更新失敗', '欄位未填', false)
                 return
             }
 
+            data = JSON.stringify(data)
             $.ajax({
-                url: serverURL + '/admin/' + account,
+                url: serverURL + '/admin/' + id,
+                type: "PATCH",
+                contentType: "application/json",
+                data: data
+            }).done(() => {
+                $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
+                $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
+                renderAdmins()
+                swalAlert('更新帳號成功', '', true)
+            }).fail((err) => {
+                console.log(err)
+                var msg = err.responseJSON.error.message + "<br>Details: " + JSON.stringify(err.responseJSON
+                    .error.details);
+                if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
+                    msg = '無此帳號'
+                }
+                $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
+                swalAlert('更新帳號失敗', msg, false)
+            })
+        }
+
+        function deleteAdmin(id) {
+            $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', true)
+            $.ajax({
+                url: serverURL + '/admin/' + id,
                 type: "DELETE",
                 contentType: "application/json",
             }).done(() => {
-                $('#manage [name="deleteAccountBtn"]').attr('disabled', false)
+                $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
+                $('#admin-manage form')[0].reset()
+                renderAdmins()
                 swalAlert('刪除帳號成功', '', true)
             }).fail((err) => {
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
@@ -1572,7 +1650,7 @@
                 if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
                     msg = '無此帳號'
                 }
-                $('#manage [name="deleteAccountBtn"]').attr('disabled', false)
+                $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
 
                 swalAlert('刪除帳號失敗', msg, false)
             })
