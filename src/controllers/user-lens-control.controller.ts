@@ -20,7 +20,7 @@ import {
   HttpErrors,
 } from '@loopback/rest';
 import { Userlens } from '../models';
-import { UserlensRepository } from '../repositories';
+import { UserlensRepository, LensRepository } from '../repositories';
 import { validateDate } from '../services/validator';
 import { resolve } from 'url';
 import { authenticate } from '@loopback/authentication';
@@ -29,9 +29,11 @@ export class UserLensControlController {
   constructor(
     @repository(UserlensRepository)
     public userlensRepository: UserlensRepository,
+    @repository(LensRepository)
+    public lensRepository: LensRepository,
   ) { }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @post('/user', {
     responses: {
       '200': {
@@ -45,14 +47,16 @@ export class UserLensControlController {
     userlens: Userlens
   ): Promise<Userlens> {
     console.log(userlens);
-    validateDate(userlens.createat);
-    if (userlens.updateat != undefined) {
-      validateDate(userlens.updateat);
+    try {
+      var t = await this.lensRepository.findById(userlens.lensId)
+    } catch (err) {
+      console.log(err)
+      throw new HttpErrors.NotFound('找不到隱型眼鏡 id=' + userlens.lensId)
     }
     return await this.userlensRepository.create(userlens);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @get('/user/count', {
     responses: {
       '200': {
@@ -67,7 +71,7 @@ export class UserLensControlController {
     return await this.userlensRepository.count(where);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @get('/user', {
     responses: {
       '200': {
@@ -86,7 +90,7 @@ export class UserLensControlController {
     return await this.userlensRepository.find(filter);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @patch('/user', {
     responses: {
       '200': {
@@ -106,10 +110,16 @@ export class UserLensControlController {
     userlens: Userlens,
     @param.query.object('where', getWhereSchemaFor(Userlens)) where?: Where<Userlens>,
   ): Promise<Count> {
+    try {
+      var t = await this.lensRepository.findById(userlens.lensId)
+    } catch (err) {
+      console.log(err)
+      throw new HttpErrors.NotFound('找不到隱型眼鏡 id=' + userlens.lensId)
+    }
     return await this.userlensRepository.updateAll(userlens, where);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @get('/user/{user_id}', {
     responses: {
       '200': {
@@ -119,12 +129,12 @@ export class UserLensControlController {
     },
   })
   async findById(@param.path.string('user_id') user_id: string) {
-    return await this.userlensRepository.find({ where: { userid: user_id } });
+    return await this.userlensRepository.find({ where: { userId: user_id } });
   }
 
 
   /////
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @patch('/user/{user_id}/{lens_id}/time', {
     responses: {
       '204': {
@@ -147,8 +157,8 @@ export class UserLensControlController {
     let dat = await this.userlensRepository.findOne({
       where: {
         and: [
-          { lensid: lensid },
-          { userid: userid }
+          { lensId: lensid },
+          { userId: userid }
         ]
       }
     })
@@ -156,11 +166,12 @@ export class UserLensControlController {
     if (dat.id == undefined) throw new HttpErrors.NotFound('id property not found')
 
     console.log(dat)
-    await this.userlensRepository.updateById(dat.id, userlens)
+    dat.lensTime = userlens.lensTime
+    await this.userlensRepository.updateById(dat.id, dat)
   }
 
-  @authenticate('jwt')
-  @patch('/user/{user_id}/{lens_id}/count', {
+  //@authenticate('jwt')
+  @patch('/user/{user_id}/{lens_id}/addcount', {
     responses: {
       '204': {
         description: 'Userlens PATCH success',
@@ -180,7 +191,7 @@ export class UserLensControlController {
     userlens: Userlens,
   ): Promise<void> {
     //console.log(userlens)
-    let user = await this.userlensRepository.findOne({ where: { and: [{ userid: userid }, { lensid: lensid }] } })
+    let user = await this.userlensRepository.findOne({ where: { and: [{ userId: userid }, { lensId: lensid }] } })
     if (!user) throw new HttpErrors.NotFound('user not found')
     if (user.id == undefined) throw new HttpErrors.NotFound('id undefined')
     if (user.lensCount == undefined) throw new HttpErrors.NotFound('lensCount undefined')
@@ -190,15 +201,15 @@ export class UserLensControlController {
   }
 
   /////
-  @authenticate('jwt')
-  @del('/user/{c_id}', {
+  //@authenticate('jwt')
+  @del('/user/{id}', {
     responses: {
       '204': {
         description: 'Userlens DELETE success',
       },
     },
   })
-  async deleteById(@param.path.string('c_id') c_id: number): Promise<void> {
-    await this.userlensRepository.deleteById(c_id);
+  async deleteById(@param.path.string('id') id: number): Promise<void> {
+    await this.userlensRepository.deleteById(id);
   }
 }

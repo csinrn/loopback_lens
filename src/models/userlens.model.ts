@@ -2,6 +2,16 @@ import { Entity, model, property } from '@loopback/repository';
 
 @model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'userlens' } } })
 export class Userlens extends Entity {
+  @property({
+    type: 'number',
+    precision: 11,
+    generated: true,
+    required: false,
+    id: 1,
+    scale: 0,
+    mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+  })
+  id: number;
 
   @property({
     type: 'number',
@@ -40,18 +50,18 @@ export class Userlens extends Entity {
   lensTime?: number;
 
   @property({
-    type: 'string',
+    type: 'date',
     required: true,
     mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  createAt: string;
+  createAt: Date;
 
   @property({
-    type: 'string',
+    type: 'date',
     required: false,
     mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
   })
-  updateAt?: string;
+  updateAt?: Date;
 
   // Define well-known properties here
 

@@ -1,9 +1,10 @@
 import { Count, Filter, Where } from '@loopback/repository';
 import { Userlens } from '../models';
-import { UserlensRepository } from '../repositories';
+import { UserlensRepository, LensRepository } from '../repositories';
 export declare class UserLensControlController {
     userlensRepository: UserlensRepository;
-    constructor(userlensRepository: UserlensRepository);
+    lensRepository: LensRepository;
+    constructor(userlensRepository: UserlensRepository, lensRepository: LensRepository);
     create(userlens: Userlens): Promise<Userlens>;
     count(where?: Where<Userlens>): Promise<Count>;
     find(filter?: Filter<Userlens>): Promise<Userlens[]>;
@@ -11,5 +12,5 @@ export declare class UserLensControlController {
     findById(user_id: string): Promise<(Userlens & import("../models").UserlensRelations)[]>;
     updateTime(userid: number, lensid: number, userlens: Userlens): Promise<void>;
     updateCount(userid: number, lensid: number, userlens: Userlens): Promise<void>;
-    deleteById(c_id: number): Promise<void>;
+    deleteById(id: number): Promise<void>;
 }

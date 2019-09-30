@@ -27,7 +27,7 @@ let MyUserService = class MyUserService {
         this.passwordHasher = passwordHasher;
     }
     async verifyCredentials(credentials) {
-        const invalidCredentialsError = 'Invalid account or password.';
+        const invalidCredentialsError = '帳號或密碼錯誤';
         const foundUser = await this.userRepository.findOne({
             where: { account: credentials.account },
         });

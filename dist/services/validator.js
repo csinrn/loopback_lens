@@ -22,7 +22,7 @@ exports.validateDate = validateDate;
 function validateBoolean(input, para) {
     let valid = (input == 1) || (input == 0);
     if (!valid) {
-        throw new rest_1.HttpErrors.BadRequest(para + ': boolean value should be 1 or 0');
+        throw new rest_1.HttpErrors.BadRequest(para + ': 應輸入數字 1 或 0');
     }
 }
 exports.validateBoolean = validateBoolean;

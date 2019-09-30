@@ -16,33 +16,48 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
-const validator_1 = require("../services/validator");
-const authentication_1 = require("@loopback/authentication");
 let UserLensControlController = class UserLensControlController {
-    constructor(userlensRepository) {
+    constructor(userlensRepository, lensRepository) {
         this.userlensRepository = userlensRepository;
+        this.lensRepository = lensRepository;
     }
+    //@authenticate('jwt')
     async create(userlens) {
         console.log(userlens);
-        validator_1.validateDate(userlens.createat);
-        if (userlens.updateat != undefined) {
-            validator_1.validateDate(userlens.updateat);
+        try {
+            var t = await this.lensRepository.findById(userlens.lensId);
+        }
+        catch (err) {
+            console.log(err);
+            throw new rest_1.HttpErrors.NotFound('找不到隱型眼鏡 id=' + userlens.lensId);
         }
         return await this.userlensRepository.create(userlens);
     }
+    //@authenticate('jwt')
     async count(where) {
         return await this.userlensRepository.count(where);
     }
+    //@authenticate('jwt')
     async find(filter) {
         return await this.userlensRepository.find(filter);
     }
+    //@authenticate('jwt')
     async updateAll(userlens, where) {
+        try {
+            var t = await this.lensRepository.findById(userlens.lensId);
+        }
+        catch (err) {
+            console.log(err);
+            throw new rest_1.HttpErrors.NotFound('找不到隱型眼鏡 id=' + userlens.lensId);
+        }
         return await this.userlensRepository.updateAll(userlens, where);
     }
+    //@authenticate('jwt')
     async findById(user_id) {
-        return await this.userlensRepository.find({ where: { userid: user_id } });
+        return await this.userlensRepository.find({ where: { userId: user_id } });
     }
     /////
+    //@authenticate('jwt')
     async updateTime(userid, lensid, userlens) {
         let dat = await this.userlensRepository.findOne({
             where: {
@@ -57,8 +72,10 @@ let UserLensControlController = class UserLensControlController {
         if (dat.id == undefined)
             throw new rest_1.HttpErrors.NotFound('id property not found');
         console.log(dat);
-        await this.userlensRepository.updateById(dat.id, userlens);
+        dat.lensTime = userlens.lensTime;
+        await this.userlensRepository.updateById(dat.id, dat);
     }
+    //@authenticate('jwt')
     async updateCount(userid, lensid, userlens) {
         //console.log(userlens)
         let user = await this.userlensRepository.findOne({ where: { and: [{ userid: userid }, { lensid: lensid }] } });
@@ -72,12 +89,12 @@ let UserLensControlController = class UserLensControlController {
         await this.userlensRepository.updateById(user.id, user);
     }
     /////
-    async deleteById(c_id) {
-        await this.userlensRepository.deleteById(c_id);
+    //@authenticate('jwt')
+    async deleteById(id) {
+        await this.userlensRepository.deleteById(id);
     }
 };
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.post('/user', {
         responses: {
             '200': {
@@ -92,7 +109,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "create", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.get('/user/count', {
         responses: {
             '200': {
@@ -107,7 +123,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "count", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.get('/user', {
         responses: {
             '200': {
@@ -126,7 +141,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "find", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.patch('/user', {
         responses: {
             '200': {
@@ -148,7 +162,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateAll", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.get('/user/{user_id}', {
         responses: {
             '200': {
@@ -163,7 +176,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "findById", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
     rest_1.patch('/user/{user_id}/{lens_id}/time', {
         responses: {
             '204': {
@@ -185,8 +197,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateTime", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
-    rest_1.patch('/user/{user_id}/{lens_id}/count', {
+    rest_1.patch('/user/{user_id}/{lens_id}/addcount', {
         responses: {
             '204': {
                 description: 'Userlens PATCH success',
@@ -207,22 +218,23 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "updateCount", null);
 __decorate([
-    authentication_1.authenticate('jwt'),
-    rest_1.del('/user/{c_id}', {
+    rest_1.del('/user/{id}', {
         responses: {
             '204': {
                 description: 'Userlens DELETE success',
             },
         },
     }),
-    __param(0, rest_1.param.path.string('c_id')),
+    __param(0, rest_1.param.path.string('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "deleteById", null);
 UserLensControlController = __decorate([
     __param(0, repository_1.repository(repositories_1.UserlensRepository)),
-    __metadata("design:paramtypes", [repositories_1.UserlensRepository])
+    __param(1, repository_1.repository(repositories_1.LensRepository)),
+    __metadata("design:paramtypes", [repositories_1.UserlensRepository,
+        repositories_1.LensRepository])
 ], UserLensControlController);
 exports.UserLensControlController = UserLensControlController;
 //# sourceMappingURL=user-lens-control.controller.js.map

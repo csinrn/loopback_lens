@@ -18,6 +18,18 @@ let Userlens = class Userlens extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: 'number',
+        precision: 11,
+        generated: true,
+        required: false,
+        id: 1,
+        scale: 0,
+        mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Userlens.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
         required: true,
         precision: 10,
         scale: 0,
@@ -57,19 +69,19 @@ __decorate([
 ], Userlens.prototype, "lensTime", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'date',
         required: true,
         mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Userlens.prototype, "createAt", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'date',
         required: false,
         mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], Userlens.prototype, "updateAt", void 0);
 Userlens = __decorate([
     repository_1.model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'userlens' } } }),
