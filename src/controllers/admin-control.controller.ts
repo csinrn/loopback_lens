@@ -115,7 +115,7 @@ export class AdminControlController {
     const user = await this.userService.verifyCredentials(credentials);
 
     // convert a User object into a UserProfile object (reduced set of properties)
-    const userProfile = { account: user.account, name: user.name, isAdmin: user.isAdmin }//this.userService.convertToUserProfile(user);
+    const userProfile = { id: user.account, name: user.name, isAdmin: user.isAdmin }//this.userService.convertToUserProfile(user);
 
     // create a JSON Web Token based on the user profile
     //const token = await this.jwtService.generateToken(userProfile);

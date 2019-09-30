@@ -157,6 +157,23 @@ export class LensControlController {
     lens: Lens,
   ): Promise<void> {
     lens.updateAt = new Date()
+    if (lens.url != undefined) {  // if upload a new image
+      var oldLen = await this.lensRepository.findById(id)
+
+      // delete the old one
+      try {
+        fs.unlinkSync('./public' + oldLen.url)
+      } catch (err) {
+        console.log(err)
+      }
+      // store the new one
+      var imgUrl = ''
+      imgUrl = await this.postImg(lens.partNo + '.png', lens.url)
+
+      // assign the new address to lens
+      lens.url = imgUrl
+      console.log(lens)
+    }
     await this.lensRepository.updateById(id, lens);
   }
 
