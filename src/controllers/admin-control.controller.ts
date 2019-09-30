@@ -76,7 +76,7 @@ export class AdminControlController {
     admin: Admin
   ): Promise<Admin> {
     // ensure a valid account value and password value
-    validateCredentials(_.pick(admin, ['account', 'password']));
+    //validateCredentials(_.pick(admin, ['account', 'password']));
     validateDate(admin.createAt);
     validateBoolean(admin.isAdmin, "isAdmin");
     // encrypt the password
@@ -164,7 +164,7 @@ export class AdminControlController {
     })
     admin: Admin,
   ): Promise<void> {
-    validateCredentials(_.pick(admin, ['account', 'password']));
+    //validateCredentials(_.pick(admin, ['account', 'password']));
     await this.adminRepository.updateById(id, admin);
   }
 
