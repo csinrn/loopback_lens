@@ -667,22 +667,22 @@
                 console.log('server login done')
                 //rememberToken(response.token, response.expireinMs);
                 user = response.userProfile
+                console.log(user)
                 $('#userName').text(user.name); // 填入login page 的 user name
                 $('#login input').val('') // 清除DOM中的帳密
-                $('#manage [name="account"]').val(user.id) // 帳號管理：帳號帶入
+                $('#manage [name="account"]').val(user.account) // 帳號管理：帳號帶入
                 $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
                 $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
                 isAdmin = user.isAdmin
-                //FIXME:要加!
-                if (isAdmin) {
+                if (!isAdmin) {
                     $('#admin_tab [name="register"]').remove()
                     $('#admin-content #register').remove()
                     $('#admin_tab [name="admin-manage"]').remove()
                     $('#admin-content #admin-manage').remove()
                 }
 
-                swalAlert('登入成功', '帳號: ' + user.id + '<br>姓名: ' + user.name, true,
+                swalAlert('登入成功', '帳號: ' + user.account + '<br>姓名: ' + user.name, true,
                     renderCards)
             }).fail(error => {
                 console.log('server login fail')
@@ -726,8 +726,8 @@
                 var index = 1
                 var tbody = ['', '', '']
                 response.forEach(len => {
-                    lensInfo[len.partNo.toString()] = len
-                    tbody[len.state] += '<tr id="' + len.partNo + '"' +
+                    lensInfo[len.id.toString()] = len
+                    tbody[len.state] += '<tr id="' + len.id + '"' +
                         (len.state == 1 ? '' : (len.state == 0 ? 'class="text-primary"' : 'style="color: #666"')) +
                         '>\
                         <td style="width: 66px; text-align:center">' + (len.state == 1 ? index++ : (len.state == 0 ? '<p style="\
@@ -743,7 +743,7 @@
                         <td><button type="button" name="lenBtn" \
                             class="btn" style="' + (len.state == 1 ? 'color:white; border-color:white' : (len.state == 0 ? 'color:#375a7f; border-color:#375a7f' : 'color: #666; border-color:#666')) + '" \
                             onclick="renderLenUpdate(\'' +
-                        len.partNo.toString() + '\')">修改</button></td>\
+                        len.id.toString() + '\')">修改</button></td>\
                     </tr>'
                 });
                 $('#update [name="ready-to-launch-lens"] tbody').empty()
@@ -792,8 +792,8 @@
                                                     background-color: white;\
                                                     border-radius: 100%;\
                                                 " src="' + len.url + '">')
-            $('#update [name="updateBtn"]').attr('onclick', 'updateLens("' + len.partNo + '")')
-            $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens("' + len.partNo + '")')
+            $('#update [name="updateBtn"]').attr('onclick', 'updateLens("' + len.id + '")')
+            $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens("' + len.id + '")')
         }
 
         function switchPane(auth) {
