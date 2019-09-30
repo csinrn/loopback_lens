@@ -519,9 +519,6 @@
                                     </div>
                                     <button type="button" name="updateAccountBtn" class="btn btn-primary"
                                         onclick="updateAccount()">更新</button>
-                                    <button type="button" name="deleteAccountBtn" class="btn btn-danger"
-                                        onclick="deleteAccount()">刪除帳號</button>
-                                    *刪除時填寫帳號即可
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
@@ -677,7 +674,8 @@
                 $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
                 isAdmin = user.isAdmin
-                if (!isAdmin) {
+                //FIXME:要加!
+                if (isAdmin) {
                     $('#admin_tab [name="register"]').remove()
                     $('#admin-content #register').remove()
                     $('#admin_tab [name="admin-manage"]').remove()
