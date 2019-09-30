@@ -156,10 +156,11 @@ export class LensControlController {
     })
     lens: Lens,
   ): Promise<void> {
-    lens.updateAt = new Date()
-    if (lens.url != undefined) {  // if upload a new image
-      var oldLen = await this.lensRepository.findById(id)
 
+    lens.updateAt = new Date()
+    var oldLen = await this.lensRepository.findById(id)
+
+    if (lens.url != undefined) {  // if upload a new image
       // delete the old one
       try {
         fs.unlinkSync('./public' + oldLen.url)
@@ -173,6 +174,14 @@ export class LensControlController {
       // assign the new address to lens
       lens.url = imgUrl
       console.log(lens)
+    } else if (lens.partNo != oldLen.partNo) {  // if not update pic but update the partNo,
+      // change old pic name to new partNo
+      try {
+        fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
+      } catch{
+        throw new HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的')
+      }
+      lens.url = '/lensPic/' + lens.partNo + '.png';
     }
     await this.lensRepository.updateById(id, lens);
   }

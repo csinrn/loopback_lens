@@ -86,8 +86,8 @@ let LensControlController = class LensControlController {
     //@authenticate('jwt')
     async updateById(id, lens) {
         lens.updateAt = new Date();
+        var oldLen = await this.lensRepository.findById(id);
         if (lens.url != undefined) { // if upload a new image
-            var oldLen = await this.lensRepository.findById('9');
             // delete the old one
             try {
                 fs.unlinkSync('./public' + oldLen.url);
@@ -102,7 +102,18 @@ let LensControlController = class LensControlController {
             lens.url = imgUrl;
             console.log(lens);
         }
-        await this.lensRepository.updateById('9', lens);
+        else if (lens.partNo != oldLen.partNo) { // if not update pic but update the partNo,
+            // change old pic name to new partNo
+            try {
+                console.log('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png');
+                fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
+            }
+            catch (_a) {
+                throw new rest_1.HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的');
+            }
+            lens.url = '/lensPic/' + lens.partNo + '.png';
+        }
+        await this.lensRepository.updateById(id, lens);
     }
     //@authenticate('jwt')
     async sort(id1, id2) {
