@@ -100,11 +100,15 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" name="manage" data-toggle="tab" href="#manage" role="tab"
-                                    aria-controls="manage" aria-selected="true">帳號管理</a>
+                                    aria-controls="manage" aria-selected="true">編輯帳號</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" name="register" data-toggle="tab" href="#register" role="tab"
                                     aria-controls="register" aria-selected="true">註冊</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" name="admin-manage" data-toggle="tab" href="#admin-manage" role="tab"
+                                    aria-controls="admin-manage" aria-selected="true">管理員管理</a>
                             </li>
                         </ul>
                         <div class="tab-content mt-3" id="admin-content">
@@ -113,14 +117,20 @@
                                 <div class="row">
                                     <div class="col-xl-5 container"
                                         style="overflow-y: auto; height:1000px; overflow-x: auto">
-                                        <table class="table mb-0" name="table-id">
-                                            <thead>
+                                        <table class="table mb-0" name="ready-to-launch-lens">
+                                            <thead class="bg-primary">
                                                 <tr>
-                                                    <td>no</td>
+                                                    <td>#</td>
                                                     <td>品名</td>
                                                     <td></td>
                                                 </tr>
                                             </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table mb-0" name="launched-lens">
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table mb-0" name="removed-lens">
                                             <tbody></tbody>
                                         </table>
                                     </div>
@@ -509,9 +519,6 @@
                                     </div>
                                     <button type="button" name="updateAccountBtn" class="btn btn-primary"
                                         onclick="updateAccount()">更新</button>
-                                    <button type="button" name="deleteAccountBtn" class="btn btn-danger"
-                                        onclick="deleteAccount()">刪除帳號</button>
-                                    *刪除時填寫帳號即可
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
@@ -531,15 +538,49 @@
                                         <label>姓名</label>
                                         <input type="string" name="name" class="form-control" placeholder="按此輸入姓名">
                                     </div>
-                                    <div class="input-group mb-3 col-md-3">
-                                        <div class="input-group-prepend">
-                                            <span>admin</span>
-                                        </div>
-                                        <input type="checkbox" name="isAdmin" class="form-control">
-                                    </div>
                                     <button type="button" name="registerBtn" class="btn btn-primary"
                                         onclick="register()">註冊</button>
                                 </form>
+                            </div>
+                            <div class="tab-pane fade" id="admin-manage" role="tabpanel"
+                                aria-labelledby="admin-manage-tab show active">
+                                <div class="row">
+                                    <div class="col-xl-5 container"
+                                        style="overflow-y: auto; height:1000px; overflow-x: auto">
+                                        <table class="table mb-0" name="account-list">
+                                            <thead class="bg-primary">
+                                                <tr>
+                                                    <td>#</td>
+                                                    <td>帳號</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                    <div name="form-div" class="col-xl-7">
+                                        <form>
+                                            <div class="form-group">
+                                                <label>帳號</label>
+                                                <input type="email" name="account" class="form-control"
+                                                    aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>新密碼</label>
+                                                <input type="password" name="password" class="form-control"
+                                                    placeholder="按此輸入新密碼">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>姓名</label>
+                                                <input type="string" name="name" class="form-control">
+                                            </div>
+                                            <button type="button" name="updateAccountBtn" class="btn btn-primary"
+                                                onclick="updateAccount()">更新</button>
+                                            <button type="button" name="deleteAccountBtn" class="btn btn-danger"
+                                                onclick="deleteAccount()">刪除帳號</button>
+                                            *刪除時填寫帳號即可
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -580,8 +621,7 @@
                 "password": $('#register [name="password"]').val(),
                 "account": $('#register [name="account"]').val(),
                 "name": $('#register [name="name"]').val(),
-                "createAt": nowDate(),
-                "isAdmin": $('#register [name="isAdmin"]').is(':checked') ? 1 : 0
+                "createAt": nowDate()
             }
             data = JSON.stringify(data)
             console.log("string", data)
@@ -634,7 +674,13 @@
                 $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
                 isAdmin = user.isAdmin
-                // TODO: 我要知道他是不是admin然後去選擇性渲染register那個tab
+                //FIXME:要加!
+                if (isAdmin) {
+                    $('#admin_tab [name="register"]').remove()
+                    $('#admin-content #register').remove()
+                    $('#admin_tab [name="admin-manage"]').remove()
+                    $('#admin-content #admin-manage').remove()
+                }
 
                 swalAlert('登入成功', '帳號: ' + user.id + '<br>姓名: ' + user.name, true,
                     renderCards)
@@ -691,9 +737,9 @@
                         lens.partNo.toString() + '\')">修改</button></td>'
                     tbody += '</tr>'
                 });
-                $('#update [name="table-id"] tbody').empty()
-                $('#update [name="table-id"] tbody').append(tbody)
-                $('#update [name="table-id"]').tableDnD({
+                $('#update [name="launched-lens"] tbody').empty()
+                $('#update [name="launched-lens"] tbody').append(tbody)
+                $('#update [name="launched-lens"]').tableDnD({
                     onDragStart: updateTableRows,
                     onDrop: onDrop
                 })
@@ -931,8 +977,6 @@
                 console.log(idDeleted, tableRows[i - 1])
             }
 
-
-            //TODO: 圖片檔案應該也要刪除
             var url = serverURL + '/lens/' + id
             $.ajax({
                 url: url, // 你的api
@@ -1435,7 +1479,6 @@
             $('#upload [name="uploadBtn"]').attr('disabled', true)
         }
 
-        //TODO: updateAccount(), deleteAccount()
         function updateAccount() {
             // check if the user is changing self data
             if (!$('#manage [name="name"]').val() == $('#username').val()) {
@@ -1444,13 +1487,21 @@
             }
             $('#manage [name="updateAccountBtn"]').attr('disabled', true)
             console.log(jQuery.trim($('#manage [name="account"]').val()), $('#manage [name="account"]').val())
-            var data = {
-                account: jQuery.trim($('#manage [name="account"]').val()),
-                password: jQuery.trim($('#manage [name="password"]').val()),
-                name: jQuery.trim($('#manage [name="name"]').val())
-            }
+            var password = jQuery.trim($('#manage [name="password"]').val())
+            var data = {}
+            if (password)
+                data = {
+                    account: jQuery.trim($('#manage [name="account"]').val()),
+                    password,
+                    name: jQuery.trim($('#manage [name="name"]').val())
+                }
+            else
+                data = {
+                    account: jQuery.trim($('#manage [name="account"]').val()),
+                    name: jQuery.trim($('#manage [name="name"]').val())
+                }
             console.log(data)
-            if (data.account == '' || data.password == '' || data.name == '') {
+            if (data.account == '' || data.name == '') {
                 swalAlert('更新失敗', '欄位未填', false)
                 return
             }
