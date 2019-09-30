@@ -17,5 +17,5 @@ export declare class LensControlController {
     renewNo(list: Lens[]): Promise<void>;
     lensComp(a: Lens, b: Lens): number;
     getDateString(dt: Date): string;
-    compDate(a: Date, b: Date): 0 | 1 | -1;
+    compDate(a: Date, b: Date): 1 | 0 | -1;
 }

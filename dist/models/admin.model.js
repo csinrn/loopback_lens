@@ -17,10 +17,21 @@ let Admin = class Admin extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
+        type: 'number',
+        precision: 10,
+        generated: true,
+        required: false,
+        id: 1,
+        scale: 0,
+        mysql: { "columnName": "id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Admin.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
         type: 'string',
         required: true,
         length: 50,
-        id: 1,
         mysql: { "columnName": "account", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)

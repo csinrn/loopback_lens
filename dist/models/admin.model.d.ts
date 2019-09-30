@@ -1,5 +1,6 @@
 import { Entity } from '@loopback/repository';
 export declare class Admin extends Entity {
+    id: number;
     account: string;
     password: string;
     createAt: string;

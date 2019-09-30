@@ -45,7 +45,7 @@ let AdminControlController = class AdminControlController {
         // ensure the user exists, and the password is correct
         const user = await this.userService.verifyCredentials(credentials);
         // convert a User object into a UserProfile object (reduced set of properties)
-        const userProfile = { id: user.account, name: user.name, isAdmin: user.isAdmin }; //this.userService.convertToUserProfile(user);
+        const userProfile = { id: user.id, account: user.account, name: user.name, isAdmin: user.isAdmin }; //this.userService.convertToUserProfile(user);
         // create a JSON Web Token based on the user profile
         //const token = await this.jwtService.generateToken(userProfile);
         //const expireinMs = TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE
@@ -62,6 +62,8 @@ let AdminControlController = class AdminControlController {
     //@authenticate('jwt')
     async updateById(id, admin) {
         //validateCredentials(_.pick(admin, ['account', 'password']));
+        if (admin.password != undefined)
+            admin.password = await this.passwordHasher.hashPassword(admin.password);
         await this.adminRepository.updateById(id, admin);
     }
     //@authenticate('jwt')

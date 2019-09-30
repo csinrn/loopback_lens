@@ -13,7 +13,8 @@ export declare class AdminControlController {
     create(admin: Admin): Promise<Admin>;
     login(credentials: Credentials): Promise<{
         userProfile: {
-            id: string;
+            id: number;
+            account: string;
             name: string;
             isAdmin: number;
         };
