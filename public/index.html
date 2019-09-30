@@ -301,17 +301,15 @@
                                                 </div>
                                                 <script>
                                                     $('#update [name="launch_at"]').datepicker({
-                                                        dateFormat: "yy/mm/dd"
+                                                        dateFormat: "yy-mm-dd"
                                                     });
                                                     $('#update [name="remove_at"]').datepicker({
-                                                        dateFormat: "yy/mm/dd"
+                                                        dateFormat: "yy-mm-dd"
                                                     });
                                                 </script>
                                             </div>
-                                            <button type="button" class="btn btn-primary" name="uploadBtn"
-                                                onclick="updateLens()">更新隱型眼鏡</button>
-                                            <button type="button" class="btn btn-danger" name="uploadBtn"
-                                                onclick="deleteLens()">刪除隱形眼鏡</button>
+                                            <button type="button" class="btn btn-primary" name="updateBtn">更新隱型眼鏡</button>
+                                            <button type="button" class="btn btn-danger" name="deleteBtn">刪除隱形眼鏡</button>
                                         </form>
                                     </div>
                                 </div>
@@ -734,6 +732,8 @@
                                                     background-color: white;\
                                                     border-radius: 100%;\
                                                 " src="' + len.url + '">')
+            $('#update [name="updateBtn"]').attr('onclick', 'updateLens(' + len.partNo + ')')
+            $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens(' + len.partNo + ')')
         }
 
         function switchPane(auth) {
@@ -843,8 +843,8 @@
                 newTag: $('#upload [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 hotsaleTag: $('#upload [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 onsaleTag: $('#upload [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
-                launchAt: $('#upload [name="launch_at"]').datepicker('getDate'), // 上架時間
-                removeAt: $('#upload [name="remove_at"]').datepicker('getDate'), // 下架時間
+                launchAt: dateToTimeStamp($('#upload [name="launch_at"]').val()), // 上架時間
+                removeAt: dateToTimeStamp($('#upload [name="remove_at"]').val()), // 下架時間
                 createAt: new Date(), // 上架時間  需為 "190303" 格式的日期字串
                 updateAt: new Date(),
                 url: fileData
@@ -910,10 +910,10 @@
             })
         }
 
-        async function deleteLens() { //刪除隱眼
+        async function deleteLens(id) { //刪除隱眼
             $('#update [name="deleteBtn"]').attr('disabled', true)
 
-            var idDeleted = $('#update [name="delete-id"]').val()
+            var idDeleted = id
             updateTableRows()
             var idNo = -1
 
@@ -930,7 +930,7 @@
                 console.log(idDeleted, tableRows[i - 1])
             }
 
-            var url = serverURL + '/lens/' + $('#update [name="delete-id"]').val().toString()
+            var url = serverURL + '/lens/' + id
             $.ajax({
                 url: url, // 你的api
                 type: 'DELETE',
@@ -951,10 +951,9 @@
                 $('#update [name="deleteBtn"]').attr('disabled', false)
                 swalAlert("刪除失敗", msg, false)
             })
-
         }
 
-        async function updateLens(btn) { //更新隱眼
+        async function updateLens(id) { //更新隱眼
 
             btnDisable2()
 
@@ -1056,8 +1055,8 @@
                 newTag: $('#update [name="newTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 hotsaleTag: $('#update [name="hotsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 onsaleTag: $('#update [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
-                launchAt: new Date($('#update [name="launch_at"]').val()), // 上架時間
-                removeAt: new Date($('#update [name="remove_at"]').val()), // 下架時間
+                launchAt: dateToTimeStamp($('#update [name="launch_at"]').val()), // 上架時間
+                removeAt: dateToTimeStamp($('#update [name="remove_at"]').val()), // 下架時間
                 url: fileData
             }
 
@@ -1068,8 +1067,7 @@
             }
 
             //////////////
-            var lensid = null // 這裡放當前選取行數的id值 (就是按下修改的那row的第一column)
-            // FIXME: 這邊的url交給你了
+            var lensid = id
             data = JSON.stringify(data)
             console.log(data)
             $.ajax({
@@ -1085,15 +1083,20 @@
                 console.log($('#update [type=checkbox]'))
                 $('#update [type=checkbox]').prop("checked", false)
                 btnEnable()
-                swalAlert("上傳成功", "", true, renderCards);
+                swalAlert("更新成功", "", true, renderCards);
             }).fail(error => {
                 console.log(error)
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
                     .responseJSON
                     .error.details);
                 btnEnable()
-                swalAlert("上傳失敗", msg, false)
+                swalAlert("更新失敗", msg, false)
             })
+        }
+
+        function dateToTimeStamp(d) {
+            const s = d.split('-')
+            return new Date(Date.UTC(s[0], s[1] - 1, s[2]))
         }
 
         function onSpecialChanged(checked) {
@@ -1132,7 +1135,7 @@
         }
 
         function timeStampToDate(ts) {
-            return ts.substring(0, ts.indexOf('T')).replace(/-/g, '/')
+            return ts.substring(0, ts.indexOf('T')).replace(/-/g, '-')
         }
 
         function swalAlert(title, html, isSuccess, onAfterClose = (() => {})) {
