@@ -1080,17 +1080,14 @@
                 //    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('token'));
                 //}
             }).done(response => {
-                $('#update input').val('')
-                console.log($('#update [type=checkbox]'))
-                $('#update [type=checkbox]').prop("checked", false)
-                btnEnable()
+                btnEnable2()
                 swalAlert("更新成功", "", true, renderCards);
             }).fail(error => {
                 console.log(error)
                 var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
                     .responseJSON
                     .error.details);
-                btnEnable()
+                btnEnable2()
                 swalAlert("更新失敗", msg, false)
             })
         }
