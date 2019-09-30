@@ -28,7 +28,7 @@ export function validateBoolean(input: number, para: string) {
   let valid = (input == 1) || (input == 0);
   if (!valid) {
     throw new HttpErrors.BadRequest(
-      para + ': boolean value should be 1 or 0'
+      para + ': 應輸入數字 1 或 0'
     )
   }
 }
