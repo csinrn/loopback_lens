@@ -198,6 +198,13 @@ export class Lens extends Entity {
   removeAt: Date;
 
   @property({
+    type: 'date',
+    required: true,
+    mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+  })
+  updateAt: Date;
+
+  @property({
     type: 'string',
     required: true,
     length: 50,

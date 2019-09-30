@@ -179,6 +179,7 @@ export class LensControlController {
 
     let lens_t = new Lens()
     lens_t.no = -1
+    lens_t.updateAt = new Date()
     await this.lensRepository.updateById(parseInt(id1), lens_t, { partial: true })
     lens_t.no = no1
     await this.lensRepository.updateById(parseInt(id2), lens_t, { partial: true })
