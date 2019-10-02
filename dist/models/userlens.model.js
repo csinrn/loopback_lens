@@ -33,7 +33,7 @@ __decorate([
         required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 11, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
 ], Userlens.prototype, "userId", void 0);
@@ -83,6 +83,16 @@ __decorate([
     }),
     __metadata("design:type", Date)
 ], Userlens.prototype, "updateAt", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: true,
+        precision: 3,
+        scale: 0,
+        mysql: { "columnName": "is_customer", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Userlens.prototype, "isCustomer", void 0);
 Userlens = __decorate([
     repository_1.model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'userlens' } } }),
     __metadata("design:paramtypes", [Object])

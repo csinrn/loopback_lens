@@ -19,5 +19,5 @@ export declare class LensControlController {
     lensComp(a: Lens, b: Lens): number;
     getDateString(dt: Date): string;
     initNextNo(): void;
-    compDate(a: Date, b: Date): 0 | 1 | -1;
+    compDate(a: Date, b: Date): 1 | 0 | -1;
 }

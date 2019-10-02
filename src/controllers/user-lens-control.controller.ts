@@ -46,7 +46,7 @@ export class UserLensControlController {
     @requestBody()
     userlens: Userlens
   ): Promise<Userlens> {
-    console.log(userlens);
+    //console.log(userlens);
     try {
       var t = await this.lensRepository.findById(userlens.lensId)
     } catch (err) {
@@ -211,5 +211,31 @@ export class UserLensControlController {
   })
   async deleteById(@param.path.string('id') id: number): Promise<void> {
     await this.userlensRepository.deleteById(id);
+  }
+
+  @post('/userlens/update')
+  async addRecord(
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Userlens, { partial: true }),
+        },
+      },
+    })
+    userLens: Userlens,
+  ) {
+    let user = await this.userlensRepository.findOne({ where: { and: [{ userId: userLens.userId }, { lensId: userLens.lensId }] } })
+    if (user == undefined) {
+      userLens.createAt = new Date()
+      userLens.updateAt = new Date()
+      userLens.lensCount = 1;
+      await this.create(userLens)
+    } else {
+      user.updateAt = new Date()
+      user.lensCount += 1
+      user.lensTime += userLens.lensTime
+      await this.userlensRepository.updateById(user.id, user)
+    }
+    return "update success"
   }
 }

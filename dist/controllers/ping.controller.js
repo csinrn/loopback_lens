@@ -54,6 +54,9 @@ let PingController = class PingController {
             date: new Date(),
             url: this.req.url,
             headers: Object.assign({}, this.req.headers),
+            serverIp: '192.168.1.109',
+            name: 'Formosa Contact Lens Virtual Wearing System',
+            version: '1.0'
         };
     }
 };

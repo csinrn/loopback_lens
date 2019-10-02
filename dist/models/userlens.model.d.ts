@@ -4,9 +4,10 @@ export declare class Userlens extends Entity {
     userId: number;
     lensId: number;
     lensCount: number;
-    lensTime?: number;
+    lensTime: number;
     createAt: Date;
-    updateAt?: Date;
+    updateAt: Date;
+    isCustomer: number;
     [prop: string]: any;
     constructor(data?: Partial<Userlens>);
 }
