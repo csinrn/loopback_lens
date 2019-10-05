@@ -18,7 +18,7 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const validator_1 = require("../services/validator");
 var fs = require('fs');
-var nowDate = new Date('180808'); //new Date().getDate()
+var nowDate = new Date();
 var nextNo = 0;
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
@@ -79,7 +79,20 @@ let LensControlController = class LensControlController {
             await this.renewNo();
             nowDate = new Date();
         }
-        return await this.lensRepository.find(filter);
+        var list = await this.lensRepository.find(filter);
+        var callback = function (err, data) {
+            console.log(err);
+        };
+        for (var i = 0; i < list.length; i++) {
+            try {
+                var pic = fs.readFileSync('./public' + list[i].url, 'base64', callback);
+                list[i].url = pic;
+            }
+            catch (err) {
+                throw new rest_1.HttpErrors.Conflict(err);
+            }
+        }
+        return list;
     }
     //@authenticate('jwt')
     async updateById(id, lens) {
@@ -132,8 +145,7 @@ let LensControlController = class LensControlController {
             lens.no = no;
         }
         await this.lensRepository.updateById(id, lens);
-        this.renewNo();
-        //this.arrangeNo()
+        this.arrangeNo();
     }
     //@authenticate('jwt')
     async sort(id1, id2) {

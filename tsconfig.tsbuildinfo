@@ -1301,7 +1301,7 @@
         "signature": "f71c5b7a28dbfc42093f2c6b87d87843a2753ba6f2f2efbc0a812d9a7ee06043"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "5ae4e9a9154a0e6ea110f2ebd2e98910913584cdd70ff07228f35f0373673109",
+        "version": "8d3bf715af95bb972733ed21a5b49cd25986e0581795bf0e62b3111995b5d147",
         "signature": "27792c0c587e6e51742bb13ceed7c3bb1c499aa74a87b37ac9d67d4efd7e46f7"
       },
       "d:/eye-demo/lens/src/application.ts": {
@@ -1465,7 +1465,7 @@
         "signature": "e67b05c0da9c606b218a6c017d5908a9b2d601688d2a16620d91a40e81130130"
       },
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": {
-        "version": "967968c679eaab6a26e13cae419239be6d1af3db43b822e732af62705213d883",
+        "version": "e5f79b893ab8d6628e1f880bc591e2186698f248660c24f7310231c4ffa6c70d",
         "signature": "298dcf42626620a1d183c7a1d1f08ad2311840ec09f9512d57335dd1c7d9fc72"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {

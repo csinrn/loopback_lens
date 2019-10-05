@@ -138,7 +138,19 @@ export class LensControlController {
       nowDate = new Date()
     }
 
-    return await this.lensRepository.find(filter)
+    var list = await this.lensRepository.find(filter)
+    var callback = function (err: any, data: any) {
+      console.log(err)
+    }
+    for (var i = 0; i < list.length; i++) {
+      try {
+        var pic = fs.readFileSync('./public' + list[i].url, 'base64', callback)
+        list[i].url = pic
+      } catch (err) {
+        throw new HttpErrors.Conflict(err)
+      }
+    }
+    return list;
   }
 
   //@authenticate('jwt')
