@@ -23,7 +23,7 @@ let UserLensControlController = class UserLensControlController {
     }
     //@authenticate('jwt')
     async create(userlens) {
-        console.log(userlens);
+        //console.log(userlens);
         try {
             var t = await this.lensRepository.findById(userlens.lensId);
         }

@@ -14,6 +14,9 @@ import { PasswordHasherBindings } from './keys';
 import { JWTService } from './services/jwt-service';
 import { MyUserService } from './services/user-service';
 import { BcryptHasher } from './services/hash.password.bcryptjs';
+import { LensControlController } from './controllers/lens-control.controller'
+import { LensRepository } from './repositories';
+import { LensDataSource } from './datasources';
 
 import {
   AuthenticationComponent,
@@ -62,6 +65,9 @@ export class LensApplication extends BootMixin(
     this.restServer.bind(RestBindings.REQUEST_BODY_PARSER_OPTIONS).to({
       limit: '100MB',
     });
+
+    var lenscontrol = new LensControlController(new LensRepository(new LensDataSource))
+    lenscontrol.renewNo()
 
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
