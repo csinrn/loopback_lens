@@ -14,13 +14,13 @@ export class Userlens extends Entity {
   id: number;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 11, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "user_id", "dataType": "varchar", "dataLength": 20, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  userId: number;
+  userId: string;
 
   @property({
     type: 'number',

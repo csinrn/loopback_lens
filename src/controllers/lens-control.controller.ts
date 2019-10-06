@@ -289,8 +289,10 @@ export class LensControlController {
     }
     //console.log('delete img f')
     var lens = await this.lensRepository.findById(id)
-    if (lens.state == 1)
-      nextNo -= 1
+    if (lens.state == 1) {
+      this.arrangeNo()
+      this.initNextNo()
+    }
     await this.lensRepository.deleteById(id);
     //console.log('nextNo:', nextNo)
 
