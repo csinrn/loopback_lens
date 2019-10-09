@@ -701,9 +701,9 @@
             }).fail(error => {
                 console.log('server login fail')
                 console.log(error)
-                var msg = error.responseJSON.errorr.message + "<br>Details: " + JSON.stringify(error
+                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
                     .responseJSON.error.details)
-                if (error.responseJSON.errorr.details[0].code == 'minLength') {
+                if (error.responseJSON.error.details != undefined && error.responseJSON.error.details[0].code == 'minLength') {
                     msg = '密碼最少需要6個字'
                 }
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
