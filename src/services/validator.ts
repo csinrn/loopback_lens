@@ -15,6 +15,12 @@ export function validateCredentials(credentials: Credentials) {
   }
 }
 
+export function validate24hr(time: number, errMsg: string) {
+  if (!(time >= 0 && time <= 24))
+    throw new HttpErrors.BadRequest(errMsg)
+  return 1;
+}
+
 export function validateDate(date: string) {
   let reg = /^[0-9]{2}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])$/;
   if (!reg.test(date)) {

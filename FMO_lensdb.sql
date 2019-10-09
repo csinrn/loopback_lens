@@ -40,6 +40,20 @@ INSERT INTO `admin` (`id`, `account`, `password`, `create_at`, `is_admin`, `name
 	(7, 'admin', '$2a$10$BaRvtyDgN9lhmWa3YGQgKepfjuxZX5x1vxP5eWpwg3grH0tP/IoTu', '2019-01-03', 1, 'admin');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
+-- Dumping structure for table fmo_lensdb.iris_points
+CREATE TABLE IF NOT EXISTS `iris_points` (
+  `user_id` int(11) DEFAULT NULL,
+  `lens_id` int(11) DEFAULT NULL,
+  `leftiris_x` int(11) DEFAULT NULL,
+  `leftiris_y` int(11) DEFAULT NULL,
+  `rightiris_x` int(11) DEFAULT NULL,
+  `rightiris_y` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table fmo_lensdb.iris_points: ~0 rows (approximately)
+/*!40000 ALTER TABLE `iris_points` DISABLE KEYS */;
+/*!40000 ALTER TABLE `iris_points` ENABLE KEYS */;
+
 -- Dumping structure for table fmo_lensdb.lens
 CREATE TABLE IF NOT EXISTS `lens` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -89,6 +103,21 @@ INSERT INTO `lens` (`id`, `part_no`, `name`, `no`, `state`, `launch_at`, `remove
 	(9, '33333', '黑醋栗摩卡', 1, 1, '2019-09-22', '2019-10-16', 30, 35, 50, 200, 3, 1, 0, 0, '荷蘭', 300, 10, NULL, NULL, 'L4444', 0, 1, 0, '2019-09-29', '2019-10-05', '/lensPic/33333.png'),
 	(13, 'KT789', '黑森林', 3, 1, '2019-10-01', '2019-10-22', 15.6, 20.1, 50, 100, 30, 1, 1, 1, '土耳其', 300, 3, NULL, NULL, 'TT666', 1, 1, 0, '2019-09-30', '2019-10-05', '/lensPic/KT789.png');
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
+
+-- Dumping structure for table fmo_lensdb.update_time
+CREATE TABLE IF NOT EXISTS `update_time` (
+  `id` varchar(5) NOT NULL DEFAULT '',
+  `update_from` int(11) unsigned NOT NULL,
+  `update_to` int(11) unsigned NOT NULL,
+  `update_freq` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table fmo_lensdb.update_time: ~0 rows (approximately)
+/*!40000 ALTER TABLE `update_time` DISABLE KEYS */;
+INSERT INTO `update_time` (`id`, `update_from`, `update_to`, `update_freq`) VALUES
+	('0', 10, 13, 5);
+/*!40000 ALTER TABLE `update_time` ENABLE KEYS */;
 
 -- Dumping structure for table fmo_lensdb.userlens
 CREATE TABLE IF NOT EXISTS `userlens` (

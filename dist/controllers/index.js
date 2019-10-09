@@ -7,4 +7,5 @@ __export(require("./ping.controller"));
 __export(require("./lens-control.controller"));
 __export(require("./user-lens-control.controller"));
 __export(require("./admin-control.controller"));
+__export(require("./update-time.controller"));
 //# sourceMappingURL=index.js.map
