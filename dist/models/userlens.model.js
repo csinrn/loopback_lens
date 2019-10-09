@@ -29,13 +29,13 @@ __decorate([
 ], Userlens.prototype, "id", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
         required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 11, "dataScale": 0, "nullable": "N" },
+        mysql: { "columnName": "user_id", "dataType": "varchar", "dataLength": 20, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Userlens.prototype, "userId", void 0);
 __decorate([
     repository_1.property({

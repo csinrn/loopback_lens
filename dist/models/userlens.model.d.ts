@@ -1,7 +1,7 @@
 import { Entity } from '@loopback/repository';
 export declare class Userlens extends Entity {
     id: number;
-    userId: number;
+    userId: string;
     lensId: number;
     lensCount: number;
     lensTime: number;
