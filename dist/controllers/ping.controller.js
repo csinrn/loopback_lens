@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 const context_1 = require("@loopback/context");
+const repositories_1 = require("../repositories");
+const repository_1 = require("@loopback/repository");
 /**
  * OpenAPI response for ping()
  */
@@ -43,12 +45,18 @@ const PING_RESPONSE = {
  * A simple controller to bounce back http requests
  */
 let PingController = class PingController {
-    constructor(req) {
+    constructor(req, updateTimeRepository) {
         this.req = req;
+        this.updateTimeRepository = updateTimeRepository;
     }
     // Map to `GET /ping`
-    ping() {
+    async ping() {
         // Reply with a greeting, the current time, the url, and request headers
+        var updateTime = await this.updateTimeRepository.findById('0');
+        var dt = new Date();
+        var hour = dt.getHours();
+        console.log('hour: ', hour);
+        var isUpdateTime = updateTime.updateFrom < hour && updateTime.updateTo > hour;
         return {
             greeting: 'Hello from LoopBack',
             date: new Date(),
@@ -56,7 +64,11 @@ let PingController = class PingController {
             headers: Object.assign({}, this.req.headers),
             serverIp: '192.168.1.109',
             name: 'Formosa Contact Lens Virtual Wearing System',
-            version: '1.0'
+            version: '1.0',
+            updateFrom: updateTime.updateFrom,
+            updateTo: updateTime.updateTo,
+            updateFreq: updateTime.updateFreq,
+            isUpdateTime: isUpdateTime
         };
     }
 };
@@ -68,11 +80,12 @@ __decorate([
     }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Promise)
 ], PingController.prototype, "ping", null);
 PingController = __decorate([
     __param(0, context_1.inject(rest_1.RestBindings.Http.REQUEST)),
-    __metadata("design:paramtypes", [Object])
+    __param(1, repository_1.repository(repositories_1.UpdateTimeRepository)),
+    __metadata("design:paramtypes", [Object, repositories_1.UpdateTimeRepository])
 ], PingController);
 exports.PingController = PingController;
 //# sourceMappingURL=ping.controller.js.map

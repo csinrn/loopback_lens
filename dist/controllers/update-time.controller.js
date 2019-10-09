@@ -47,16 +47,14 @@ let UpdateTimeController = class UpdateTimeController {
         return await this.updateTimeRepository.count(where);
     }
     async find() {
-        console.log('backend update time');
         var t = await this.updateTimeRepository.findById('0');
-        console.log(t);
         return t;
     }
     async replaceById(updateTime) {
         validator_1.validate24hr(updateTime.updateFrom, '更新起始時間錯誤');
         validator_1.validate24hr(updateTime.updateTo, '更新截止時間錯誤');
         validator_1.validate24hr(updateTime.updateFreq, '更新頻率錯誤');
-        if (updateTime.updateFrom > updateTime.updateTo) {
+        if (updateTime.updateFrom >= updateTime.updateTo) {
             throw new rest_1.HttpErrors.BadRequest('起始時間需小於終止時間');
         }
         await this.updateTimeRepository.replaceById('0', updateTime);

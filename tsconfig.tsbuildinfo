@@ -1472,16 +1472,20 @@
         "version": "379e23d032937b375cbd57f6bcbc04852d1c2e2ad552a19605f0e66feb2a8bab",
         "signature": "e67b05c0da9c606b218a6c017d5908a9b2d601688d2a16620d91a40e81130130"
       },
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts": {
+        "version": "69975ad9fe2987434ed130eac1203cf544884ba31c79ce8a2d521f13e5fc2ad3",
+        "signature": "69975ad9fe2987434ed130eac1203cf544884ba31c79ce8a2d521f13e5fc2ad3"
+      },
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": {
-        "version": "e5f79b893ab8d6628e1f880bc591e2186698f248660c24f7310231c4ffa6c70d",
-        "signature": "298dcf42626620a1d183c7a1d1f08ad2311840ec09f9512d57335dd1c7d9fc72"
+        "version": "78200292cd3e82c2945deee1049e6bdea0d42232e270734f32a6481efbcee998",
+        "signature": "81faa5bc8e59b7cf0ca7eb2446c5226b92b1caeda178b0507f2c750e599535c7"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
         "version": "d26403cd4d2514454d58713b8ef4f68591afcb886e20e88897b1b651f9cc30c8",
         "signature": "e02acbc96ac9ec87d1eabf5b7e792316e3bab8ab78c8c6b1998e73410732e1a9"
       },
       "d:/eye-demo/lens/src/controllers/update-time.controller.ts": {
-        "version": "cdb0c7e70e971ba66e0795fb007c42aa317e2379259155a1fb976fa5c9427f3c",
+        "version": "e54526bb25f3a2d58336bc01001fa8a97e9ce313581bb9a09eb64c9e4a1fd0ef",
         "signature": "0534b00b2edb256fd9433552b384450e36f661361f092ec3701f171fcd703ab4"
       },
       "d:/eye-demo/lens/src/controllers/index.ts": {
@@ -1515,10 +1519,6 @@
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts": {
         "version": "c69767317aec528b574762b18727db85eef7cf66f33617cc0ee905cbe5a43d97",
         "signature": "c69767317aec528b574762b18727db85eef7cf66f33617cc0ee905cbe5a43d97"
-      },
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts": {
-        "version": "69975ad9fe2987434ed130eac1203cf544884ba31c79ce8a2d521f13e5fc2ad3",
-        "signature": "69975ad9fe2987434ed130eac1203cf544884ba31c79ce8a2d521f13e5fc2ad3"
       }
     },
     "options": {
@@ -4123,9 +4123,18 @@
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/node/http.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": [
         "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts",
         "d:/eye-demo/lens/node_modules/@loopback/context/index.d.ts",
+        "d:/eye-demo/lens/src/repositories/index.ts",
+        "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -4188,12 +4197,6 @@
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts": [
-        "d:/eye-demo/lens/node_modules/@types/node/http.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/index.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts": [
         "d:/eye-demo/lens/node_modules/@types/node/http.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/index.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
@@ -6659,7 +6662,14 @@
         "d:/eye-demo/lens/src/repositories/admin.repository.ts",
         "d:/eye-demo/lens/node_modules/@loopback/repository/index.d.ts"
       ],
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts": [
+        "d:/eye-demo/lens/node_modules/@types/node/http.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/index.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
+        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": [
+        "d:/eye-demo/lens/src/repositories/index.ts",
         "d:/eye-demo/lens/node_modules/@loopback/rest/index.d.ts"
       ],
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": [
@@ -6709,12 +6719,6 @@
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts": [
-        "d:/eye-demo/lens/node_modules/@types/node/http.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/index.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
-        "d:/eye-demo/lens/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts": [
         "d:/eye-demo/lens/node_modules/@types/node/http.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/ts3.2/index.d.ts",
         "d:/eye-demo/lens/node_modules/@types/node/util.d.ts",
@@ -7090,9 +7094,8 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
       "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
-      "d:/eye-demo/lens/src/controllers/ping.controller.ts",
+      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
-      "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/eslint-visitor-keys/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/fs-extra/index.d.ts",
@@ -7100,8 +7103,9 @@
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/update-time.controller.ts"
+      "d:/eye-demo/lens/src/controllers/ping.controller.ts",
+      "d:/eye-demo/lens/src/controllers/update-time.controller.ts",
+      "d:/eye-demo/lens/src/controllers/index.ts"
     ]
   },
   "version": "3.5.3"
