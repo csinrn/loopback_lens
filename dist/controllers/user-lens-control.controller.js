@@ -23,7 +23,7 @@ let UserLensControlController = class UserLensControlController {
     }
     //@authenticate('jwt')
     async create(userlens) {
-        //console.log(userlens);
+        console.log(userlens);
         try {
             var t = await this.lensRepository.findById(userlens.lensId);
         }
@@ -92,22 +92,6 @@ let UserLensControlController = class UserLensControlController {
     //@authenticate('jwt')
     async deleteById(id) {
         await this.userlensRepository.deleteById(id);
-    }
-    async addRecord(userLens) {
-        let user = await this.userlensRepository.findOne({ where: { and: [{ userId: userLens.userId }, { lensId: userLens.lensId }] } });
-        if (user == undefined) {
-            userLens.createAt = new Date();
-            userLens.updateAt = new Date();
-            userLens.lensCount = 1;
-            await this.create(userLens);
-        }
-        else {
-            user.updateAt = new Date();
-            user.lensCount += 1;
-            user.lensTime += userLens.lensTime;
-            await this.userlensRepository.updateById(user.id, user);
-        }
-        return "update success";
     }
 };
 __decorate([
@@ -246,19 +230,6 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserLensControlController.prototype, "deleteById", null);
-__decorate([
-    rest_1.post('/userlens/update'),
-    __param(0, rest_1.requestBody({
-        content: {
-            'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Userlens, { partial: true }),
-            },
-        },
-    })),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [models_1.Userlens]),
-    __metadata("design:returntype", Promise)
-], UserLensControlController.prototype, "addRecord", null);
 UserLensControlController = __decorate([
     __param(0, repository_1.repository(repositories_1.UserlensRepository)),
     __param(1, repository_1.repository(repositories_1.LensRepository)),

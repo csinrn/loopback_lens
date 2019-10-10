@@ -1,13 +1,12 @@
 import { Entity } from '@loopback/repository';
 export declare class Userlens extends Entity {
     id: number;
-    userId: string;
+    userId: number;
     lensId: number;
     lensCount: number;
-    lensTime: number;
+    lensTime?: number;
     createAt: Date;
-    updateAt: Date;
-    isCustomer: number;
+    updateAt?: Date;
     [prop: string]: any;
     constructor(data?: Partial<Userlens>);
 }

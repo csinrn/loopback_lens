@@ -12,12 +12,12 @@ export declare class LensControlController {
         responses: string;
     }>;
     updateNameById(id: string, lens: Lens): Promise<void>;
-    test(): Promise<(Lens & import("../models").LensRelations)[]>;
     deleteById(id: string): Promise<void>;
     postImg(filename: string, imgData: string): Promise<string>;
-    renewNo(): Promise<void>;
+    renewNo(list: Lens[]): Promise<void>;
     arrangeNo(): Promise<void>;
-    initNextNo(): Promise<void>;
-    compDate(a: Date, b: Date): 1 | 0 | -1;
     lensComp(a: Lens, b: Lens): number;
+    getDateString(dt: Date): string;
+    initNextNo(): void;
+    compDate(a: Date, b: Date): 1 | 0 | -1;
 }

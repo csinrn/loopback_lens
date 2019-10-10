@@ -18,11 +18,23 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const validator_1 = require("../services/validator");
 var fs = require('fs');
-var nowDate = new Date();
+var nowDate = new Date(); //new Date().getDate()
 var nextNo = 0;
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
         this.lensRepository = lensRepository;
+        var array = this.lensRepository.find();
+        array.then((array) => {
+            nextNo = 0;
+            array.forEach((len) => {
+                if (len.state == 1)
+                    nextNo++;
+            });
+            //console.log('nextNo:', nextNo)
+        }).catch((err) => {
+            console.log(err);
+            throw new Error('nextNo initiallize error');
+        });
     }
     //@authenticate('jwt')
     async create(lens) {
@@ -74,24 +86,13 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async find(filter) {
+        var list = await this.lensRepository.find(filter);
         var date = new Date();
-        if (this.compDate(nowDate, date) != 0) { // check the launch state everyday
-            await this.renewNo();
+        if (this.compDate(nowDate, date) != 0) {
+            //await this.renewNo(list)
             nowDate = new Date();
         }
-        var list = await this.lensRepository.find(filter);
-        var callback = function (err, data) {
-            console.log(err);
-        };
-        for (var i = 0; i < list.length; i++) {
-            try {
-                var pic = fs.readFileSync('./public' + list[i].url, 'base64', callback);
-                list[i].url = pic;
-            }
-            catch (err) {
-                throw new rest_1.HttpErrors.Conflict(err);
-            }
-        }
+        list = await this.lensRepository.find(filter);
         return list;
     }
     //@authenticate('jwt')
@@ -168,9 +169,6 @@ let LensControlController = class LensControlController {
         lens.updateAt = new Date();
         await this.lensRepository.updateById(id, lens);
     }
-    async test() {
-        return await this.lensRepository.find({ where: { state: 0 } });
-    }
     //@authenticate('jwt')
     async deleteById(id) {
         var lens = await this.lensRepository.findById(id);
@@ -183,10 +181,8 @@ let LensControlController = class LensControlController {
         }
         //console.log('delete img f')
         var lens = await this.lensRepository.findById(id);
-        if (lens.state == 1) {
-            this.arrangeNo();
-            this.initNextNo();
-        }
+        if (lens.state == 1)
+            nextNo -= 1;
         await this.lensRepository.deleteById(id);
         //console.log('nextNo:', nextNo)
     }
@@ -208,74 +204,73 @@ let LensControlController = class LensControlController {
         });
         return res;
     }
-    async renewNo() {
-        var list = await this.lensRepository.find();
-        var date = new Date();
-        console.log('renew');
+    async renewNo(list) {
+        var dt = new Date();
+        var date = parseInt(this.getDateString(dt));
+        var releasingList = [];
         var promiseList = [];
         list.forEach(async (lens) => {
-            var launchAt = new Date(lens.launchAt), removeAt = new Date(lens.removeAt);
-            // change the state, but do not change the no
-            if (this.compDate(launchAt, date) == 1) { // not yet relesed
+            var launchAt = parseInt(this.getDateString(lens.launchAt)), removeAt = parseInt(this.getDateString(lens.removeAt));
+            if (launchAt > date) { // not yet relesed
                 if (lens.no != undefined || lens.state != 0) {
                     lens.no = undefined;
                     lens.state = 0;
                     lens.updateAt = new Date();
-                    promiseList.push(this.lensRepository.updateById(lens.id, lens));
+                    promiseList.push(this.lensRepository.updateById(lens.partNo, lens));
                 }
             }
-            else if (this.compDate(launchAt, date) != 1 && this.compDate(removeAt, date) == 1) { // releasing
-                if (lens.state != 1) { // if release at today, give it the first order
-                    lens.no = nextNo;
-                    nextNo += 1;
-                    lens.state = 1;
-                    lens.updateAt = new Date();
-                    promiseList.push(this.lensRepository.updateById(lens.id, lens));
-                }
+            else if (launchAt <= date && removeAt > date) { // releasing
+                lens.state = 1;
+                lens.updateAt = new Date();
+                releasingList.push(lens);
             }
             else { //removed
                 if (lens.no != undefined || lens.state != 2) {
                     lens.no = undefined;
                     lens.state = 2;
                     lens.updateAt = new Date();
-                    promiseList.push(this.lensRepository.updateById(lens.id, lens));
+                    promiseList.push(this.lensRepository.updateById(lens.partNo, lens));
                 }
             }
         });
-        await Promise.all(promiseList);
         // rearrange no, start from 0 and with no empty
-        this.initNextNo();
-        await this.arrangeNo();
+        releasingList.sort(this.lensComp);
+        //console.log(releasingList)
+        var i = 0;
+        releasingList.forEach((lens) => {
+            if (lens.no != i) {
+                lens.no = i;
+                promiseList.push(this.lensRepository.updateById(lens.partNo, lens));
+            }
+            i++;
+        });
+        // fire all update
+        await Promise.all(promiseList);
+        nextNo = i;
+        console.log(nextNo);
     }
     async arrangeNo() {
-        // put state==1 lens into list
-        var list = await this.lensRepository.find({ where: { state: 1 } });
+        var array = await this.lensRepository.find();
+        var list = [];
+        array.forEach((len) => {
+            if (len.state == 1)
+                list.push(len);
+        });
+        //console.log(' ')
         list.sort(this.lensComp);
+        var index = 0;
         for (var i = list.length - 1; i >= 0; i--) {
             var len_t = new models_1.Lens();
             len_t.no = list.length - i - 1;
+            //console.log(list[i].no, list.length - i - 1)
             this.lensRepository.updateById(list[i].id, len_t);
         }
     }
-    async initNextNo() {
-        var array = await this.lensRepository.find({ where: { state: 1 } });
-        nextNo = array.length;
-        console.log('nextNo:', nextNo);
-    }
-    compDate(a, b) {
-        var ad = Date.parse(a.toDateString()).valueOf();
-        var bd = Date.parse(b.toDateString()).valueOf();
-        //console.log('comp:', a, b, ad, bd)
-        if (ad == bd) {
-            return 0;
-        }
-        return ad > bd ? 1 : -1;
-    }
     lensComp(a, b) {
-        if (a.no == undefined && b.no == undefined) { // not yet release
-            if (this.compDate(new Date(a.launchAt), new Date(b.launchAt)) == 0)
+        if (a.no == undefined && b.no == undefined) {
+            if (parseInt(this.getDateString(a.launchAt)) == parseInt(this.getDateString(a.launchAt)))
                 return 0;
-            return this.compDate(new Date(a.launchAt), new Date(b.launchAt)) == 1 ? -1 : 1;
+            return parseInt(this.getDateString(a.launchAt)) > parseInt(this.getDateString(b.launchAt)) ? -1 : 1;
         }
         else if (a.no == undefined || b.no == undefined) {
             if (a.no == undefined)
@@ -288,6 +283,36 @@ let LensControlController = class LensControlController {
                 return 0;
             return a.no > b.no ? -1 : 1;
         }
+    }
+    getDateString(dt) {
+        var year = dt.getFullYear().toString(), month = (dt.getMonth() + 1).toString(), day = dt.getDate().toString();
+        year = year[2] + year[3];
+        month = (month.length == 1) ? '0' + month : month;
+        day = (day.length == 1) ? '0' + day : day;
+        return (year + month + day).toString();
+    }
+    initNextNo() {
+        var array = this.lensRepository.find();
+        array.then((array) => {
+            nextNo = 0;
+            array.forEach((len) => {
+                if (len.state == 1)
+                    nextNo++;
+            });
+            //console.log('nextNo:', nextNo)
+        }).catch((err) => {
+            console.log(err);
+            throw new Error('nextNo initiallize error');
+        });
+    }
+    compDate(a, b) {
+        var ad = Date.parse(a.toDateString()).valueOf();
+        var bd = Date.parse(b.toDateString()).valueOf();
+        //console.log('comp:', a, b, ad, bd)
+        if (ad == bd) {
+            return 0;
+        }
+        return ad > bd ? 1 : -1;
     }
 };
 __decorate([
@@ -384,12 +409,6 @@ __decorate([
     __metadata("design:paramtypes", [String, models_1.Lens]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "updateNameById", null);
-__decorate([
-    rest_1.get('/lens/test'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], LensControlController.prototype, "test", null);
 __decorate([
     rest_1.del('/lens/{id}', {
         responses: {

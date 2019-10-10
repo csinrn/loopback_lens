@@ -14,13 +14,13 @@ export class Userlens extends Entity {
   id: number;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "user_id", "dataType": "varchar", "dataLength": 20, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  userId: string;
+  userId: number;
 
   @property({
     type: 'number',
@@ -47,7 +47,7 @@ export class Userlens extends Entity {
     scale: 0,
     mysql: { "columnName": "lens_time", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  lensTime: number;
+  lensTime?: number;
 
   @property({
     type: 'date',
@@ -61,16 +61,7 @@ export class Userlens extends Entity {
     required: false,
     mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
   })
-  updateAt: Date;
-
-  @property({
-    type: 'number',
-    required: true,
-    precision: 3,
-    scale: 0,
-    mysql: { "columnName": "is_customer", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
-  })
-  isCustomer: number;
+  updateAt?: Date;
 
   // Define well-known properties here
 

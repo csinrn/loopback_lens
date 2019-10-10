@@ -6,5 +6,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./lens.repository"));
 __export(require("./userlens.repository"));
 __export(require("./admin.repository"));
-__export(require("./update-time.repository"));
 //# sourceMappingURL=index.js.map

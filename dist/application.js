@@ -12,9 +12,6 @@ const keys_1 = require("./keys");
 const jwt_service_1 = require("./services/jwt-service");
 const user_service_1 = require("./services/user-service");
 const hash_password_bcryptjs_1 = require("./services/hash.password.bcryptjs");
-const lens_control_controller_1 = require("./controllers/lens-control.controller");
-const repositories_1 = require("./repositories");
-const datasources_1 = require("./datasources");
 const authentication_1 = require("@loopback/authentication");
 const keys_2 = require("./keys");
 class LensApplication extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.RepositoryMixin(rest_1.RestApplication))) {
@@ -41,8 +38,6 @@ class LensApplication extends boot_1.BootMixin(service_proxy_1.ServiceMixin(repo
         this.restServer.bind(rest_1.RestBindings.REQUEST_BODY_PARSER_OPTIONS).to({
             limit: '100MB',
         });
-        var lenscontrol = new lens_control_controller_1.LensControlController(new repositories_1.LensRepository(new datasources_1.LensDataSource));
-        lenscontrol.renewNo();
         this.projectRoot = __dirname;
         // Customize @loopback/boot Booter Conventions here
         this.bootOptions = {

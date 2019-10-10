@@ -11,7 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
+"use strict";
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
@@ -101,12 +103,12 @@ __decorate([
     }),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [models_1.UpdateTime]),
+    __metadata("design:paramtypes", [typeof (_a = typeof models_1.UpdateTime !== "undefined" && models_1.UpdateTime) === "function" ? _a : Object]),
     __metadata("design:returntype", Promise)
 ], UpdateTimeController.prototype, "replaceById", null);
 UpdateTimeController = __decorate([
     __param(0, repository_1.repository(repositories_1.UpdateTimeRepository)),
-    __metadata("design:paramtypes", [repositories_1.UpdateTimeRepository])
+    __metadata("design:paramtypes", [typeof (_b = typeof repositories_1.UpdateTimeRepository !== "undefined" && repositories_1.UpdateTimeRepository) === "function" ? _b : Object])
 ], UpdateTimeController);
 exports.UpdateTimeController = UpdateTimeController;
 //# sourceMappingURL=update-time.controller.js.map

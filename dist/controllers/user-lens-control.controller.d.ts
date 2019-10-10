@@ -13,5 +13,4 @@ export declare class UserLensControlController {
     updateTime(userid: number, lensid: number, userlens: Userlens): Promise<void>;
     updateCount(userid: number, lensid: number, userlens: Userlens): Promise<void>;
     deleteById(id: number): Promise<void>;
-    addRecord(userLens: Userlens): Promise<string>;
 }
