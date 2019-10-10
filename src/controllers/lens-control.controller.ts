@@ -137,6 +137,31 @@ export class LensControlController {
       await this.renewNo()
       nowDate = new Date()
     }
+    return await this.lensRepository.find(filter);
+  }
+
+  //@authenticate('jwt')
+  @get('/lens/base64', {
+    responses: {
+      '200': {
+        description: 'Array of Lens model instances',
+        content: {
+          'application/json': {
+            schema: { type: 'array', items: getModelSchemaRef(Lens) },
+          },
+        },
+      },
+    },
+  })
+  async findbase64(
+    @param.query.object('filter', getFilterSchemaFor(Lens)) filter?: Filter<Lens>,
+  ): Promise<Lens[]> {
+
+    var date = new Date()
+    if (this.compDate(nowDate, date) != 0) {  // check the launch state everyday
+      await this.renewNo()
+      nowDate = new Date()
+    }
 
     var list = await this.lensRepository.find(filter)
     var callback = function (err: any, data: any) {
@@ -152,6 +177,7 @@ export class LensControlController {
     }
     return list;
   }
+
 
   //@authenticate('jwt')
   @patch('/lens/{id}')

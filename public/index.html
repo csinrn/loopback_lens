@@ -738,7 +738,7 @@
                 }
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
                 swalAlert('登入成功', '帳號: ' + user.account + '<br>姓名: ' + user.name, true,
-                    /*renderCards*/)
+                    renderCards)
             }).fail(error => {
                 console.log('server login fail yyyyy')
                 console.log(error)
