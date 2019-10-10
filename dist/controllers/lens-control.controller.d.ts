@@ -7,6 +7,7 @@ export declare class LensControlController {
     create(lens: Lens): Promise<Lens>;
     count(where?: Where<Lens>): Promise<Count>;
     find(filter?: Filter<Lens>): Promise<Lens[]>;
+    findbase64(filter?: Filter<Lens>): Promise<Lens[]>;
     updateById(id: string, lens: Lens): Promise<void>;
     sort(id1: string, id2: string): Promise<{
         responses: string;
@@ -18,6 +19,6 @@ export declare class LensControlController {
     renewNo(): Promise<void>;
     arrangeNo(): Promise<void>;
     initNextNo(): Promise<void>;
-    compDate(a: Date, b: Date): 1 | 0 | -1;
+    compDate(a: Date, b: Date): 0 | 1 | -1;
     lensComp(a: Lens, b: Lens): number;
 }

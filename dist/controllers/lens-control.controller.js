@@ -79,6 +79,15 @@ let LensControlController = class LensControlController {
             await this.renewNo();
             nowDate = new Date();
         }
+        return await this.lensRepository.find(filter);
+    }
+    //@authenticate('jwt')
+    async findbase64(filter) {
+        var date = new Date();
+        if (this.compDate(nowDate, date) != 0) { // check the launch state everyday
+            await this.renewNo();
+            nowDate = new Date();
+        }
         var list = await this.lensRepository.find(filter);
         var callback = function (err, data) {
             console.log(err);
@@ -342,6 +351,24 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "find", null);
+__decorate([
+    rest_1.get('/lens/base64', {
+        responses: {
+            '200': {
+                description: 'Array of Lens model instances',
+                content: {
+                    'application/json': {
+                        schema: { type: 'array', items: rest_1.getModelSchemaRef(models_1.Lens) },
+                    },
+                },
+            },
+        },
+    }),
+    __param(0, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Lens))),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], LensControlController.prototype, "findbase64", null);
 __decorate([
     rest_1.patch('/lens/{id}'),
     __param(0, rest_1.param.path.string('id')),

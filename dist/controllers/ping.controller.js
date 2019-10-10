@@ -55,7 +55,6 @@ let PingController = class PingController {
         var updateTime = await this.updateTimeRepository.findById('0');
         var dt = new Date();
         var hour = dt.getHours();
-        console.log('hour: ', hour);
         var isUpdateTime = updateTime.updateFrom < hour && updateTime.updateTo > hour;
         return {
             greeting: 'Hello from LoopBack',
