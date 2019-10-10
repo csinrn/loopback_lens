@@ -7093,7 +7093,6 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
       "d:/eye-demo/lens/src/controllers/ping.controller.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
@@ -7105,7 +7104,8 @@
       "d:/eye-demo/lens/node_modules/@types/minimatch/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts"
+      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts"
     ]
   },
   "version": "3.5.3"

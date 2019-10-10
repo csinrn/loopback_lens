@@ -653,7 +653,7 @@
         });
 
         var ip = "localhost"
-        var serverURL = 'http://' + ip + '3000'
+        var serverURL = 'http://' + ip + ':3000'
         var tableRows = []
         var isAdmin = false
         var user = {}
@@ -705,7 +705,6 @@
                 password: $('#login [name="password"]').val()
             }
             data = JSON.stringify(data)
-
             $.ajax({
                 url: serverURL + '/admin/login',
                 type: "POST",
@@ -742,14 +741,14 @@
             }).fail(error => {
                 console.log('server login fail yyyyy')
                 console.log(error)
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
-                    .responseJSON.error.details)
+                //var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                //    .responseJSON.error.details)
                 //if (error.responseJSON.error.details != undefined && error.responseJSON.error.details[0].code == 'minLength') {
                 //    msg = '密碼最少需要6個字'
                 //}
                 $('#guest_content [name="loginBtn"]').attr('disabled', false)
 
-                swalAlert('登入失敗', msg, false)
+                swalAlert('登入失敗', '', false)
             });
         }
 
