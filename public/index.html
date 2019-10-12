@@ -687,14 +687,19 @@
                     true)
             }).fail(error => {
                 // 如果註冊失敗
-                $('#register [name="registerBtn"]').attr('disabled', false)
-                var msg = ''
-                if (error.responseJSON.error.code == 'ER_DUP_ENTRY')
-                    msg = 'Account duplicated'
-                else
-                    msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                        .error.details)
-                swalAlert('註冊失敗', msg, false)
+                try {
+                    $('#register [name="registerBtn"]').attr('disabled', false)
+                    var msg = ''
+                    if (error.responseJSON.error.code == 'ER_DUP_ENTRY')
+                        msg = 'Account duplicated'
+                    else
+                        msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                            .error.details)
+                    swalAlert('註冊失敗', msg, false)
+                } catch{
+                    $('#register [name="registerBtn"]').attr('disabled', false)
+                    swalAlert('註冊失敗', '', false)
+                }
             });
         }
 
@@ -739,21 +744,26 @@
                 swalAlert('登入成功', '帳號: ' + user.account + '<br>姓名: ' + user.name, true,
                     renderCards)
             }).fail(error => {
-                console.log('server login fail yyyyy')
-                console.log(error)
-                //var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
-                //    .responseJSON.error.details)
-                //if (error.responseJSON.error.details != undefined && error.responseJSON.error.details[0].code == 'minLength') {
-                //    msg = '密碼最少需要6個字'
-                //}
-                $('#guest_content [name="loginBtn"]').attr('disabled', false)
-
-                swalAlert('登入失敗', '', false)
+                try {
+                    console.log('server login fail yyyyy')
+                    console.log(error)
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                        .responseJSON.error.details)
+                    if (error.responseJSON.error.details != undefined && error.responseJSON.error.details[0].code == 'minLength') {
+                        msg = '密碼最少需要6個字'
+                    }
+                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
+                    swalAlert('登入失敗', msg, false)
+                } catch{
+                    $('#guest_content [name="loginBtn"]').attr('disabled', false)
+                    swalAlert('登入失敗', '', false)
+                }
             });
         }
 
         function logout() {
             //Cookies.remove('token');
+            $('#auth input').val('')
             swalAlert("登出成功", "", true, switchPane(false))
         }
 
@@ -1041,11 +1051,16 @@
                 swalAlert("上傳成功", "", true, renderCards);
             }).fail(error => {
                 console.log(error)
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
-                    .responseJSON
-                    .error.details);
-                btnEnable()
-                swalAlert("上傳失敗", msg, false)
+                try {
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                        .responseJSON
+                        .error.details);
+                    btnEnable()
+                    swalAlert("上傳失敗", msg, false)
+                } catch{
+                    btnEnable()
+                    swalAlert("上傳失敗", '', false)
+                }
             })
         }
 
@@ -1065,13 +1080,17 @@
                     resolve()
                 }).fail(error => {
                     console.log(error)
-
-                    //$("#sort-form input").val('')
-                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(
-                        error.responseJSON
-                            .error.details)
-                    swalAlert("排序失敗", msg, false)
-                    reject()
+                    try {
+                        //$("#sort-form input").val('')
+                        var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(
+                            error.responseJSON
+                                .error.details)
+                        swalAlert("排序失敗", msg, false)
+                        reject()
+                    } catch{
+                        swalAlert("排序失敗", '', false)
+                        reject()
+                    }
                 })
             })
         }
@@ -1109,12 +1128,17 @@
                 $('#update [name="deleteBtn"]').attr('disabled', false)
                 swalAlert("刪除成功", '', true)
             }).fail(error => {
-                console.log(error)
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
-                    .responseJSON
-                    .error)
-                $('#update [name="deleteBtn"]').attr('disabled', false)
-                swalAlert("刪除失敗", msg, false)
+                try {
+                    console.log(error)
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                        .responseJSON
+                        .error)
+                    $('#update [name="deleteBtn"]').attr('disabled', false)
+                    swalAlert("刪除失敗", msg, false)
+                } catch{
+                    $('#update [name="deleteBtn"]').attr('disabled', false)
+                    swalAlert("刪除失敗", '', false)
+                }
             })
         }
 
@@ -1246,12 +1270,17 @@
                 btnEnable2()
                 swalAlert("更新成功", "", true, renderCards);
             }).fail(error => {
-                console.log(error)
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
-                    .responseJSON
-                    .error.details);
-                btnEnable2()
-                swalAlert("更新失敗", msg, false)
+                try {
+                    console.log(error)
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                        .responseJSON
+                        .error.details);
+                    btnEnable2()
+                    swalAlert("更新失敗", msg, false)
+                } catch{
+                    btnEnable2()
+                    swalAlert("更新失敗", '', false)
+                }
             })
         }
 
@@ -1276,9 +1305,13 @@
             }).then(() => {
                 swalAlert('更新成功', '', true)
             }).catch((err) => {
-                console.log(err)
-                var msg = err.responseJSON.message
-                swalAlert('更新失敗', msg, false)
+                try {
+                    console.log(err)
+                    var msg = err.responseJSON.message
+                    swalAlert('更新失敗', msg, false)
+                } catch{
+                    swalAlert('更新失敗', '', false)
+                }
             })
         }
 
@@ -1659,14 +1692,19 @@
                 $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
                 swalAlert('更新帳號成功', '', true)
             }).fail((err) => {
-                console.log(err)
-                var msg = err.responseJSON.error.message + "<br>Details: " + JSON.stringify(err.responseJSON
-                    .error.details);
-                if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
-                    msg = '無此帳號'
+                try {
+                    console.log(err)
+                    var msg = err.responseJSON.error.message + "<br>Details: " + JSON.stringify(err.responseJSON
+                        .error.details);
+                    if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
+                        msg = '無此帳號'
+                    }
+                    $('#manage [name="updateAccountBtn"]').attr('disabled', false)
+                    swalAlert('更新帳號失敗', msg, false)
+                } catch{
+                    $('#manage [name="updateAccountBtn"]').attr('disabled', false)
+                    swalAlert('更新帳號失敗', '', false)
                 }
-                $('#manage [name="updateAccountBtn"]').attr('disabled', false)
-                swalAlert('更新帳號失敗', msg, false)
             })
         }
 
@@ -1704,14 +1742,19 @@
                 renderAdmins()
                 swalAlert('更新帳號成功', '', true)
             }).fail((err) => {
-                console.log(err)
-                var msg = err.responseJSON.error.message + "<br>Details: " + JSON.stringify(err.responseJSON
-                    .error.details);
-                if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
-                    msg = '無此帳號'
+                try {
+                    console.log(err)
+                    var msg = err.responseJSON.error.message + "<br>Details: " + JSON.stringify(err.responseJSON
+                        .error.details);
+                    if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
+                        msg = '無此帳號'
+                    }
+                    $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
+                    swalAlert('更新帳號失敗', msg, false)
+                } catch{
+                    $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
+                    swalAlert('更新帳號失敗', '', false)
                 }
-                $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
-                swalAlert('更新帳號失敗', msg, false)
             })
         }
 
@@ -1727,14 +1770,18 @@
                 renderAdmins()
                 swalAlert('刪除帳號成功', '', true)
             }).fail((err) => {
-                var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
-                    .error.details);
-                if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
-                    msg = '無此帳號'
+                try {
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                        .error.details);
+                    if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
+                        msg = '無此帳號'
+                    }
+                    $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
+                    swalAlert('刪除帳號失敗', msg, false)
+                } catch{
+                    $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
+                    swalAlert('刪除帳號失敗', '', false)
                 }
-                $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
-
-                swalAlert('刪除帳號失敗', msg, false)
             })
         }
 
