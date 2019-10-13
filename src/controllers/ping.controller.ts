@@ -48,11 +48,12 @@ export class PingController {
     // Reply with a greeting, the current time, the url, and request headers
     var updateTime = await this.updateTimeRepository.findById('0');
     var dt = new Date()
+    dt = new Date()
     var hour = dt.getHours()
-    var isUpdateTime = updateTime.updateFrom < hour && updateTime.updateTo > hour
+    var isUpdateTime = updateTime.updateFrom <= hour && updateTime.updateTo > hour
     return {
       greeting: 'Hello from LoopBack',
-      date: new Date(),
+      date: dt.toLocaleString(),
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
       serverIp: '192.168.1.109',

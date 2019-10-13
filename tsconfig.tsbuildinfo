@@ -1477,7 +1477,7 @@
         "signature": "69975ad9fe2987434ed130eac1203cf544884ba31c79ce8a2d521f13e5fc2ad3"
       },
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": {
-        "version": "995a81ba8ae12f75a5a450b7134f3618e1e54d8f0ea36b1dd78b71cc12e50886",
+        "version": "c4d1a23b73b7c3a307d2db1ef3aadf3a20fce1dde3375fcf64166b2d15ba0671",
         "signature": "81faa5bc8e59b7cf0ca7eb2446c5226b92b1caeda178b0507f2c750e599535c7"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
@@ -7093,8 +7093,8 @@
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/string.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/common/util.d.ts",
       "d:/eye-demo/lens/node_modules/@types/lodash/ts3.1/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts",
       "d:/eye-demo/lens/node_modules/@types/type-is/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/ping.controller.ts",
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/update-time.controller.ts",
       "d:/eye-demo/lens/src/controllers/index.ts",
@@ -7105,7 +7105,7 @@
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/admin-control.controller.ts"
+      "d:/eye-demo/lens/src/controllers/ping.controller.ts"
     ]
   },
   "version": "3.5.3"
