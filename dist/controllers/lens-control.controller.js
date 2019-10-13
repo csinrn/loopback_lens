@@ -125,6 +125,9 @@ let LensControlController = class LensControlController {
         }
         else if (lens.partNo != oldLen.partNo) { // if not update pic but update the partNo,
             // change old pic name to new partNo
+            if (fs.existsSync('./public/lensPic/' + lens.partNo + '.png', () => { throw new rest_1.HttpErrors.BadRequest(); })) {
+                throw new rest_1.HttpErrors.BadRequest('料號重復');
+            }
             try {
                 fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
             }

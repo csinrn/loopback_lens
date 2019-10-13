@@ -1309,7 +1309,7 @@
         "signature": "6addb2e7953edadf78e8a2aab0964a991ba5de4871e16f3b5f729c14e64b11ad"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "c01a8e6a67da827c44be51717515f130003965ff5291ac18fa3e1bf83ef9acb5",
+        "version": "4b97c1d68f8d0feccdbcd17e2af6c86e39f7bdc44029b1303363b93ee28a721f",
         "signature": "2fb8d448cdfb98d2d15eb9c13a6146e83474911e5ecf96462c6557760c8003b8"
       },
       "d:/eye-demo/lens/src/application.ts": {
@@ -7053,7 +7053,6 @@
       "d:/eye-demo/lens/src/services/jwt-service.ts",
       "d:/eye-demo/lens/src/services/user-service.ts",
       "d:/eye-demo/lens/src/services/validator.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
@@ -7105,7 +7104,8 @@
       "d:/eye-demo/lens/node_modules/@types/minimatch/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts"
+      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts"
     ]
   },
   "version": "3.5.3"
