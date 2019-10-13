@@ -71,7 +71,7 @@ __decorate([
     repository_1.property({
         type: 'date',
         required: true,
-        mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+        mysql: { "columnName": "create_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", Date)
 ], Userlens.prototype, "createAt", void 0);
@@ -79,7 +79,7 @@ __decorate([
     repository_1.property({
         type: 'date',
         required: false,
-        mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
+        mysql: { "columnName": "update_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "Y" },
     }),
     __metadata("design:type", Date)
 ], Userlens.prototype, "updateAt", void 0);

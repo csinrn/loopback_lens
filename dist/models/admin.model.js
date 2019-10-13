@@ -49,7 +49,7 @@ __decorate([
     repository_1.property({
         type: 'string',
         required: true,
-        mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+        mysql: { "columnName": "create_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
     __metadata("design:type", String)
 ], Admin.prototype, "createAt", void 0);

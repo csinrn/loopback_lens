@@ -21,23 +21,23 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `account` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `create_at` date NOT NULL,
+  `create_at` datetime NOT NULL,
   `is_admin` tinyint(4) NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `account` (`account`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table fmo_lensdb.admin: ~7 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`id`, `account`, `password`, `create_at`, `is_admin`, `name`) VALUES
-	(1, '33333333', '$2a$10$n0BsjiMVeEQa895LUQSvc.4kD8JAuxNP5F5XlVuVJeBifb1cPRf8K', '2019-09-29', 0, '6666'),
-	(2, '444', '$2a$10$mVoirp3MPBDA2Ty/h5.Zhu.tXkf39L9DnmsjeK0M3QrFnlUE/PTTK', '2019-09-26', 0, '叉叉'),
-	(3, '4444', '$2a$10$eReuQLBsuEscfbNlvZt0P.7Ml0f6zr.KBUVp7tfSswitA/eXF8ihq', '2019-09-29', 1, '6666'),
-	(4, 'eee', '$2a$10$eecAEIhBKpYO84ZFCYSRjuLh4Uk9sCBdAwnhKLQAQ68fxFIIWD2Ri', '2019-09-29', 1, 'eeee'),
-	(5, 'qwe', '$2a$10$JB91FVZfTtL1AFVexN0hjOjbfN.kt4PPj4hAKYs44P6fP7PM.ohxW', '2019-09-29', 0, 'qwe'),
-	(6, 'rrrr', '$2a$10$8ThDOrjsKnwepj0KcB04KuNW/u99RyqLT1dgeuj1M/MGCfMu/tsXG', '2019-09-26', 0, 'er'),
-	(7, 'admin', '$2a$10$BaRvtyDgN9lhmWa3YGQgKepfjuxZX5x1vxP5eWpwg3grH0tP/IoTu', '2019-01-03', 1, 'admin');
+	(1, '33333333', '$2a$10$n0BsjiMVeEQa895LUQSvc.4kD8JAuxNP5F5XlVuVJeBifb1cPRf8K', '2019-09-29 00:00:00', 0, '陳琛'),
+	(2, '444', '$2a$10$mVoirp3MPBDA2Ty/h5.Zhu.tXkf39L9DnmsjeK0M3QrFnlUE/PTTK', '2019-09-26 00:00:00', 0, '詹則方'),
+	(3, '4444', '$2a$10$eReuQLBsuEscfbNlvZt0P.7Ml0f6zr.KBUVp7tfSswitA/eXF8ihq', '2019-09-29 00:00:00', 1, 'Louis Labat'),
+	(4, 'eee', '$2a$10$eecAEIhBKpYO84ZFCYSRjuLh4Uk9sCBdAwnhKLQAQ68fxFIIWD2Ri', '2019-09-29 00:00:00', 1, 'JK Rolin'),
+	(5, 'qwe', '$2a$10$JB91FVZfTtL1AFVexN0hjOjbfN.kt4PPj4hAKYs44P6fP7PM.ohxW', '2019-09-29 00:00:00', 0, '宇文濬'),
+	(6, 'rrrr', '$2a$10$8ThDOrjsKnwepj0KcB04KuNW/u99RyqLT1dgeuj1M/MGCfMu/tsXG', '2019-09-26 00:00:00', 0, '令狐沖'),
+	(7, 'admin', '$2a$10$BaRvtyDgN9lhmWa3YGQgKepfjuxZX5x1vxP5eWpwg3grH0tP/IoTu', '2019-01-03 00:00:00', 1, '羽生結弦');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table fmo_lensdb.iris_points
@@ -61,8 +61,8 @@ CREATE TABLE IF NOT EXISTS `lens` (
   `name` varchar(50) NOT NULL,
   `no` int(10) DEFAULT NULL,
   `state` tinyint(3) unsigned NOT NULL DEFAULT 0,
-  `launch_at` date NOT NULL,
-  `remove_at` date NOT NULL,
+  `launch_at` datetime NOT NULL,
+  `remove_at` datetime NOT NULL,
   `diameter` float unsigned NOT NULL,
   `BC` float unsigned NOT NULL,
   `powerL` int(11) unsigned NOT NULL,
@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS `lens` (
   `new_tag` tinyint(1) NOT NULL,
   `hotsale_tag` tinyint(1) NOT NULL,
   `onsale_tag` tinyint(1) NOT NULL,
-  `create_at` date NOT NULL,
-  `update_at` date NOT NULL,
+  `create_at` datetime NOT NULL,
+  `update_at` datetime NOT NULL,
   `url` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `part_no` (`part_no`),
@@ -91,17 +91,17 @@ CREATE TABLE IF NOT EXISTS `lens` (
 -- Dumping data for table fmo_lensdb.lens: ~11 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
 INSERT INTO `lens` (`id`, `part_no`, `name`, `no`, `state`, `launch_at`, `remove_at`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `url`) VALUES
-	(0, 'JK7890', '栗子蒙布朗', NULL, 2, '1999-09-07', '2019-10-06', 1.3, 17, 1000, 1500, 50, 1, 0, 1, '泰國', 2000, 3, NULL, NULL, 'L78910', 0, 1, 0, '2019-09-13', '2019-10-05', '/lensPic/JK7890.png'),
-	(1, '40', '香檳金', 6, 1, '2019-08-30', '2020-10-03', 13, 17, 0, 50, 50, 1, 0, 1, '馬來西亞', 200, 10, 150, '打折', 'L78910', 0, 0, 1, '2019-09-13', '2019-10-05', '/lensPic/40.png'),
-	(2, '38', '星空灰', 5, 1, '2019-09-09', '2019-10-29', 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13', '2019-10-05', '/lensPic/38.png'),
-	(3, '39', '星空棕', 2, 1, '2019-09-10', '2019-10-18', 15, 17, 500, 1000, 20, 1, 0, 0, '台灣', 3500, 10, 2500, '開幕優惠', 'L12345', 1, 1, 1, '2019-09-13', '2019-10-05', '/lensPic/39.png'),
-	(4, '42', '甜心灰', NULL, 2, '2019-09-01', '2019-09-11', 13, 17.5, 100, 500, 50, 0, 1, 0, '巴西', 200, 13, 150, '開幕優惠', 'L78910', 1, 1, 1, '2019-09-13', '2019-10-05', '/lensPic/42.png'),
-	(5, 'KK', '楓糖奶茶', 0, 1, '2019-10-06', '2019-10-22', 10.5, 7, 900, 1000, 24, 1, 0, 0, '美國', 400, 30, NULL, NULL, 'B333777', 1, 1, 0, '2019-09-13', '2019-10-05', '/lensPic/44.png'),
-	(6, 'JK678', '馬卡龍灰', 4, 1, '2019-09-16', '2019-10-30', 2, 5, 400, 800, 7, 0, 1, 0, '紐西蘭', 2000, 10, NULL, NULL, 'LH333', 1, 0, 0, '2019-09-29', '2019-10-05', '/lensPic/JK678.png'),
-	(7, 'change23', '焦糖布蕾', NULL, 2, '2019-09-29', '2019-10-03', 20, 6, 100, 200, 10, 1, 0, 0, '日本', 700, 20, NULL, NULL, 'B34567', 0, 1, 0, '2019-09-13', '2019-10-05', '/lensPic/change23.png'),
-	(8, '46', '幕斯可可', NULL, 0, '2019-10-15', '2019-10-23', 13, 10, 50, 100, 20, 1, 0, 0, '北極', 3000, 3, NULL, NULL, 'K123456', 0, 1, 0, '2019-09-13', '2019-10-05', '/lensPic/46.png'),
-	(9, '33333', '黑醋栗摩卡', 1, 1, '2019-09-22', '2019-10-16', 30, 35, 50, 200, 3, 1, 0, 0, '荷蘭', 300, 10, NULL, NULL, 'L4444', 0, 1, 0, '2019-09-29', '2019-10-05', '/lensPic/33333.png'),
-	(13, 'KT789', '黑森林', 3, 1, '2019-10-01', '2019-10-22', 15.6, 20.1, 50, 100, 30, 1, 1, 1, '土耳其', 300, 3, NULL, NULL, 'TT666', 1, 1, 0, '2019-09-30', '2019-10-05', '/lensPic/KT789.png');
+	(0, 'JK7890', '栗子蒙布朗', NULL, 2, '1999-09-07 00:00:00', '2019-10-06 00:00:04', 1.3, 17, 1000, 1500, 50, 1, 0, 1, '泰國', 2000, 3, NULL, NULL, 'L78910', 0, 1, 0, '2019-09-13 00:00:00', '2019-10-05 00:00:00', '/lensPic/JK7890.png'),
+	(1, '45', '香檳金', 5, 1, '2019-08-30 00:00:00', '2020-10-03 00:00:00', 13, 17, 0, 50, 50, 1, 0, 1, '馬來西亞', 200, 10, 150, '打折', 'L78910', 0, 0, 1, '2019-09-13 00:00:00', '2019-10-12 00:00:00', '/lensPic/45.png'),
+	(2, '38', '星空灰', 2, 1, '2019-09-09 00:00:00', '2019-10-29 00:00:00', 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13 00:00:00', '2019-10-12 00:00:00', '/lensPic/38.png'),
+	(3, '39', '星空棕', 3, 1, '2019-09-10 00:00:00', '2019-10-18 00:00:00', 15, 17, 500, 1000, 20, 1, 0, 0, '台灣', 3500, 10, 2500, '開幕優惠', 'L12345', 1, 1, 1, '2019-09-13 00:00:00', '2019-10-12 00:00:00', '/lensPic/39.png'),
+	(4, '42', '甜心灰', NULL, 2, '2019-09-01 00:00:00', '2019-09-11 00:00:00', 13, 17.5, 100, 500, 50, 0, 1, 0, '巴西', 200, 12, 150, '開幕優惠', 'L78910', 1, 1, 1, '2019-09-13 00:00:00', '2019-10-13 18:10:31', '/lensPic/42.png'),
+	(5, 'KK', '楓糖奶茶', 0, 1, '2019-10-06 00:00:00', '2019-10-22 00:00:00', 10.5, 7, 900, 1000, 24, 1, 0, 0, '美國', 400, 30, NULL, NULL, 'B333777', 1, 1, 0, '2019-09-13 00:00:00', '2019-10-05 00:00:00', '/lensPic/KK.png'),
+	(6, 'JK678', '馬卡龍灰', 6, 1, '2019-09-16 00:00:00', '2019-10-30 00:00:00', 2, 5, 400, 800, 7, 0, 1, 0, '紐西蘭', 2000, 10, NULL, NULL, 'LH333', 1, 0, 0, '2019-09-29 00:00:00', '2019-10-12 00:00:00', '/lensPic/JK678.png'),
+	(7, 'change23', '焦糖布蕾', NULL, 2, '2019-09-29 00:00:00', '2019-10-03 00:00:00', 20, 6, 100, 200, 10, 1, 0, 0, '日本', 700, 20, NULL, NULL, 'B34567', 0, 1, 0, '2019-09-13 00:00:00', '2019-10-05 00:00:00', '/lensPic/change23.png'),
+	(8, '46', '太妃糖杏', NULL, 0, '2019-10-15 00:00:00', '2019-10-23 00:00:00', 13, 10, 50, 100, 20, 1, 0, 0, '北極', 3000, 3, NULL, NULL, 'K123456', 0, 1, 0, '2019-09-13 00:00:00', '2019-10-05 00:00:00', '/lensPic/46.png'),
+	(9, '33333', '黑醋栗摩卡', 1, 1, '2019-09-22 00:00:00', '2019-10-16 00:00:00', 30, 35, 50, 200, 3, 1, 0, 0, '荷蘭', 300, 10, NULL, NULL, 'L4444', 0, 1, 0, '2019-09-29 00:00:00', '2019-10-05 00:00:00', '/lensPic/33333.png'),
+	(13, 'KT789', '黑森林', 4, 1, '2019-10-01 00:00:00', '2019-10-22 00:00:00', 15.6, 20.1, 50, 100, 30, 1, 1, 1, '土耳其', 300, 3, NULL, NULL, 'TT666', 1, 1, 0, '2019-09-30 00:00:00', '2019-10-12 00:00:00', '/lensPic/KT789.png');
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
 
 -- Dumping structure for table fmo_lensdb.update_time
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `update_time` (
 -- Dumping data for table fmo_lensdb.update_time: ~0 rows (approximately)
 /*!40000 ALTER TABLE `update_time` DISABLE KEYS */;
 INSERT INTO `update_time` (`id`, `update_from`, `update_to`, `update_freq`) VALUES
-	('0', 10, 13, 5);
+	('0', 8, 16, 5);
 /*!40000 ALTER TABLE `update_time` ENABLE KEYS */;
 
 -- Dumping structure for table fmo_lensdb.userlens
@@ -126,8 +126,8 @@ CREATE TABLE IF NOT EXISTS `userlens` (
   `lens_id` int(10) unsigned NOT NULL,
   `lens_count` int(11) NOT NULL,
   `lens_time` int(11) NOT NULL,
-  `create_at` date NOT NULL,
-  `update_at` date DEFAULT NULL,
+  `create_at` datetime NOT NULL,
+  `update_at` datetime DEFAULT NULL,
   `is_customer` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_userlens_lens` (`lens_id`),
@@ -137,13 +137,13 @@ CREATE TABLE IF NOT EXISTS `userlens` (
 -- Dumping data for table fmo_lensdb.userlens: ~7 rows (approximately)
 /*!40000 ALTER TABLE `userlens` DISABLE KEYS */;
 INSERT INTO `userlens` (`id`, `user_id`, `lens_id`, `lens_count`, `lens_time`, `create_at`, `update_at`, `is_customer`) VALUES
-	(1, '10', 7, 4, 40, '2019-09-30', '2019-10-02', 0),
-	(2, '10', 8, 3, 30, '2019-09-30', '2019-09-30', 0),
-	(3, '5', 1, 3, 30, '2019-09-30', '2019-09-30', 0),
-	(5, '30', 1, 10, 10, '2019-09-30', '2019-09-30', 0),
-	(6, '7', 5, 10, 10, '2019-09-30', '2019-09-30', 0),
-	(7, '7', 7, 10, 10, '2019-09-30', '2019-09-30', 0),
-	(8, '20', 5, 1, 20, '2019-10-02', '2019-10-02', 1);
+	(1, '10', 7, 4, 40, '2019-09-30 00:00:00', '2019-10-02 00:00:00', 0),
+	(2, '10', 8, 3, 30, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
+	(3, '5', 1, 3, 30, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
+	(5, '30', 1, 10, 10, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
+	(6, '7', 5, 10, 10, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
+	(7, '7', 7, 10, 10, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
+	(8, '20', 5, 1, 20, '2019-10-02 00:00:00', '2019-10-02 00:00:00', 1);
 /*!40000 ALTER TABLE `userlens` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

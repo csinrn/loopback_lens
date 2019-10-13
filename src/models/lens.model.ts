@@ -189,28 +189,28 @@ export class Lens extends Entity {
   @property({
     type: 'date',
     required: true,
-    mysql: { "columnName": "create_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "create_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   createAt: Date;
 
   @property({
     type: 'date',
     required: true,
-    mysql: { "columnName": "launch_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "launch_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   launchAt: Date;
 
   @property({
     type: 'date',
     required: true,
-    mysql: { "columnName": "remove_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "remove_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   removeAt: Date;
 
   @property({
     type: 'date',
     required: true,
-    mysql: { "columnName": "update_at", "dataType": "date", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    mysql: { "columnName": "update_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
   updateAt: Date;
 
