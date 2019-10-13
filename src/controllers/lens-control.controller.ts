@@ -215,7 +215,7 @@ export class LensControlController {
       // change old pic name to new partNo
 
       if (fs.existsSync('./public/lensPic/' + lens.partNo + '.png', () => { throw new HttpErrors.BadRequest() })) {
-        throw new HttpErrors.BadRequest('料號重復')
+        throw new HttpErrors.BadRequest('料號重複')
       }
       try {
         fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
@@ -341,7 +341,7 @@ export class LensControlController {
 
     var res = new Promise<string>((resolve, reject) => {
       if (fs.existsSync(folder + filename)) {
-        reject('image name duplicated')
+        reject('料號重複')
       }
 
       try {
