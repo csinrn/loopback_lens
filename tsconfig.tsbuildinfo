@@ -7053,6 +7053,7 @@
       "d:/eye-demo/lens/src/services/jwt-service.ts",
       "d:/eye-demo/lens/src/services/user-service.ts",
       "d:/eye-demo/lens/src/services/validator.ts",
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
@@ -7104,8 +7105,7 @@
       "d:/eye-demo/lens/node_modules/@types/minimatch/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts"
+      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts"
     ]
   },
   "version": "3.5.3"
