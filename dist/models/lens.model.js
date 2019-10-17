@@ -270,6 +270,16 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], Lens.prototype, "state", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        precision: 10,
+        required: false,
+        scale: 0,
+        mysql: { "columnName": "pic_ver", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+    }),
+    __metadata("design:type", Number)
+], Lens.prototype, "picVer", void 0);
 Lens = __decorate([
     repository_1.model({ settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'lens' } } }),
     __metadata("design:paramtypes", [Object])

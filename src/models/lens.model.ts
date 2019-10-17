@@ -230,6 +230,15 @@ export class Lens extends Entity {
   })
   state: number;
 
+  @property({
+    type: 'number',
+    precision: 10,
+    required: false,
+    scale: 0,
+    mysql: { "columnName": "pic_ver", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
+  })
+  picVer: number;
+
   // Define well-known properties here
 
   // Indexer property to allow additional data

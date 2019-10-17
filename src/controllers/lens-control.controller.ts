@@ -209,8 +209,10 @@ export class LensControlController {
 
       // assign the new address to lens
       lens.url = imgUrl
-      //console.log(lens)
 
+      // update version
+      var old = await this.lensRepository.findById(id)
+      lens.picVer = old.picVer + 1;
     } else if (lens.partNo != oldLen.partNo) {  // if not update pic but update the partNo,
       // change old pic name to new partNo
 

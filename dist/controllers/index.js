@@ -8,4 +8,5 @@ __export(require("./lens-control.controller"));
 __export(require("./user-lens-control.controller"));
 __export(require("./admin-control.controller"));
 __export(require("./update-time.controller"));
+__export(require("./iris-point.controller"));
 //# sourceMappingURL=index.js.map
