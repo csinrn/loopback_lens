@@ -872,9 +872,6 @@
         }
 
         function renderLenUpdate(id) {
-            var dt = new Date()
-            var timestring = dt.getTime()
-            console.log('t:', timestring)
             var len = lensInfo[id]
             $('#update [name="name"]').val(len.name)
             $('#update [name="diameter"]').val(len.diameter)
@@ -902,7 +899,7 @@
                                                     height: 100px;\
                                                     background-color: white;\
                                                     border-radius: 100%;\
-                                                " src="' + len.url + '?' + timestring + '">')
+                                                " src="' + len.url + '">')
             $('#update [name="updateBtn"]').attr('onclick', 'updateLens("' + len.id + '")')
             $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens("' + len.id + '")')
         }
@@ -1536,8 +1533,6 @@
                 reader.readAsDataURL(file)
                 reader.onload = (e) => {
                     img.src = e.target.result;
-                    console.log(file)
-                    $('#update #update_img img').attr('src', e.target.result)
                 }
 
                 img.onload = function () {
