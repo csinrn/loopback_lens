@@ -28,6 +28,7 @@ export declare class Lens extends Entity {
     url: string;
     state: number;
     picVer: number;
+    isdeleted: number;
     [prop: string]: any;
     constructor(data?: Partial<Lens>);
 }

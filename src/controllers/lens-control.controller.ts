@@ -137,7 +137,7 @@ export class LensControlController {
       await this.renewNo()
       nowDate = new Date()
     }
-    return await this.lensRepository.find(filter);
+    return await this.lensRepository.find({ where: { isdeleted: 0 } });
   }
 
   //@authenticate('jwt')
@@ -300,11 +300,6 @@ export class LensControlController {
     await this.lensRepository.updateById(id, lens);
   }
 
-  @get('/lens/test')
-  async test() {
-    return await this.lensRepository.find({ where: { state: 0 } })
-  }
-
   //@authenticate('jwt')
   @del('/lens/{id}', {
     responses: {
@@ -314,22 +309,9 @@ export class LensControlController {
     },
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
-    var lens = await this.lensRepository.findById(id)
-    //console.log('./public' + lens.url)
-    try {
-      fs.unlinkSync('./public' + lens.url)
-    } catch (err) {
-      console.log('Can not delete picture ' + './public' + lens.url + ', picture does not exist')
-    }
-    //console.log('delete img f')
-    var lens = await this.lensRepository.findById(id)
-    if (lens.state == 1) {
-      this.arrangeNo()
-      this.initNextNo()
-    }
-    await this.lensRepository.deleteById(id);
-    //console.log('nextNo:', nextNo)
-
+    var lens_t = new Lens()
+    lens_t.isdeleted = 1
+    await this.lensRepository.updateById(id, lens_t)
   }
 
   @post('/lens/img/{fileName}')

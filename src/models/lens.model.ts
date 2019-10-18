@@ -239,6 +239,15 @@ export class Lens extends Entity {
   })
   picVer: number;
 
+  @property({
+    type: 'number',
+    required: false,
+    precision: 3,
+    scale: 0,
+    mysql: { "columnName": "isdeleted", "dataType": "tinyint", "dataLength": null, "dataPrecision": 3, "dataScale": 0, "nullable": "N" },
+  })
+  isdeleted: number;
+
   // Define well-known properties here
 
   // Indexer property to allow additional data

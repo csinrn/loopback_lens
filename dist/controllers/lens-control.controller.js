@@ -79,7 +79,7 @@ let LensControlController = class LensControlController {
             await this.renewNo();
             nowDate = new Date();
         }
-        return await this.lensRepository.find(filter);
+        return await this.lensRepository.find({ where: { isdeleted: 0 } });
     }
     //@authenticate('jwt')
     async findbase64(filter) {
@@ -185,27 +185,11 @@ let LensControlController = class LensControlController {
         lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
         await this.lensRepository.updateById(id, lens);
     }
-    async test() {
-        return await this.lensRepository.find({ where: { state: 0 } });
-    }
     //@authenticate('jwt')
     async deleteById(id) {
-        var lens = await this.lensRepository.findById(id);
-        //console.log('./public' + lens.url)
-        try {
-            fs.unlinkSync('./public' + lens.url);
-        }
-        catch (err) {
-            console.log('Can not delete picture ' + './public' + lens.url + ', picture does not exist');
-        }
-        //console.log('delete img f')
-        var lens = await this.lensRepository.findById(id);
-        if (lens.state == 1) {
-            this.arrangeNo();
-            this.initNextNo();
-        }
-        await this.lensRepository.deleteById(id);
-        //console.log('nextNo:', nextNo)
+        var lens_t = new models_1.Lens();
+        lens_t.isdeleted = 1;
+        await this.lensRepository.updateById(id, lens_t);
     }
     async postImg(filename, imgData) {
         var folder = './public/lensPic/';
@@ -422,12 +406,6 @@ __decorate([
     __metadata("design:paramtypes", [String, models_1.Lens]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "updateNameById", null);
-__decorate([
-    rest_1.get('/lens/test'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], LensControlController.prototype, "test", null);
 __decorate([
     rest_1.del('/lens/{id}', {
         responses: {
