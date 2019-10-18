@@ -1096,6 +1096,10 @@
         }
 
         async function deleteLens(id) { //刪除隱眼
+            var confirmed = await isConfirmed('確認刪除?')
+            if (!confirmed) {
+                return
+            }
             $('#update [name="deleteBtn"]').attr('disabled', true)
 
             var idDeleted = id
@@ -1758,7 +1762,11 @@
             })
         }
 
-        function deleteAdmin(id) {
+        async function deleteAdmin(id) {
+            var confirmed = await isConfirmed('確認刪除?')
+            if (!confirmed) {
+                return
+            }
             $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', true)
             $.ajax({
                 url: serverURL + '/admin/' + id,
@@ -1798,6 +1806,39 @@
             }).catch(() => {
                 swalAlert('裝置更新時間取得失敗', '', false)
             })
+        }
+
+        async function isConfirmed(title) {
+            console.log('inside isConfirmed')
+            var setting = {
+                title: title,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確認',
+                cancelButtonText: '取消',
+            }
+
+            var isConfirmed = new Promise((resolve, reject) => {
+                Swal.fire(setting, function (confirmed) {
+                    console.log('callback:', confirmed)
+                    isConfirmed = confirmed
+                }).then((e) => {
+                    console.log(e.value, e.dismiss)
+                    if (e.value == true) {
+                        resolve(true)
+                    } else if (e.dismiss == 'cancel') {
+                        resolve(false)
+                    } else {
+                        swalAlert('錯誤', '', false)
+                    }
+                })
+                $('.swal2-modal').css('background-color', '#000');
+                $('.swal2-success-circular-line-left').css('background-color', '#000');
+                $('.swal2-success-circular-line-right').css('background-color', '#000');
+                $('.swal2-success-fix').css('background-color', '#000');
+                $('.swal2-success-ring').css('border', '.25em solid rgba(165,220,134)');
+            })
+            return isConfirmed
         }
     </script>
 </body>
