@@ -192,6 +192,7 @@ export class LensControlController {
     })
     lens: Lens,
   ): Promise<void> {
+    // renew updateAt
     var dt = new Date()
     lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
     var oldLen = await this.lensRepository.findById(id)
@@ -210,9 +211,8 @@ export class LensControlController {
       // assign the new address to lens
       lens.url = imgUrl
 
-      // update version
-      var old = await this.lensRepository.findById(id)
-      lens.picVer = old.picVer + 1;
+      // update pic version
+      lens.picVer = oldLen.picVer + 1;
     } else if (lens.partNo != oldLen.partNo) {  // if not update pic but update the partNo,
       // change old pic name to new partNo
 
@@ -235,7 +235,7 @@ export class LensControlController {
         state = 0;
       } else if (this.compDate(new Date(lens.launchAt), nowDate) == -1 && this.compDate(new Date(lens.removeAt), nowDate) == 1) { // released
         no = nextNo;
-        //console.log('nextNo:', nextNo)
+        nextNo += 1;
         state = 1;
       } else { //removed
         no = undefined
@@ -340,7 +340,7 @@ export class LensControlController {
     return res
   }
 
-  async renewNo() {    // 有問題，第二次的renew會把第一次的no 亂排
+  async renewNo() {
     var list = await this.lensRepository.find()
     var date = new Date()
     console.log('renew')

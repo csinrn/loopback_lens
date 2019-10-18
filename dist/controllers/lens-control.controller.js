@@ -105,6 +105,7 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async updateById(id, lens) {
+        // renew updateAt
         var dt = new Date();
         lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
         var oldLen = await this.lensRepository.findById(id);
@@ -121,9 +122,8 @@ let LensControlController = class LensControlController {
             imgUrl = await this.postImg(lens.partNo + '.png', lens.url);
             // assign the new address to lens
             lens.url = imgUrl;
-            // update version
-            var old = await this.lensRepository.findById(id);
-            lens.picVer = old.picVer + 1;
+            // update pic version
+            lens.picVer = oldLen.picVer + 1;
         }
         else if (lens.partNo != oldLen.partNo) { // if not update pic but update the partNo,
             // change old pic name to new partNo
@@ -147,7 +147,7 @@ let LensControlController = class LensControlController {
             }
             else if (this.compDate(new Date(lens.launchAt), nowDate) == -1 && this.compDate(new Date(lens.removeAt), nowDate) == 1) { // released
                 no = nextNo;
-                //console.log('nextNo:', nextNo)
+                nextNo += 1;
                 state = 1;
             }
             else { //removed

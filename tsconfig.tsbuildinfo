@@ -1254,11 +1254,11 @@
         "signature": "d0a378649141cf382b7f49948b5227a4d2915690ad98d42d72a79ff6dcd15cdf"
       },
       "d:/eye-demo/lens/src/models/iris-points.model.ts": {
-        "version": "b2dc700d34013d123947ef8d514385b0acc8d108a2a29fece1ee96b315e9d8c7",
+        "version": "9cf290958e9b96f7e1263f026518b0eebd6dd1844e0d85d062296cf4cc2148fc",
         "signature": "faadf9dc18bce57e51ec9c33a70bba5a15534dc9c7f30d93b6b7c92796ccd52c"
       },
       "d:/eye-demo/lens/src/models/index.ts": {
-        "version": "33506eb55aa6fbc9a0cc80f629dfc06a600313cb999cef4e58297871ffbdfdc5",
+        "version": "14d22b60b069349ba5820f707b320746be7375f730b6f48421812e45a3a8425a",
         "signature": "14d22b60b069349ba5820f707b320746be7375f730b6f48421812e45a3a8425a"
       },
       "d:/eye-demo/lens/src/datasources/lens.datasource.json": {
@@ -1289,11 +1289,11 @@
         "signature": "56e1adf325fe29735339687875c01971b05340187d6a962dd8647b2f4df85cb3"
       },
       "d:/eye-demo/lens/src/repositories/iris-points.repository.ts": {
-        "version": "5ad5541574f86331a8d06afcaef21b33531a07cd212064e7224aa456bec7304d",
+        "version": "e8d7e1f073d89587a0514bb0dabcd0a527facb16858d703f225d9887230ec8a7",
         "signature": "80bbca051c17b504ea4e9ac2b5dc2bad2aaf4bcbf6f22967d573606670860193"
       },
       "d:/eye-demo/lens/src/repositories/index.ts": {
-        "version": "df2d6bfb84ce5b8b6778748ef8a5ac030319d65b8f97c08451a1fd98b0034ec0",
+        "version": "f1ac3dbb5d6cb72bbd0b194e9732023d7df5f5d7eabbfb67324f5249d5a35c9a",
         "signature": "f1ac3dbb5d6cb72bbd0b194e9732023d7df5f5d7eabbfb67324f5249d5a35c9a"
       },
       "d:/eye-demo/lens/src/keys.ts": {
@@ -1317,7 +1317,7 @@
         "signature": "6addb2e7953edadf78e8a2aab0964a991ba5de4871e16f3b5f729c14e64b11ad"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "a9fd947f22c549a9804550f21482bad621973de3c3a26b874d2dff8948132ef6",
+        "version": "e5e0c676a85430c15066de767b74c3b6d792745c403a61264f9b1ac1ec6496db",
         "signature": "b5a71b6428f49291fbbb54f70ef27e228aaa33604e2b5e5dfda7a68f1a32a873"
       },
       "d:/eye-demo/lens/src/application.ts": {
@@ -1497,11 +1497,11 @@
         "signature": "0534b00b2edb256fd9433552b384450e36f661361f092ec3701f171fcd703ab4"
       },
       "d:/eye-demo/lens/src/controllers/iris-point.controller.ts": {
-        "version": "07ad0bbd80a294e61059e9e246a1fb24048a213d486f51537ea5858ca2f44737",
+        "version": "1ae6400dc0dddc4555f9dccd4241c9c3b001dc26d677b12a3a4f0812c8eea0d1",
         "signature": "01e01f8862189e02c5ddc0e84352c321624a3d70ff30b126d9643ed5a3c7f364"
       },
       "d:/eye-demo/lens/src/controllers/index.ts": {
-        "version": "04a1c7674a0cc233a2808ecafb31fb868aaecee71bdc449bfc2f22bc8e573a05",
+        "version": "2b0a7e8c47710c08b9926c3e62c4447f6ded13033c7bbc67bb4e3663828518ae",
         "signature": "2b0a7e8c47710c08b9926c3e62c4447f6ded13033c7bbc67bb4e3663828518ae"
       },
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts": {
@@ -7107,6 +7107,8 @@
       "d:/eye-demo/lens/src/services/jwt-service.ts",
       "d:/eye-demo/lens/src/services/user-service.ts",
       "d:/eye-demo/lens/src/services/validator.ts",
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
+      "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
       "d:/eye-demo/lens/node_modules/@types/cookiejar/index.d.ts",
@@ -7151,16 +7153,14 @@
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts",
       "d:/eye-demo/lens/src/controllers/update-time.controller.ts",
       "d:/eye-demo/lens/src/controllers/iris-point.controller.ts",
+      "d:/eye-demo/lens/src/controllers/index.ts",
       "d:/eye-demo/lens/node_modules/@types/debug/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/eslint-visitor-keys/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/fs-extra/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/minimatch/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
-      "d:/eye-demo/lens/src/application.ts",
-      "d:/eye-demo/lens/src/controllers/index.ts"
+      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts"
     ]
   },
   "version": "3.5.3"
