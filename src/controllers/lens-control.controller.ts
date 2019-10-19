@@ -130,14 +130,17 @@ export class LensControlController {
   })
   async find(
     @param.query.object('filter', getFilterSchemaFor(Lens)) filter?: Filter<Lens>,
-  ): Promise<Lens[]> {
+  ) {
 
     var date = new Date()
     if (this.compDate(nowDate, date) != 0) {  // check the launch state everyday
       await this.renewNo()
       nowDate = new Date()
     }
-    return await this.lensRepository.find({ where: { isdeleted: 0 } });
+
+    var list = await this.lensRepository.find({ where: { isdeleted: 0 } });
+    list.sort(this.lensComp)
+    return list
   }
 
   //@authenticate('jwt')
@@ -389,7 +392,7 @@ export class LensControlController {
 
   async arrangeNo() {
     // put state==1 lens into list
-    var list = await this.lensRepository.find({ where: { state: 1 } })
+    var list = await this.lensRepository.find({ where: { and: [{ state: 1 }, { isdeleted: 0 }] } })
 
     list.sort(this.lensComp)
     for (var i = list.length - 1; i >= 0; i--) {
@@ -405,11 +408,19 @@ export class LensControlController {
     console.log('nextNo:', nextNo)
   }
 
-  compDate(a: Date, b: Date) {  // 0 if equal, 1 if a>b, -1 if a<b
+  static compDate(a: Date, b: Date) {  // 0 if equal, 1 if a>b, -1 if a<b
     var ad = Date.parse(a.toDateString()).valueOf()
     var bd = Date.parse(b.toDateString()).valueOf()
 
-    //console.log('comp:', a, b, ad, bd)
+    if (ad == bd) {
+      return 0;
+    }
+    return ad > bd ? 1 : -1
+  }
+
+  compDate(a: Date, b: Date) {  // 0 if equal, 1 if a>b, -1 if a<b
+    var ad = Date.parse(a.toDateString()).valueOf()
+    var bd = Date.parse(b.toDateString()).valueOf()
 
     if (ad == bd) {
       return 0;
@@ -419,9 +430,9 @@ export class LensControlController {
 
   lensComp(a: Lens, b: Lens): number {
     if (a.no == undefined && b.no == undefined) {  // not yet release
-      if (this.compDate(new Date(a.launchAt), new Date(b.launchAt)) == 0)
+      if (LensControlController.compDate(new Date(a.launchAt), new Date(b.launchAt)) == 0)
         return 0
-      return this.compDate(new Date(a.launchAt), new Date(b.launchAt)) == 1 ? -1 : 1
+      return LensControlController.compDate(new Date(a.launchAt), new Date(b.launchAt)) == 1 ? -1 : 1
     } else if (a.no == undefined || b.no == undefined) {
       if (a.no == undefined)
         return 1
