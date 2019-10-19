@@ -1,7 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import { Entity, model, property } from '@loopback/repository';
 
 @model({
-  settings: {idInjection: false, mysql: {schema: 'fmo_lensdb', table: 'iris_points'}}
+  settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'iris_points' } }
 })
 export class IrisPoints extends Entity {
   @property({
@@ -9,7 +9,7 @@ export class IrisPoints extends Entity {
     required: false,
     precision: 10,
     scale: 0,
-    mysql: {"columnName":"user_id","dataType":"int","dataLength":null,"dataPrecision":10,"dataScale":0,"nullable":"Y"},
+    mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
   userId?: Number;
 
@@ -18,36 +18,45 @@ export class IrisPoints extends Entity {
     required: false,
     precision: 10,
     scale: 0,
-    mysql: {"columnName":"leftiris_x","dataType":"int","dataLength":null,"dataPrecision":10,"dataScale":0,"nullable":"Y"},
+    mysql: { "columnName": "leftpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  leftirisX?: Number;
+  leftpupilX?: Number;
 
   @property({
-    type: Number,
+    type: 'number',
     required: false,
     precision: 10,
     scale: 0,
-    mysql: {"columnName":"leftiris_y","dataType":"int","dataLength":null,"dataPrecision":10,"dataScale":0,"nullable":"Y"},
+    mysql: { "columnName": "leftpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  leftirisY?: Number;
+  leftpupilY?: number;
 
   @property({
-    type: Number,
+    type: 'number',
     required: false,
     precision: 10,
     scale: 0,
-    mysql: {"columnName":"rightiris_x","dataType":"int","dataLength":null,"dataPrecision":10,"dataScale":0,"nullable":"Y"},
+    mysql: { "columnName": "rightpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  rightirisX?: Number;
+  rightpupilX?: number;
 
   @property({
-    type: Number,
+    type: 'number',
     required: false,
     precision: 10,
     scale: 0,
-    mysql: {"columnName":"rightiris_y","dataType":"int","dataLength":null,"dataPrecision":10,"dataScale":0,"nullable":"Y"},
+    mysql: { "columnName": "rightpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  rightirisY?: Number;
+  rightpupilY?: number;
+
+  @property({
+    type: 'number',
+    required: false,
+    precision: 10,
+    scale: 0,
+    mysql: { "columnName": "iris_radius", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+  })
+  irisRadius?: number;
 
   // Define well-known properties here
 
