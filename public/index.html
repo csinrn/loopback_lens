@@ -24,10 +24,10 @@
         integrity="sha256-Qfxgn9jULeGAdbaeDjXeIhZB3Ra6NCK3dvjwAG8Y+xU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/TableDnD/0.9.1/jquery.tablednd.js"
         integrity="sha256-d3rtug+Hg1GZPB7Y/yTcRixO/wlI78+2m08tosoRn7A=" crossorigin="anonymous"></script>
 </head>
@@ -653,8 +653,8 @@
             switchPane(false)
         });
 
-        var ip = "192.168.1.109"
-        var serverURL = 'http://' + ip
+        var ip = "localhost"
+        var serverURL = 'http://' + ip + '3000'
         var tableRows = []
         var isAdmin = false
         var user = {}
@@ -1092,7 +1092,7 @@
                         var msg = error.responseJSON.error.message + "<br>Details: " + JSON
                             .stringify(
                                 error.responseJSON
-                                .error.details)
+                                    .error.details)
                         swalAlert("排序失敗", msg, false)
                         reject()
                     } catch {
@@ -1372,7 +1372,7 @@
             return ts.substring(0, ts.indexOf('T')).replace(/-/g, '-')
         }
 
-        function swalAlert(title, html, isSuccess, onAfterClose = (() => {})) {
+        function swalAlert(title, html, isSuccess, onAfterClose = (() => { })) {
             var type = isSuccess ? "success" : "error"
             var msg = isSuccess ? "OK" : "Fine"
             Swal.fire({
