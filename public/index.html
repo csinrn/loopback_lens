@@ -112,7 +112,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" name="admin-manage" data-toggle="tab" href="#updateTime" role="tab"
-                                    aria-controls="updateTime" aria-selected="true">修改裝置可更新時間</a>
+                                    aria-controls="updateTime" aria-selected="true">系統設定</a>
                             </li>
                         </ul>
                         <div class="tab-content mt-3" id="admin-content">
@@ -143,6 +143,15 @@
                                             <div class="row">
                                                 <div class="input-group mb-3 col-md">
                                                     <div class="input-group-prepend">
+                                                        <span class="input-group-text">料號</span>
+                                                    </div>
+                                                    <input type="string" name="partNo" class="form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
                                                         <span class="input-group-text">品名</span>
                                                     </div>
                                                     <input type="string" name="name" class="form-control"
@@ -153,15 +162,6 @@
                                                         <span class="input-group-text">產地</span>
                                                     </div>
                                                     <input type="string" name="placeOfProd" class="form-control"
-                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="input-group mb-3 col-md">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">料號</span>
-                                                    </div>
-                                                    <input type="string" name="partNo" class="form-control"
                                                         style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                                 </div>
                                             </div>
@@ -654,7 +654,7 @@
         });
 
         var ip = "localhost"
-        var serverURL = 'http://' + ip + '3000'
+        var serverURL = 'http://' + ip + ':3000'
         var tableRows = []
         var isAdmin = false
         var user = {}
