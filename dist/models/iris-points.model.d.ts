@@ -1,10 +1,12 @@
 import { Entity } from '@loopback/repository';
 export declare class IrisPoints extends Entity {
-    userId?: Number;
-    leftirisX?: Number;
-    leftirisY?: Number;
-    rightirisX?: Number;
-    rightirisY?: Number;
+    id_fake?: number;
+    userId?: number;
+    leftpupilX?: number;
+    leftpupilY?: number;
+    rightpupilX?: number;
+    rightpupilY?: number;
+    irisRadius?: number;
     [prop: string]: any;
     constructor(data?: Partial<IrisPoints>);
 }

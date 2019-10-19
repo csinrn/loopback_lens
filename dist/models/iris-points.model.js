@@ -17,7 +17,19 @@ let IrisPoints = class IrisPoints extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: Number,
+        type: 'number',
+        id: 1,
+        required: false,
+        generated: true,
+        precision: 10,
+        scale: 0,
+        mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    }),
+    __metadata("design:type", Number)
+], IrisPoints.prototype, "id_fake", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
         required: false,
         precision: 10,
         scale: 0,
@@ -27,44 +39,54 @@ __decorate([
 ], IrisPoints.prototype, "userId", void 0);
 __decorate([
     repository_1.property({
-        type: Number,
+        type: 'number',
         required: false,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "leftiris_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "leftpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
     }),
     __metadata("design:type", Number)
-], IrisPoints.prototype, "leftirisX", void 0);
+], IrisPoints.prototype, "leftpupilX", void 0);
 __decorate([
     repository_1.property({
-        type: Number,
+        type: 'number',
         required: false,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "leftiris_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "leftpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
     }),
     __metadata("design:type", Number)
-], IrisPoints.prototype, "leftirisY", void 0);
+], IrisPoints.prototype, "leftpupilY", void 0);
 __decorate([
     repository_1.property({
-        type: Number,
+        type: 'number',
         required: false,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "rightiris_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "rightpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
     }),
     __metadata("design:type", Number)
-], IrisPoints.prototype, "rightirisX", void 0);
+], IrisPoints.prototype, "rightpupilX", void 0);
 __decorate([
     repository_1.property({
-        type: Number,
+        type: 'number',
         required: false,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "rightiris_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "rightpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
     }),
     __metadata("design:type", Number)
-], IrisPoints.prototype, "rightirisY", void 0);
+], IrisPoints.prototype, "rightpupilY", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: false,
+        precision: 10,
+        scale: 0,
+        mysql: { "columnName": "iris_radius", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    }),
+    __metadata("design:type", Number)
+], IrisPoints.prototype, "irisRadius", void 0);
 IrisPoints = __decorate([
     repository_1.model({
         settings: { idInjection: false, mysql: { schema: 'fmo_lensdb', table: 'iris_points' } }

@@ -5,22 +5,33 @@ import { Entity, model, property } from '@loopback/repository';
 })
 export class IrisPoints extends Entity {
   @property({
-    type: Number,
+    type: 'number',
+    id: 1,
+    required: false,
+    generated: true,
+    precision: 10,
+    scale: 0,
+    mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+  })
+  id_fake?: number;
+
+  @property({
+    type: 'number',
     required: false,
     precision: 10,
     scale: 0,
     mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  userId?: Number;
+  userId?: number;
 
   @property({
-    type: Number,
+    type: 'number',
     required: false,
     precision: 10,
     scale: 0,
     mysql: { "columnName": "leftpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
   })
-  leftpupilX?: Number;
+  leftpupilX?: number;
 
   @property({
     type: 'number',
