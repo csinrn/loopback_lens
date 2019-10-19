@@ -24,10 +24,10 @@
         integrity="sha256-Qfxgn9jULeGAdbaeDjXeIhZB3Ra6NCK3dvjwAG8Y+xU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/TableDnD/0.9.1/jquery.tablednd.js"
         integrity="sha256-d3rtug+Hg1GZPB7Y/yTcRixO/wlI78+2m08tosoRn7A=" crossorigin="anonymous"></script>
 </head>
@@ -338,6 +338,13 @@
                                     <div class="row">
                                         <div class="input-group mb-3 col-md-3">
                                             <div class="input-group-prepend">
+                                                <span class="input-group-text">料號</span>
+                                            </div>
+                                            <input type="string" name="partNo" class="form-control" min="0"
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                        </div>
+                                        <div class="input-group mb-3 col-md-3">
+                                            <div class="input-group-prepend">
                                                 <span class="input-group-text">品名</span>
                                             </div>
                                             <input type="string" name="name" class="form-control"
@@ -380,13 +387,7 @@
                                             <input type="number" name="water" class="form-control" min="0"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
-                                        <div class="input-group mb-3 col-md-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">料號</span>
-                                            </div>
-                                            <input type="string" name="partNo" class="form-control" min="0"
-                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                                        </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="input-group mb-3 col-md-3">
@@ -693,10 +694,11 @@
                     if (error.responseJSON.error.code == 'ER_DUP_ENTRY')
                         msg = 'Account duplicated'
                     else
-                        msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                        msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                            .responseJSON
                             .error.details)
                     swalAlert('註冊失敗', msg, false)
-                } catch{
+                } catch {
                     $('#register [name="registerBtn"]').attr('disabled', false)
                     swalAlert('註冊失敗', '', false)
                 }
@@ -749,12 +751,13 @@
                     console.log(error)
                     var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
                         .responseJSON.error.details)
-                    if (error.responseJSON.error.details != undefined && error.responseJSON.error.details[0].code == 'minLength') {
+                    if (error.responseJSON.error.details != undefined && error.responseJSON.error.details[0]
+                        .code == 'minLength') {
                         msg = '密碼最少需要6個字'
                     }
                     $('#guest_content [name="loginBtn"]').attr('disabled', false)
                     swalAlert('登入失敗', msg, false)
-                } catch{
+                } catch {
                     $('#guest_content [name="loginBtn"]').attr('disabled', false)
                     swalAlert('登入失敗', '', false)
                 }
@@ -796,7 +799,8 @@
                 response.forEach(len => {
                     lensInfo[len.id.toString()] = len
                     tbody[len.state] += '<tr id="' + len.id + '"' +
-                        (len.state == 1 ? '' : (len.state == 0 ? 'class="text-primary"' : 'style="color: #666"')) +
+                        (len.state == 1 ? '' : (len.state == 0 ? 'class="text-primary"' :
+                            'style="color: #666"')) +
                         '>\
                         <td style="width: 66px; text-align:center">' + (len.state == 1 ? index++ : (len.state == 0 ? '<p style="\
                             border: 10px white;\
@@ -807,9 +811,12 @@
                             line-height: 30px;\
                             text-align: center;\
                         " class="bg-primary text-dark">預</p>' : '-')) + '</td>\
-                        <td style="width: 200px">' + (len.state == 2 ? '<del>' : '') + len.name + (len.state == 2 ? '</del>' : '') + '</td>\
+                        <td style="width: 200px">' + (len.state == 2 ? '<del>' : '') + len.name + (len.state == 2 ?
+                            '</del>' : '') + '</td>\
                         <td><button type="button" name="lenBtn" \
-                            class="btn" style="' + (len.state == 1 ? 'color:white; border-color:white' : (len.state == 0 ? 'color:#375a7f; border-color:#375a7f' : 'color: #666; border-color:#666')) + '" \
+                            class="btn" style="' + (len.state == 1 ? 'color:white; border-color:white' : (len.state ==
+                            0 ? 'color:#375a7f; border-color:#375a7f' :
+                            'color: #666; border-color:#666')) + '" \
                             onclick="renderLenUpdate(\'' +
                         len.id.toString() + '\')">修改</button></td>\
                     </tr>'
@@ -865,9 +872,6 @@
         }
 
         function renderLenUpdate(id) {
-            var dt = new Date()
-            var timestring = dt.getTime()
-            console.log('t:', timestring)
             var len = lensInfo[id]
             $('#update [name="name"]').val(len.name)
             $('#update [name="diameter"]').val(len.diameter)
@@ -895,7 +899,7 @@
                                                     height: 100px;\
                                                     background-color: white;\
                                                     border-radius: 100%;\
-                                                " src="' + len.url + '?' + timestring + '">')
+                                                " src="' + len.url + '">')
             $('#update [name="updateBtn"]').attr('onclick', 'updateLens("' + len.id + '")')
             $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens("' + len.id + '")')
         }
@@ -1060,7 +1064,7 @@
                         .error.details);
                     btnEnable()
                     swalAlert("上傳失敗", msg, false)
-                } catch{
+                } catch {
                     btnEnable()
                     swalAlert("上傳失敗", '', false)
                 }
@@ -1085,12 +1089,13 @@
                     console.log(error)
                     try {
                         //$("#sort-form input").val('')
-                        var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(
-                            error.responseJSON
+                        var msg = error.responseJSON.error.message + "<br>Details: " + JSON
+                            .stringify(
+                                error.responseJSON
                                 .error.details)
                         swalAlert("排序失敗", msg, false)
                         reject()
-                    } catch{
+                    } catch {
                         swalAlert("排序失敗", '', false)
                         reject()
                     }
@@ -1142,7 +1147,7 @@
                         .error)
                     $('#update [name="deleteBtn"]').attr('disabled', false)
                     swalAlert("刪除失敗", msg, false)
-                } catch{
+                } catch {
                     $('#update [name="deleteBtn"]').attr('disabled', false)
                     swalAlert("刪除失敗", '', false)
                 }
@@ -1284,7 +1289,7 @@
                         .error.details);
                     btnEnable2()
                     swalAlert("更新失敗", msg, false)
-                } catch{
+                } catch {
                     btnEnable2()
                     swalAlert("更新失敗", '', false)
                 }
@@ -1317,7 +1322,7 @@
                     console.log(err)
                     var msg = err.responseJSON.message
                     swalAlert('更新失敗', msg, false)
-                } catch{
+                } catch {
                     swalAlert('更新失敗', '', false)
                 }
             })
@@ -1367,7 +1372,7 @@
             return ts.substring(0, ts.indexOf('T')).replace(/-/g, '-')
         }
 
-        function swalAlert(title, html, isSuccess, onAfterClose = (() => { })) {
+        function swalAlert(title, html, isSuccess, onAfterClose = (() => {})) {
             var type = isSuccess ? "success" : "error"
             var msg = isSuccess ? "OK" : "Fine"
             Swal.fire({
@@ -1529,8 +1534,6 @@
                 reader.readAsDataURL(file)
                 reader.onload = (e) => {
                     img.src = e.target.result;
-                    console.log(file)
-                    $('#update #update_img img').attr('src', e.target.result)
                 }
 
                 img.onload = function () {
@@ -1678,8 +1681,7 @@
                     password,
                     name: jQuery.trim($('#manage [name="name"]').val())
                 }
-            }
-            else
+            } else
                 data = {
                     account: jQuery.trim($('#manage [name="account"]').val()),
                     name: jQuery.trim($('#manage [name="name"]').val())
@@ -1711,7 +1713,7 @@
                     }
                     $('#manage [name="updateAccountBtn"]').attr('disabled', false)
                     swalAlert('更新帳號失敗', msg, false)
-                } catch{
+                } catch {
                     $('#manage [name="updateAccountBtn"]').attr('disabled', false)
                     swalAlert('更新帳號失敗', '', false)
                 }
@@ -1728,8 +1730,7 @@
                     password,
                     name: jQuery.trim($('#admin-manage [name="name"]').val())
                 }
-            }
-            else
+            } else
                 data = {
                     account: jQuery.trim($('#admin-manage [name="account"]').val()),
                     name: jQuery.trim($('#admin-manage [name="name"]').val())
@@ -1761,7 +1762,7 @@
                     }
                     $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
                     swalAlert('更新帳號失敗', msg, false)
-                } catch{
+                } catch {
                     $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
                     swalAlert('更新帳號失敗', '', false)
                 }
@@ -1785,14 +1786,15 @@
                 swalAlert('刪除帳號成功', '', true)
             }).fail((err) => {
                 try {
-                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error.responseJSON
+                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
+                        .responseJSON
                         .error.details);
                     if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
                         msg = '無此帳號'
                     }
                     $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
                     swalAlert('刪除帳號失敗', msg, false)
-                } catch{
+                } catch {
                     $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
                     swalAlert('刪除帳號失敗', '', false)
                 }
