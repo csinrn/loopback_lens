@@ -653,11 +653,17 @@
             $('#register [name="registerBtn"]').attr('disabled', true)
 
             data = {
-                "password": $('#register [name="password"]').val(),
-                "account": $('#register [name="account"]').val(),
-                "name": $('#register [name="name"]').val(),
+                "password": $.trim($('#register [name="password"]').val()),
+                "account": $.trim($('#register [name="account"]').val()),
+                "name": $.trim($('#register [name="name"]').val()),
                 "createAt": nowDate(),
                 "isAdmin": 0
+            }
+
+            if (data.password == '' || data.account == '' || data.name == '') {
+                swalAlert('註冊失敗', '欄位不可為空', false)
+                $('#register [name="registerBtn"]').attr('disabled', false)
+                return
             }
             data = JSON.stringify(data)
             console.log("string", data)
