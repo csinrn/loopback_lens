@@ -99,10 +99,6 @@
                                     aria-controls="upload" aria-selected="true">新增隱形眼鏡</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" name="register" data-toggle="tab" href="#register" role="tab"
-                                    aria-controls="register" aria-selected="true">註冊</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" name="admin-manage" data-toggle="tab" href="#admin-manage"
                                     role="tab" aria-controls="admin-manage" aria-selected="true">管理員管理</a>
                             </li>
@@ -521,27 +517,64 @@
                                             <tbody></tbody>
                                         </table>
                                     </div>
-                                    <div name="form-div" class="col-xl-7">
-                                        <form>
-                                            <div class="form-group">
-                                                <label>帳號</label>
-                                                <input type="email" name="account" class="form-control"
-                                                    aria-describedby="emailHelp">
+                                    <div class="col-xl-7" id="admin-add" role="tabpanel"
+                                        aria-labelledby="admin-add-tab">
+                                        <ul class="nav nav-tabs list-inline">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#admin-update" aria-controls="update"
+                                                    id="admin-update-tab" role="tab" data-toggle="tab"
+                                                    aria-selected="false">修改</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" name="register" href="#register"
+                                                    id="admin-register-tab" aria-controls="update" role="tab"
+                                                    data-toggle="tab" aria-controls="register"
+                                                    aria-selected="false">註冊</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content mt-3" id="admin-content">
+                                            <div name="form-div" id="admin-update"
+                                                class="col-xl-7 tab-pane active show">
+                                                <form>
+                                                    <div class="form-group fade active show">
+                                                        <label>帳號</label>
+                                                        <input type="email" name="account" class="form-control"
+                                                            aria-describedby="emailHelp">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>新密碼</label>
+                                                        <input type="password" name="password" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>姓名</label>
+                                                        <input type="string" name="name" class="form-control">
+                                                    </div>
+                                                    <button type="button" name="updateAdminBtn"
+                                                        class="btn btn-primary">更新</button>
+                                                    <button type="button" name="deleteAdminBtn"
+                                                        class="btn btn-danger">刪除帳號</button>
+                                                </form>
                                             </div>
-                                            <div class="form-group">
-                                                <label>新密碼</label>
-                                                <input type="password" name="password" class="form-control"
-                                                    placeholder="按此輸入新密碼">
+                                            <div name="form-div" id="register" class="col-xl-7 tab-pane">
+                                                <form>
+                                                    <div class="form-group fade active show">
+                                                        <label>帳號</label>
+                                                        <input type="email" name="account" class="form-control"
+                                                            aria-describedby="emailHelp">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>密碼</label>
+                                                        <input type="password" name="password" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>姓名</label>
+                                                        <input type="string" name="name" class="form-control">
+                                                    </div>
+                                                    <button type="button" name="registerBtn" class="btn btn-primary"
+                                                        onclick="register()">註冊</button>
+                                                </form>
                                             </div>
-                                            <div class="form-group">
-                                                <label>姓名</label>
-                                                <input type="string" name="name" class="form-control">
-                                            </div>
-                                            <button type="button" name="updateAdminBtn"
-                                                class="btn btn-primary">更新</button>
-                                            <button type="button" name="deleteAdminBtn"
-                                                class="btn btn-danger">刪除帳號</button>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -569,7 +602,8 @@
                                                     </div>
                                                     <input type="number" name="updateFreq" class="form-control col-md-2"
                                                         min="0" max="24" step="1">
-                                                    <div style="align-self: center; padding: 2%;" class="col-md-2">小時
+                                                    <div style="align-self: center; padding: 2%;" class="col-md-2">
+                                                        小時
                                                     </div>
                                                 </div>
                                             </div>
@@ -854,11 +888,16 @@
 
         function renderAdminUpdate(id) {
             var admin = adminsInfo[id]
-            $('#admin-manage [name="account"]').val(admin.account)
-            $('#admin-manage [name="password"]').val('')
-            $('#admin-manage [name="name"]').val(admin.name)
-            $('#admin-manage [name="updateAdminBtn"]').attr('onclick', 'updateAdmin("' + admin.id + '")')
-            $('#admin-manage [name="deleteAdminBtn"]').attr('onclick', 'deleteAdmin("' + admin.id + '")')
+            $('#admin-update [name="account"]').val(admin.account)
+            $('#admin-update [name="password"]').val('')
+            $('#admin-update [name="name"]').val(admin.name)
+            $('#admin-update [name="updateAdminBtn"]').attr('onclick', 'updateAdmin("' + admin.id + '")')
+            $('#admin-update [name="deleteAdminBtn"]').attr('onclick', 'deleteAdmin("' + admin.id + '")')
+            // show admin-update tab
+            $('#register').removeClass('active show');
+            $('#admin-update').addClass('active show');
+            $('#admin-register-tab').removeClass('active');
+            $('#admin-update-tab').addClass('active');
         }
 
         function switchPane(auth) {
@@ -1620,19 +1659,19 @@
         }
 
         function updateAdmin(id) {
-            $('#admin-manage [name="updateAdminBtn"]').attr('disabled', true)
-            var password = jQuery.trim($('#admin-manage [name="password"]').val())
+            $('#admin-update [name="updateAdminBtn"]').attr('disabled', true)
+            var password = jQuery.trim($('#admin-update [name="password"]').val())
             var data = {}
             if (password) {
                 data = {
-                    account: jQuery.trim($('#admin-manage [name="account"]').val()),
+                    account: jQuery.trim($('#admin-update [name="account"]').val()),
                     password,
-                    name: jQuery.trim($('#admin-manage [name="name"]').val())
+                    name: jQuery.trim($('#admin-update [name="name"]').val())
                 }
             } else
                 data = {
-                    account: jQuery.trim($('#admin-manage [name="account"]').val()),
-                    name: jQuery.trim($('#admin-manage [name="name"]').val())
+                    account: jQuery.trim($('#admin-update [name="account"]').val()),
+                    name: jQuery.trim($('#admin-update [name="name"]').val())
                 }
             console.log(data)
             if (data.account == '' || data.name == '') {
@@ -1650,7 +1689,7 @@
                 if (id == user.id) {  // if update user's own informayion, then render the #username span
                     $('#userName').text(userName); // 填入login page 的 user name
                 }
-                $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
+                $('#admin-update [name="updateAdminBtn"]').attr('disabled', false)
                 renderAdmins()
                 swalAlert('更新帳號成功', '', true)
             }).fail((err) => {
@@ -1661,10 +1700,10 @@
                     if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
                         msg = '無此帳號'
                     }
-                    $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
+                    $('#admin-update [name="updateAdminBtn"]').attr('disabled', false)
                     swalAlert('更新帳號失敗', msg, false)
                 } catch {
-                    $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
+                    $('#admin-update [name="updateAdminBtn"]').attr('disabled', false)
                     swalAlert('更新帳號失敗', '', false)
                 }
             })
@@ -1675,14 +1714,14 @@
             if (!confirmed) {
                 return
             }
-            $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', true)
+            $('#admin-update [name="deleteAdminBtn"]').attr('disabled', true)
             $.ajax({
                 url: serverURL + '/admin/' + id,
                 type: "DELETE",
                 contentType: "application/json",
             }).done(() => {
-                $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
-                $('#admin-manage form')[0].reset()
+                $('#admin-update [name="deleteAdminBtn"]').attr('disabled', false)
+                $('#admin-update form')[0].reset()
                 renderAdmins()
                 swalAlert('刪除帳號成功', '', true)
             }).fail((err) => {
@@ -1693,10 +1732,10 @@
                     if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
                         msg = '無此帳號'
                     }
-                    $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
+                    $('#admin-update [name="deleteAdminBtn"]').attr('disabled', false)
                     swalAlert('刪除帳號失敗', msg, false)
                 } catch {
-                    $('#admin-manage [name="deleteAdminBtn"]').attr('disabled', false)
+                    $('#admin-update [name="deleteAdminBtn"]').attr('disabled', false)
                     swalAlert('刪除帳號失敗', '', false)
                 }
             })
