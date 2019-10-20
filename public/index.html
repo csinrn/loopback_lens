@@ -99,10 +99,6 @@
                                     aria-controls="upload" aria-selected="true">新增隱形眼鏡</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" name="manage" data-toggle="tab" href="#manage" role="tab"
-                                    aria-controls="manage" aria-selected="true">編輯帳號</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" name="register" data-toggle="tab" href="#register" role="tab"
                                     aria-controls="register" aria-selected="true">註冊</a>
                             </li>
@@ -509,48 +505,6 @@
                                         onclick="upload()">新增</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
-                                <!-- 帳號管理 -->
-                                <form>
-                                    <div class="form-group">
-                                        <label>帳號</label>
-                                        <input type="email" name="account" class="form-control"
-                                            aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>新密碼</label>
-                                        <input type="password" name="password" class="form-control"
-                                            placeholder="按此輸入新密碼">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>姓名</label>
-                                        <input type="string" name="name" class="form-control">
-                                    </div>
-                                    <button type="button" name="updateAccountBtn" class="btn btn-primary"
-                                        onclick="updateAccount()">更新</button>
-                                </form>
-                            </div>
-                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                <!-- 註冊 -->
-                                <form>
-                                    <div class="form-group">
-                                        <label>帳號</label>
-                                        <input type="email" name="account" class="form-control"
-                                            aria-describedby="emailHelp" placeholder="按此輸入帳號">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>密碼</label>
-                                        <input type="password" name="password" class="form-control"
-                                            placeholder="按此輸入密碼">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>姓名</label>
-                                        <input type="string" name="name" class="form-control" placeholder="按此輸入姓名">
-                                    </div>
-                                    <button type="button" name="registerBtn" class="btn btn-primary"
-                                        onclick="register()">註冊</button>
-                                </form>
-                            </div>
                             <div class="tab-pane fade" id="admin-manage" role="tabpanel"
                                 aria-labelledby="admin-manage-tab show active">
                                 <div class="row">
@@ -724,9 +678,6 @@
                 user = response.userProfile
                 $('#userName').text(user.name); // 填入login page 的 user name
                 $('#login input').val('') // 清除DOM中的帳密
-                $('#manage [name="account"]').val(user.account) // 帳號管理：帳號帶入
-                $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
-                $('#manage [name="name"]').val(user.name) // 帳號管理：姓名帶入
                 isAdmin = user.isAdmin
                 if (!isAdmin) {
                     $('#admin_tab [name="register"]').css('display', 'none')
@@ -853,10 +804,7 @@
                 var index = 1
                 var tbody = ''
                 response.forEach(admin => {
-                    // 自己不抓
-                    if (admin.id == user.id)
-                        return
-                    // 其他人抓下來
+                    // 抓下來
                     adminsInfo[admin.id.toString()] = admin
                     tbody += '<tr id="' + admin.id + '">\
                         <td>' + index++ + '</td>\
@@ -1671,55 +1619,6 @@
             $('#update [name="updateBtn"]').attr('disabled', true)
         }
 
-        function updateAccount() {
-            $('#manage [name="updateAccountBtn"]').attr('disabled', true)
-            var password = jQuery.trim($('#manage [name="password"]').val())
-            var data = {}
-            if (password) {
-                data = {
-                    account: jQuery.trim($('#manage [name="account"]').val()),
-                    password,
-                    name: jQuery.trim($('#manage [name="name"]').val())
-                }
-            } else
-                data = {
-                    account: jQuery.trim($('#manage [name="account"]').val()),
-                    name: jQuery.trim($('#manage [name="name"]').val())
-                }
-            console.log(data)
-            if (data.account == '' || data.name == '') {
-                swalAlert('更新失敗', '欄位未填', false)
-                return
-            }
-
-            data = JSON.stringify(data)
-            $.ajax({
-                url: serverURL + '/admin/' + user.id,
-                type: "PATCH",
-                contentType: "application/json",
-                data: data
-            }).done(() => {
-                $('#manage [name="updateAccountBtn"]').attr('disabled', false)
-                $('#userName').text(jQuery.trim($('#manage [name="name"]').val())); // 填入login page 的 user name
-                $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
-                swalAlert('更新帳號成功', '', true)
-            }).fail((err) => {
-                try {
-                    console.log(err)
-                    var msg = err.responseJSON.error.message + "<br>Details: " + JSON.stringify(err.responseJSON
-                        .error.details);
-                    if (err.responseJSON.error.code == 'ENTITY_NOT_FOUND') {
-                        msg = '無此帳號'
-                    }
-                    $('#manage [name="updateAccountBtn"]').attr('disabled', false)
-                    swalAlert('更新帳號失敗', msg, false)
-                } catch {
-                    $('#manage [name="updateAccountBtn"]').attr('disabled', false)
-                    swalAlert('更新帳號失敗', '', false)
-                }
-            })
-        }
-
         function updateAdmin(id) {
             $('#admin-manage [name="updateAdminBtn"]').attr('disabled', true)
             var password = jQuery.trim($('#admin-manage [name="password"]').val())
@@ -1740,7 +1639,7 @@
                 swalAlert('更新失敗', '欄位未填', false)
                 return
             }
-
+            var userName = data.name
             data = JSON.stringify(data)
             $.ajax({
                 url: serverURL + '/admin/' + id,
@@ -1748,8 +1647,10 @@
                 contentType: "application/json",
                 data: data
             }).done(() => {
+                if (id == user.id) {  // if update user's own informayion, then render the #username span
+                    $('#userName').text(userName); // 填入login page 的 user name
+                }
                 $('#admin-manage [name="updateAdminBtn"]').attr('disabled', false)
-                $('#manage [name="password"]').val('') // 帳號管理：密碼欄清空
                 renderAdmins()
                 swalAlert('更新帳號成功', '', true)
             }).fail((err) => {
