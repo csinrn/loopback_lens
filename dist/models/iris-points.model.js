@@ -17,73 +17,71 @@ let IrisPoints = class IrisPoints extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: 'number',
-        id: 1,
-        required: false,
+        type: 'string',
         generated: true,
-        precision: 10,
-        scale: 0,
-        mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        required: false,
+        id: 1,
+        length: 20,
+        mysql: { "columnName": "id", "dataType": "varchar", "dataLength": 20, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
-    __metadata("design:type", Number)
-], IrisPoints.prototype, "id_fake", void 0);
+    __metadata("design:type", String)
+], IrisPoints.prototype, "id", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: false,
-        precision: 10,
-        scale: 0,
-        mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        type: 'string',
+        required: true,
+        length: 20,
+        mysql: { "columnName": "user_id", "dataType": "varchar", "dataLength": 20, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], IrisPoints.prototype, "userId", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
-        required: false,
+        required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "leftpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "leftpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
 ], IrisPoints.prototype, "leftpupilX", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
-        required: false,
+        required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "leftpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "leftpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
 ], IrisPoints.prototype, "leftpupilY", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
-        required: false,
+        required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "rightpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "rightpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
 ], IrisPoints.prototype, "rightpupilX", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
-        required: false,
+        required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "rightpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "rightpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
 ], IrisPoints.prototype, "rightpupilY", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
-        required: false,
+        required: true,
         precision: 10,
         scale: 0,
-        mysql: { "columnName": "iris_radius", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+        mysql: { "columnName": "iris_radius", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
     }),
     __metadata("design:type", Number)
 ], IrisPoints.prototype, "irisRadius", void 0);

@@ -12,5 +12,4 @@ __export(require("./userlens.model"));
 __export(require("./image-storage.model"));
 __export(require("./update-time.model"));
 __export(require("./iris-points.model"));
-__export(require("./iris-points.model"));
 //# sourceMappingURL=index.js.map

@@ -5,69 +5,67 @@ import { Entity, model, property } from '@loopback/repository';
 })
 export class IrisPoints extends Entity {
   @property({
-    type: 'number',
-    id: 1,
-    required: false,
+    type: 'string',
     generated: true,
-    precision: 10,
-    scale: 0,
-    mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    required: false,
+    id: 1,
+    length: 20,
+    mysql: { "columnName": "id", "dataType": "varchar", "dataLength": 20, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  id_fake?: number;
+  id: string;
+
+  @property({
+    type: 'string',
+    required: true,
+    length: 20,
+    mysql: { "columnName": "user_id", "dataType": "varchar", "dataLength": 20, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+  })
+  userId: string;
 
   @property({
     type: 'number',
-    required: false,
+    required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "user_id", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    mysql: { "columnName": "leftpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  userId?: number;
+  leftpupilX: number;
 
   @property({
     type: 'number',
-    required: false,
+    required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "leftpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    mysql: { "columnName": "leftpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  leftpupilX?: number;
+  leftpupilY: number;
 
   @property({
     type: 'number',
-    required: false,
+    required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "leftpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    mysql: { "columnName": "rightpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  leftpupilY?: number;
+  rightpupilX: number;
 
   @property({
     type: 'number',
-    required: false,
+    required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "rightpupil_x", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    mysql: { "columnName": "rightpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  rightpupilX?: number;
+  rightpupilY: number;
 
   @property({
     type: 'number',
-    required: false,
+    required: true,
     precision: 10,
     scale: 0,
-    mysql: { "columnName": "rightpupil_y", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
+    mysql: { "columnName": "iris_radius", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "N" },
   })
-  rightpupilY?: number;
-
-  @property({
-    type: 'number',
-    required: false,
-    precision: 10,
-    scale: 0,
-    mysql: { "columnName": "iris_radius", "dataType": "int", "dataLength": null, "dataPrecision": 10, "dataScale": 0, "nullable": "Y" },
-  })
-  irisRadius?: number;
+  irisRadius: number;
 
   // Define well-known properties here
 

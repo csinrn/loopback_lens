@@ -314,6 +314,7 @@ export class LensControlController {
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     var lens_t = new Lens()
     lens_t.isdeleted = 1
+    lens_t.no = -1
     await this.lensRepository.updateById(id, lens_t)
   }
 

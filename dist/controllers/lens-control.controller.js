@@ -191,6 +191,7 @@ let LensControlController = class LensControlController {
     async deleteById(id) {
         var lens_t = new models_1.Lens();
         lens_t.isdeleted = 1;
+        lens_t.no = -1;
         await this.lensRepository.updateById(id, lens_t);
     }
     async postImg(filename, imgData) {

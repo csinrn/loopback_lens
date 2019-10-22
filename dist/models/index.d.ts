@@ -7,4 +7,3 @@ export * from './userlens.model';
 export * from './image-storage.model';
 export * from './update-time.model';
 export * from './iris-points.model';
-export * from './iris-points.model';
