@@ -26,8 +26,12 @@ import { DEFAULT_ENCODING } from 'crypto';
 import { resolve } from 'url';
 var fs = require('fs')
 
+function getLocalDate(): Date {
+  var dt = new Date()
+  return new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+}
 
-var nowDate = new Date()
+var nowDate = getLocalDate()
 var nextNo = 0;
 
 export class LensControlController {
@@ -132,10 +136,10 @@ export class LensControlController {
     @param.query.object('filter', getFilterSchemaFor(Lens)) filter?: Filter<Lens>,
   ) {
 
-    var date = new Date()
+    var date = getLocalDate()
     if (this.compDate(nowDate, date) != 0) {  // check the launch state everyday
       await this.renewNo()
-      nowDate = new Date()
+      nowDate = getLocalDate()
     }
 
     var list = await this.lensRepository.find({ where: { isdeleted: 0 } });
@@ -160,10 +164,10 @@ export class LensControlController {
     @param.query.object('filter', getFilterSchemaFor(Lens)) filter?: Filter<Lens>,
   ): Promise<Lens[]> {
 
-    var date = new Date()
+    var date = getLocalDate()
     if (this.compDate(nowDate, date) != 0) {  // check the launch state everyday
       await this.renewNo()
-      nowDate = new Date()
+      nowDate = getLocalDate()
     }
 
     var list = await this.lensRepository.find(filter)
@@ -196,8 +200,7 @@ export class LensControlController {
     lens: Lens,
   ): Promise<void> {
     // renew updateAt
-    var dt = new Date()
-    lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+    lens.updateAt = getLocalDate()
     var oldLen = await this.lensRepository.findById(id)
 
     if (lens.url != undefined) {  // if upload a new image
@@ -266,8 +269,7 @@ export class LensControlController {
 
     let lens_t = new Lens()
     lens_t.no = -1
-    var dt = new Date()
-    lens_t.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+    lens_t.updateAt = getLocalDate()
     await this.lensRepository.updateById(id1, lens_t, { partial: true })
     lens_t.no = no1
     await this.lensRepository.updateById(id2, lens_t, { partial: true })
@@ -298,8 +300,7 @@ export class LensControlController {
     })
     lens: Lens,
   ): Promise<void> {
-    var dt = new Date()
-    lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+    lens.updateAt = getLocalDate()
     await this.lensRepository.updateById(id, lens);
   }
 
@@ -314,7 +315,7 @@ export class LensControlController {
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     var lens_t = new Lens()
     lens_t.isdeleted = 1
-    lens_t.no = -1
+    lens_t.no = undefined
     await this.lensRepository.updateById(id, lens_t)
   }
 
@@ -346,7 +347,7 @@ export class LensControlController {
 
   async renewNo() {
     var list = await this.lensRepository.find()
-    var date = new Date()
+    var date = getLocalDate()
     console.log('renew')
 
     var promiseList: any[] = []
@@ -359,8 +360,7 @@ export class LensControlController {
         if (lens.no != undefined || lens.state != 0) {
           lens.no = undefined;
           lens.state = 0;
-          var dt = new Date()
-          lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+          lens.updateAt = getLocalDate()
           promiseList.push(this.lensRepository.updateById(lens.id, lens))
         }
       } else if (this.compDate(launchAt, date) != 1 && this.compDate(removeAt, date) == 1) {   // releasing
@@ -368,16 +368,14 @@ export class LensControlController {
           lens.no = nextNo;
           nextNo += 1
           lens.state = 1
-          var dt = new Date()
-          lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+          lens.updateAt = getLocalDate()
           promiseList.push(this.lensRepository.updateById(lens.id, lens))
         }
       } else {  //removed
         if (lens.no != undefined || lens.state != 2) {
           lens.no = undefined;
           lens.state = 2
-          var dt = new Date()
-          lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+          lens.updateAt = getLocalDate()
           promiseList.push(this.lensRepository.updateById(lens.id, lens))
         }
       }
@@ -410,9 +408,8 @@ export class LensControlController {
   }
 
   static compDate(a: Date, b: Date) {  // 0 if equal, 1 if a>b, -1 if a<b
-    var ad = Date.parse(a.toDateString()).valueOf()
-    var bd = Date.parse(b.toDateString()).valueOf()
-
+    var ad = a.valueOf()
+    var bd = b.valueOf()
     if (ad == bd) {
       return 0;
     }
@@ -420,8 +417,8 @@ export class LensControlController {
   }
 
   compDate(a: Date, b: Date) {  // 0 if equal, 1 if a>b, -1 if a<b
-    var ad = Date.parse(a.toDateString()).valueOf()
-    var bd = Date.parse(b.toDateString()).valueOf()
+    var ad = a.valueOf()
+    var bd = b.valueOf()
 
     if (ad == bd) {
       return 0;

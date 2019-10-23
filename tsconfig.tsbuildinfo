@@ -1254,7 +1254,7 @@
         "signature": "d0a378649141cf382b7f49948b5227a4d2915690ad98d42d72a79ff6dcd15cdf"
       },
       "d:/eye-demo/lens/src/models/iris-points.model.ts": {
-        "version": "94fd3b204cd61b3d5c59ebb7d6620b353e4c9655813db1472f433a5f3083a2c3",
+        "version": "e44c7eed9e83e19e9d999e49adb75ce88d8f0639cf21b4c687305638e56b8d17",
         "signature": "88062c0bef93ac0ec6c5154f528171704c021b757b2b0ae8c68d4daf14d3a809"
       },
       "d:/eye-demo/lens/src/models/index.ts": {
@@ -1317,8 +1317,8 @@
         "signature": "6addb2e7953edadf78e8a2aab0964a991ba5de4871e16f3b5f729c14e64b11ad"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "6dff082f1c7d20b348e2c8d2454f4a9839c853d2b426d52ae9676c5fc4b4d189",
-        "signature": "e3a36894123e06e078e322d7c51ea62012cdbc9b390ddf7b6821dcd16db1361f"
+        "version": "93919fc83432dceea1fcb0201a2c71883c78abdf5125ef5b5c1adf156a04bc47",
+        "signature": "8a2fac29357f4623439c6aa08f47a7a5a7d8c24c504341f5ab0853a69272eeea"
       },
       "d:/eye-demo/lens/src/application.ts": {
         "version": "3da170ac83bbc30ca73af6415a921f71221620a4a50001d857fc9d6945a8e686",

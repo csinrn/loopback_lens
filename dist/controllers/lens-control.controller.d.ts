@@ -18,7 +18,7 @@ export declare class LensControlController {
     renewNo(): Promise<void>;
     arrangeNo(): Promise<void>;
     initNextNo(): Promise<void>;
-    static compDate(a: Date, b: Date): 1 | 0 | -1;
-    compDate(a: Date, b: Date): 1 | 0 | -1;
+    static compDate(a: Date, b: Date): 0 | 1 | -1;
+    compDate(a: Date, b: Date): 0 | 1 | -1;
     lensComp(a: Lens, b: Lens): number;
 }

@@ -18,7 +18,11 @@ const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 const validator_1 = require("../services/validator");
 var fs = require('fs');
-var nowDate = new Date();
+function getLocalDate() {
+    var dt = new Date();
+    return new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+}
+var nowDate = getLocalDate();
 var nextNo = 0;
 let LensControlController = class LensControlController {
     constructor(lensRepository) {
@@ -74,10 +78,10 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async find(filter) {
-        var date = new Date();
+        var date = getLocalDate();
         if (this.compDate(nowDate, date) != 0) { // check the launch state everyday
             await this.renewNo();
-            nowDate = new Date();
+            nowDate = getLocalDate();
         }
         var list = await this.lensRepository.find({ where: { isdeleted: 0 } });
         list.sort(this.lensComp);
@@ -108,8 +112,7 @@ let LensControlController = class LensControlController {
     //@authenticate('jwt')
     async updateById(id, lens) {
         // renew updateAt
-        var dt = new Date();
-        lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+        lens.updateAt = getLocalDate();
         var oldLen = await this.lensRepository.findById(id);
         if (lens.url != undefined) { // if upload a new image
             // delete the old one
@@ -171,8 +174,7 @@ let LensControlController = class LensControlController {
         let no1 = lens1.no, no2 = lens2.no;
         let lens_t = new models_1.Lens();
         lens_t.no = -1;
-        var dt = new Date();
-        lens_t.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+        lens_t.updateAt = getLocalDate();
         await this.lensRepository.updateById(id1, lens_t, { partial: true });
         lens_t.no = no1;
         await this.lensRepository.updateById(id2, lens_t, { partial: true });
@@ -183,8 +185,7 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async updateNameById(id, lens) {
-        var dt = new Date();
-        lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+        lens.updateAt = getLocalDate();
         await this.lensRepository.updateById(id, lens);
     }
     //@authenticate('jwt')
@@ -214,8 +215,9 @@ let LensControlController = class LensControlController {
     }
     async renewNo() {
         var list = await this.lensRepository.find();
-        var date = new Date();
+        var date = getLocalDate();
         console.log('renew');
+        console.log(date);
         var promiseList = [];
         list.forEach(async (lens) => {
             var launchAt = new Date(lens.launchAt), removeAt = new Date(lens.removeAt);
@@ -224,8 +226,7 @@ let LensControlController = class LensControlController {
                 if (lens.no != undefined || lens.state != 0) {
                     lens.no = undefined;
                     lens.state = 0;
-                    var dt = new Date();
-                    lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+                    lens.updateAt = getLocalDate();
                     promiseList.push(this.lensRepository.updateById(lens.id, lens));
                 }
             }
@@ -234,8 +235,7 @@ let LensControlController = class LensControlController {
                     lens.no = nextNo;
                     nextNo += 1;
                     lens.state = 1;
-                    var dt = new Date();
-                    lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+                    lens.updateAt = getLocalDate();
                     promiseList.push(this.lensRepository.updateById(lens.id, lens));
                 }
             }
@@ -243,8 +243,7 @@ let LensControlController = class LensControlController {
                 if (lens.no != undefined || lens.state != 2) {
                     lens.no = undefined;
                     lens.state = 2;
-                    var dt = new Date();
-                    lens.updateAt = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+                    lens.updateAt = getLocalDate();
                     promiseList.push(this.lensRepository.updateById(lens.id, lens));
                 }
             }
@@ -270,16 +269,16 @@ let LensControlController = class LensControlController {
         console.log('nextNo:', nextNo);
     }
     static compDate(a, b) {
-        var ad = Date.parse(a.toDateString()).valueOf();
-        var bd = Date.parse(b.toDateString()).valueOf();
+        var ad = a.valueOf();
+        var bd = b.valueOf();
         if (ad == bd) {
             return 0;
         }
         return ad > bd ? 1 : -1;
     }
     compDate(a, b) {
-        var ad = Date.parse(a.toDateString()).valueOf();
-        var bd = Date.parse(b.toDateString()).valueOf();
+        var ad = a.valueOf();
+        var bd = b.valueOf();
         if (ad == bd) {
             return 0;
         }
