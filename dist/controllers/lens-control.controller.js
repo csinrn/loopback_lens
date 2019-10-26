@@ -40,12 +40,20 @@ let LensControlController = class LensControlController {
         validator_1.validateBoolean(lens.biweekly, "biweeklytag");
         validator_1.validateBoolean(lens.monthly, "monthlytag");
         // store image, throw if error
-        var imgUrl = '';
+        var imgUrl = '', imgUrl2 = '';
         try {
-            imgUrl = await this.postImg(lens.partNo + '.png', lens.url);
+            imgUrl = await this.postImg(lens.partNo + '.png', lens.url, '/lensPic/');
+            imgUrl2 = await this.postImg(lens.partNo + '.png', lens.url2, '/lensPic_show/');
             lens.url = imgUrl;
+            lens.url2 = imgUrl2;
         }
         catch (err) {
+            var path = './public' + '/lensPic/' + lens.partNo + '.png';
+            fs.exists(path, function (exists) {
+                if (exists) {
+                    fs.unlinkSync(path);
+                }
+            });
             throw new rest_1.HttpErrors.BadRequest(err);
         }
         // Capitalize partNo
@@ -68,6 +76,7 @@ let LensControlController = class LensControlController {
         // store lens, delete image and throw if error
         var res = await this.lensRepository.create(lens).catch((err) => {
             fs.unlinkSync('./public' + imgUrl);
+            fs.unlinkSync('./public' + imgUrl2);
             throw new rest_1.HttpErrors.BadRequest(err);
         });
         return res;
@@ -78,8 +87,10 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async find(filter) {
-        var date = getLocalDate();
-        if (this.compDate(nowDate, date) != 0) { // check the launch state everyday
+        var date = new Date(getLocalDate().toDateString());
+        var lastUpdate = new Date(nowDate.toDateString());
+        console.log(date, lastUpdate);
+        if (this.compDate(lastUpdate, date) != 0) { // check the launch state everyday
             await this.renewNo();
             nowDate = getLocalDate();
         }
@@ -89,10 +100,10 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async findbase64(filter) {
-        var date = new Date();
+        var date = getLocalDate();
         if (this.compDate(nowDate, date) != 0) { // check the launch state everyday
             await this.renewNo();
-            nowDate = new Date();
+            nowDate = getLocalDate();
         }
         var list = await this.lensRepository.find(filter);
         var callback = function (err, data) {
@@ -114,7 +125,35 @@ let LensControlController = class LensControlController {
         // renew updateAt
         lens.updateAt = getLocalDate();
         var oldLen = await this.lensRepository.findById(id);
-        if (lens.url != undefined) { // if upload a new image
+        var isNotUpdateUrl1 = false, isNotUpdateUrl2 = false;
+        if (lens.partNo != oldLen.partNo) {
+            if (fs.existsSync('./public/lensPic/' + lens.partNo + '.png', () => { throw new rest_1.HttpErrors.BadRequest(); })) {
+                throw new rest_1.HttpErrors.BadRequest('料號重複');
+            }
+            lens.partNo = lens.partNo.toUpperCase();
+            // rename pics
+            if (lens.url == undefined) { // if do not update new url1
+                try {
+                    fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
+                }
+                catch (_a) {
+                    throw new rest_1.HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的');
+                }
+                lens.url = '/lensPic/' + lens.partNo + '.png';
+                isNotUpdateUrl1 = true;
+            }
+            if (lens.url2 == undefined) { // if do not update new url2
+                try {
+                    fs.rename('./public' + oldLen.url2, './public/lensPic_show/' + lens.partNo + '.png', () => { });
+                }
+                catch (_b) {
+                    throw new rest_1.HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的');
+                }
+                lens.url2 = '/lensPic_show/' + lens.partNo + '.png';
+                isNotUpdateUrl2 = true;
+            }
+        }
+        if (lens.url != undefined && !isNotUpdateUrl1) { // if upload a new image && partNo is changed
             // delete the old one
             try {
                 fs.unlinkSync('./public' + oldLen.url);
@@ -124,24 +163,37 @@ let LensControlController = class LensControlController {
             }
             // store the new one
             var imgUrl = '';
-            imgUrl = await this.postImg(lens.partNo + '.png', lens.url);
+            try {
+                imgUrl = await this.postImg(lens.partNo + '.png', lens.url, '/lensPic/');
+            }
+            catch (err) {
+                throw new rest_1.HttpErrors.BadRequest(err);
+            }
             // assign the new address to lens
             lens.url = imgUrl;
             // update pic version
             lens.picVer = oldLen.picVer + 1;
         }
-        else if (lens.partNo != oldLen.partNo) { // if not update pic but update the partNo,
-            // change old pic name to new partNo
-            if (fs.existsSync('./public/lensPic/' + lens.partNo + '.png', () => { throw new rest_1.HttpErrors.BadRequest(); })) {
-                throw new rest_1.HttpErrors.BadRequest('料號重複');
-            }
+        if (lens.url2 != undefined && !isNotUpdateUrl2) { // if upload a new show image && partNo is changed
+            // delete the old one
             try {
-                fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
+                fs.unlinkSync('./public' + oldLen.url2);
             }
-            catch (_a) {
-                throw new rest_1.HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的');
+            catch (err) {
+                console.log(err);
             }
-            lens.url = '/lensPic/' + lens.partNo + '.png';
+            // store the new one
+            var imgUrl2 = '';
+            try {
+                imgUrl2 = await this.postImg(lens.partNo + '.png', lens.url2, '/lensPic_show/');
+            }
+            catch (err) {
+                throw new rest_1.HttpErrors.BadRequest(err);
+            }
+            // assign the new address to lens
+            lens.url2 = imgUrl2;
+            // update pic version
+            lens.picVer = oldLen.picVer + 1;
         }
         // check the state
         var no, state = oldLen.state;
@@ -192,12 +244,12 @@ let LensControlController = class LensControlController {
     async deleteById(id) {
         var lens_t = new models_1.Lens();
         lens_t.isdeleted = 1;
-        lens_t.no = -1;
+        lens_t.no = undefined;
         await this.lensRepository.updateById(id, lens_t);
     }
-    async postImg(filename, imgData) {
-        var folder = './public/lensPic/';
-        var url = '/lensPic/';
+    async postImg(filename, imgData, url) {
+        var folder = './public' + url;
+        // var url = '/lensPic/'
         var res = new Promise((resolve, reject) => {
             if (fs.existsSync(folder + filename)) {
                 reject('料號重複');
@@ -217,7 +269,6 @@ let LensControlController = class LensControlController {
         var list = await this.lensRepository.find();
         var date = getLocalDate();
         console.log('renew');
-        console.log(date);
         var promiseList = [];
         list.forEach(async (lens) => {
             var launchAt = new Date(lens.launchAt), removeAt = new Date(lens.removeAt);
@@ -432,7 +483,7 @@ __decorate([
     rest_1.post('/lens/img/{fileName}'),
     __param(0, rest_1.param.path.string('fileName')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "postImg", null);
 LensControlController = __decorate([

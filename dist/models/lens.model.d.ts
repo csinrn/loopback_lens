@@ -26,6 +26,7 @@ export declare class Lens extends Entity {
     removeAt: Date;
     updateAt: Date;
     url: string;
+    url2: string;
     state: number;
     picVer: number;
     isdeleted: number;
