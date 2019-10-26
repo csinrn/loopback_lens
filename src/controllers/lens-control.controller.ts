@@ -70,11 +70,19 @@ export class LensControlController {
     validateBoolean(lens.monthly, "monthlytag")
 
     // store image, throw if error
-    var imgUrl = ''
+    var imgUrl = '', imgUrl2 = ''
     try {
-      imgUrl = await this.postImg(lens.partNo + '.png', lens.url)
+      imgUrl = await this.postImg(lens.partNo + '.png', lens.url, '/lensPic/')
+      imgUrl2 = await this.postImg(lens.partNo + '.png', lens.url2, '/lensPic_show/')
       lens.url = imgUrl
+      lens.url2 = imgUrl2
     } catch (err) {
+      var path = './public' + '/lensPic/' + lens.partNo + '.png'
+      fs.exists(path, function (exists: boolean) {
+        if (exists) {
+          fs.unlinkSync(path)
+        }
+      });
       throw new HttpErrors.BadRequest(err)
     }
 
@@ -98,6 +106,7 @@ export class LensControlController {
     // store lens, delete image and throw if error
     var res = await this.lensRepository.create(lens).catch((err) => {
       fs.unlinkSync('./public' + imgUrl)
+      fs.unlinkSync('./public' + imgUrl2)
       throw new HttpErrors.BadRequest(err)
     })
 
@@ -136,8 +145,10 @@ export class LensControlController {
     @param.query.object('filter', getFilterSchemaFor(Lens)) filter?: Filter<Lens>,
   ) {
 
-    var date = getLocalDate()
-    if (this.compDate(nowDate, date) != 0) {  // check the launch state everyday
+    var date = new Date(getLocalDate().toDateString())
+    var lastUpdate = new Date(nowDate.toDateString())
+    console.log(date, lastUpdate)
+    if (this.compDate(lastUpdate, date) != 0) {  // check the launch state everyday
       await this.renewNo()
       nowDate = getLocalDate()
     }
@@ -202,8 +213,35 @@ export class LensControlController {
     // renew updateAt
     lens.updateAt = getLocalDate()
     var oldLen = await this.lensRepository.findById(id)
+    var isNotUpdateUrl1 = false, isNotUpdateUrl2 = false
+    if (lens.partNo != oldLen.partNo) {
+      lens.partNo = lens.partNo.toUpperCase()
+      if (fs.existsSync('./public/lensPic/' + lens.partNo + '.png', () => { throw new HttpErrors.BadRequest() })) {
+        throw new HttpErrors.BadRequest('料號重複')
+      }
 
-    if (lens.url != undefined) {  // if upload a new image
+      // rename pics
+      if (lens.url == undefined) {  // if do not update new url1
+        try {
+          fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
+        } catch{
+          throw new HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的')
+        }
+        lens.url = '/lensPic/' + lens.partNo + '.png';
+        isNotUpdateUrl1 = true
+      }
+      if (lens.url2 == undefined) {  // if do not update new url2
+        try {
+          fs.rename('./public' + oldLen.url2, './public/lensPic_show/' + lens.partNo + '.png', () => { });
+        } catch{
+          throw new HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的')
+        }
+        lens.url2 = '/lensPic_show/' + lens.partNo + '.png';
+        isNotUpdateUrl2 = true
+      }
+    }
+
+    if (lens.url != undefined && !isNotUpdateUrl1) {  // if upload a new image && partNo is changed
       // delete the old one
       try {
         fs.unlinkSync('./public' + oldLen.url)
@@ -212,25 +250,37 @@ export class LensControlController {
       }
       // store the new one
       var imgUrl = ''
-      imgUrl = await this.postImg(lens.partNo + '.png', lens.url)
-
+      try {
+        imgUrl = await this.postImg(lens.partNo + '.png', lens.url, '/lensPic/')
+      } catch (err) {
+        throw new HttpErrors.BadRequest(err)
+      }
       // assign the new address to lens
       lens.url = imgUrl
 
       // update pic version
       lens.picVer = oldLen.picVer + 1;
-    } else if (lens.partNo != oldLen.partNo) {  // if not update pic but update the partNo,
-      // change old pic name to new partNo
+    }
 
-      if (fs.existsSync('./public/lensPic/' + lens.partNo + '.png', () => { throw new HttpErrors.BadRequest() })) {
-        throw new HttpErrors.BadRequest('料號重複')
-      }
+    if (lens.url2 != undefined && !isNotUpdateUrl2) {  // if upload a new show image && partNo is changed
+      // delete the old one
       try {
-        fs.rename('./public' + oldLen.url, './public/lensPic/' + lens.partNo + '.png', () => { });
-      } catch{
-        throw new HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的')
+        fs.unlinkSync('./public' + oldLen.url2)
+      } catch (err) {
+        console.log(err)
       }
-      lens.url = '/lensPic/' + lens.partNo + '.png';
+      // store the new one
+      var imgUrl2 = ''
+      try {
+        imgUrl2 = await this.postImg(lens.partNo + '.png', lens.url2, '/lensPic_show/')
+      } catch (err) {
+        throw new HttpErrors.BadRequest(err)
+      }
+      // assign the new address to lens
+      lens.url2 = imgUrl2
+
+      // update pic version
+      lens.picVer = oldLen.picVer + 1;
     }
 
     // check the state
@@ -322,11 +372,12 @@ export class LensControlController {
   @post('/lens/img/{fileName}')
   async postImg(
     @param.path.string('fileName') filename: string,
-    imgData: string
+    imgData: string,
+    url: string
   ): Promise<string> {
 
-    var folder = './public/lensPic/'
-    var url = '/lensPic/'
+    var folder = './public' + url
+    // var url = '/lensPic/'
 
     var res = new Promise<string>((resolve, reject) => {
       if (fs.existsSync(folder + filename)) {

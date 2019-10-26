@@ -223,7 +223,7 @@
                                             <div class="row">
                                                 <div class="input-group mb-3 col-xl-9">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text">更新圖片</span>
+                                                        <span class="input-group-text">更新去背圖片</span>
                                                         <input type="file" name="img" accept=".png" data-url=""
                                                             style="align-self: center; margin-left: 2%"
                                                             onchange="checkAlpha2()" attr="optional">
@@ -231,6 +231,18 @@
                                                     ＊圖片須為png檔且具備透明度資訊
                                                 </div>
                                                 <div class="col-xl-3 mb-3" id="update_img"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-xl-9">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">更新展示圖片</span>
+                                                        <input type="file" name="img-show" accept=".png" data-url=""
+                                                            style="align-self: center; margin-left: 2%"
+                                                            onchange="checkAlpha3()" attr="optional">
+                                                    </div>
+                                                    *供平板介紹頁面使用
+                                                </div>
+                                                <div class="col-xl-3 mb-3" id="update_img-show"></div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-group mb-3 col-md">
@@ -356,6 +368,13 @@
                                             <input type="string" name="license" class="form-control"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
+                                        <div class="input-group mb-3 col-md-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">含水量</span>
+                                            </div>
+                                            <input type="number" name="water" class="form-control" min="0"
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-group mb-3 col-md-3">
@@ -372,14 +391,13 @@
                                             <input type="number" name="bc" class="form-control" min="0" step="0.1"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
-                                        <div class="input-group mb-3 col-md-3">
+                                        <div class="input-group mb-3 col-md-6">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">含水量</span>
+                                                <span class="input-group-text">新增展示圖片</span>
+                                                <input type="file" name="img-show" accept=".png" data-url=""
+                                                    style="align-self: center; margin-left: 2%">
                                             </div>
-                                            <input type="number" name="water" class="form-control" min="0"
-                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="input-group mb-3 col-md-3">
@@ -398,7 +416,7 @@
                                         </div>
                                         <div class="input-group mb-3 col-md-6">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">新增圖片</span>
+                                                <span class="input-group-text">新增去背圖片</span>
                                                 <input type="file" name="img" accept=".png" data-url=""
                                                     style="align-self: center; margin-left: 2%" onchange="checkAlpha()">
                                             </div>
@@ -740,8 +758,7 @@
                 try {
                     console.log('server login fail yyyyy')
                     console.log(error)
-                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
-                        .responseJSON.error.details)
+                    var msg = error.responseJSON.error.message
                     if (error.responseJSON.error.details != undefined && error.responseJSON.error.details[0]
                         .code == 'minLength') {
                         msg = '密碼最少需要6個字'
@@ -871,6 +888,7 @@
             $('#update [name="powerL"]').val(len.powerL) //度數
             $('#update [name="powerH"]').val(len.powerH) //度數
             $('#update [name="img"]').val('') //圖片
+            $('#update [name="img-show"]').val('') //圖片
             $('#update [name="water"]').val(len.water) //含水量
             $('#update [name="daily"]').prop('checked', len.daily).change()
             $('#update [name="biweekly"]').prop('checked', len.biweekly).change()
@@ -891,6 +909,10 @@
                                                     background-color: white;\
                                                     border-radius: 100%;\
                                                 " src="' + len.url + "?" + timestring + '">')
+            $('#update #update_img-show').html('<img style="\
+                                                    height: 100px;\
+                                                    background-color: white;\
+                                                " src="' + len.url2 + "?" + timestring + '">')
             $('#update [name="updateBtn"]').attr('onclick', 'updateLens("' + len.id + '")')
             $('#update [name="deleteBtn"]').attr('onclick', 'deleteLens("' + len.id + '")')
         }
@@ -996,7 +1018,8 @@
 
             // start upload
             try {
-                fileData = await parseFile()
+                fileData = await parseFile('#upload [name="img"]')
+                fileData2 = await parseFile('#upload [name="img-show"]')
             } catch {
                 // if rejected
                 btnEnable()
@@ -1024,9 +1047,10 @@
                 onsaleTag: $('#upload [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 launchAt: dateToTimeStamp($('#upload [name="launch_at"]').val()), // 上架時間
                 removeAt: dateToTimeStamp($('#upload [name="remove_at"]').val()), // 下架時間
-                createAt: new Date(), // 上架時間  需為 "190303" 格式的日期字串
-                updateAt: new Date(),
-                url: fileData
+                createAt: new Date(new Date().toDateString()),
+                updateAt: new Date(new Date().toDateString()),
+                url: fileData,
+                url2: fileData2
             }
 
             console.log(data.launchAt, data.removeAt)
@@ -1132,6 +1156,7 @@
                 //}
             }).done(response => {
                 $('#update form')[0].reset()
+                $('#update img').attr('src', '')
                 renderCards()
                 $('#update [name="deleteBtn"]').attr('disabled', false)
                 swalAlert("刪除成功", '', true)
@@ -1226,7 +1251,8 @@
 
             // start update
             try {
-                fileData = await parseFile2()
+                fileData = await parseFile('#update [name="img"]')
+                fileData2 = await parseFile('#update [name="img-show"]')
             } catch {
                 // if rejected
                 btnEnable2()
@@ -1254,7 +1280,8 @@
                 onsaleTag: $('#update [name="onsaleTag"]').is(":checked") ? 1 : 0, // 0 或 1
                 launchAt: dateToTimeStamp($('#update [name="launch_at"]').val()), // 上架時間
                 removeAt: dateToTimeStamp($('#update [name="remove_at"]').val()), // 下架時間
-                url: fileData
+                url: fileData,
+                url2: fileData2
             }
 
             if (!specialChecked) {
@@ -1280,9 +1307,7 @@
             }).fail(error => {
                 try {
                     console.log(error)
-                    var msg = error.responseJSON.error.message + "<br>Details: " + JSON.stringify(error
-                        .responseJSON
-                        .error.details);
+                    var msg = error.responseJSON.error.message
                     btnEnable2()
                     swalAlert("更新失敗", msg, false)
                 } catch {
@@ -1433,39 +1458,26 @@
             renderCards()
         }
 
-        async function parseFile() {
-
+        async function parseFile(obj) {
+            console.log(obj)
+            var file = $(obj)[0].files
+            if (file.length == 0) {
+                return undefined
+            }
             return new Promise((resolve, reject) => {
-                var file = $('#upload [name="img"]')[0].files[0]
-                if (file == undefined) {
-                    reject()
-                }
+                file = file[0]
+                console.log(file)
                 var reader = new FileReader()
                 reader.readAsDataURL(file)
                 reader.onload = () => {
                     resolve(reader.result)
                 }
+                console.log(reader)
+
             }).catch((err) => {
                 console.log(err)
-                swalAlert('圖片錯誤', '尚未選取照片', false)
-            })
-        }
-
-        async function parseFile2() {
-
-            var file = $('#update [name="img"]')[0].files[0]
-            if (file == undefined)
-                return Promise.resolve()
-
-            return new Promise((resolve, reject) => {
-                var reader = new FileReader()
-                reader.readAsDataURL(file)
-                reader.onload = () => {
-                    resolve(reader.result)
-                }
-            }).catch((err) => {
-                console.log(err)
-                swalAlert('圖片錯誤', '無法解析', false)
+                swalAlert('圖片錯誤', '', false)
+                throw 0
             })
         }
 
@@ -1560,6 +1572,21 @@
                     console.log('4 channel')
                 }
             })
+        }
+
+        async function checkAlpha3() {
+            var validate = new Promise((resolve, reject) => {
+                var file = $('#update [name="img-show"]')[0].files[0]
+                var reader = new FileReader()
+
+                reader.readAsDataURL(file)
+                reader.onload = (e) => {
+                    $("#update #update_img-show img").attr('src', e.target.result)
+                    console.log('ok')
+                    resolve()
+                }
+            })
+            await validate
         }
 
         function checkWearingTime() {

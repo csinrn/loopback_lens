@@ -263,6 +263,15 @@ __decorate([
 ], Lens.prototype, "url", void 0);
 __decorate([
     repository_1.property({
+        type: 'string',
+        required: true,
+        length: 50,
+        mysql: { "columnName": "url2", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    }),
+    __metadata("design:type", String)
+], Lens.prototype, "url2", void 0);
+__decorate([
+    repository_1.property({
         type: 'number',
         precision: 3,
         scale: 0,

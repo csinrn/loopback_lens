@@ -14,7 +14,7 @@ export declare class LensControlController {
     }>;
     updateNameById(id: string, lens: Lens): Promise<void>;
     deleteById(id: string): Promise<void>;
-    postImg(filename: string, imgData: string): Promise<string>;
+    postImg(filename: string, imgData: string, url: string): Promise<string>;
     renewNo(): Promise<void>;
     arrangeNo(): Promise<void>;
     initNextNo(): Promise<void>;
