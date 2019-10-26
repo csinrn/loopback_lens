@@ -127,10 +127,10 @@ let LensControlController = class LensControlController {
         var oldLen = await this.lensRepository.findById(id);
         var isNotUpdateUrl1 = false, isNotUpdateUrl2 = false;
         if (lens.partNo != oldLen.partNo) {
+            lens.partNo = lens.partNo.toUpperCase();
             if (fs.existsSync('./public/lensPic/' + lens.partNo + '.png', () => { throw new rest_1.HttpErrors.BadRequest(); })) {
                 throw new rest_1.HttpErrors.BadRequest('料號重複');
             }
-            lens.partNo = lens.partNo.toUpperCase();
             // rename pics
             if (lens.url == undefined) { // if do not update new url1
                 try {
