@@ -140,7 +140,6 @@ let LensControlController = class LensControlController {
                 throw new rest_1.HttpErrors.BadRequest('料號重複');
             }
             // rename pics
-            console.log(lens.url);
             if (lens.url == undefined) { // if do not update new url1
                 try {
                     if (!fs.existsSync('./public' + oldLen.url)) {
@@ -156,6 +155,9 @@ let LensControlController = class LensControlController {
             }
             if (lens.url2 == undefined) { // if do not update new url2
                 try {
+                    if (!fs.existsSync('./public' + oldLen.url2)) {
+                        throw new rest_1.HttpErrors.BadRequest();
+                    }
                     fs.rename('./public' + oldLen.url2, './public/lensPic_show/' + lens.partNo + '.png', () => { });
                 }
                 catch (_b) {
