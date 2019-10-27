@@ -20,7 +20,8 @@ const validator_1 = require("../services/validator");
 var fs = require('fs');
 function getLocalDate() {
     var dt = new Date();
-    return new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+    var local = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+    return new Date(local.toDateString());
 }
 var nowDate = getLocalDate();
 var nextNo = 0;
@@ -39,6 +40,8 @@ let LensControlController = class LensControlController {
         validator_1.validateBoolean(lens.daily, "dailytag");
         validator_1.validateBoolean(lens.biweekly, "biweeklytag");
         validator_1.validateBoolean(lens.monthly, "monthlytag");
+        // Capitalize partNo
+        lens.partNo = lens.partNo.toUpperCase();
         // store image, throw if error
         var imgUrl = '', imgUrl2 = '';
         try {
@@ -56,8 +59,6 @@ let LensControlController = class LensControlController {
             });
             throw new rest_1.HttpErrors.BadRequest(err);
         }
-        // Capitalize partNo
-        lens.partNo = lens.partNo.toUpperCase();
         // assign state and no fields
         if (this.compDate(new Date(lens.launchAt), nowDate) == 1) { // not yet released
             lens.no = undefined;
@@ -127,10 +128,10 @@ let LensControlController = class LensControlController {
         var oldLen = await this.lensRepository.findById(id);
         var isNotUpdateUrl1 = false, isNotUpdateUrl2 = false;
         if (lens.partNo != oldLen.partNo) {
+            lens.partNo = lens.partNo.toUpperCase();
             if (fs.existsSync('./public/lensPic/' + lens.partNo + '.png', () => { throw new rest_1.HttpErrors.BadRequest(); })) {
                 throw new rest_1.HttpErrors.BadRequest('料號重複');
             }
-            lens.partNo = lens.partNo.toUpperCase();
             // rename pics
             if (lens.url == undefined) { // if do not update new url1
                 try {
