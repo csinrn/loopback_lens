@@ -28,6 +28,13 @@ var fs = require('fs')
 
 function getLocalDate(): Date {
   var dt = new Date()
+  var local = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+  console.log(new Date(local.toDateString()))
+  return new Date(local.toDateString())
+}
+
+function getLocalDateWithTime(): Date {
+  var dt = new Date()
   return new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
 }
 
@@ -69,6 +76,11 @@ export class LensControlController {
     validateBoolean(lens.biweekly, "biweeklytag")
     validateBoolean(lens.monthly, "monthlytag")
 
+    // Capitalize partNo
+    console.log(lens.partNo)
+    lens.partNo = lens.partNo.toUpperCase()
+    console.log(lens.partNo)
+
     // store image, throw if error
     var imgUrl = '', imgUrl2 = ''
     try {
@@ -85,9 +97,6 @@ export class LensControlController {
       });
       throw new HttpErrors.BadRequest(err)
     }
-
-    // Capitalize partNo
-    lens.partNo = lens.partNo.toUpperCase()
 
     // assign state and no fields
     if (this.compDate(new Date(lens.launchAt), nowDate) == 1) {  // not yet released
@@ -211,7 +220,7 @@ export class LensControlController {
     lens: Lens,
   ): Promise<void> {
     // renew updateAt
-    lens.updateAt = getLocalDate()
+    lens.updateAt = getLocalDateWithTime()
     var oldLen = await this.lensRepository.findById(id)
     var isNotUpdateUrl1 = false, isNotUpdateUrl2 = false
     if (lens.partNo != oldLen.partNo) {
@@ -319,7 +328,7 @@ export class LensControlController {
 
     let lens_t = new Lens()
     lens_t.no = -1
-    lens_t.updateAt = getLocalDate()
+    lens_t.updateAt = getLocalDateWithTime()
     await this.lensRepository.updateById(id1, lens_t, { partial: true })
     lens_t.no = no1
     await this.lensRepository.updateById(id2, lens_t, { partial: true })
@@ -350,7 +359,7 @@ export class LensControlController {
     })
     lens: Lens,
   ): Promise<void> {
-    lens.updateAt = getLocalDate()
+    lens.updateAt = getLocalDateWithTime()
     await this.lensRepository.updateById(id, lens);
   }
 
@@ -411,7 +420,7 @@ export class LensControlController {
         if (lens.no != undefined || lens.state != 0) {
           lens.no = undefined;
           lens.state = 0;
-          lens.updateAt = getLocalDate()
+          lens.updateAt = getLocalDateWithTime()
           promiseList.push(this.lensRepository.updateById(lens.id, lens))
         }
       } else if (this.compDate(launchAt, date) != 1 && this.compDate(removeAt, date) == 1) {   // releasing
@@ -419,14 +428,14 @@ export class LensControlController {
           lens.no = nextNo;
           nextNo += 1
           lens.state = 1
-          lens.updateAt = getLocalDate()
+          lens.updateAt = getLocalDateWithTime()
           promiseList.push(this.lensRepository.updateById(lens.id, lens))
         }
       } else {  //removed
         if (lens.no != undefined || lens.state != 2) {
           lens.no = undefined;
           lens.state = 2
-          lens.updateAt = getLocalDate()
+          lens.updateAt = getLocalDateWithTime()
           promiseList.push(this.lensRepository.updateById(lens.id, lens))
         }
       }
