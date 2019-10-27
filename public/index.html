@@ -775,6 +775,8 @@
         function logout() {
             //Cookies.remove('token');
             $('#auth input').val('')
+            $('#update #update_img').html('')
+            $('#update #update_img-show').html('')
             swalAlert("登出成功", "", true, switchPane(false))
         }
 
