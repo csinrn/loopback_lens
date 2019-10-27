@@ -2,7 +2,8 @@
 *.d.js
 *.map
 *.tsbuildinfo
-
+public/lensPic/*
+public/lensPic_show/*
 # Logs
 logs
 *.log
