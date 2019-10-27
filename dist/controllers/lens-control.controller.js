@@ -20,8 +20,7 @@ const validator_1 = require("../services/validator");
 var fs = require('fs');
 function getLocalDate() {
     var dt = new Date();
-    var local = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
-    return new Date(local.toDateString());
+    return new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
 }
 var nowDate = getLocalDate();
 var nextNo = 0;
@@ -40,8 +39,6 @@ let LensControlController = class LensControlController {
         validator_1.validateBoolean(lens.daily, "dailytag");
         validator_1.validateBoolean(lens.biweekly, "biweeklytag");
         validator_1.validateBoolean(lens.monthly, "monthlytag");
-        // Capitalize partNo
-        lens.partNo = lens.partNo.toUpperCase();
         // store image, throw if error
         var imgUrl = '', imgUrl2 = '';
         try {
@@ -59,6 +56,8 @@ let LensControlController = class LensControlController {
             });
             throw new rest_1.HttpErrors.BadRequest(err);
         }
+        // Capitalize partNo
+        lens.partNo = lens.partNo.toUpperCase();
         // assign state and no fields
         if (this.compDate(new Date(lens.launchAt), nowDate) == 1) { // not yet released
             lens.no = undefined;
