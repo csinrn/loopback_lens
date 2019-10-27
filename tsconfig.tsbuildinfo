@@ -1316,9 +1316,15 @@
         "version": "47d331d275f4f454d133a4e9ad5675f82789523c58adde89b3aba2a38a109928",
         "signature": "bcfb1ab29cbb449eb2b474501ccf1144f79d54b302c960b80b35e0aa86601aa7"
       },
+<<<<<<< HEAD
       "/opt/nodeapp/FMO_lens/src/controllers/lens-control.controller.ts": {
         "version": "1d9ba13c93185752acc54d7dc274cc1572d9c6eb2b9f5e9aa3bab10f2a7ef239",
         "signature": "1d8308ed69425cd9554e86b74e3c1e514c9b220aca9cb8a2d69a2b931a1d963e"
+=======
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
+        "version": "f2b1fa4a7dd8f15022f135ba09790942756a3a358b178c8da883cb0291042871",
+        "signature": "71862b8035ba47b25039a15075dbb2076539b326980599d20450ed55ba677741"
+>>>>>>> master
       },
       "/opt/nodeapp/FMO_lens/src/application.ts": {
         "version": "6ac070ea6da95d8f9e22402f3a22ad2d09c99fa344fd3ea144b0d2cc831a8db4",

@@ -28,7 +28,8 @@ var fs = require('fs')
 
 function getLocalDate(): Date {
   var dt = new Date()
-  return new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+  var local = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
+  return new Date(local.toDateString())
 }
 
 var nowDate = getLocalDate()
@@ -69,6 +70,9 @@ export class LensControlController {
     validateBoolean(lens.biweekly, "biweeklytag")
     validateBoolean(lens.monthly, "monthlytag")
 
+    // Capitalize partNo
+    lens.partNo = lens.partNo.toUpperCase()
+
     // store image, throw if error
     var imgUrl = '', imgUrl2 = ''
     try {
@@ -85,9 +89,6 @@ export class LensControlController {
       });
       throw new HttpErrors.BadRequest(err)
     }
-
-    // Capitalize partNo
-    lens.partNo = lens.partNo.toUpperCase()
 
     // assign state and no fields
     if (this.compDate(new Date(lens.launchAt), nowDate) == 1) {  // not yet released
