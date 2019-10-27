@@ -244,6 +244,9 @@ export class LensControlController {
       }
       if (lens.url2 == undefined) {  // if do not update new url2
         try {
+          if (!fs.existsSync('./public' + oldLen.url2)) {
+            throw new HttpErrors.BadRequest()
+          }
           fs.rename('./public' + oldLen.url2, './public/lensPic_show/' + lens.partNo + '.png', () => { });
         } catch{
           throw new HttpErrors.BadRequest('找不到原有圖片，請重新上傳一張新的')
