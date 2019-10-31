@@ -28,9 +28,7 @@ var fs = require('fs')
 
 function getLocalDate(): Date {
   var dt = new Date()
-  var local = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
-  console.log(new Date(local.toDateString()))
-  return new Date(local.toDateString())
+  return new Date(dt.toLocaleDateString())
 }
 
 function getLocalDateWithTime(): Date {
@@ -135,6 +133,23 @@ export class LensControlController {
     @param.query.object('where', getWhereSchemaFor(Lens)) where?: Where<Lens>,
   ): Promise<Count> {
     return await this.lensRepository.count(where);
+  }
+
+  @get('/lens/time', {
+    responses: {
+      '200': {
+        description: 'Lens model count',
+        content: { 'application/json': { schema: CountSchema } },
+      },
+    },
+  })
+  async time() {
+    var res = {
+      newDate: new Date(),
+      getLocalDate: getLocalDate(),
+      getLocalDateWithTime: getLocalDateWithTime()
+    }
+    return res
   }
 
   //@authenticate('jwt')

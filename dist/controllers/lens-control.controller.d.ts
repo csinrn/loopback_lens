@@ -6,6 +6,11 @@ export declare class LensControlController {
     constructor(lensRepository: LensRepository);
     create(lens: Lens): Promise<Lens>;
     count(where?: Where<Lens>): Promise<Count>;
+    time(): Promise<{
+        newDate: Date;
+        getLocalDate: Date;
+        getLocalDateWithTime: Date;
+    }>;
     find(filter?: Filter<Lens>): Promise<(Lens & import("../models").LensRelations)[]>;
     findbase64(filter?: Filter<Lens>): Promise<Lens[]>;
     updateById(id: string, lens: Lens): Promise<void>;
