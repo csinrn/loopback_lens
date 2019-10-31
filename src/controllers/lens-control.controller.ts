@@ -35,7 +35,8 @@ function getLocalDate(): Date {
 
 function getLocalDateWithTime(): string {
   return new Date().toLocaleString('zh-TW', {
-    timeZone: 'Asia/Taipei'
+    timeZone: 'Asia/Taipei',
+    hour12: false
   })
 }
 
