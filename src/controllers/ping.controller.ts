@@ -59,7 +59,7 @@ export class PingController {
     return {
       greeting: 'Hello from LoopBack',
       hour,
-      date: dt.toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
+      date: dt.toLocaleString(),
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
       serverIp: '192.168.1.109',
