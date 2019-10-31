@@ -54,12 +54,15 @@ let PingController = class PingController {
         // Reply with a greeting, the current time, the url, and request headers
         var updateTime = await this.updateTimeRepository.findById('0');
         var dt = new Date();
-        var hour = dt.getHours();
+        var taipeiString = dt.toLocaleString('zh-TW', {
+            timeZone: 'Asia/Taipei',
+            hour12: false
+        });
+        var hour = parseInt(taipeiString.split(' ')[1].split(':')[0]);
         var isUpdateTime = updateTime.updateFrom <= hour && updateTime.updateTo > hour;
         return {
             greeting: 'Hello from LoopBack',
-            date: dt.toLocaleString(),
-            date2: dt,
+            date: taipeiString,
             hour: hour,
             url: this.req.url,
             headers: Object.assign({}, this.req.headers),

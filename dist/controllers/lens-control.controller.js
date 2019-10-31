@@ -20,13 +20,14 @@ const validator_1 = require("../services/validator");
 var fs = require('fs');
 function getLocalDate() {
     var dt = new Date();
-    var local = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
-    console.log(new Date(local.toDateString()));
-    return new Date(dt.toLocaleDateString());
+    return new Date(dt.toLocaleDateString('zh-TW', {
+        timeZone: 'Asia/Taipei'
+    }));
 }
 function getLocalDateWithTime() {
-    var dt = new Date();
-    return new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
+    return new Date().toLocaleString('zh-TW', {
+        timeZone: 'Asia/Taipei'
+    });
 }
 var nowDate = getLocalDate();
 var nextNo = 0;
@@ -95,7 +96,7 @@ let LensControlController = class LensControlController {
     }
     async time() {
         var res = {
-            newDate: new Date(),
+            newDate: nowDate,
             getLocalDate: getLocalDate(),
             getLocalDateWithTime: getLocalDateWithTime()
         };
@@ -103,9 +104,8 @@ let LensControlController = class LensControlController {
     }
     //@authenticate('jwt')
     async find(filter) {
-        var date = new Date(getLocalDate().toDateString());
-        var lastUpdate = new Date(nowDate.toDateString());
-        console.log(date, lastUpdate);
+        var date = getLocalDate();
+        var lastUpdate = nowDate;
         if (this.compDate(lastUpdate, date) != 0) { // check the launch state everyday
             await this.renewNo();
             nowDate = getLocalDate();

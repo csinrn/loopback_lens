@@ -9,7 +9,7 @@ export declare class LensControlController {
     time(): Promise<{
         newDate: Date;
         getLocalDate: Date;
-        getLocalDateWithTime: Date;
+        getLocalDateWithTime: string;
     }>;
     find(filter?: Filter<Lens>): Promise<(Lens & import("../models").LensRelations)[]>;
     findbase64(filter?: Filter<Lens>): Promise<Lens[]>;
