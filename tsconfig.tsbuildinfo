@@ -1317,8 +1317,8 @@
         "signature": "6addb2e7953edadf78e8a2aab0964a991ba5de4871e16f3b5f729c14e64b11ad"
       },
       "d:/eye-demo/lens/src/controllers/lens-control.controller.ts": {
-        "version": "86d1c210a3f5411b81ce3b672cacad980f1acf82e6d02d1ae35945e9a7657296",
-        "signature": "71862b8035ba47b25039a15075dbb2076539b326980599d20450ed55ba677741"
+        "version": "8e0a2f3b1208399c091d1c314d0760208689f7592ae3fd865f093fa40a2589d6",
+        "signature": "3a83ab05455c0427000513a8957db5cb882046e9cefbf3a1c3416076b7bb6d9c"
       },
       "d:/eye-demo/lens/src/application.ts": {
         "version": "3da170ac83bbc30ca73af6415a921f71221620a4a50001d857fc9d6945a8e686",
@@ -1485,7 +1485,7 @@
         "signature": "69975ad9fe2987434ed130eac1203cf544884ba31c79ce8a2d521f13e5fc2ad3"
       },
       "d:/eye-demo/lens/src/controllers/ping.controller.ts": {
-        "version": "0014a75569f67f0447a361563b0bf95900494cb0e6b3fcf53bede31a5fbcaf8f",
+        "version": "413a84b4314a92ca73299590ce955717dacaf5875da09c33fd1765c81f5bc8da",
         "signature": "81faa5bc8e59b7cf0ca7eb2446c5226b92b1caeda178b0507f2c750e599535c7"
       },
       "d:/eye-demo/lens/src/controllers/user-lens-control.controller.ts": {
@@ -7107,7 +7107,6 @@
       "d:/eye-demo/lens/src/services/jwt-service.ts",
       "d:/eye-demo/lens/src/services/user-service.ts",
       "d:/eye-demo/lens/src/services/validator.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
@@ -7160,7 +7159,8 @@
       "d:/eye-demo/lens/node_modules/@types/minimatch/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
-      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts"
+      "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts"
     ]
   },
   "version": "3.5.3"

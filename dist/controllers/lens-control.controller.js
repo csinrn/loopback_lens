@@ -22,7 +22,7 @@ function getLocalDate() {
     var dt = new Date();
     var local = new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000);
     console.log(new Date(local.toDateString()));
-    return new Date(local.toDateString());
+    return new Date(dt.toLocaleDateString());
 }
 function getLocalDateWithTime() {
     var dt = new Date();
@@ -92,6 +92,14 @@ let LensControlController = class LensControlController {
     //@authenticate('jwt')
     async count(where) {
         return await this.lensRepository.count(where);
+    }
+    async time() {
+        var res = {
+            newDate: new Date(),
+            getLocalDate: getLocalDate(),
+            getLocalDateWithTime: getLocalDateWithTime()
+        };
+        return res;
     }
     //@authenticate('jwt')
     async find(filter) {
@@ -402,6 +410,19 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], LensControlController.prototype, "count", null);
+__decorate([
+    rest_1.get('/lens/time', {
+        responses: {
+            '200': {
+                description: 'Lens model count',
+                content: { 'application/json': { schema: repository_1.CountSchema } },
+            },
+        },
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], LensControlController.prototype, "time", null);
 __decorate([
     rest_1.get('/lens', {
         responses: {
