@@ -52,7 +52,7 @@ export class PingController {
     var isUpdateTime = updateTime.updateFrom <= hour && updateTime.updateTo > hour
     return {
       greeting: 'Hello from LoopBack',
-      date: dt,
+      date: dt.toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
       serverIp: '192.168.1.109',
