@@ -24,10 +24,10 @@
         integrity="sha256-Qfxgn9jULeGAdbaeDjXeIhZB3Ra6NCK3dvjwAG8Y+xU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/TableDnD/0.9.1/jquery.tablednd.js"
         integrity="sha256-d3rtug+Hg1GZPB7Y/yTcRixO/wlI78+2m08tosoRn7A=" crossorigin="anonymous"></script>
 </head>
@@ -222,24 +222,20 @@
                                             </div>
                                             <div class="row">
                                                 <div class="input-group mb-3 col-xl-9">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">更新去背圖片</span>
-                                                        <input type="file" name="img" accept=".png" data-url=""
-                                                            style="align-self: center; margin-left: 2%"
-                                                            onchange="checkAlpha2()" attr="optional">
-                                                    </div>
+                                                    <span class="input-group-text mb-1">透明樣版圖檔</span>
+                                                    <input type="file" name="img" accept=".png" data-url=""
+                                                        style="align-self: center; margin-left: 2%"
+                                                        onchange="checkAlpha2()" attr="optional">
                                                     ＊圖片須為png檔且具備透明度資訊
                                                 </div>
                                                 <div class="col-xl-3 mb-3" id="update_img"></div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-group mb-3 col-xl-9">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">更新展示圖片</span>
-                                                        <input type="file" name="img-show" accept=".png" data-url=""
-                                                            style="align-self: center; margin-left: 2%"
-                                                            onchange="checkAlpha3()" attr="optional">
-                                                    </div>
+                                                    <span class="input-group-text mb-1">不透明樣版圖檔</span>
+                                                    <input type="file" name="img-show" accept=".png" data-url=""
+                                                        style="align-self: center; margin-left: 2%"
+                                                        onchange="checkAlpha3()" attr="optional">
                                                     *供平板介紹頁面使用
                                                 </div>
                                                 <div class="col-xl-3 mb-3" id="update_img-show"></div>
@@ -393,7 +389,7 @@
                                         </div>
                                         <div class="input-group mb-3 col-md-6">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">新增展示圖片</span>
+                                                <span class="input-group-text">不透明樣版圖檔</span>
                                                 <input type="file" name="img-show" accept=".png" data-url=""
                                                     style="align-self: center; margin-left: 2%">
                                             </div>
@@ -416,7 +412,7 @@
                                         </div>
                                         <div class="input-group mb-3 col-md-6">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">新增去背圖片</span>
+                                                <span class="input-group-text">透明樣版圖檔</span>
                                                 <input type="file" name="img" accept=".png" data-url=""
                                                     style="align-self: center; margin-left: 2%" onchange="checkAlpha()">
                                             </div>
@@ -1114,7 +1110,7 @@
                         var msg = error.responseJSON.error.message + "<br>Details: " + JSON
                             .stringify(
                                 error.responseJSON
-                                    .error.details)
+                                .error.details)
                         swalAlert("排序失敗", msg, false)
                         reject()
                     } catch {
@@ -1395,7 +1391,7 @@
             return ts.substring(0, ts.indexOf('T')).replace(/-/g, '-')
         }
 
-        function swalAlert(title, html, isSuccess, onAfterClose = (() => { })) {
+        function swalAlert(title, html, isSuccess, onAfterClose = (() => {})) {
             var type = isSuccess ? "success" : "error"
             var msg = isSuccess ? "OK" : "Fine"
             Swal.fire({
@@ -1725,7 +1721,7 @@
                 contentType: "application/json",
                 data: data
             }).done(() => {
-                if (id == user.id) {  // if update user's own informayion, then render the #username span
+                if (id == user.id) { // if update user's own informayion, then render the #username span
                     $('#userName').text(userName); // 填入login page 的 user name
                 }
                 $('#admin-update [name="updateAdminBtn"]').attr('disabled', false)
