@@ -47,11 +47,12 @@ export class PingController {
   async ping(): Promise<object> {
     // Reply with a greeting, the current time, the url, and request headers
     var updateTime = await this.updateTimeRepository.findById('0');
-    var dt = new Date()
-    var hour = dt.getHours() + 12
+    var dt = getLocalDateWithTime()
+    var hour = dt.getHours()
     var isUpdateTime = updateTime.updateFrom <= hour && updateTime.updateTo > hour
     return {
       greeting: 'Hello from LoopBack',
+      hour,
       date: dt.toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
