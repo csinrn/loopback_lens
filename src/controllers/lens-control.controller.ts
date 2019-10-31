@@ -34,10 +34,20 @@ function getLocalDate(): Date {
 }
 
 function getLocalDateWithTime(): string {
-  return new Date().toLocaleString('zh-TW', {
+  var str = new Date().toLocaleString('zh-TW', {
     timeZone: 'Asia/Taipei',
     hour12: false
-  })
+  }).replace(/\//g, '-')
+  var sp = str.split(',')
+  var res
+  if (sp.length > 1) {
+    var sp2 = sp[0].split('-')
+    res = sp2[2] + '-' + sp2[0] + '-' + sp2[1] + sp[1]
+  } else {
+    res = str
+  }
+  console.log(res)
+  return res
 }
 
 var nowDate = getLocalDate()

@@ -7086,6 +7086,7 @@
       "d:/eye-demo/lens/src/sequence.ts",
       "d:/eye-demo/lens/node_modules/@types/bcryptjs/index.d.ts",
       "d:/eye-demo/lens/src/services/hash.password.bcryptjs.ts",
+      "d:/eye-demo/lens/src/models/lens.model.ts",
       "d:/eye-demo/lens/src/models/userlens.model.ts",
       "d:/eye-demo/lens/src/models/admin.model.ts",
       "d:/eye-demo/lens/src/models/image-storage.model.ts",
@@ -7106,7 +7107,6 @@
       "d:/eye-demo/lens/src/services/jwt-service.ts",
       "d:/eye-demo/lens/src/services/user-service.ts",
       "d:/eye-demo/lens/src/services/validator.ts",
-      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts",
       "d:/eye-demo/lens/src/application.ts",
       "d:/eye-demo/lens/src/index.ts",
       "d:/eye-demo/lens/src/migrate.ts",
@@ -7160,7 +7160,7 @@
       "d:/eye-demo/lens/node_modules/@types/glob/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/mocha/index.d.ts",
       "d:/eye-demo/lens/node_modules/@types/on-finished/index.d.ts",
-      "d:/eye-demo/lens/src/models/lens.model.ts"
+      "d:/eye-demo/lens/src/controllers/lens-control.controller.ts"
     ]
   },
   "version": "3.5.3"
