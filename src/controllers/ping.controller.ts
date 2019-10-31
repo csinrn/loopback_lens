@@ -4,11 +4,6 @@ import { UpdateTimeRepository } from '../repositories'
 import { repository } from '@loopback/repository';
 import { is } from 'type-is';
 
-function getLocalDateWithTime(): Date {
-  var dt = new Date()
-  return new Date(dt.getTime() - dt.getTimezoneOffset() * 60 * 1000)
-}
-
 /**
  * OpenAPI response for ping()
  */
@@ -53,12 +48,11 @@ export class PingController {
   async ping(): Promise<object> {
     // Reply with a greeting, the current time, the url, and request headers
     var updateTime = await this.updateTimeRepository.findById('0');
-    var dt = getLocalDateWithTime()
+    var dt = new Date()
     var hour = dt.getHours()
     var isUpdateTime = updateTime.updateFrom <= hour && updateTime.updateTo > hour
     return {
       greeting: 'Hello from LoopBack',
-      hour,
       date: dt.toLocaleString(),
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
