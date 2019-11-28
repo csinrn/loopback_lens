@@ -30,6 +30,14 @@ export class Lens extends Entity {
   name: string;
 
   @property({
+    type: 'string',
+    required: true,
+    length: 50,
+    mysql: { "columnName": "series", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+  })
+  series: string;
+
+  @property({
     type: 'number',
     generated: true,
     precision: 10,
