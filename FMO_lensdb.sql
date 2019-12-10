@@ -17,53 +17,6 @@ DROP DATABASE IF EXISTS `fmo_lensdb`;
 CREATE DATABASE IF NOT EXISTS `fmo_lensdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `fmo_lensdb`;
 
--- Dumping structure for table fmo_lensdb.admin
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `account` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `create_at` datetime NOT NULL,
-  `is_admin` tinyint(4) NOT NULL DEFAULT 0,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `account` (`account`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
-
--- Dumping data for table fmo_lensdb.admin: ~8 rows (approximately)
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` (`id`, `account`, `password`, `create_at`, `is_admin`, `name`) VALUES
-	(2, '444', '$2a$10$mVoirp3MPBDA2Ty/h5.Zhu.tXkf39L9DnmsjeK0M3QrFnlUE/PTTK', '2019-09-26 00:00:00', 0, '詹則方'),
-	(3, '4444', '$2a$10$eReuQLBsuEscfbNlvZt0P.7Ml0f6zr.KBUVp7tfSswitA/eXF8ihq', '2019-09-29 00:00:00', 1, 'Louis Labat'),
-	(4, 'eee', '$2a$10$eecAEIhBKpYO84ZFCYSRjuLh4Uk9sCBdAwnhKLQAQ68fxFIIWD2Ri', '2019-09-29 00:00:00', 1, 'JK Rolin'),
-	(5, 'qwe', '$2a$10$JB91FVZfTtL1AFVexN0hjOjbfN.kt4PPj4hAKYs44P6fP7PM.ohxW', '2019-09-29 00:00:00', 0, '宇文濬'),
-	(6, 'rrrr', '$2a$10$8ThDOrjsKnwepj0KcB04KuNW/u99RyqLT1dgeuj1M/MGCfMu/tsXG', '2019-09-26 00:00:00', 0, '令狐沖'),
-	(7, 'admin', '$2a$10$27dOcwg/1Ykvek2AqJX6xuilYNFOJT45kvn0A2pbRA/BqDXV/hhGy', '2019-01-03 00:00:00', 1, '羽生結弦'),
-	(10, '3333', '$2a$10$sx7/uIttVuw0OhFj5MjxFu.eYYW1mcMwIuZ20hOt/58VGe3Rb.fbO', '2019-10-20 00:00:00', 0, '陳琛'),
-	(11, 'www', '$2a$10$g8kXrBSv6F9ypsQVQY6z1e2g0D8gDh2rhLt.XeNXyDlGf.KOUMGsy', '2019-10-20 00:00:00', 0, 'ww');
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
-
--- Dumping structure for table fmo_lensdb.iris_points
-DROP TABLE IF EXISTS `iris_points`;
-CREATE TABLE IF NOT EXISTS `iris_points` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(20) NOT NULL,
-  `leftpupil_x` int(11) unsigned NOT NULL,
-  `leftpupil_y` int(11) unsigned NOT NULL,
-  `rightpupil_x` int(11) unsigned NOT NULL,
-  `rightpupil_y` int(11) unsigned NOT NULL,
-  `iris_radius` int(11) unsigned NOT NULL,
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- Dumping data for table fmo_lensdb.iris_points: ~2 rows (approximately)
-/*!40000 ALTER TABLE `iris_points` DISABLE KEYS */;
-INSERT INTO `iris_points` (`id`, `user_id`, `leftpupil_x`, `leftpupil_y`, `rightpupil_x`, `rightpupil_y`, `iris_radius`) VALUES
-	(1, '0', 0, 0, 0, 0, 0),
-	(2, 'string', 10, 20, 35, 20, 10),
-	(3, 'test', 20, 20, 20, 20, 20);
-/*!40000 ALTER TABLE `iris_points` ENABLE KEYS */;
-
 -- Dumping structure for table fmo_lensdb.lens
 DROP TABLE IF EXISTS `lens`;
 CREATE TABLE IF NOT EXISTS `lens` (
@@ -98,73 +51,27 @@ CREATE TABLE IF NOT EXISTS `lens` (
   `pic_ver` int(11) DEFAULT 0,
   `isdeleted` tinyint(4) NOT NULL DEFAULT 0,
   `series` varchar(50) DEFAULT NULL,
+  `brand` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `part_no` (`part_no`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table fmo_lensdb.lens: ~14 rows (approximately)
+-- Dumping data for table fmo_lensdb.lens: ~11 rows (approximately)
 /*!40000 ALTER TABLE `lens` DISABLE KEYS */;
-INSERT INTO `lens` (`id`, `part_no`, `name`, `url`, `url2`, `no`, `state`, `launch_at`, `remove_at`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `pic_ver`, `isdeleted`, `series`) VALUES
-	(0, 'JK7890', '栗子蒙布朗', '/lensPic/JK7890.png', '/lensPic_show/JK7890.png', NULL, 2, '1999-09-07 00:00:00', '2019-10-22 00:00:00', 1.3, 17, 1000, 1500, 50, 1, 0, 1, '泰國', 2000, 3, NULL, NULL, 'L78910', 0, 1, 0, '2019-09-13 00:00:00', '2019-10-26 18:12:37', 1, 0, NULL),
-	(1, '45', '香檳金', '/lensPic/45.png', '/lensPic_show/45.png', 0, 1, '2019-08-30 00:00:00', '2020-10-22 00:00:00', 13, 17, 0, 50, 50, 1, 0, 1, '馬來西亞', 200, 10, 150, '打折', 'L78910', 0, 0, 1, '2019-09-13 00:00:00', '2019-11-30 00:43:05', 1, 0, '333'),
-	(2, '38', '星空灰', '/lensPic/38.png', '/lensPic_show/38.png', NULL, 2, '2019-09-09 00:00:00', '2019-10-22 00:00:00', 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13 00:00:00', '2019-10-26 18:05:54', 1, 0, NULL),
-	(3, '39', '星空棕', '/lensPic/39.png', '/lensPic_show/39.png', NULL, 2, '2019-10-24 00:00:00', '2019-10-30 00:00:00', 15, 17, 500, 1000, 20, 1, 0, 0, '台灣', 3500, 10, 2500, '開幕優惠', 'L12345', 1, 1, 1, '2019-09-13 00:00:00', '2019-10-31 15:54:27', 1, 0, NULL),
-	(4, '55555', '甜心灰', '/lensPic/55555.png', '/lensPic_show/55555.png', NULL, 2, '2019-10-24 00:00:00', '2019-10-31 00:00:00', 13, 17.5, 100, 500, 50, 0, 1, 0, '巴西', 200, 12, 150, '開幕優惠', 'L78910', 1, 1, 1, '2019-09-13 00:00:00', '2019-10-31 16:06:44', 5, 0, NULL),
-	(5, 'KK', '楓糖奶茶', '/lensPic/KK.png', '/lensPic_show/KK.png', NULL, 2, '2019-10-22 00:00:00', '2019-10-31 00:00:00', 10.5, 7, 900, 1000, 24, 1, 0, 0, '美國', 400, 30, NULL, NULL, 'B333777', 1, 1, 0, '2019-09-13 00:00:00', '2019-10-31 16:06:44', 3, 0, NULL),
-	(6, 'JK678', '馬卡龍灰', '/lensPic/JK678.png', '/lensPic_show/JK678.png', NULL, 2, '2019-09-16 00:00:00', '2019-10-30 00:00:00', 2, 5, 400, 800, 7, 0, 1, 0, '紐西蘭', 200, 10, NULL, NULL, 'LH333', 1, 0, 0, '2019-09-29 00:00:00', '2019-10-31 15:54:27', 6, 0, NULL),
-	(7, 'CHANGE24', '焦糖布蕾', '/lensPic/CHANGE24.png', '/lensPic_show/CHANGE24.png', NULL, 2, '2019-10-08 00:00:00', '2019-10-30 00:00:00', 20, 6, 100, 200, 10, 1, 0, 0, '日本', 700, 20, NULL, NULL, 'B34567', 0, 1, 0, '2019-09-13 00:00:00', '2019-10-31 15:54:27', 3, 0, NULL),
-	(8, 'KK48', '太妃糖杏', '/lensPic/KK48.png', '/lensPic_show/KK48.png', NULL, 2, '2019-10-15 00:00:00', '2019-10-23 00:00:00', 13, 10, 50, 100, 20, 1, 0, 0, '北極', 3000, 3, NULL, NULL, 'K123456', 0, 0, 0, '2019-09-13 00:00:00', '2019-10-26 18:06:37', 1, 0, NULL),
-	(9, 'E37', '黑醋栗摩卡', '/lensPic/E37.png', '/lensPic_show/E37.png', NULL, 2, '2019-09-22 00:00:00', '2019-10-30 00:00:00', 30, 35, 50, 200, 3, 1, 0, 0, '荷蘭', 300, 10, NULL, NULL, 'L4444', 0, 1, 0, '2019-09-29 00:00:00', '2019-10-31 15:54:27', 15, 0, NULL),
-	(13, 'KK789', '黑森林', '/lensPic/KK789.png', '/lensPic_show/KK789.png', NULL, 2, '2019-10-23 00:00:00', '2019-10-28 00:00:00', 15.6, 20.1, 50, 100, 30, 1, 1, 1, '土耳其', 300, 3, NULL, NULL, 'TT666', 1, 1, 0, '2019-09-30 00:00:00', '2019-10-31 15:54:27', 13, 0, NULL),
-	(27, 'TEST', '3', '/lensPic/TEST.png', '/lensPic_show/TEST.png', NULL, 2, '2019-10-09 00:00:00', '2019-10-22 00:00:00', 3, 3, 3, 3, 3, 1, 0, 0, '3', 3, 3, NULL, NULL, '3', 1, 0, 0, '2019-10-26 16:00:00', '2019-10-26 16:00:00', 0, 0, NULL),
-	(28, 'TEST4', '3', '/lensPic/test4.png', '/lensPic_show/test4.png', NULL, 2, '2019-10-17 00:00:00', '2019-10-29 00:00:00', 3, 3, 3, 3, 3, 1, 0, 0, '3', 3, 3, NULL, NULL, '3', 0, 0, 0, '2019-10-26 16:00:00', '2019-10-31 15:54:27', 0, 0, NULL),
-	(29, 'TEST5', '3', '/lensPic/TEST5.png', '/lensPic_show/TEST5.png', NULL, 2, '2019-10-01 00:00:00', '2019-10-14 00:00:00', 3, 3, 3, 3, 3, 1, 0, 0, '3', 3, 3, NULL, NULL, '3', 1, 0, 0, '2019-10-26 16:00:00', '2019-10-26 16:00:00', 0, 0, NULL);
+INSERT INTO `lens` (`id`, `part_no`, `name`, `url`, `url2`, `no`, `state`, `launch_at`, `remove_at`, `diameter`, `BC`, `powerL`, `powerH`, `water`, `daily`, `biweekly`, `monthly`, `place_of_prod`, `price`, `package`, `special_price`, `event_disp`, `license`, `new_tag`, `hotsale_tag`, `onsale_tag`, `create_at`, `update_at`, `pic_ver`, `isdeleted`, `series`, `brand`) VALUES
+	(0, 'JK7890', '栗子蒙布朗', '/lensPic/JK7890.png', '/lensPic_show/JK7890.png', 6, 1, '1999-09-07 00:00:00', '2020-01-08 00:00:00', 1.3, 17, 1000, 1500, 50, 1, 0, 1, '泰國', 2000, 3, NULL, NULL, 'L78910', 0, 1, 0, '2019-09-13 00:00:00', '2019-12-10 18:17:01', 2, 0, '睛靚玩美', '海島'),
+	(1, '45', '香檳金', '/lensPic/45.png', '/lensPic_show/45.png', 0, 1, '2019-08-30 00:00:00', '2020-10-22 00:00:00', 13, 17, 0, 50, 50, 1, 0, 1, '馬來西亞', 200, 10, 150, '打折', 'L78910', 0, 0, 1, '2019-09-13 00:00:00', '2019-12-02 21:07:49', 2, 0, '333', '海島'),
+	(2, '38', '星空灰', '/lensPic/38.png', '/lensPic_show/38.png', 5, 1, '2019-09-09 00:00:00', '2019-12-31 00:00:00', 15, 17, 500, 600, 20, 1, 1, 0, '台灣', 3000, 10, 2500, '開幕優惠', 'L12345', 1, 0, 1, '2019-09-13 00:00:00', '2019-12-10 18:17:08', 2, 0, '睛靚玩美', '海島'),
+	(3, '39', '星空棕', '/lensPic/39.png', '/lensPic_show/39.png', NULL, 2, '2019-10-24 00:00:00', '2019-10-30 00:00:00', 15, 17, 500, 1000, 20, 1, 0, 0, '台灣', 3500, 10, 2500, '開幕優惠', 'L12345', 1, 1, 1, '2019-09-13 00:00:00', '2019-12-02 21:08:19', 2, 0, '女神日彩', '海島'),
+	(4, '55555', '甜心灰', '/lensPic/55555.png', '/lensPic_show/55555.png', NULL, 2, '2019-10-24 00:00:00', '2019-10-31 00:00:00', 13, 17.5, 100, 500, 50, 0, 1, 0, '巴西', 200, 12, 150, '開幕優惠', 'L78910', 1, 1, 1, '2019-09-13 00:00:00', '2019-12-10 18:19:04', 5, 0, '女神日彩', '海島'),
+	(5, 'KK', '楓糖奶茶', '/lensPic/KK.png', '/lensPic_show/KK.png', NULL, 2, '2019-10-22 00:00:00', '2019-10-31 00:00:00', 10.5, 7, 900, 1000, 24, 1, 0, 0, '美國', 400, 30, NULL, NULL, 'B333777', 1, 1, 0, '2019-09-13 00:00:00', '2019-12-02 21:09:34', 4, 0, 'MIMA', '海島'),
+	(6, 'JK678', '馬卡龍灰', '/lensPic/JK678.png', '/lensPic_show/JK678.png', 3, 1, '2019-09-16 00:00:00', '2019-12-31 00:00:00', 2, 5, 400, 800, 7, 0, 1, 0, '紐西蘭', 200, 10, NULL, NULL, 'LH333', 1, 0, 0, '2019-09-29 00:00:00', '2019-12-02 21:12:38', 7, 0, '星眸系列', '海島'),
+	(7, 'CHANGE24', '焦糖布蕾', '/lensPic/CHANGE24.png', '/lensPic_show/CHANGE24.png', 2, 1, '2019-10-08 00:00:00', '2019-12-31 00:00:00', 20, 6, 100, 200, 10, 1, 0, 0, '日本', 700, 20, NULL, NULL, 'B34567', 0, 1, 0, '2019-09-13 00:00:00', '2019-12-02 21:12:10', 4, 0, '星眸系列', '海島'),
+	(8, 'KK48', '太妃糖杏', '/lensPic/KK48.png', '/lensPic_show/KK48.png', 1, 1, '2019-10-15 00:00:00', '2019-12-31 00:00:00', 13, 10, 50, 100, 20, 1, 0, 0, '北極', 3000, 3, NULL, NULL, 'K123456', 0, 0, 0, '2019-09-13 00:00:00', '2019-12-02 21:11:35', 2, 0, '星眸系列', '海島'),
+	(9, 'E37', '黑醋栗摩卡', '/lensPic/E37.png', '/lensPic_show/E37.png', 4, 1, '2019-09-22 00:00:00', '2019-12-31 00:00:00', 30, 35, 50, 200, 3, 1, 0, 0, '荷蘭', 300, 10, NULL, NULL, 'L4444', 0, 1, 0, '2019-09-29 00:00:00', '2019-12-02 21:13:05', 15, 0, '星眸系列', '海島'),
+	(13, 'KK789', '黑森林', '/lensPic/KK789.png', '/lensPic_show/KK789.png', NULL, 2, '2019-10-23 00:00:00', '2019-10-28 00:00:00', 15.6, 20.1, 50, 100, 30, 1, 1, 1, '土耳其', 300, 3, NULL, NULL, 'TT666', 1, 1, 0, '2019-09-30 00:00:00', '2019-12-02 21:09:05', 14, 0, '女神日彩', '海島');
 /*!40000 ALTER TABLE `lens` ENABLE KEYS */;
-
--- Dumping structure for table fmo_lensdb.update_time
-DROP TABLE IF EXISTS `update_time`;
-CREATE TABLE IF NOT EXISTS `update_time` (
-  `id` varchar(5) NOT NULL DEFAULT '',
-  `update_from` int(11) unsigned NOT NULL,
-  `update_to` int(11) unsigned NOT NULL,
-  `update_freq` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Dumping data for table fmo_lensdb.update_time: ~0 rows (approximately)
-/*!40000 ALTER TABLE `update_time` DISABLE KEYS */;
-INSERT INTO `update_time` (`id`, `update_from`, `update_to`, `update_freq`) VALUES
-	('0', 8, 16, 5);
-/*!40000 ALTER TABLE `update_time` ENABLE KEYS */;
-
--- Dumping structure for table fmo_lensdb.userlens
-DROP TABLE IF EXISTS `userlens`;
-CREATE TABLE IF NOT EXISTS `userlens` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(20) NOT NULL DEFAULT '',
-  `lens_id` int(10) unsigned NOT NULL,
-  `lens_count` int(11) NOT NULL,
-  `lens_time` int(11) NOT NULL,
-  `create_at` datetime NOT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `is_customer` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_userlens_lens` (`lens_id`),
-  CONSTRAINT `FK_userlens_lens` FOREIGN KEY (`lens_id`) REFERENCES `lens` (`id`) ON DELETE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='lens_count : how many times this user try on this contact lens\r\nlens_time: the total second that this user try on this contact lens';
-
--- Dumping data for table fmo_lensdb.userlens: ~7 rows (approximately)
-/*!40000 ALTER TABLE `userlens` DISABLE KEYS */;
-INSERT INTO `userlens` (`id`, `user_id`, `lens_id`, `lens_count`, `lens_time`, `create_at`, `update_at`, `is_customer`) VALUES
-	(1, '10', 7, 4, 40, '2019-09-30 00:00:00', '2019-10-02 00:00:00', 0),
-	(2, '10', 8, 3, 30, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
-	(3, '5', 1, 3, 30, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
-	(5, '30', 1, 10, 10, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
-	(6, '7', 5, 10, 10, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
-	(7, '7', 7, 10, 10, '2019-09-30 00:00:00', '2019-09-30 00:00:00', 0),
-	(8, '20', 5, 1, 20, '2019-10-02 00:00:00', '2019-10-02 00:00:00', 1);
-/*!40000 ALTER TABLE `userlens` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

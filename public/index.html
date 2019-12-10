@@ -140,6 +140,15 @@
                                                     <input type="string" name="partNo" class="form-control"
                                                         style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                                 </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mb-3 col-md">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">品牌</span>
+                                                    </div>
+                                                    <input type="string" name="brand" class=" form-control"
+                                                        style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                </div>
                                                 <div class="input-group mb-3 col-md">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">系列</span>
@@ -383,6 +392,13 @@
                                                 <span class="input-group-text">含水量</span>
                                             </div>
                                             <input type="number" name="water" class="form-control" min="0"
+                                                style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                        </div>
+                                        <div class="input-group mb-3 col-md-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">品牌</span>
+                                            </div>
+                                            <input type="string" name="brand" class="form-control"
                                                 style="border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         </div>
                                     </div>
@@ -897,6 +913,7 @@
             $('#update [name="diameter"]').val(len.diameter)
             $('#update [name="partNo"]').val(len.partNo)
             $('#update [name="series"]').val(len.series)
+            $('#update [name="brand"]').val(len.brand)
             $('#update [name="bc"]').val(len.bc) //弧度
             $('#update [name="powerL"]').val(len.powerL) //度數
             $('#update [name="powerH"]').val(len.powerH) //度數
@@ -1041,6 +1058,7 @@
             var data = {
                 partNo: $('#upload [name="partNo"]').val(),
                 series: $('#upload [name="series"]').val(),
+                brand: $('#upload [name="brand"]').val(),
                 name: $('#upload [name="name"]').val(),
                 diameter: parseFloat($('#upload [name="diameter"]').val()),
                 bc: parseFloat($('#upload [name="bc"]').val()), //弧度
@@ -1275,6 +1293,7 @@
             var data = {
                 partNo: $('#update [name="partNo"]').val(),
                 series: $('#update [name="series"]').val(),
+                brand: $('#update [name="brand"]').val(),
                 name: $('#update [name="name"]').val(),
                 diameter: parseFloat($('#update [name="diameter"]').val()),
                 bc: parseFloat($('#update [name="bc"]').val()), //弧度

@@ -38,6 +38,14 @@ export class Lens extends Entity {
   series: string;
 
   @property({
+    type: 'string',
+    required: true,
+    length: 50,
+    mysql: { "columnName": "brand", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+  })
+  brand: string;
+
+  @property({
     type: 'number',
     generated: true,
     precision: 10,
@@ -195,11 +203,11 @@ export class Lens extends Entity {
   onsaleTag: number;
 
   @property({
-    type: 'date',
+    type: 'string',
     required: true,
     mysql: { "columnName": "create_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
   })
-  createAt: Date;
+  createAt: string;
 
   @property({
     type: 'date',

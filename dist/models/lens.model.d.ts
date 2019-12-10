@@ -3,6 +3,8 @@ export declare class Lens extends Entity {
     id: number;
     partNo: string;
     name: string;
+    series: string;
+    brand: string;
     no?: number;
     diameter: number;
     bc: number;
@@ -21,7 +23,7 @@ export declare class Lens extends Entity {
     newTag: number;
     hotsaleTag: number;
     onsaleTag: number;
-    createAt: Date;
+    createAt: string;
     launchAt: Date;
     removeAt: Date;
     updateAt: string;
