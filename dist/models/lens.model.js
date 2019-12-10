@@ -47,6 +47,24 @@ __decorate([
 ], Lens.prototype, "name", void 0);
 __decorate([
     repository_1.property({
+        type: 'string',
+        required: true,
+        length: 50,
+        mysql: { "columnName": "series", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    }),
+    __metadata("design:type", String)
+], Lens.prototype, "series", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: true,
+        length: 50,
+        mysql: { "columnName": "brand", "dataType": "varchar", "dataLength": 50, "dataPrecision": null, "dataScale": null, "nullable": "N" },
+    }),
+    __metadata("design:type", String)
+], Lens.prototype, "brand", void 0);
+__decorate([
+    repository_1.property({
         type: 'number',
         generated: true,
         precision: 10,
@@ -222,11 +240,11 @@ __decorate([
 ], Lens.prototype, "onsaleTag", void 0);
 __decorate([
     repository_1.property({
-        type: 'date',
+        type: 'string',
         required: true,
         mysql: { "columnName": "create_at", "dataType": "datetime", "dataLength": null, "dataPrecision": null, "dataScale": null, "nullable": "N" },
     }),
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
 ], Lens.prototype, "createAt", void 0);
 __decorate([
     repository_1.property({

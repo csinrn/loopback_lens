@@ -124,6 +124,10 @@ export class LensControlController {
       lens.state = 2
     }
 
+    // assign dates
+    lens.updateAt = getLocalDateWithTime()
+    lens.createAt = getLocalDateWithTime()
+
     // store lens, delete image and throw if error
     var res = await this.lensRepository.create(lens).catch((err) => {
       fs.unlinkSync('./public' + imgUrl)
